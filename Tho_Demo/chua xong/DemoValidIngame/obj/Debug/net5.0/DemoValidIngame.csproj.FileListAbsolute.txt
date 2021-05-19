@@ -32,3 +32,14 @@ E:\SU2021\dotnet\DemoValidIngame\obj\Debug\net5.0\ref\DemoValidIngame.dll
 E:\SU2021\dotnet\DemoValidIngame\obj\Debug\net5.0\DemoValidIngame.pdb
 E:\SU2021\dotnet\DemoValidIngame\obj\Debug\net5.0\DemoValidIngame.genruntimeconfig.cache
 E:\SU2021\dotnet\DemoValidIngame\obj\Debug\net5.0\DemoValidIngame.csproj.CopyComplete
+C:\Users\Admin\Documents\GitHub\Project_DuoLegend\Tho_Demo\chua xong\DemoValidIngame\obj\Debug\net5.0\DemoValidIngame.csprojAssemblyReference.cache
+C:\Users\Admin\Documents\GitHub\Project_DuoLegend\Tho_Demo\chua xong\DemoValidIngame\obj\Debug\net5.0\DemoValidIngame.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\Documents\GitHub\Project_DuoLegend\Tho_Demo\chua xong\DemoValidIngame\obj\Debug\net5.0\DemoValidIngame.AssemblyInfoInputs.cache
+C:\Users\Admin\Documents\GitHub\Project_DuoLegend\Tho_Demo\chua xong\DemoValidIngame\obj\Debug\net5.0\DemoValidIngame.AssemblyInfo.cs
+C:\Users\Admin\Documents\GitHub\Project_DuoLegend\Tho_Demo\chua xong\DemoValidIngame\obj\Debug\net5.0\DemoValidIngame.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Documents\GitHub\Project_DuoLegend\Tho_Demo\chua xong\DemoValidIngame\obj\Debug\net5.0\DemoValidIngame.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Admin\Documents\GitHub\Project_DuoLegend\Tho_Demo\chua xong\DemoValidIngame\obj\Debug\net5.0\DemoValidIngame.RazorAssemblyInfo.cache
+C:\Users\Admin\Documents\GitHub\Project_DuoLegend\Tho_Demo\chua xong\DemoValidIngame\obj\Debug\net5.0\DemoValidIngame.RazorAssemblyInfo.cs
+C:\Users\Admin\Documents\GitHub\Project_DuoLegend\Tho_Demo\chua xong\DemoValidIngame\obj\Debug\net5.0\DemoValidIngame.dll
+C:\Users\Admin\Documents\GitHub\Project_DuoLegend\Tho_Demo\chua xong\DemoValidIngame\obj\Debug\net5.0\ref\DemoValidIngame.dll
+C:\Users\Admin\Documents\GitHub\Project_DuoLegend\Tho_Demo\chua xong\DemoValidIngame\obj\Debug\net5.0\DemoValidIngame.pdb

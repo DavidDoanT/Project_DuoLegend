@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "xQVheoaNNrnQcHnzUVr/0xVwz9IRPASRt4jTmhQGUSO9vqXAYHKiHKJarqfImRergBngJOGyhmF6W8E/VDS69w==",
+  "dgSpecHash": "3TknvOmYmITm53tJUWLnw0QjFa84fuaYQH5/UxncJTUx/Ox4tSCPK0UwBhdV6e+a5pK4vEYe+VOwaaJLltVTKQ==",
   "success": true,
-  "projectFilePath": "E:\\SU2021\\dotnet\\Riot API\\practice\\practice.csproj",
+  "projectFilePath": "C:\\Users\\Admin\\Documents\\GitHub\\Project_DuoLegend\\Tho_Demo\\Riot API\\practice\\practice.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\humanizer.core\\2.2.0\\humanizer.core.2.2.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",

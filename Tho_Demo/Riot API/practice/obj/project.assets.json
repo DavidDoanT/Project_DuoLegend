@@ -6233,22 +6233,25 @@
   },
   "packageFolders": {
     "C:\\Users\\Admin\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\SU2021\\dotnet\\Riot API\\practice\\practice.csproj",
+      "projectUniqueName": "C:\\Users\\Admin\\Documents\\GitHub\\Project_DuoLegend\\Tho_Demo\\Riot API\\practice\\practice.csproj",
       "projectName": "practice",
-      "projectPath": "E:\\SU2021\\dotnet\\Riot API\\practice\\practice.csproj",
+      "projectPath": "C:\\Users\\Admin\\Documents\\GitHub\\Project_DuoLegend\\Tho_Demo\\Riot API\\practice\\practice.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "E:\\SU2021\\dotnet\\Riot API\\practice\\obj\\",
+      "outputPath": "C:\\Users\\Admin\\Documents\\GitHub\\Project_DuoLegend\\Tho_Demo\\Riot API\\practice\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
         "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
         "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],

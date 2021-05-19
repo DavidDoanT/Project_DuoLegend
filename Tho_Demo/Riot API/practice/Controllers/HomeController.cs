@@ -22,36 +22,58 @@ namespace practice.Controllers
             _logger = logger;
         }
 
-    
 
-        public IActionResult check()
+        [HttpPost]
+        public IActionResult Checkout(inputData input)
         {
+       
 
-            WebRequest request = WebRequest.Create("https://br1.api.riotgames.com/lol/platform/v3/champion-rotations?api_key=RGAPI-df10c379-2929-4ebb-8c86-6ea397b0cba1");
-
+               WebRequest request = WebRequest.Create("https://br1.api.riotgames.com/lol/summoner/v4/summoners/by-name/"+input.ingameName+"?api_key=RGAPI-e5b85353-2d37-4d8e-9c5a-56ebfd8765cf");
+            
+            
             // Get the response.
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            try
+            {
+                checkViewModel infor = new checkViewModel();
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                Stream dataStream = response.GetResponseStream();
+                StreamReader reader = new StreamReader(dataStream);
+                string responseFromServer = reader.ReadToEnd();
+                // Display the content.
+                Console.WriteLine(responseFromServer);
 
-            // Get the stream containing content returned by the server.
-            Stream dataStream = response.GetResponseStream();
-            // Open the stream using a StreamReader for easy access.
-            StreamReader reader = new StreamReader(dataStream);
-            // Read the content.
-            string responseFromServer = reader.ReadToEnd();
-            // Display the content.
-            Console.WriteLine(responseFromServer);
+                dynamic stuff = JsonConvert.DeserializeObject(responseFromServer);
 
-            dynamic stuff = JsonConvert.DeserializeObject(responseFromServer);
 
+
+                
+                infor.level = stuff.summonerLevel;
+                // Cleanup the streams and the response.
+                reader.Close();
+                dataStream.Close();
+                response.Close();
+                return View(infor);
+            }
+            catch (Exception)
+            {
+                checkViewModel infor = new checkViewModel();
+                infor.level = 0;
+                return View(infor);
+            }
             
 
-            checkViewModel infor = new checkViewModel();
-            infor.test = stuff.freeChampionIds[1];
-            // Cleanup the streams and the response.
-            reader.Close();
-            dataStream.Close();
-            response.Close();
-            return View(infor);
+            // Get the stream containing content returned by the server.
+            
+            // Open the stream using a StreamReader for easy access.
+            
+            // Read the content.
+
+        }
+
+
+        public IActionResult formTest()
+        {
+            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

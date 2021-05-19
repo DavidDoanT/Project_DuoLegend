@@ -1,6 +1,7 @@
 ﻿
+@model DemoValidIngame.Models.Infor
 
-<form>
-    In-game name: <input type="text" name="ingameName" />
-    Server : <input type="text" name="server"/>
+<form method="post" asp-action="Checkout" >
+    In-game name: <input type="text" name="ingameName" asp-for="inGame" />
+    Server : <input type="text" name="server" asp-for="server"/>
 </form>
