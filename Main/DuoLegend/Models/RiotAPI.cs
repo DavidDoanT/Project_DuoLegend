@@ -7,5 +7,8 @@ namespace DuoLegend.Models
 {
     public class RiotAPI
     {
+        private string _developerCode;
+
+        public string DeveloperCode { get; set; }
     }
 }
