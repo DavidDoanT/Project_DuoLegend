@@ -44,7 +44,7 @@ namespace practice.Controllers
 
                 dynamic stuff = JsonConvert.DeserializeObject(responseFromServer);
 
-
+                //asdasdasdas
 
                 
                 infor.level = stuff.summonerLevel;
