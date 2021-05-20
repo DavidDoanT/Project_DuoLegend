@@ -28,7 +28,7 @@ namespace practice.Controllers
         {
        
 
-               WebRequest request = WebRequest.Create("https://br1.api.riotgames.com/lol/summoner/v4/summoners/by-name/"+input.ingameName+"?api_key=RGAPI-e5b85353-2d37-4d8e-9c5a-56ebfd8765cf");
+               WebRequest request = WebRequest.Create("https://br1.api.riotgames.com/lol/summoner/v4/summoners/by-name/"+input.ingameName+ "?api_key=RGAPI-805b3391-221c-44fa-9dad-339bed17c9b1");
             
             
             // Get the response.
