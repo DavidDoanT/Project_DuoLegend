@@ -21,7 +21,7 @@ namespace practice.Controllers
         {
             _logger = logger;
         }
-
+        //asd
 
         [HttpPost]
         public IActionResult Checkout(inputData input)
@@ -43,7 +43,6 @@ namespace practice.Controllers
                 Console.WriteLine(responseFromServer);
 
                 dynamic stuff = JsonConvert.DeserializeObject(responseFromServer);
-
 
 
                 
@@ -81,5 +80,5 @@ namespace practice.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-    }
+    }//asdasdasd
 }
