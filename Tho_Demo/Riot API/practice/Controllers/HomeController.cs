@@ -21,7 +21,7 @@ namespace practice.Controllers
         {
             _logger = logger;
         }
-
+        //asd
 
         [HttpPost]
         public IActionResult Checkout(inputData input)
