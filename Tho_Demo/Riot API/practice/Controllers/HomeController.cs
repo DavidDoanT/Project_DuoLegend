@@ -44,8 +44,13 @@ namespace practice.Controllers
 
                 dynamic stuff = JsonConvert.DeserializeObject(responseFromServer);
 
+<<<<<<< Updated upstream
 
 
+=======
+                //asdasdasdas
+                //asdsda
+>>>>>>> Stashed changes
                 
                 infor.level = stuff.summonerLevel;
                 // Cleanup the streams and the response.
