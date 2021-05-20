@@ -11,6 +11,8 @@ namespace DuoLegend.Models
         private string _championName;
         private string _iconPath;
 
-        public int MyProperty { get; set; }
+        public string ChampionId { get; set; }
+        public string ChampionName { get; set; }
+        public string IconPath { get; set; }
     }
 }
