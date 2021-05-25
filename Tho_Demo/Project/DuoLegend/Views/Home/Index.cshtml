@@ -1,4 +1,4 @@
-﻿
+﻿@model DuoLegend.ViewModels.MainPageViewModel
 <link href="~/css/ThoMainPagestyle.css" rel="stylesheet" />
 <div class="backContainer">
     <form>
@@ -98,7 +98,7 @@
 
         </tr>
         <tr>
-            <td>@Model.inGameName</td>
+            <td>@Model.inGameName[0]</td>
             <td><img src="img/Mid_icon.png"></td>
             <td><img src="img/challengerIcon.png"></td>
             <td>test</td>
@@ -109,7 +109,7 @@
 
         </tr>
         <tr>
-            <td>test</td>
+            <td>@Model.inGameName[2]</td>
             <td><img src="img/Mid_icon.png"></td>
             <td><img src="img/platinumIcon.png"></td>
             <td>test</td>
@@ -120,7 +120,7 @@
 
         </tr>
         <tr>
-            <td>test</td>
+            <td>@Model.inGameName[2]</td>
             <td><img src="img/Mid_icon.png"></td>
             <td>test</td>
             <td>test</td>

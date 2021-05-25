@@ -8,7 +8,8 @@ using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using DuoLegend.Models;
+using DuoLegend.ViewModels;
+
 namespace DuoLegend.Controllers
 {
     public class HomeController : Controller
@@ -24,21 +25,26 @@ namespace DuoLegend.Controllers
         {
             SqlConnection conn = new SqlConnection();
             SqlCommand com = new SqlCommand();
-            SqlDataReader dr;
             conn.ConnectionString = "Data Source=ADMIN;Initial Catalog=no_data_DuoDatabase_version-1.0.2;Integrated Security=True";
+            
             conn.Open();
-            com.CommandText = "Select inGameName from User LIMIT 3";
-            dr = com.ExecuteReader();
-            dr.Read();
-            string test = (string)dr[$"inGameName"];
-            Test t = new Test();
-            t.inGameName = test;
+            com.Connection = conn;
+            com.CommandText = "select top(2) * from  testUser";
+            SqlDataReader reader = com.ExecuteReader();
+            MainPageViewModel test = new MainPageViewModel();
+            int count = 0;
+            while(reader.Read())
+            {
+                
+                test.inGameName[count] = (string)reader["inGameName"];
+                count++;
+            }
 
             conn.Close();
             //connection.Open();
             //connection.Close();
             //Data Source=ADMIN;Initial Catalog=no_data_DuoDatabase_version-1.0.2;Integrated Security=True
-            return View(t);
+            return View(test);
         }
 
         public IActionResult Privacy()
