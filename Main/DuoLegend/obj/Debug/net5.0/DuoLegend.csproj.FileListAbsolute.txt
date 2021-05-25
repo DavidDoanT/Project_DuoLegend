@@ -1,0 +1,8 @@
+C:\Users\Admin\Documents\GitHub\Project_DuoLegend\Main\DuoLegend\obj\Debug\net5.0\DuoLegend.csprojAssemblyReference.cache
+C:\Users\Admin\Documents\GitHub\Project_DuoLegend\Main\DuoLegend\obj\Debug\net5.0\DuoLegend.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\Documents\GitHub\Project_DuoLegend\Main\DuoLegend\obj\Debug\net5.0\DuoLegend.AssemblyInfoInputs.cache
+C:\Users\Admin\Documents\GitHub\Project_DuoLegend\Main\DuoLegend\obj\Debug\net5.0\DuoLegend.AssemblyInfo.cs
+C:\Users\Admin\Documents\GitHub\Project_DuoLegend\Main\DuoLegend\obj\Debug\net5.0\DuoLegend.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Documents\GitHub\Project_DuoLegend\Main\DuoLegend\obj\Debug\net5.0\DuoLegend.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Admin\Documents\GitHub\Project_DuoLegend\Main\DuoLegend\obj\Debug\net5.0\DuoLegend.RazorAssemblyInfo.cache
+C:\Users\Admin\Documents\GitHub\Project_DuoLegend\Main\DuoLegend\obj\Debug\net5.0\DuoLegend.RazorAssemblyInfo.cs
