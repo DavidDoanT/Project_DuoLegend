@@ -25,11 +25,11 @@ namespace DuoLegend.Controllers
         {
             SqlConnection conn = new SqlConnection();
             SqlCommand com = new SqlCommand();
-            conn.ConnectionString = "Data Source=ADMIN;Initial Catalog=no_data_DuoDatabase_version-1.0.2;Integrated Security=True";
+            conn.ConnectionString = "Data Source=DESKTOP-B97EA2J;Initial Catalog=no_data_DuoDatabase_version-1.0.2;Integrated Security=True";
             
             conn.Open();
             com.Connection = conn;
-            com.CommandText = "select top(2) * from  testUser";
+            com.CommandText = "select top(3) * from  testUser";
             SqlDataReader reader = com.ExecuteReader();
             MainPageViewModel test = new MainPageViewModel();
             int count = 0;
