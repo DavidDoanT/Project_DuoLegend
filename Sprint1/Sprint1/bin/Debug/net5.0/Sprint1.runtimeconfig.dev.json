@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\Asus Vivobook\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Asus Vivobook\\.nuget\\packages"
+    ]
+  }
+}
