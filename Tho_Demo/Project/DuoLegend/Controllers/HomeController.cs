@@ -29,7 +29,7 @@ namespace DuoLegend.Controllers
             
             conn.Open();
             com.Connection = conn;
-            com.CommandText = "select top(2) * from  testUser";
+            com.CommandText = "select top(3) * from  testUser";
             SqlDataReader reader = com.ExecuteReader();
             MainPageViewModel test = new MainPageViewModel();
             int count = 0;
