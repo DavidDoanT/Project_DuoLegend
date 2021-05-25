@@ -14,7 +14,7 @@ namespace DuoLegend.DAO
         private static SqlCommand com = new SqlCommand();
         public static MainPageViewModel  getRandomInGameName()
         {
-            conn.ConnectionString = $"{MyConfig.ConnectionString}";
+            conn.ConnectionString = MyConfig.ConnectionString;
 
             conn.Open();
             com.Connection = conn;
@@ -30,6 +30,11 @@ namespace DuoLegend.DAO
             }
             conn.Close();
             return infor;
+        }
+
+        public static bool CheckLogin(string userName, string password)
+        {
+            return true;
         }
     }
 }

@@ -1,21 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "F:\\Cac_Mon_Da_Hoc\\Sem5\\PRN211\\VisualStudioProject\\Sprint1\\Sprint1\\Sprint1.csproj": {}
+    "C:\\Users\\Admin\\Documents\\GitHub\\Project_DuoLegend\\Sprint1\\Sprint1\\Sprint1.csproj": {}
   },
   "projects": {
-    "F:\\Cac_Mon_Da_Hoc\\Sem5\\PRN211\\VisualStudioProject\\Sprint1\\Sprint1\\Sprint1.csproj": {
+    "C:\\Users\\Admin\\Documents\\GitHub\\Project_DuoLegend\\Sprint1\\Sprint1\\Sprint1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Cac_Mon_Da_Hoc\\Sem5\\PRN211\\VisualStudioProject\\Sprint1\\Sprint1\\Sprint1.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\Documents\\GitHub\\Project_DuoLegend\\Sprint1\\Sprint1\\Sprint1.csproj",
         "projectName": "Sprint1",
-        "projectPath": "F:\\Cac_Mon_Da_Hoc\\Sem5\\PRN211\\VisualStudioProject\\Sprint1\\Sprint1\\Sprint1.csproj",
-        "packagesPath": "C:\\Users\\Asus Vivobook\\.nuget\\packages\\",
-        "outputPath": "F:\\Cac_Mon_Da_Hoc\\Sem5\\PRN211\\VisualStudioProject\\Sprint1\\Sprint1\\obj\\",
+        "projectPath": "C:\\Users\\Admin\\Documents\\GitHub\\Project_DuoLegend\\Sprint1\\Sprint1\\Sprint1.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Admin\\Documents\\GitHub\\Project_DuoLegend\\Sprint1\\Sprint1\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Asus Vivobook\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -67,7 +71,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }
