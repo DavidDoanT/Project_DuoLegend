@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DuoLegend", "DuoLegend.csproj", "{B5AA91AA-713D-4D0F-8197-31869E65D161}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DuoLegend", "DuoLegend.csproj", "{B5AA91AA-713D-4D0F-8197-31869E65D161}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
