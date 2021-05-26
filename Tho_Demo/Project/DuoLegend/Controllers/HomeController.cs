@@ -9,6 +9,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using DuoLegend.ViewModels;
+using DuoLegend.GlobalConfig;
+using DuoLegend.DAO;
 
 namespace DuoLegend.Controllers
 {
@@ -23,28 +25,7 @@ namespace DuoLegend.Controllers
 
         public IActionResult Index()
         {
-            SqlConnection conn = new SqlConnection();
-            SqlCommand com = new SqlCommand();
-            conn.ConnectionString = "Data Source=ADMIN;Initial Catalog=no_data_DuoDatabase_version-1.0.2;Integrated Security=True";
-            
-            conn.Open();
-            com.Connection = conn;
-            com.CommandText = "select top(2) * from  testUser";
-            SqlDataReader reader = com.ExecuteReader();
-            MainPageViewModel test = new MainPageViewModel();
-            int count = 0;
-            while(reader.Read())
-            {
-                
-                test.inGameName[count] = (string)reader["inGameName"];
-                count++;
-            }
-
-            conn.Close();
-            //connection.Open();
-            //connection.Close();
-            //Data Source=ADMIN;Initial Catalog=no_data_DuoDatabase_version-1.0.2;Integrated Security=True
-            return View(test);
+            return View(UserDAO.getRandomInGameName());
         }
 
         public IActionResult Privacy()
