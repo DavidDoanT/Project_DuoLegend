@@ -33,13 +33,13 @@ namespace DuoLegend.DAO
             return infor;
         }
 
-        public static bool CheckLogin(string userName, string password)
+        public static bool CheckLogin(string email, string password)
         {
             conn.ConnectionString = MyConfig.ConnectionString;
 
             conn.Open();
             com.Connection = conn;
-            com.CommandText = "select * from testUser where username = '" + userName + "' and password = '" + password + "' ";
+            com.CommandText = "select * from testUser where email = '" + email + "' and password = '" + password + "' ";
             SqlDataReader reader = com.ExecuteReader();
             if(reader.Read())
             {

@@ -21,7 +21,7 @@ namespace DuoLegend.Controllers
         [HttpPost]
         public IActionResult Login(UserLoginInfor acc)
         {
-            if (UserDAO.CheckLogin(acc.username, acc.password))
+            if (UserDAO.CheckLogin(acc.email, acc.password))
                 return View("Index1");
             else
                 return View("Index2");
