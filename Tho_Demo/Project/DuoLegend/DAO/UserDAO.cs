@@ -39,7 +39,7 @@ namespace DuoLegend.DAO
 
             conn.Open();
             com.Connection = conn;
-            com.CommandText = "select * from userAccount where username = '" + userName + "' and password = '" + password + "' ";
+            com.CommandText = "select * from testUser where username = '" + userName + "' and password = '" + password + "' ";
             SqlDataReader reader = com.ExecuteReader();
             if(reader.Read())
             {
