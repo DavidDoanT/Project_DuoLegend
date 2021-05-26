@@ -9,8 +9,10 @@ namespace DuoLegend.ViewModels
     {
         public MainPageViewModel()
         {
-            inGameName = new string[3];
+            InGameName = new string[3];
+            Rank = new string[3];
         }
-        public string[] inGameName { get; set; }
+        public string[] Rank { get; set; }
+        public string[] InGameName { get; set; }
     }
 }

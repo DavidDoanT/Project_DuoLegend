@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using DuoLegend.ViewModels;
 using DuoLegend.GlobalConfig;
 using DuoLegend.DAO;
+using DuoLegend.RiotAPI;
 
 namespace DuoLegend.Controllers
 {
@@ -25,7 +26,16 @@ namespace DuoLegend.Controllers
 
         public IActionResult Index()
         {
-            return View(UserDAO.getRandomInGameName());
+            var infor = UserDAO.getRandomInGameName();
+            for (int i = 0; i < infor.InGameName.Length; i++)
+            {
+                if(infor.InGameName[i] is null)
+                {
+                    break;
+                }
+                infor.Rank[i] = RiotAPI.RiotAPI.getRankByEncryptedSummonerId(UserDAO.getEncryptedSummonerId(infor.InGameName[i]), "KR");
+            }
+            return View(infor);
         }
 
         public IActionResult Privacy()

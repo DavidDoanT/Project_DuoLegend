@@ -98,10 +98,26 @@
 
         </tr>
         <tr>
-            <td>@Model.inGameName[0]</td>
+            <td>@Model.InGameName[0]</td>
             <td><img src="img/Mid_icon.png"></td>
-            <td><img src="img/challengerIcon.png"></td>
-            <td>test</td>
+            @*<td><img src="img/challengerIcon.png"></td>*@
+            <td>
+                @{
+                    switch(@Model.Rank[0])
+                    {
+                        case "GRANDMASTER":                         
+                                <img src="img/grandMasterIcon.png">
+                                break;
+                        case "prod":
+                                   
+                            break;
+                        default:
+                                  
+                            break;
+                    }
+                }
+            </td>
+            <td>@Model.Rank[0]</td>
             <td>test</td>
             <td>test</td>
             <td>test</td>
@@ -109,7 +125,7 @@
 
         </tr>
         <tr>
-            <td>@Model.inGameName[2]</td>
+            <td>@Model.InGameName[1]</td>
             <td><img src="img/Mid_icon.png"></td>
             <td><img src="img/platinumIcon.png"></td>
             <td>test</td>
@@ -120,7 +136,7 @@
 
         </tr>
         <tr>
-            <td>@Model.inGameName[2]</td>
+            <td>@Model.InGameName[2]</td>
             <td><img src="img/Mid_icon.png"></td>
             <td>test</td>
             <td>test</td>
