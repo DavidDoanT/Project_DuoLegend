@@ -39,16 +39,20 @@ namespace DuoLegend.DAO
 
             conn.Open();
             com.Connection = conn;
-            com.CommandText = "select * from testUser where email = '" + email + "' and password = '" + password + "' ";
+            com.CommandText = "select * from TestUser where email = '" + email + "' and password = '" + password + "' ";
             SqlDataReader reader = com.ExecuteReader();
             if(reader.Read())
             {
+                conn.Close();
                 return true;
+           
             }
             else
             {
+                conn.Close();
                 return false;
             }
+            
         }
     }
 }
