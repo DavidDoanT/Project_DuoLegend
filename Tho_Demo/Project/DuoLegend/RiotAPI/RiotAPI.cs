@@ -75,7 +75,7 @@ namespace DuoLegend.RiotAPI
             int flag=0; //luu lai nguoi dung muon lay infor o index so may, vi tra ve infor cua ca 10 nguoi choi 1 luc
             for(int i=0; i<10; i++)
             {
-                if(summonerID.Equals(resultFromRiot.info.participants[i].summonerId))
+                if (summonerID.Equals((string)resultFromRiot.info.participants[i].summonerId))
                 {
                     flag = i;
                     break;

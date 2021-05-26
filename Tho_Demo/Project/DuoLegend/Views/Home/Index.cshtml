@@ -143,7 +143,15 @@
                     }
             }
         </td>
-            <td>@Model.Rank[i]</td>
+            <td>
+            @{for(int j=0; j<3;j++){
+             <p>@Model.ListUserInfor[0].champID[j]</p>   
+             }
+
+            }
+            
+            
+            </td>
             <td>test</td>
             <td>test</td>
             <td>test</td>
