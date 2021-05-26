@@ -84,6 +84,6 @@ E:\Hoc_tap_Dai_hoc\Summer_2021\SWP391\Project_DuoLegend\Tho_Demo\Project\DuoLege
 E:\Hoc_tap_Dai_hoc\Summer_2021\SWP391\Project_DuoLegend\Tho_Demo\Project\DuoLegend\obj\Debug\net5.0\ref\DuoLegend.dll
 E:\Hoc_tap_Dai_hoc\Summer_2021\SWP391\Project_DuoLegend\Tho_Demo\Project\DuoLegend\obj\Debug\net5.0\DuoLegend.pdb
 E:\Hoc_tap_Dai_hoc\Summer_2021\SWP391\Project_DuoLegend\Tho_Demo\Project\DuoLegend\obj\Debug\net5.0\DuoLegend.genruntimeconfig.cache
-C:\Users\Admin\Documents\GitHub\Project_DuoLegend\Tho_Demo\Project\DuoLegend\obj\Debug\net5.0\Razor\Views\Account\Index.cshtml.g.cs
 C:\Users\Admin\Documents\GitHub\Project_DuoLegend\Tho_Demo\Project\DuoLegend\obj\Debug\net5.0\Razor\Views\Account\Index1.cshtml.g.cs
 C:\Users\Admin\Documents\GitHub\Project_DuoLegend\Tho_Demo\Project\DuoLegend\obj\Debug\net5.0\Razor\Views\Account\Index2.cshtml.g.cs
+C:\Users\Admin\Documents\GitHub\Project_DuoLegend\Tho_Demo\Project\DuoLegend\obj\Debug\net5.0\Razor\Views\Account\LoginPage.cshtml.g.cs

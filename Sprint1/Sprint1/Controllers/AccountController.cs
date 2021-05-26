@@ -23,7 +23,7 @@ namespace Sprint1.Controllers
         }
         void connectionString()
         {
-            conn.ConnectionString = "data source=SK-20190915MKOH; database=test; integrated security = SSPI;";
+            conn.ConnectionString = "Data Source=ADMIN;Initial Catalog=no_data_DuoDatabase_version-1.0.2;Integrated Security=True";
         }
         [HttpPost]
         public IActionResult Login(UserInfo acc)

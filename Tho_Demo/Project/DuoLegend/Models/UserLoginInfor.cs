@@ -7,10 +7,9 @@ namespace DuoLegend.Models
 {
     public class UserLoginInfor
     {
-        public class UserInfo
-        {
-            public string username { get; set; }
-            public string password { get; set; }
-        }
+
+        public string username { get; set; }
+        public string password { get; set; }
+
     }
 }

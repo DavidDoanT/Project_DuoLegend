@@ -12,6 +12,7 @@ namespace DuoLegend.DAO
     {
         private static SqlConnection conn = new SqlConnection();
         private static SqlCommand com = new SqlCommand();
+
         public static MainPageViewModel  getRandomInGameName()
         {
             conn.ConnectionString = MyConfig.ConnectionString;
@@ -34,7 +35,20 @@ namespace DuoLegend.DAO
 
         public static bool CheckLogin(string userName, string password)
         {
-            return true;
+            conn.ConnectionString = MyConfig.ConnectionString;
+
+            conn.Open();
+            com.Connection = conn;
+            com.CommandText = "select * from userAccount where username = '" + userName + "' and password = '" + password + "' ";
+            SqlDataReader reader = com.ExecuteReader();
+            if(reader.Read())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using DuoLegend.GlobalConfig;
+﻿using DuoLegend.DAO;
+using DuoLegend.GlobalConfig;
 using DuoLegend.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -20,26 +21,17 @@ namespace DuoLegend.Controllers
         [HttpPost]
         public IActionResult Login(UserLoginInfor acc)
         {
-            //connectionString();
-            //conn.Open();
-            //com.Connection = conn;
-            //com.CommandText = "select * from userAccount where username = '" + acc.username + "' and password = '" + acc.password + "' "; ;
-            //dr = com.ExecuteReader();
-            //if (dr.Read())
-            //{
-            //    conn.Close();
-            //    return View("Index1");
-            //}
-            //else
-            //{
-            //    conn.Close();
-            return View("Index2");
-            //}
+            if (UserDAO.CheckLogin(acc.username, acc.password))
+                return View("Index1");
+            else
+                return View("Index2");
         }
 
-        public IActionResult Index()
+
+
+        public IActionResult RedirectLoginPage()
         {
-            return View();
+            return View("LoginPage");
         }
 
     }
