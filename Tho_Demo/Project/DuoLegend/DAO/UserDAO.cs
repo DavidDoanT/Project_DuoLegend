@@ -33,7 +33,7 @@ namespace DuoLegend.DAO
             return infor;
         }
 
-
+        //ve sau doi para thanh email
         public static string getEncryptedSummonerId(string inGameName)
         {
             com.Parameters.Clear();
@@ -64,7 +64,37 @@ namespace DuoLegend.DAO
             }
             conn.Close();
             return temp;
+        }
+        public static string getPuuId(string inGameName)
+        {
+            com.Parameters.Clear();
+            if (inGameName is null)
+            {
+                return null;
+            }
+            conn.ConnectionString = MyConfig.ConnectionString;
 
+            conn.Open();
+            com.Connection = conn;
+
+            com.CommandText = "select puuid  from testUser where inGameName = @inGameName";
+
+            com.Parameters.AddWithValue("@inGameName", inGameName);
+            SqlDataReader reader = com.ExecuteReader();
+            string temp;
+            if (reader.Read())
+            {
+
+                temp = (string)reader["puuid"];
+
+            }
+            else
+            {
+                conn.Close();
+                return null;
+            }
+            conn.Close();
+            return temp;
         }
 
         public static bool CheckLogin(string email, string password)
