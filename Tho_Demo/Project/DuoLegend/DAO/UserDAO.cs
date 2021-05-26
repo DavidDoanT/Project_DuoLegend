@@ -36,6 +36,7 @@ namespace DuoLegend.DAO
 
         public static string getEncryptedSummonerId(string inGameName)
         {
+            com.Parameters.Clear();
             if(inGameName is null)
             {
                 return null;

@@ -97,54 +97,60 @@
             <th>Mic</th>
 
         </tr>
+        @{for(int i =0; i<3 ; i++)
+        {
         <tr>
-            <td>@Model.InGameName[0]</td>
+            <td>@Model.InGameName[i]</td>
             <td><img src="img/Mid_icon.png"></td>
             @*<td><img src="img/challengerIcon.png"></td>*@
-            <td>
-                @{
-                    switch(@Model.Rank[0])
+        <td>
+            @{
+                    switch(@Model.Rank[i])
                     {
-                        case "GRANDMASTER":                         
-                                <img src="img/grandMasterIcon.png">
+                        case "IRON":
+                <img src="img/ironIcon.png">
+                                break;
+                        case "BRONZE":
+                <img src="img/BronzeIcon.png">
+                                break;
+                        case "SILVER":
+                <img src="img/silverIcon.png">
+                                break;
+                        case "GOLD":
+                <img src="img/goldIcon.png">
+                                break;
+                        case "PLATINUM":
+                <img src="img/platinumIcon.png">
+                                break;
+                        case "MASTER":
+                <img src="img/masterIcon.png">
+                                break;
+                        case "GRANDMASTER":
+                <img src="img/grandMasterIcon.png">
+                                break;
+                        case "DIAMOND":
+                <img src="img/diamondIcon.png">
+                                break;
+                        case "CHALLENGER":
+                <img src="img/challengerIcon.png">
                                 break;
                         case "prod":
-                                   
+
                             break;
                         default:
-                                  
+
                             break;
                     }
-                }
-            </td>
-            <td>@Model.Rank[0]</td>
+            }
+        </td>
+            <td>@Model.Rank[i]</td>
             <td>test</td>
             <td>test</td>
             <td>test</td>
             <td>test</td>
 
         </tr>
-        <tr>
-            <td>@Model.InGameName[1]</td>
-            <td><img src="img/Mid_icon.png"></td>
-            <td><img src="img/platinumIcon.png"></td>
-            <td>test</td>
-            <td>test</td>
-            <td>test</td>
-            <td>testtttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt</td>
-            <td>test</td>
-
-        </tr>
-        <tr>
-            <td>@Model.InGameName[2]</td>
-            <td><img src="img/Mid_icon.png"></td>
-            <td>test</td>
-            <td>test</td>
-            <td>test</td>
-            <td>test</td>
-            <td>test</td>
-            <td>test</td>
-
-        </tr>
+        }
+        }
     </table>
 </div>
