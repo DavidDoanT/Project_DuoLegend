@@ -2,3 +2,6 @@
 /practice/obj/Debug/net5.0/
 Tho_Demo/Riot API/practice/bin/Debug/net5.0/*
 Tho_Demo/Riot API/practice/obj/Debug/net5.0/*
+*.cache
+*.json
+*.props
