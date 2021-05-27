@@ -1,4 +1,24 @@
 ﻿@model DuoLegend.ViewModels.MainPageViewModel
+    <script type="text/javascript">
+        function Choosing(previewPic) {
+            previewPic.style.backgroundColor = "#dc3545";
+
+        }
+        function removeOtherChoosing(previewPic) {
+            var x = document.getElementsByClassName(previewPic.className);
+            if (previewPic.className == 'playPurposeOption') {
+                for (i = 0; i < x.length; i++) {
+                    x[i].style.backgroundColor = "#3835dc7a";
+                }
+            } else {
+
+                for (i = 0; i < x.length; i++) {
+                    x[i].style.backgroundColor = "inherit";
+                }
+            }
+
+        }
+    </script>
 <link href="~/css/ThoMainPagestyle.css" rel="stylesheet" />
 <div class="backContainer">
     <form>
@@ -149,7 +169,7 @@
                     if (Model.ListUserInfor[i] is null) { }
                     else
                     {
-             <p>@Model.ListUserInfor[i].champID[j]</p>   
+             <p>@Model.ListUserInfor[i].champName[j]</p>   
                         }
                     }
 
