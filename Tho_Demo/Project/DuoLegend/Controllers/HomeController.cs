@@ -24,7 +24,7 @@ namespace DuoLegend.Controllers
         {
             _logger = logger;
         }
-
+        
         public IActionResult Index()
         {
             var infor = UserDAO.getRandomInGameName();
@@ -61,7 +61,7 @@ namespace DuoLegend.Controllers
             }
             return View(infor);
         }
-
+        
         public IActionResult Privacy()
         {
             return View();
