@@ -11,11 +11,11 @@ namespace DuoLegend.Models
         {
             champID = new int[3];
         }
-        public int Kill { get; set; }
-        public int Death { get; set; }
+        public double Kill { get; set; }
+        public double Death { get; set; }
 
-        public int Assist { get; set; }
-        public float WinRate { get; set; }
+        public double Assist { get; set; }
+        public double WinRate { get; set; }
         public int[] champID { get; set; }
     }
 }

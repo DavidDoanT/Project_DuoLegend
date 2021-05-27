@@ -144,16 +144,36 @@
             }
         </td>
             <td>
-            @{for(int j=0; j<3;j++){
-             <p>@Model.ListUserInfor[0].champID[j]</p>   
-             }
+            @{for (int j = 0; j < 3; j++)
+                {
+                    if (Model.ListUserInfor[i] is null) { }
+                    else
+                    {
+             <p>@Model.ListUserInfor[i].champID[j]</p>   
+                        }
+                    }
 
-            }
-            
-            
+                }
+
+
             </td>
-            <td>test</td>
-            <td>test</td>
+            <td>
+                @if (Model.ListUserInfor[i] is null) { }
+                else
+                {
+                <p>@Model.ListUserInfor[i].WinRate</p>
+                }
+                
+            </td>
+            <td>
+                @if (Model.ListUserInfor[i] is null) { }
+                else
+                {
+                    <p>@Model.ListUserInfor[i].Kill</p>
+                    <p>@Model.ListUserInfor[i].Death</p>
+                    <p>@Model.ListUserInfor[i].Assist</p>
+                }
+            </td>
             <td>test</td>
             <td>test</td>
 
