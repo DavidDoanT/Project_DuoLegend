@@ -22,9 +22,15 @@ namespace DuoLegend.Controllers
         public IActionResult Login(UserLoginInfor acc)
         {
             if (UserDAO.CheckLogin(acc.email, acc.password))
-                return View("Index1");
+            {
+                return RedirectToAction("Index", "Home");
+            }
             else
-                return View("Index2");
+            {
+                ViewBag.isCorrect = false;
+                return View("LoginPage");
+            }
+        
         }
 
 
