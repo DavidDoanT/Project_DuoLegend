@@ -13,7 +13,7 @@ namespace DuoLegend.DAO
         private static SqlConnection conn = new SqlConnection();
         private static SqlCommand com = new SqlCommand();
 
-        public static MainPageViewModel getRandomInGameName()
+        public static MainPageViewModel  getRandomInGameName()
         {
             conn.ConnectionString = MyConfig.ConnectionString;
 
@@ -26,75 +26,11 @@ namespace DuoLegend.DAO
             while (reader.Read())
             {
 
-                infor.InGameName[count] = (string)reader["inGameName"];
+                infor.inGameName[count] = (string)reader["inGameName"];
                 count++;
             }
             conn.Close();
             return infor;
-        }
-
-        //ve sau doi para thanh email
-        public static string getEncryptedSummonerId(string inGameName)
-        {
-            com.Parameters.Clear();
-            if(inGameName is null)
-            {
-                return null;
-            }
-            conn.ConnectionString = MyConfig.ConnectionString;
-
-            conn.Open();
-            com.Connection = conn;
-
-            com.CommandText = "select id  from testUser where inGameName = @inGameName";
-            
-            com.Parameters.AddWithValue("@inGameName", inGameName);
-            SqlDataReader reader = com.ExecuteReader();
-            string temp;
-            if (reader.Read())
-            {
-
-                temp = (string)reader["id"];
-
-            }
-            else
-            {
-                conn.Close();
-                return null;
-            }
-            conn.Close();
-            return temp;
-        }
-        public static string getPuuId(string inGameName)
-        {
-            com.Parameters.Clear();
-            if (inGameName is null)
-            {
-                return null;
-            }
-            conn.ConnectionString = MyConfig.ConnectionString;
-
-            conn.Open();
-            com.Connection = conn;
-
-            com.CommandText = "select puuid  from testUser where inGameName = @inGameName";
-
-            com.Parameters.AddWithValue("@inGameName", inGameName);
-            SqlDataReader reader = com.ExecuteReader();
-            string temp;
-            if (reader.Read())
-            {
-
-                temp = (string)reader["puuid"];
-
-            }
-            else
-            {
-                conn.Close();
-                return null;
-            }
-            conn.Close();
-            return temp;
         }
 
         public static bool CheckLogin(string email, string password)
@@ -103,20 +39,16 @@ namespace DuoLegend.DAO
 
             conn.Open();
             com.Connection = conn;
-            com.CommandText = "select * from TestUser where email = '" + email + "' and password = '" + password + "' ";
+            com.CommandText = "select * from testUser where email = '" + email + "' and password = '" + password + "' ";
             SqlDataReader reader = com.ExecuteReader();
-            if (reader.Read())
+            if(reader.Read())
             {
-                conn.Close();
                 return true;
-
             }
             else
             {
-                conn.Close();
                 return false;
             }
-
         }
     }
 }
