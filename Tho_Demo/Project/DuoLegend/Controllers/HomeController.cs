@@ -20,7 +20,7 @@ namespace DuoLegend.Controllers
         {
             _logger = logger;
         }
-
+        
         public IActionResult Index()
         {
             SqlConnection conn = new SqlConnection();
@@ -46,7 +46,7 @@ namespace DuoLegend.Controllers
             //Data Source=ADMIN;Initial Catalog=no_data_DuoDatabase_version-1.0.2;Integrated Security=True
             return View(test);
         }
-
+        
         public IActionResult Privacy()
         {
             return View();

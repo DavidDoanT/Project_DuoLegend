@@ -1,0 +1,33 @@
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+main > .container {
+  padding: 60px 15px 0;
+}
+
+p{
+	color: white;
+}
+h3,h1{
+	color: white;
+  font-weight: normal;
+}
+code {
+  font-size: 80%;
+}
+
+
+body{
+  background-image: url("#");
+}
+/*cái này là cái ô vuông */
+.backContainer{
+  margin-top: 10%;
+  background: rgb(2,0,36);
+  background: linear-gradient(7deg, rgba(2,0,36,1) 0%, rgba(0,0,0,1) 22%, rgba(11,33,37,0.9) 100%);
+  width: 50%;
+  height: 150%;
+  border-radius: 5%;
+  border: 
+}

@@ -1,134 +1,154 @@
 ﻿@model DuoLegend.ViewModels.MainPageViewModel
-<link href="~/css/ThoMainPagestyle.css" rel="stylesheet" />
-<div class="backContainer">
-    <form>
-        <center>
+    <script type="text/javascript">
+        function Choosing(previewPic) {
+            previewPic.style.backgroundColor = "#dc3545";
+
+        }
+        function removeOtherChoosing(previewPic) {
+            var x = document.getElementsByClassName(previewPic.className);
+            if (previewPic.className == 'playPurposeOption') {
+                for (i = 0; i < x.length; i++) {
+                    x[i].style.backgroundColor = "#3835dc7a";
+                }
+            } else {
+
+                for (i = 0; i < x.length; i++) {
+                    x[i].style.backgroundColor = "inherit";
+                }
+            }
+
+        }
+    </script>
+    <link href="~/css/ThoMainPagestyle.css" rel="stylesheet" />
+    <div class="backContainer">
+        <form>
+            <center>
+                <div class="searchBar">
+                    <label for="submit"><p style="margin-left: 0vw; margin-bottom: 0vw;">Find your Duo</p></label>
+                    <input type="submit" name="" id="submit" style="display: none;">
+                </div>
+            </center>
+            <br>
+
             <div class="searchBar">
-                <label for="submit"><p style="margin-left: 0vw; margin-bottom: 0vw;">Find your Duo</p></label>
-                <input type="submit" name="" id="submit" style="display: none;">
+                <fieldset id="laneOption">
+                    <center><h3 style="color: white">Choose duo's lane</h3></center>
+                    <label for="topLane"><img class="laneOptionLabel" src="img/Top_icon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
+                    <input type="radio" name="laneOption" id="topLane" style="display: none;">
+
+                    <label for="jungLane"><img class="laneOptionLabel" src="img/Jung_icon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
+                    <input type="radio" name="laneOption" id="jungLane" style="display: none;">
+
+                    <label for="midLane"><img class="laneOptionLabel" src="img/Mid_icon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
+                    <input type="radio" name="laneOption" id="midLane" style="display: none;">
+
+                    <label for="botLane"><img class="laneOptionLabel" src="img/Bot_icon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
+                    <input type="radio" name="laneOption" id="botLane" style="display: none;">
+
+                    <label for="supLane"><img class="laneOptionLabel" src="img/Sup_icon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
+                    <input type="radio" name="laneOption" id="supLane" style="display: none;">
+                </fieldset>
             </div>
-        </center>
+            <div class="searchBar">
+                <fieldset id="rankOption">
+                    <center><h3 style="color: white">Choose duo's rank</h3></center>
+                    <label for="ironRank"><img class="rankOptionLabel" src="img/ironIcon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
+                    <input type="radio" name="rankOption" id="ironRank" style="display: none;">
+
+                    <label for="bronzeRank"><img class="rankOptionLabel" src="img/bronzeIcon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
+                    <input type="radio" name="rankOption" id="bronzeRank" style="display: none;">
+
+                    <label for="silverRank"><img class="rankOptionLabel" src="img/silverIcon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
+                    <input type="radio" name="rankOption" id="silverRank" style="display: none;">
+
+                    <label for="goldRank"><img class="rankOptionLabel" src="img/goldIcon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
+                    <input type="radio" name="rankOption" id="goldRank" style="display: none;">
+
+                    <label for="platinumRank"><img class="rankOptionLabel" src="img/platinumIcon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
+                    <input type="radio" name="rankOption" id="platinumRank" style="display: none;">
+
+                    <label for="diamondRank"><img class="rankOptionLabel" src="img/diamondIcon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
+                    <input type="radio" name="rankOption" id="diamondRank" style="display: none;">
+
+                    <label for="masterRank"><img class="rankOptionLabel" src="img/masterIcon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
+                    <input type="radio" name="rankOption" id="masterRank" style="display: none;">
+
+                    <label for="grandMasterRank"><img class="rankOptionLabel" src="img/grandMasterIcon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
+                    <input type="radio" name="rankOption" id="grandMasterRank" style="display: none;">
+
+                    <label for="challengerRank"><img class="rankOptionLabel" src="img/challengerIcon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
+                    <input type="radio" name="rankOption" id="challengerRank" style="display: none;">
+                </fieldset>
+            </div>
+            <div class="searchBar">
+                <h3 style="margin-left: 5vw; color: white">Server</h3>
+                <select>
+                    <option>BR1</option>
+                    <option>EUN1</option>
+                    <option>EUW1</option>
+                    <option>JP1</option>
+                    <option>KR</option>
+                    <option>LA1</option>
+                    <option>LA2</option>
+                    <OPTION>NA1</OPTION>
+                    <OPTION>OC1</OPTION>
+                    <option>RU</option>
+                    <option>TR1</option>
+                </select>
+            </div>
+            <br>
+            <div class="searchBar">
+                <label for="playToWin"><p class="playPurposeOption" onclick="removeOtherChoosing(this),Choosing(this)">Win is matter</p></label>
+                <input type="radio" name="playPurposeOption" id="playToWin" style="display: none;">
+                <label for="playForFun"><p class="playPurposeOption" onclick="removeOtherChoosing(this),Choosing(this)">Fun is matter</p></label>
+                <input type="radio" name="playPurposeOption" id="playForFun" style="display: none;">
+            </div>
+        </form>
         <br>
+        <table>
+            <tr>
+                <th>Summoner</th>
+                <th>Lane</th>
+                <th>Rank</th>
+                <th>Latest play</th>
+                <th>Win Rate</th>
+                <th>KDA</th>
+                <th>Note</th>
+                <th>Mic</th>
 
-        <div class="searchBar">
-            <fieldset id="laneOption">
-                <center><h3 style="color: white">Choose duo's lane</h3></center>
-                <label for="topLane"><img class="laneOptionLabel" src="img/Top_icon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
-                <input type="radio" name="laneOption" id="topLane" style="display: none;">
+            </tr>
+            <tr>
+                <td>@Model.inGameName[0]</td>
+                <td><img src="img/Mid_icon.png"></td>
+                <td><img src="img/challengerIcon.png"></td>
+                <td>test</td>
+                <td>test</td>
+                <td>test</td>
+                <td>test</td>
+                <td>test</td>
 
-                <label for="jungLane"><img class="laneOptionLabel" src="img/Jung_icon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
-                <input type="radio" name="laneOption" id="jungLane" style="display: none;">
+            </tr>
+            <tr>
+                <td>@Model.inGameName[2]</td>
+                <td><img src="img/Mid_icon.png"></td>
+                <td><img src="img/platinumIcon.png"></td>
+                <td>test</td>
+                <td>test</td>
+                <td>test</td>
+                <td>testtttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt</td>
+                <td>test</td>
 
-                <label for="midLane"><img class="laneOptionLabel" src="img/Mid_icon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
-                <input type="radio" name="laneOption" id="midLane" style="display: none;">
+            </tr>
+            <tr>
+                <td>@Model.inGameName[2]</td>
+                <td><img src="img/Mid_icon.png"></td>
+                <td>test</td>
+                <td>test</td>
+                <td>test</td>
+                <td>test</td>
+                <td>test</td>
+                <td>test</td>
 
-                <label for="botLane"><img class="laneOptionLabel" src="img/Bot_icon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
-                <input type="radio" name="laneOption" id="botLane" style="display: none;">
-
-                <label for="supLane"><img class="laneOptionLabel" src="img/Sup_icon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
-                <input type="radio" name="laneOption" id="supLane" style="display: none;">
-            </fieldset>
-        </div>
-        <div class="searchBar">
-            <fieldset id="rankOption">
-                <center><h3 style="color: white">Choose duo's rank</h3></center>
-                <label for="ironRank"><img class="rankOptionLabel" src="img/ironIcon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
-                <input type="radio" name="rankOption" id="ironRank" style="display: none;">
-
-                <label for="bronzeRank"><img class="rankOptionLabel" src="img/bronzeIcon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
-                <input type="radio" name="rankOption" id="bronzeRank" style="display: none;">
-
-                <label for="silverRank"><img class="rankOptionLabel" src="img/silverIcon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
-                <input type="radio" name="rankOption" id="silverRank" style="display: none;">
-
-                <label for="goldRank"><img class="rankOptionLabel" src="img/goldIcon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
-                <input type="radio" name="rankOption" id="goldRank" style="display: none;">
-
-                <label for="platinumRank"><img class="rankOptionLabel" src="img/platinumIcon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
-                <input type="radio" name="rankOption" id="platinumRank" style="display: none;">
-
-                <label for="diamondRank"><img class="rankOptionLabel" src="img/diamondIcon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
-                <input type="radio" name="rankOption" id="diamondRank" style="display: none;">
-
-                <label for="masterRank"><img class="rankOptionLabel" src="img/masterIcon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
-                <input type="radio" name="rankOption" id="masterRank" style="display: none;">
-
-                <label for="grandMasterRank"><img class="rankOptionLabel" src="img/grandMasterIcon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
-                <input type="radio" name="rankOption" id="grandMasterRank" style="display: none;">
-
-                <label for="challengerRank"><img class="rankOptionLabel" src="img/challengerIcon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
-                <input type="radio" name="rankOption" id="challengerRank" style="display: none;">
-            </fieldset>
-        </div>
-        <div class="searchBar">
-            <h3 style="margin-left: 5vw; color: white">Server</h3>
-            <select>
-                <option>BR1</option>
-                <option>EUN1</option>
-                <option>EUW1</option>
-                <option>JP1</option>
-                <option>KR</option>
-                <option>LA1</option>
-                <option>LA2</option>
-                <OPTION>NA1</OPTION>
-                <OPTION>OC1</OPTION>
-                <option>RU</option>
-                <option>TR1</option>
-            </select>
-        </div>
-        <br>
-        <div class="searchBar">
-            <label for="playToWin"><p class="playPurposeOption" onclick="removeOtherChoosing(this),Choosing(this)">Win is matter</p></label>
-            <input type="radio" name="playPurposeOption" id="playToWin" style="display: none;">
-            <label for="playForFun"><p class="playPurposeOption" onclick="removeOtherChoosing(this),Choosing(this)">Fun is matter</p></label>
-            <input type="radio" name="playPurposeOption" id="playForFun" style="display: none;">
-        </div>
-    </form>
-    <br>
-    <table>
-        <tr>
-            <th>Summoner</th>
-            <th>Lane</th>
-            <th>Rank</th>
-            <th>Latest play</th>
-            <th>Win Rate</th>
-            <th>KDA</th>
-            <th>Note</th>
-            <th>Mic</th>
-
-        </tr>
-        <tr>
-            <td>@Model.inGameName[0]</td>
-            <td><img src="img/Mid_icon.png"></td>
-            <td><img src="img/challengerIcon.png"></td>
-            <td>test</td>
-            <td>test</td>
-            <td>test</td>
-            <td>test</td>
-            <td>test</td>
-
-        </tr>
-        <tr>
-            <td>@Model.inGameName[2]</td>
-            <td><img src="img/Mid_icon.png"></td>
-            <td><img src="img/platinumIcon.png"></td>
-            <td>test</td>
-            <td>test</td>
-            <td>test</td>
-            <td>testtttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt</td>
-            <td>test</td>
-
-        </tr>
-        <tr>
-            <td>@Model.inGameName[2]</td>
-            <td><img src="img/Mid_icon.png"></td>
-            <td>test</td>
-            <td>test</td>
-            <td>test</td>
-            <td>test</td>
-            <td>test</td>
-            <td>test</td>
-
-        </tr>
-    </table>
-</div>
+            </tr>
+        </table>
+    </div>
