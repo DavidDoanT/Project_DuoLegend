@@ -116,6 +116,7 @@ body{
     padding: 4px 14px;
     font-weight: 600;
     font-size: 16px;
+    margin-left: 10%;
 }
 .ProfileStats{
     display: flex;
@@ -238,7 +239,7 @@ img{
     /* margin: auto; */
 }
 .ProfileMatchContent{
-    background-color: aqua;
+    
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -253,6 +254,7 @@ img{
     justify-content: center;
     flex-direction: column;
     width: 20%;
+    color: white;
 }
 .ProfileMatchChampionSpell{
     display: flex;
@@ -317,6 +319,7 @@ img{
 .ProfileMatchKDA{
     width: 13%;
     text-align: center;
+    color: white;
 }
 /* .KDA{
     display:table;
@@ -336,6 +339,7 @@ margin:0 auto;
     font-size: 1vw;
     font-weight: 500;
     letter-spacing: 2px;
+    color: yellow;
 }
 .ProfileMinion{
     display: flex;
@@ -344,6 +348,7 @@ margin:0 auto;
     font-size: 1vw;
     font-weight: 500;
     letter-spacing: 2px;
+    color: yellow;
 }
 .ProfileMatchListItem{
     display: flex;
@@ -378,6 +383,6 @@ margin:0 auto;
 body{
     background-color: rgb(5, 6, 56) ;
 }
-.champion{
-    color:#c8aa6e;
+.score{
+    color: white;
 }
