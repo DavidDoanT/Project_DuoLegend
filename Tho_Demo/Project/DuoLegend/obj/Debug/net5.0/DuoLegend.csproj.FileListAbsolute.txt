@@ -89,3 +89,6 @@ E:\Hoc_tap_Dai_hoc\Summer_2021\SWP391\Project_DuoLegend\Tho_Demo\Project\DuoLege
 C:\Users\Admin\Documents\GitHub\Project_DuoLegend\Tho_Demo\Project\DuoLegend\obj\Debug\net5.0\Razor\Views\Account\LoginPage.cshtml.g.cs
 C:\Users\Admin\Documents\GitHub\Project_DuoLegend\Tho_Demo\Project\DuoLegend\bin\Debug\net5.0\Newtonsoft.Json.dll
 >>>>>>> 9dfdfbe95dfd06b52b5ef3bbecf21b9e3bb79c12
+E:\Hoc_tap_Dai_hoc\Summer_2021\SWP391\Project_DuoLegend\Tho_Demo\Project\DuoLegend\bin\Debug\net5.0\Newtonsoft.Json.dll
+E:\Hoc_tap_Dai_hoc\Summer_2021\SWP391\Project_DuoLegend\Tho_Demo\Project\DuoLegend\obj\Debug\net5.0\Razor\Views\Account\LoginPage.cshtml.g.cs
+E:\Hoc_tap_Dai_hoc\Summer_2021\SWP391\Project_DuoLegend\Tho_Demo\Project\DuoLegend\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
