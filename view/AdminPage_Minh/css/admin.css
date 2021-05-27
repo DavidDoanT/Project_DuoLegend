@@ -1,0 +1,104 @@
+body
+{
+    background-image: url("../img/tmp-background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+.icon-container
+{
+    width: auto;
+    height: auto;
+}
+
+.icon-wrapper
+{
+    width: 50px;
+    height: 50px;
+    margin: 0 auto;
+
+}
+
+.icon-content
+{
+    width: inherit;
+    height: inherit;
+}
+
+.flex-container
+{
+    display: flex;
+}
+
+
+.flex-container-space-between
+{
+    display: flex;
+    justify-content: space-between;
+}
+
+.side-nav-bar
+{
+
+    max-width: 80px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.mat-card
+{
+    background-color: #0c0b0b;
+}
+
+.w-row .col-1
+{
+    display: inline-block;
+}
+
+.w-row .col-11
+{
+    display: inline-block;
+}
+
+.body-column
+{
+    width: 45%;
+}
+
+.widget-asset-body-container
+{
+    display: flex;
+    align-content: stretch;
+    padding: 0 1em 2em 1em;
+}
+
+.wrapper
+{
+    flex-shrink: 0;
+    padding: 5em;
+}
+
+.flex-shrink-img
+{
+    flex-shrink: 0;
+    width: 90%;
+    height: auto;
+    margin: 0 auto;
+}
+
+.mat-card-title
+{
+    color: white;
+}
+
+.mat-card-title-wrapper
+{
+    margin-left: 2rem;
+}
+
+.title
+{
+    color: white;
+    margin-left: 2rem;
+}

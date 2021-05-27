@@ -105,6 +105,7 @@
             </div>
         </form>
         <br>
+<<<<<<< HEAD
         <table>
             <tr>
                 <th>Summoner</th>
@@ -152,3 +153,110 @@
             </tr>
         </table>
     </div>
+=======
+        <div class="searchBar">
+            <label for="playToWin"><p class="playPurposeOption" onclick="removeOtherChoosing(this),Choosing(this)">Win is matter</p></label>
+            <input type="radio" name="playPurposeOption" id="playToWin" style="display: none;">
+            <label for="playForFun"><p class="playPurposeOption" onclick="removeOtherChoosing(this),Choosing(this)">Fun is matter</p></label>
+            <input type="radio" name="playPurposeOption" id="playForFun" style="display: none;">
+        </div>
+    </form>
+    <br>
+    <table>
+        <tr>
+            <th>Summoner</th>
+            <th>Lane</th>
+            <th>Rank</th>
+            <th>Latest play</th>
+            <th>Win Rate</th>
+            <th>KDA</th>
+            <th>Note</th>
+            <th>Mic</th>
+
+        </tr>
+        @{for(int i =0; i<3 ; i++)
+        {
+        <tr>
+            <td>@Model.InGameName[i]</td>
+            <td><img src="img/Mid_icon.png"></td>
+            @*<td><img src="img/challengerIcon.png"></td>*@
+        <td>
+            @{
+                    switch(@Model.Rank[i])
+                    {
+                        case "IRON":
+                <img src="img/ironIcon.png">
+                                break;
+                        case "BRONZE":
+                <img src="img/BronzeIcon.png">
+                                break;
+                        case "SILVER":
+                <img src="img/silverIcon.png">
+                                break;
+                        case "GOLD":
+                <img src="img/goldIcon.png">
+                                break;
+                        case "PLATINUM":
+                <img src="img/platinumIcon.png">
+                                break;
+                        case "MASTER":
+                <img src="img/masterIcon.png">
+                                break;
+                        case "GRANDMASTER":
+                <img src="img/grandMasterIcon.png">
+                                break;
+                        case "DIAMOND":
+                <img src="img/diamondIcon.png">
+                                break;
+                        case "CHALLENGER":
+                <img src="img/challengerIcon.png">
+                                break;
+                        case "prod":
+
+                            break;
+                        default:
+
+                            break;
+                    }
+            }
+        </td>
+            <td>
+            @{for (int j = 0; j < 3; j++)
+                {
+                    if (Model.ListUserInfor[i] is null) { }
+                    else
+                    {
+             <p>@Model.ListUserInfor[i].champID[j]</p>   
+                        }
+                    }
+
+                }
+
+
+            </td>
+            <td>
+                @if (Model.ListUserInfor[i] is null) { }
+                else
+                {
+                <p>@Model.ListUserInfor[i].WinRate</p>
+                }
+                
+            </td>
+            <td>
+                @if (Model.ListUserInfor[i] is null) { }
+                else
+                {
+                    <p>@Model.ListUserInfor[i].Kill</p>
+                    <p>@Model.ListUserInfor[i].Death</p>
+                    <p>@Model.ListUserInfor[i].Assist</p>
+                }
+            </td>
+            <td>test</td>
+            <td>test</td>
+
+        </tr>
+        }
+        }
+    </table>
+</div>
+>>>>>>> 9dfdfbe95dfd06b52b5ef3bbecf21b9e3bb79c12
