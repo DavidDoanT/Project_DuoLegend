@@ -92,5 +92,44 @@ namespace DuoLegend.RiotAPI
             response.Close();
             return infor;
         }
+
+        public static bool isRealInGameName(string name, string server)
+        {
+            WebRequest request = WebRequest.Create("https://"+server+".api.riotgames.com/lol/summoner/v4/summoners/by-name/"+name+"?api_key="+RiotKey);
+
+            try
+            {
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                Stream dataStream = response.GetResponseStream();
+                dataStream.Close();
+                response.Close();
+            }
+            catch( Exception e)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public static User GetAccountIdInfor (string name, string server)
+        {
+            WebRequest request = WebRequest.Create("https://" + server + ".api.riotgames.com/lol/summoner/v4/summoners/by-name/" + name + "?api_key=" + RiotKey);
+
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            Stream dataStream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(dataStream);
+            string responseFromServer = reader.ReadToEnd();
+            dynamic resultFromRiot = JsonConvert.DeserializeObject(responseFromServer);
+
+            var acc = new User();
+            acc.AccountId = resultFromRiot.accountId;
+            acc.Id = resultFromRiot.id;
+            acc.Puuid = resultFromRiot.puuid;
+
+            reader.Close();
+            dataStream.Close();
+            response.Close();
+            return acc;
+        }
     }
 }

@@ -34,9 +34,19 @@ namespace DuoLegend.Controllers
         
         }
 
-        public IActionResult Register(Register register)
+        public IActionResult Register(User register)
         {
-
+            if(!RiotAPI.RiotAPI.isRealInGameName(register.InGameName, register.Server))
+            {
+                ViewBag.isRealInGameName = false;
+                return View();
+            }
+            var user = RiotAPI.RiotAPI.GetAccountIdInfor(register.InGameName, register.Server);
+            user.Email = register.Email;
+            user.InGameName = register.InGameName;
+            user.Server = register.Server;
+            user.Password = register.Password;
+            DAO.UserDAO.addUser(user);
             return View("test",register);
         }
 

@@ -1,4 +1,4 @@
-﻿@model Register
+﻿@model User
 <link href="~/css/Login.css" rel="stylesheet" />
 <style type="text/css">
     label {
@@ -23,8 +23,12 @@
                 <h1 class="h3 mb-3 font-weight-normal">Register</h1>
 
                 <div class="form-group">
-                    <label for="username" >User name: </label>
+                    <label for="username">User name: </label>
                     <input type="text" class="form-control" id="username" name="ingameName" asp-for="InGameName" placeholder="Please enter ingame name">
+                    @if (ViewBag.isRealInGameName == false)
+                    {
+                        <p style="color: red">Username is not exist, please check your typing</p>
+                    }
                     <!-- <small id="usernamehelp" class="form-text text-muted">We'll never require your Garena account.</small> -->
                 </div>
                 <div >

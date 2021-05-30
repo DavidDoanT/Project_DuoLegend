@@ -1,4 +1,5 @@
 ﻿using DuoLegend.GlobalConfig;
+using DuoLegend.Models;
 using DuoLegend.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -108,15 +109,65 @@ namespace DuoLegend.DAO
             if (reader.Read())
             {
                 conn.Close();
+                reader.Close();
                 return true;
 
             }
             else
             {
                 conn.Close();
+                reader.Close();
                 return false;
             }
 
+        }
+
+        public static bool isDuplicateUser(string inGameName, string server)
+        {
+            com.Parameters.Clear();
+            conn.ConnectionString = MyConfig.ConnectionString;
+
+            conn.Open();
+            com.Connection = conn;
+
+            com.CommandText = "select inGameName from testUser where inGameName = @inGameName and server = @server";
+            com.Parameters.AddWithValue("@server", server);
+            com.Parameters.AddWithValue("@inGameName", inGameName);
+            SqlDataReader reader = com.ExecuteReader();
+            if (reader.Read())
+            {
+                reader.Close();
+                conn.Close();
+                return true;
+
+            }
+            else
+            {
+                reader.Close();
+                conn.Close();
+                return false;
+            }
+        }
+
+        public static void addUser(User user)
+        {
+            com.Parameters.Clear();
+            conn.ConnectionString = MyConfig.ConnectionString;
+
+            conn.Open();
+            com.Connection = conn;
+
+            com.CommandText = "INSERT INTO testUser(inGameId,inGameName,password,server,email,id,accountId,puuid) VALUES(@inGameId,@inGameName,@password,@server,@email,@id,@accountId,@puuid)";
+            com.Parameters.AddWithValue("@inGameId", user.Id);
+            com.Parameters.AddWithValue("@inGameName", user.InGameName );
+            com.Parameters.AddWithValue("@password", user.Password );
+            com.Parameters.AddWithValue("@server", user.Server);
+            com.Parameters.AddWithValue("@email", user.Email);
+            com.Parameters.AddWithValue("@id", user.Id);
+            com.Parameters.AddWithValue("@accountId", user.AccountId);
+            com.Parameters.AddWithValue("@puuid", user.Puuid);
+            com.BeginExecuteNonQuery();
+            conn.Close();
         }
     }
 }

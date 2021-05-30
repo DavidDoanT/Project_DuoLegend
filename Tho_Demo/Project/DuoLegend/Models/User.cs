@@ -3,14 +3,41 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DuoLegend.ViewModels
+namespace DuoLegend.Models
 {
-    public class Register
+
+    public class User
     {
+        private string _id;
+        private string _accountId;
+        private string _puuid;
         private string _inGameName;
         private string _server;
         private string _email;
         private string _password;
+        public User()
+        {
+
+        }
+        public string Puuid
+        {
+            get { return _puuid; }
+            set { _puuid = value; }
+        }
+
+        public string AccountId
+        {
+            get { return _accountId; }
+            set { _accountId = value; }
+        }
+
+
+        public string Id
+        {
+            get { return _id; }
+            set { _id = value; }
+        }
+
 
         public string Password
         {
