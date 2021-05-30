@@ -1,6 +1,7 @@
 ﻿using DuoLegend.DAO;
 using DuoLegend.GlobalConfig;
 using DuoLegend.Models;
+using DuoLegend.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace DuoLegend.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Login(UserLoginInfor acc)
+        public IActionResult Login(LoginInfor acc)
         {
             if (UserDAO.CheckLogin(acc.email, acc.password))
             {
@@ -33,7 +34,16 @@ namespace DuoLegend.Controllers
         
         }
 
+        public IActionResult Register(Register register)
+        {
 
+            return View("test",register);
+        }
+
+        public IActionResult RedirectRegisterPage()
+        {
+            return View("Register");
+        }
 
         public IActionResult RedirectLoginPage()
         {

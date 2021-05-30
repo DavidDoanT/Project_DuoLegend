@@ -1,0 +1,65 @@
+﻿@model Register
+<link href="~/css/Login.css" rel="stylesheet" />
+<style type="text/css">
+    label {
+        text-align: left;
+        display: inherit;
+        color: white;
+    }
+
+    .form-signin {
+        max-width: 90%;
+    }
+
+    .backContainer {
+        width: 60%;
+    }
+</style>
+<div class="container">
+    <center>
+        <div class="backContainer">
+            <!-- Begin page content -->
+            <form class="form-signin" asp-method="post" asp-controller="Account" asp-action="Register">
+                <h1 class="h3 mb-3 font-weight-normal">Register</h1>
+
+                <div class="form-group">
+                    <label for="username" >User name: </label>
+                    <input type="text" class="form-control" id="username" name="ingameName" asp-for="InGameName" placeholder="Please enter ingame name">
+                    <!-- <small id="usernamehelp" class="form-text text-muted">We'll never require your Garena account.</small> -->
+                </div>
+                <div >
+                    <h3 style="margin-left: 5vw; color: white">Server</h3>
+                    <select asp-for="Server" >
+                        <option>BR1</option>
+                        <option>EUN1</option>
+                        <option>EUW1</option>
+                        <option>JP1</option>
+                        <option>KR</option>
+                        <option>LA1</option>
+                        <option>LA2</option>
+                        <OPTION>NA1</OPTION>
+                        <OPTION>OC1</OPTION>
+                        <option>RU</option>
+                        <option>TR1</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Password: </label>
+                    <input type="password" class="form-control" name="password" id="Password" placeholder="Enter password" asp-for="Password" >
+                </div>
+                <div class="form-group">
+                    <label> Password Confirm:</label>
+                    <input type="password" class="form-control" name="passwordCheck" placeholder="Enter password again">
+                </div>
+                <div class="form-group" >
+                    <label>Email:</label>
+                    <input type="text" class="form-control" name="email" placeholder="Enter email" asp-for="Email" >
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-danger button">Register</button>
+                </div>
+            </form>
+        </div>
+
+    </center>
+</div>

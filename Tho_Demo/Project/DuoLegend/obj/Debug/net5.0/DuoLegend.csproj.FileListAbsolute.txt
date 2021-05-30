@@ -92,3 +92,5 @@ C:\Users\Admin\Documents\GitHub\Project_DuoLegend\Tho_Demo\Project\DuoLegend\bin
 E:\Hoc_tap_Dai_hoc\Summer_2021\SWP391\Project_DuoLegend\Tho_Demo\Project\DuoLegend\bin\Debug\net5.0\Newtonsoft.Json.dll
 E:\Hoc_tap_Dai_hoc\Summer_2021\SWP391\Project_DuoLegend\Tho_Demo\Project\DuoLegend\obj\Debug\net5.0\Razor\Views\Account\LoginPage.cshtml.g.cs
 E:\Hoc_tap_Dai_hoc\Summer_2021\SWP391\Project_DuoLegend\Tho_Demo\Project\DuoLegend\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
+C:\Users\Admin\Documents\GitHub\Project_DuoLegend\Tho_Demo\Project\DuoLegend\obj\Debug\net5.0\Razor\Views\Account\Register.cshtml.g.cs
+C:\Users\Admin\Documents\GitHub\Project_DuoLegend\Tho_Demo\Project\DuoLegend\obj\Debug\net5.0\Razor\Views\Account\test.cshtml.g.cs
