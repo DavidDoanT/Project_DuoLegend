@@ -122,7 +122,7 @@ namespace DuoLegend.DAO
 
         }
 
-        public static bool isDuplicateUser(string inGameName, string server)
+        public static bool isDuplicateUser(string email)
         {
             com.Parameters.Clear();
             conn.ConnectionString = MyConfig.ConnectionString;
@@ -130,9 +130,9 @@ namespace DuoLegend.DAO
             conn.Open();
             com.Connection = conn;
 
-            com.CommandText = "select inGameName from testUser where inGameName = @inGameName and server = @server";
-            com.Parameters.AddWithValue("@server", server);
-            com.Parameters.AddWithValue("@inGameName", inGameName);
+            com.CommandText = "select email from testUser where email = @email";
+            com.Parameters.AddWithValue("@email", email);
+            
             SqlDataReader reader = com.ExecuteReader();
             if (reader.Read())
             {

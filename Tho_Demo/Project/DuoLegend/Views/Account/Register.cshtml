@@ -55,9 +55,13 @@
                     <label> Password Confirm:</label>
                     <input type="password" class="form-control" name="passwordCheck" placeholder="Enter password again">
                 </div>
-                <div class="form-group" >
+                <div class="form-group">
                     <label>Email:</label>
-                    <input type="text" class="form-control" name="email" placeholder="Enter email" asp-for="Email" >
+                    <input type="text" class="form-control" name="email" placeholder="Enter email" asp-for="Email">
+                    @if (ViewBag.isDuplicateUser == true)
+                    {
+                        <p style="color: red">Username is not exist, please check your typing</p>
+                    }
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-danger button">Register</button>

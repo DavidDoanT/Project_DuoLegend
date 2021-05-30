@@ -29,7 +29,7 @@ namespace DuoLegend.Service
                 for (int j = 0; j < listMatch.Length; j++)
                 {
                     var smallMatchInfor = RiotAPI.RiotAPI.getMatchInfor(listMatch[j], "ASIA", UserDAO.getEncryptedSummonerId(infor.InGameName[i]));
-                    userInfor.champID[j] = smallMatchInfor.ChampId;
+                    userInfor.champName[j] = smallMatchInfor.ChampName;
                     if (smallMatchInfor.IsWin)
                     {
                         totalGameWin++;
