@@ -1,5 +1,8 @@
 ﻿@model DuoLegend.ViewModels.MainPageViewModel
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script type="text/javascript">
+    const { Alert } = require("bootstrap");
+
     function Choosing(previewPic) {
         previewPic.style.backgroundColor = "#dc3545";
 
@@ -20,12 +23,46 @@
     }
 </script>
 <link href="~/css/ThoMainPagestyle.css" rel="stylesheet" />
+<form class="modal fade" id="example">
+    <div class="modal-dialog">
+        <!--Mọi thứ của modal(popup) sẽ nằm ở trong element có class "modal-content"-->
+        <div class="modal-content">
+            <!--Đây là cái cục header của modal(popup)-->
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalTitle"></h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <!--%times; là character entity cho dấu "x" (hay còn gọi là cái cục đóng bên góc phải phía trên cùng ấy)-->
+                    <span>&times;</span>
+                </button>
+            </div>
+            <!--Đây là phần body của modal-->
+            <!--Đây sẽ là phần mình để những ngôi sao để cho người ta click vào-->
+            <div class="modal-body">
+                You need to login to use this feature
+            </div>
+            <!--Đây là phần footer của modal-->
+            <div class="modal-footer">
+                <button style="width: 5vw; font-size: 1.25vw;text-align: center; padding-left: 0; padding-right: 0" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <a style="width: 5vw; font-size: 1.25vw;text-align: center; padding-left: 0; padding-right: 0" href="Account/RedirectLoginPage" type="button" class="btn btn-primary">Login</a>
+            </div>
+        </div>
+    </div>
+</form>
 <div class="backContainer">
     <form>
         <center>
             <div class="searchBar">
-                <label for="submit"><p style="margin-left: 0vw; margin-bottom: 0vw;">Find your Duo</p></label>
-                <input type="submit" name="" id="submit" style="display: none;">
+                @if (ViewBag.isLogin)
+                {
+                    <label for="submit"><p style="margin-left: 0vw; margin-bottom: 0vw;">Find your Duo</p></label>
+                    <input type="submit" name="" id="submit" style="display: none;">
+                }
+                else
+                {
+                    <button data-toggle="modal" data-target="#example" type="button" style="background-color: inherit; border: hidden"><p style="margin-left: 0vw; margin-bottom: 0vw;">Find your Duo</p></button>
+
+                }
+
             </div>
         </center>
         <br>
@@ -61,35 +98,48 @@
                 <label for="silverRank"><img class="rankOptionLabel" src="img/silverIcon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
                 <input type="radio" name="rankOption" id="silverRank" style="display: none;">
 
-                    <label for="challengerRank"><img class="rankOptionLabel" src="img/challengerIcon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
-                    <input type="radio" name="rankOption" id="challengerRank" style="display: none;">
-                </fieldset>
-            </div>
-            <div class="searchBar">
-                <h3 style="margin-left: 5vw; color: white">Server</h3>
-                <select>
-                    <option>BR1</option>
-                    <option>EUN1</option>
-                    <option>EUW1</option>
-                    <option>JP1</option>
-                    <option>KR</option>
-                    <option>LA1</option>
-                    <option>LA2</option>
-                    <OPTION>NA1</OPTION>
-                    <OPTION>OC1</OPTION>
-                    <option>RU</option>
-                    <option>TR1</option>
-                </select>
-            </div>
-            <br>
-            <div class="searchBar">
-                <label for="playToWin"><p class="playPurposeOption" onclick="removeOtherChoosing(this),Choosing(this)">Win is matter</p></label>
-                <input type="radio" name="playPurposeOption" id="playToWin" style="display: none;">
-                <label for="playForFun"><p class="playPurposeOption" onclick="removeOtherChoosing(this),Choosing(this)">Fun is matter</p></label>
-                <input type="radio" name="playPurposeOption" id="playForFun" style="display: none;">
-            </div>
-        </form>
+                <label for="goldRank"><img class="rankOptionLabel" src="img/goldIcon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
+                <input type="radio" name="rankOption" id="goldRank" style="display: none;">
+
+                <label for="platinumRank"><img class="rankOptionLabel" src="img/platinumIcon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
+                <input type="radio" name="rankOption" id="platinumRank" style="display: none;">
+
+                <label for="diamondRank"><img class="rankOptionLabel" src="img/diamondIcon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
+                <input type="radio" name="rankOption" id="diamondRank" style="display: none;">
+                <label for="masterRank"><img class="rankOptionLabel" src="img/masterIcon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
+
+                <label for="grandMasterRank"><img class="rankOptionLabel" src="img/grandMasterIcon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
+                <input type="radio" name="rankOption" id="grandMasterRank" style="display: none;">
+
+                <label for="challengerRank"><img class="rankOptionLabel" src="img/challengerIcon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
+                <input type="radio" name="rankOption" id="challengerRank" style="display: none;">
+            </fieldset>
+        </div>
+        <div class="searchBar">
+            <h3 style="margin-left: 5vw; color: white">Server</h3>
+            <select>
+                <option>BR1</option>
+                <option>EUN1</option>
+                <option>EUW1</option>
+                <option>JP1</option>
+                <option>KR</option>
+                <option>LA1</option>
+                <option>LA2</option>
+                <OPTION>NA1</OPTION>
+                <OPTION>OC1</OPTION>
+                <option>RU</option>
+                <option>TR1</option>
+            </select>
+        </div>
         <br>
+        <div class="searchBar">
+            <label for="playToWin"><p class="playPurposeOption" onclick="removeOtherChoosing(this),Choosing(this)">Win is matter</p></label>
+            <input type="radio" name="playPurposeOption" id="playToWin" style="display: none;">
+            <label for="playForFun"><p class="playPurposeOption" onclick="removeOtherChoosing(this),Choosing(this)">Fun is matter</p></label>
+            <input type="radio" name="playPurposeOption" id="playForFun" style="display: none;">
+        </div>
+    </form>
+    <br>
 
 
     <br>
@@ -160,7 +210,7 @@
                                 if (Model.ListUserInfor[i] is null) { }
                                 else
                                 {
-                                    <p>@Model.ListUserInfor[i].champID[j]</p>
+                                    <p>@Model.ListUserInfor[i].champName[j]</p>
                                 }
                             }
 

@@ -1,6 +1,8 @@
 ﻿using DuoLegend.DAO;
 using DuoLegend.GlobalConfig;
 using DuoLegend.Models;
+using DuoLegend.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -19,10 +21,11 @@ namespace DuoLegend.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Login(UserLoginInfor acc)
+        public IActionResult Login(LoginInfor acc)
         {
             if (UserDAO.CheckLogin(acc.email, acc.password))
             {
+                HttpContext.Session.SetString("email", acc.email);
                 return RedirectToAction("Index", "Home");
             }
             else
@@ -33,7 +36,31 @@ namespace DuoLegend.Controllers
         
         }
 
+        public IActionResult Register(User register)
+        {
+            if(!RiotAPI.RiotAPI.isRealInGameName(register.InGameName, register.Server))
+            {
+                ViewBag.isRealInGameName = false;
+                return View();
+            }
+            if (DAO.UserDAO.isDuplicateUser(register.Email))
+            {
+                ViewBag.isDuplicateUser = true;
+                return View();
+            }
+            var user = RiotAPI.RiotAPI.GetAccountIdInfor(register.InGameName, register.Server);
+            user.Email = register.Email;
+            user.InGameName = register.InGameName;
+            user.Server = register.Server;
+            user.Password = register.Password;
+            DAO.UserDAO.addUser(user);
+            return View("RegisterSuccess");
+        }
 
+        public IActionResult RedirectRegisterPage()
+        {
+            return View("Register");
+        }
 
         public IActionResult RedirectLoginPage()
         {

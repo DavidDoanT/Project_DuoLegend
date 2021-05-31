@@ -5,11 +5,7 @@ using System.Threading.Tasks;
 
 namespace DuoLegend.Models
 {
-    public class UserLoginInfor
+    public class Register
     {
-
-        public string email { get; set; }
-        public string password { get; set; }
-
     }
 }
