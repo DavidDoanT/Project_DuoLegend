@@ -2,6 +2,7 @@
 using DuoLegend.GlobalConfig;
 using DuoLegend.Models;
 using DuoLegend.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,7 @@ namespace DuoLegend.Controllers
         {
             if (UserDAO.CheckLogin(acc.email, acc.password))
             {
+                HttpContext.Session.SetString("email", acc.email);
                 return RedirectToAction("Index", "Home");
             }
             else

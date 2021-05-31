@@ -13,6 +13,7 @@ using DuoLegend.GlobalConfig;
 using DuoLegend.DAO;
 using DuoLegend.RiotAPI;
 using DuoLegend.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace DuoLegend.Controllers
 {
@@ -27,7 +28,14 @@ namespace DuoLegend.Controllers
         
         public IActionResult Index()
         {
-            
+            if (HttpContext.Session.GetString("email") is null)
+            {
+                ViewBag.isLogin = false;
+            }
+            else
+            {
+                ViewBag.isLogin = true;
+            }
             return View(Service.ProcessMainPage.getRandomList());
         }
         
