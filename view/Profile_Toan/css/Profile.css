@@ -15,7 +15,7 @@ code {
 
 
 body{
-  background-image: url("#");
+  background-image: url("");
 }
 /*cái này là cái ô vuông */
 .backContainer{
@@ -25,7 +25,7 @@ body{
   width: 50%;
   height: 150%;
   border-radius: 5%;
-  border: 
+  /* border:  */
 }
 
 .ProfileWrapper{
@@ -246,7 +246,8 @@ img{
     padding: 6px;
     /* background: #182338; */
     flex: 1 1;
-    width: 98%;
+    /* width: 100%; */
+    cursor: pointer;
 }
 .ProfileMatchModeTime{
     display: flex;
@@ -321,10 +322,7 @@ img{
     text-align: center;
     color: white;
 }
-/* .KDA{
-    display:table;
-margin:0 auto;
-} */
+
 .ProfileMatchGoldMinion{
     display: flex;
     align-items: center;
@@ -385,4 +383,120 @@ body{
 }
 .score{
     color: white;
+}
+.ProfileMatchDetail{
+    color: white;
+    background-color: #0b0b30;
+}
+.ProfileMatchHeader{
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 1%;
+}
+.ProfileMatchHeader span{
+    margin-inline: 3%;
+}
+.TotalKDA{
+    letter-spacing: 2px;
+}
+.LoseResult{
+    color: red;
+}
+.WinResult{
+    color: greenyellow;
+}
+.ProfileSummoner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6px;
+    margin-bottom: 2%;
+    border-radius: 4px;
+    background: #1f293f;
+ 
+}
+.ProfilePlayer{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.ProfileChampion{
+    width: 9%;
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+    margin-left: 2%;
+}
+.ProfileChampion span{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+.ProfileSpells{
+    display: flex;
+    width: 6%;
+    flex-direction: column;
+    margin-left: 1%;
+}
+.ProfileSpell{
+    width: 70%;
+    border-radius: 7px;
+    overflow: hidden;
+}
+.ProfilePerk{
+    width: 7%;
+}
+
+.ProfileListItem{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.ProfileMainItem{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.ProfileMainItem>div{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.ProfileSummonerName{
+    width: 11%;
+    text-align: center;
+}
+.ProfileKDA{
+    width: 16%;
+    text-align: center;
+}
+.ProfileDamage{
+    width: 12%;
+}
+.ProfileGold_{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1vw;
+    font-weight: 500;
+    letter-spacing: 2px;
+    color: yellow;
+    width: 9.4%;
+}
+.ProfileMinion_{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1vw;
+    font-weight: 500;
+    letter-spacing: 2px;
+    color: yellow;
+    width: 7%;
+    margin-inline: 2%;
+}
+.ProfileListItem{
+    width: 27%;
 }
