@@ -7,7 +7,7 @@ namespace DuoLegend.GlobalConfig
 {
     public static class MyConfig
     {
-        public static string ConnectionString { get;} = "Data Source=ADMIN;Initial Catalog=no_data_DuoDatabase_version-1.0.4;Integrated Security=True";
-        public static string RiotKey { get; set; } = "RGAPI-da6d875f-6124-4e2f-8434-605875f2b64c";
+        public static string ConnectionString { get;} = "Data Source = ADMIN; Initial Catalog = no_data_DuoDatabase_version - 1.0.4; Integrated Security = True";
+        public static string RiotKey { get; set; } = "RGAPI-c9bd1984-c885-47ef-a191-d93df0389f43";
     }
 }
