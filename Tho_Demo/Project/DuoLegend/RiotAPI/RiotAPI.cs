@@ -28,7 +28,14 @@ namespace DuoLegend.RiotAPI
             Console.WriteLine(responseFromServer);
 
             dynamic resultFromRiot = JsonConvert.DeserializeObject(responseFromServer);
-            string tier = resultFromRiot[0].tier;
+            string tier;
+            try {
+                 tier = resultFromRiot[0].tier;
+            }catch(Exception e)
+            {
+                 tier = "unranked";
+            }
+            
             reader.Close();
             dataStream.Close();
             response.Close();
