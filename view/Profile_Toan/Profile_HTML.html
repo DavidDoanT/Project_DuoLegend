@@ -228,7 +228,7 @@
 				</div>
 				<div class="ProfileHistoryList">
 					<!-- nếu thắng thì màu này, thua thì màu đỏ rgb(91, 10, 10) -->
-					<div class="ProfileMatchContent" style="background-color: rgb(0, 0, 25);">
+					<div class="ProfileMatchContent" style="background-color: rgb(0, 0, 25);" onclick="myFunction()">
 						<div class="ProfileMatchModeTime">
 							<span><b>ARAM</b></span>
 							<span>Howling Abyss</span>
@@ -304,7 +304,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="ProfileMatchDetail">
+					<div id="ProfileMatchDetail">
 						<div class="ProfileTeamInfo">
 							<div class="ProfileMatchHeader">
 								<span class="TeamName">Team 1</span>
@@ -444,12 +444,10 @@
 													<img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/item/3006.png">
 												</div>
 											</div>
-										</div>
-									
+										</div>									
 								</div>
 							</div>
 						</div>
-						<div class="ProfileTeamInfo">
 							<div class="ProfileMatchHeader">
 								<span class="TeamName">Team 2</span>
 								<span class="WinResult">Win</span>
@@ -458,7 +456,6 @@
 							</div>
 							<div class="ProfileTeamDetail">
 								<div class="ProfileSummoner">
-									<!-- <div class="ProfilePlayer"> -->
 										<div class="ProfileChampion">
 											<img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/champion/Mordekaiser.png">
 											<span>16</span>
@@ -522,7 +519,6 @@
 												</div>
 											</div>
 										</div>
-									<!-- </div> -->
 								</div>
 								<div class="ProfileSummoner">
 									
@@ -592,11 +588,22 @@
 									
 								</div>
 							</div>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>
 		</div>
+		<script>
+			function myFunction() {
+			  var x = document.getElementById("ProfileMatchDetail");
+			  if (x.style.display === "block") {
+				x.style.display = "none";
+			  } else {
+				x.style.display = "block";
+			  }
+			}
+			</script>
 </body>
+
 
 </html>
