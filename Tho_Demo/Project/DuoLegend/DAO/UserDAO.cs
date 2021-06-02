@@ -20,7 +20,7 @@ namespace DuoLegend.DAO
 
             conn.Open();
             com.Connection = conn;
-            com.CommandText = "select top(3) * from testUser";
+            com.CommandText = "select top(3) inGameName from testUser";
             SqlDataReader reader = com.ExecuteReader();
             MainPageViewModel infor = new MainPageViewModel();
             int count = 0;
