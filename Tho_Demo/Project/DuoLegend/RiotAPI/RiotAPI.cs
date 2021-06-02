@@ -120,23 +120,30 @@ namespace DuoLegend.RiotAPI
 
         public static User GetAccountIdInfor (string name, string server)
         {
-            WebRequest request = WebRequest.Create("https://" + server + ".api.riotgames.com/lol/summoner/v4/summoners/by-name/" + name + "?api_key=" + RiotKey);
+            try
+            {
+                WebRequest request = WebRequest.Create("https://" + server + ".api.riotgames.com/lol/summoner/v4/summoners/by-name/" + name + "?api_key=" + RiotKey);
 
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            Stream dataStream = response.GetResponseStream();
-            StreamReader reader = new StreamReader(dataStream);
-            string responseFromServer = reader.ReadToEnd();
-            dynamic resultFromRiot = JsonConvert.DeserializeObject(responseFromServer);
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                Stream dataStream = response.GetResponseStream();
+                StreamReader reader = new StreamReader(dataStream);
+                string responseFromServer = reader.ReadToEnd();
+                dynamic resultFromRiot = JsonConvert.DeserializeObject(responseFromServer);
 
-            var acc = new User();
-            acc.AccountId = resultFromRiot.accountId;
-            acc.Id = resultFromRiot.id;
-            acc.Puuid = resultFromRiot.puuid;
+                var acc = new User();
+                acc.AccountId = resultFromRiot.accountId;
+                acc.Id = resultFromRiot.id;
+                acc.Puuid = resultFromRiot.puuid;
 
-            reader.Close();
-            dataStream.Close();
-            response.Close();
-            return acc;
+                reader.Close();
+                dataStream.Close();
+                response.Close();
+                return acc;
+            }
+            catch(Exception e)
+            {
+                return null;
+            }           
         }
     }
 }
