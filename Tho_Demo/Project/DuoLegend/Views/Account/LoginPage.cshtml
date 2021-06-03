@@ -32,20 +32,24 @@
 <div class="container">
     <center>
         <div class="backContainer">
-            <form class="form-signin" asp-method="post" asp-controller="Account" asp-action="Login" >
+            <form class="form-signin" asp-method="post" asp-controller="Account" asp-action="Login">
                 <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 
                 <div class="form-group">
-                    <input type="email" class="form-control" id="email"  name="email" asp-for="email" placeholder="email" >
+                    <input type="email" class="form-control" id="email" name="email" asp-for="Email" placeholder="email">
                     <small id="usernamehelp" class="form-text text-muted">We'll never require your Garena account.</small>
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Password" name="password" asp-for="password"  >
-                </div> 
-                @if(ViewBag.isCorrect == false)
+                    <input type="password" class="form-control" placeholder="Password" name="password" asp-for="Password">
+                </div>
+                @if (ViewBag.isCorrect == false)
                 {
-                    <p style="color: red" >Wrong email or password</p>
+                    <p style="color: red">Wrong email or password</p>
                 }
+                <div class="form-group">
+                    <label for="RememberMe" style="color: white">Remember Me</label>
+                    <input type="checkbox" value="true" class="form-control" id="RememberMe"  name="RememberMe" asp-for="RememberMe">
+                </div>
                 <button type="submit" class="btn btn-danger button">Log in</button>
 
             </form>
