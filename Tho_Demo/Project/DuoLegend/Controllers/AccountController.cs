@@ -8,7 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using System.Web;
+using System.Net;
 namespace DuoLegend.Controllers
 {
 
@@ -23,9 +24,13 @@ namespace DuoLegend.Controllers
         [HttpPost]
         public IActionResult Login(LoginInfor acc)
         {
-            if (UserDAO.CheckLogin(acc.email, acc.password))
+            if (UserDAO.CheckLogin(acc.Email, acc.Password))
             {
-                HttpContext.Session.SetString("email", acc.email);
+                if(acc.RememberMe)
+                {
+                    
+                }
+                HttpContext.Session.SetString("email", acc.Email);
                 return RedirectToAction("Index", "Home");
             }
             else
@@ -34,6 +39,12 @@ namespace DuoLegend.Controllers
                 return View("LoginPage");
             }
         
+        }
+
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index", "Home");
         }
 
         public IActionResult Register(User register)

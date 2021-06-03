@@ -16,11 +16,12 @@ namespace DuoLegend.DAO
 
         public static MainPageViewModel getRandomInGameName()
         {
+            com.Parameters.Clear();
             conn.ConnectionString = MyConfig.ConnectionString;
 
             conn.Open();
             com.Connection = conn;
-            com.CommandText = "select top(3) inGameName from testUser";
+            com.CommandText = "select top 3  inGameName from testUser order by NEWID() ";
             SqlDataReader reader = com.ExecuteReader();
             MainPageViewModel infor = new MainPageViewModel();
             int count = 0;
@@ -68,6 +69,7 @@ namespace DuoLegend.DAO
         }
         public static string getPuuId(string inGameName)
         {
+
             com.Parameters.Clear();
             if (inGameName is null)
             {
@@ -100,6 +102,7 @@ namespace DuoLegend.DAO
 
         public static bool CheckLogin(string email, string password)
         {
+            com.Parameters.Clear();
             conn.ConnectionString = MyConfig.ConnectionString;
 
             conn.Open();
@@ -151,6 +154,7 @@ namespace DuoLegend.DAO
 
         public static void addUser(User user)
         {
+            com.Parameters.Clear();
             com.Parameters.Clear();
             conn.ConnectionString = MyConfig.ConnectionString;
 
