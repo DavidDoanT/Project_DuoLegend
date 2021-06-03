@@ -41,6 +41,12 @@ namespace DuoLegend.Controllers
         
         }
 
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index", "Home");
+        }
+
         public IActionResult Register(User register)
         {
             if(!RiotAPI.RiotAPI.isRealInGameName(register.InGameName, register.Server))
