@@ -25,7 +25,10 @@ namespace DuoLegend.Controllers
         {
             _logger = logger;
         }
-        
+        /// <summary>
+        /// redirect to loginPage with approriate viewBag
+        /// </summary>
+        /// <returns>redirect to mainPage with randomList information</returns>
         public IActionResult Index()
         {
             if (HttpContext.Session.GetString("email") is null)
@@ -39,9 +42,5 @@ namespace DuoLegend.Controllers
             return View(Service.ProcessMainPage.getRandomList());
         }
         
-        public IActionResult Privacy()
-        {
-            return View();
-        }
     }
 }

@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace DuoLegend.Models
 {
+    /// <summary>
+    /// user information that appear on mainPage
+    /// </summary>
     public class userInforMainPage
     {
         public userInforMainPage()

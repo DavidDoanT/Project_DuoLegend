@@ -8,24 +8,38 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using System.Web;
+using System.Net;
 namespace DuoLegend.Controllers
 {
 
     public class AccountController : Controller
     {
-
+        /// <summary>
+        /// redirect to login view
+        /// </summary>
+        /// <returns>view</returns>
         [HttpGet]
         public IActionResult Login()
         {
             return View();
         }
+
+        /// <summary>
+        /// check login
+        /// </summary>
+        /// <param name="acc"> email and password for check login </param>
+        /// <returns>if login sucess redirect to homepage, if not redirect to loginPage but with viewBag isCorrect=false</returns>
         [HttpPost]
         public IActionResult Login(LoginInfor acc)
         {
-            if (UserDAO.CheckLogin(acc.email, acc.password))
+            if (UserDAO.CheckLogin(acc.Email, acc.Password))
             {
-                HttpContext.Session.SetString("email", acc.email);
+                if(acc.RememberMe)
+                {
+                    
+                }
+                HttpContext.Session.SetString("email", acc.Email);
                 return RedirectToAction("Index", "Home");
             }
             else
@@ -35,7 +49,21 @@ namespace DuoLegend.Controllers
             }
         
         }
+        /// <summary>
+        /// clear all session available
+        /// </summary>
+        /// <returns> redirect to homePage </returns>
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index", "Home");
+        }
 
+        /// <summary>
+        /// receive register information, call DAO for insert to database
+        /// </summary>
+        /// <param name="register">register information</param>
+        /// <returns></returns>
         public IActionResult Register(User register)
         {
             if(!RiotAPI.RiotAPI.isRealInGameName(register.InGameName, register.Server))
@@ -57,11 +85,12 @@ namespace DuoLegend.Controllers
             return View("RegisterSuccess");
         }
 
+        //ham thua, se xoa trong tuong lai
         public IActionResult RedirectRegisterPage()
         {
             return View("Register");
         }
-
+        //ham thua, se xoa trong tuong lai
         public IActionResult RedirectLoginPage()
         {
             return View("LoginPage");

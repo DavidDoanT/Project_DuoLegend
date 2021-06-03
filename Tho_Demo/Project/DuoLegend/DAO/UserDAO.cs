@@ -11,16 +11,22 @@ namespace DuoLegend.DAO
 {
     public static class UserDAO
     {
+        //create connectiom
         private static SqlConnection conn = new SqlConnection();
         private static SqlCommand com = new SqlCommand();
 
+        /// <summary>
+        /// get random inGameName
+        /// </summary>
+        /// <returns>an object contain 3 inGameName</returns>
         public static MainPageViewModel getRandomInGameName()
         {
+            com.Parameters.Clear();
             conn.ConnectionString = MyConfig.ConnectionString;
 
             conn.Open();
             com.Connection = conn;
-            com.CommandText = "select top(3) inGameName from testUser";
+            com.CommandText = "select top 3  inGameName from testUser order by NEWID() ";
             SqlDataReader reader = com.ExecuteReader();
             MainPageViewModel infor = new MainPageViewModel();
             int count = 0;
@@ -35,6 +41,12 @@ namespace DuoLegend.DAO
         }
 
         //ve sau doi para thanh email
+
+        /// <summary>
+        /// get encryptedSummonerId
+        /// </summary>
+        /// <param name="inGameName"></param>
+        /// <returns>encryptedSummonerId</returns>
         public static string getEncryptedSummonerId(string inGameName)
         {
             com.Parameters.Clear();
@@ -68,6 +80,7 @@ namespace DuoLegend.DAO
         }
         public static string getPuuId(string inGameName)
         {
+
             com.Parameters.Clear();
             if (inGameName is null)
             {
@@ -97,9 +110,15 @@ namespace DuoLegend.DAO
             conn.Close();
             return temp;
         }
-
+        /// <summary>
+        /// check password for login
+        /// </summary>
+        /// <param name="email">user's email</param>
+        /// <param name="password">user's password</param>
+        /// <returns>true if email and password both match, false if not</returns>
         public static bool CheckLogin(string email, string password)
         {
+            com.Parameters.Clear();
             conn.ConnectionString = MyConfig.ConnectionString;
 
             conn.Open();
@@ -122,6 +141,11 @@ namespace DuoLegend.DAO
 
         }
 
+        /// <summary>
+        /// check if email is already exist in database
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns>true if already exist in database, false if not</returns>
         public static bool isDuplicateUser(string email)
         {
             com.Parameters.Clear();
@@ -149,9 +173,14 @@ namespace DuoLegend.DAO
             }
         }
 
+        /// <summary>
+        /// receive all information and add to database
+        /// </summary>
+        /// <param name="user"> an object contain all information of user </param>
         public static void addUser(User user)
         {
             com.Parameters.Clear();
+        
             conn.ConnectionString = MyConfig.ConnectionString;
 
             conn.Open();

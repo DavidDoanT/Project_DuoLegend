@@ -14,8 +14,17 @@ namespace DuoLegend.RiotAPI
 {
     static public class RiotAPI
     {
+        /// <summary>
+        /// key that third party api provide
+        /// </summary>
         private static string RiotKey = GlobalConfig.MyConfig.RiotKey;
         
+        /// <summary>
+        /// get rank of a user
+        /// </summary>
+        /// <param name="id"> id of user</param>
+        /// <param name="server">server of user</param>
+        /// <returns>rank of user</returns>
         public static string getRankByEncryptedSummonerId(string id, string server)
         {
             WebRequest request = WebRequest.Create("https://"+server+".api.riotgames.com/lol/league/v4/entries/by-summoner/"+id+"?api_key="+RiotKey);
@@ -43,7 +52,12 @@ namespace DuoLegend.RiotAPI
             return tier;
 
         }
-
+        /// <summary>
+        /// get list of match id form user infor
+        /// </summary>
+        /// <param name="id">id of user</param>
+        /// <param name="server">server of user</param>
+        /// <returns>list of match id</returns>
         public static string[] getListMatchIDbyPuuId(string id, string server)
         {
             WebRequest request = WebRequest.Create("https://"+server+".api.riotgames.com/lol/match/v5/matches/by-puuid/"+id+"/ids?start=0&count=3&api_key="+RiotKey);
