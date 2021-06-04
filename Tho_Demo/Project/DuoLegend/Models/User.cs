@@ -5,9 +5,7 @@ using System.Threading.Tasks;
 
 namespace DuoLegend.Models
 {
-    /// <summary>
-    ///all information of user
-    /// </summary>
+
     public class User
     {
         private string _id;
