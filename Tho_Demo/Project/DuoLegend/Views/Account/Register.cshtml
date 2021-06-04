@@ -18,19 +18,10 @@
         color: red;
     }
 </style>
+
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
 <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js" type="text/javascript"></script>
 <script>
-    //var check = function () {
-    //    if (document.getElementById('Password').value ==
-    //        document.getElementById('PasswordCheck').value) {
-    //        document.getElementById('message').style.color = 'green';
-    //        document.getElementById('message').innerHTML = 'matching';
-    //    } else {
-    //        document.getElementById('message').style.color = 'red';
-    //        document.getElementById('message').innerHTML = 'not matching';
-    //    }
-    //};
     $().ready(function () {
         $("#Form").validate({
             rules: {
@@ -42,12 +33,12 @@
                     required: true,
                     email: true,
                 },
-                
+
                 "password": {
                     required: true,
                     maxlength: 32
                 },
-              
+
                 "passwordCheck": {
                     required: true,
                     maxlength: 32,
@@ -55,7 +46,7 @@
                 }
             },
             messages: {
-                
+
                 "email": {
                     required: "Email address is required",
                     email: "Email address is invalid"
@@ -115,9 +106,7 @@
                 </div>
                 <div class="form-group">
                     <label> Password Confirm:</label>
-                    <input type="password" class="form-control" name="passwordCheck" placeholder="Enter password again" id="PasswordCheck" >
-
-                    @*<span id='message'>onkeyup='check();'</span>*@
+                    <input type="password" class="form-control" name="passwordCheck" placeholder="Enter password again" id="PasswordCheck">
                 </div>
                 <div class="form-group">
                     <label>Email:</label>

@@ -5,9 +5,6 @@ using System.Threading.Tasks;
 
 namespace DuoLegend.Models
 {
-    /// <summary>
-    /// information that pass to login function
-    /// </summary>
     public class LoginInfor
     {
 

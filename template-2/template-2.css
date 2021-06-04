@@ -41,8 +41,9 @@ body{
   /* border:  */
 }
 .dropdown-menu.show{
-  background: linear-gradient(178deg,#ab1328,#621620);
-  margin-top: 13%;
+  /*background: linear-gradient(178deg,#ab1328,#621620);*/
+  background-color: rgb(2, 0, 36);
+  margin-top: 14%;
 }
 .dropdown-item{
   color: white;
@@ -54,5 +55,9 @@ body{
 }
 .bg-dark {
   background-color: rgb(2, 0, 36) !important;
+}
+.btn{
+  background: linear-gradient(178deg,#ab1328,#621620);
+  border: red;
 }
 

@@ -5,9 +5,6 @@ using System.Threading.Tasks;
 
 namespace DuoLegend.Models
 {
-    /// <summary>
-    /// information of a "tran dau"
-    /// </summary>
     public class MatchInfor
     {
         public int Kill { get; set; }
