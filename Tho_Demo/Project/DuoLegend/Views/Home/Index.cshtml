@@ -14,12 +14,14 @@
                 x[i].style.backgroundColor = "#3835dc7a";
             }
         } else {
-
             for (i = 0; i < x.length; i++) {
                 x[i].style.backgroundColor = "inherit";
             }
         }
-
+    }    
+    function focusSearchResult() {
+        var elmnt = document.getElementById("searchResult");
+        elmnt.scrollIntoView();
     }
 </script>
 <link href="~/css/ThoMainPagestyle.css" rel="stylesheet" />
@@ -38,7 +40,7 @@
             <!--Đây là phần body của modal-->
             <!--Đây sẽ là phần mình để những ngôi sao để cho người ta click vào-->
             <div class="modal-body">
-                You need to login to use this feature
+                You need to login to use this feature               
             </div>
             <!--Đây là phần footer của modal-->
             <div class="modal-footer">
@@ -48,19 +50,42 @@
         </div>
     </div>
 </form>
+
+<form class="modal fade" id="test">
+    <div class="modal-dialog">
+        <!--Mọi thứ của modal(popup) sẽ nằm ở trong element có class "modal-content"-->
+        <div class="modal-content">
+            <!--Đây là cái cục header của modal(popup)-->
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalTitle"></h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <!--%times; là character entity cho dấu "x" (hay còn gọi là cái cục đóng bên góc phải phía trên cùng ấy)-->
+                    <span>&times;</span>
+                </button>
+            </div>
+            <!--Đây là phần body của modal-->
+            <!--Đây sẽ là phần mình để những ngôi sao để cho người ta click vào-->
+            <div class="modal-body">
+                <center><H3 id="txtSearching" >SEARCHING PLEASE WAIT...</h3></center>
+                <center><div style="width: 10vw; height: 10vw" class="spinner-border text-success"></div></center>
+            </div>
+            <!--Đây là phần footer của modal-->           
+        </div>
+    </div>
+</form>
+
 <div class="backContainer">
     <form>
         <center>
             <div class="searchBar">
                 @if (ViewBag.isLogin)
                 {
-                    <label for="submit"><p style="margin-left: 0vw; margin-bottom: 0vw;">Find your Duo</p></label>
+                    <label data-toggle="modal" data-target="#test" for="submit"><p style="margin-left: 0vw; margin-bottom: 0vw;">Find your Duo</p></label>
                     <input type="submit" name="" id="submit" style="display: none;">
                 }
                 else
                 {
                     <button data-toggle="modal" data-target="#example" type="button" style="background-color: inherit; border: hidden"><p style="margin-left: 0vw; margin-bottom: 0vw;">Find your Duo</p></button>
-
                 }
 
             </div>
@@ -146,7 +171,7 @@
 
 
     <br>
-    <table>
+    <table id="searchResult" >
         <tr>
             <th>Summoner</th>
             <th>Lane</th>
