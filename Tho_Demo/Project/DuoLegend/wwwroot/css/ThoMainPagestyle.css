@@ -1,6 +1,8 @@
 
-body{
-  background-image: url("../img/test.jpg");
+body {
+	background-image: url("../img/test.jpg");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
 }
 .backContainer{
 	margin: 0 auto;
