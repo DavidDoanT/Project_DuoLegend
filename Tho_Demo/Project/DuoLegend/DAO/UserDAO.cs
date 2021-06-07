@@ -170,7 +170,7 @@ namespace DuoLegend.DAO
             com.Parameters.AddWithValue("@id", user.Id);
             com.Parameters.AddWithValue("@accountId", user.AccountId);
             com.Parameters.AddWithValue("@puuid", user.Puuid);
-            com.BeginExecuteNonQuery();
+            com.EndExecuteNonQuery(com.BeginExecuteNonQuery());
             conn.Close();
         }
     }
