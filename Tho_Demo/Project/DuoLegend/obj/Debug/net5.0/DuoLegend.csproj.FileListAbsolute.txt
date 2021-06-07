@@ -250,5 +250,5 @@ C:\Users\Admin\Documents\GitHub\Project_DuoLegend\Tho_Demo\Project\DuoLegend\obj
 C:\Users\Admin\Documents\GitHub\Project_DuoLegend\Tho_Demo\Project\DuoLegend\obj\Debug\net5.0\ref\DuoLegend.dll
 C:\Users\Admin\Documents\GitHub\Project_DuoLegend\Tho_Demo\Project\DuoLegend\obj\Debug\net5.0\DuoLegend.pdb
 C:\Users\Admin\Documents\GitHub\Project_DuoLegend\Tho_Demo\Project\DuoLegend\obj\Debug\net5.0\DuoLegend.genruntimeconfig.cache
-C:\Users\Admin\Documents\GitHub\Project_DuoLegend\Tho_Demo\Project\DuoLegend\bin\Debug\net5.0\bundleconfig.json
 C:\Users\Admin\Documents\GitHub\Project_DuoLegend\Tho_Demo\Project\DuoLegend\obj\Debug\net5.0\Razor\Views\Profile\Index.cshtml.g.cs
+C:\Users\Admin\Documents\GitHub\Project_DuoLegend\Tho_Demo\Project\DuoLegend\bin\Debug\net5.0\bundleconfig.json

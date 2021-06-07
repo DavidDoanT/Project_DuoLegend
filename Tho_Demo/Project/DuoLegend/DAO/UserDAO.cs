@@ -1,4 +1,4 @@
-﻿using DuoLegend.GlobalConfig;
+using DuoLegend.GlobalConfig;
 using DuoLegend.Models;
 using DuoLegend.ViewModels;
 using System;
@@ -35,8 +35,8 @@ namespace DuoLegend.DAO
             return infor;
         }
 
-        //ve sau doi para thanh email
-        public static string getEncryptedSummonerId(string inGameName)
+        
+        public static string getEncryptedSummonerId(string inGameName, string server)
         {
             com.Parameters.Clear();
             if(inGameName is null)
@@ -48,8 +48,8 @@ namespace DuoLegend.DAO
             conn.Open();
             com.Connection = conn;
 
-            com.CommandText = "select id  from testUser where inGameName = @inGameName";
-            
+            com.CommandText = "select id  from testUser where inGameName = @inGameName and server = @server";
+            com.Parameters.AddWithValue("@server", server);
             com.Parameters.AddWithValue("@inGameName", inGameName);
             SqlDataReader reader = com.ExecuteReader();
             string temp;
@@ -171,6 +171,23 @@ namespace DuoLegend.DAO
             com.Parameters.AddWithValue("@accountId", user.AccountId);
             com.Parameters.AddWithValue("@puuid", user.Puuid);
             com.Parameters.AddWithValue("@isDeleted", false);
+            com.EndExecuteNonQuery(com.BeginExecuteNonQuery());
+            conn.Close();
+        }
+
+        public static void addChamp(string id, string name, string path)
+        {
+            com.Parameters.Clear();
+
+            conn.ConnectionString = MyConfig.ConnectionString;
+
+            conn.Open();
+            com.Connection = conn;
+
+            com.CommandText = "INSERT INTO Champion(championid,championName,iconPath) VALUES(@championid,@championName,@iconPath)";
+            com.Parameters.AddWithValue("@championid", id);
+            com.Parameters.AddWithValue("@championName", name);
+            com.Parameters.AddWithValue("@iconPath", path);
             com.EndExecuteNonQuery(com.BeginExecuteNonQuery());
             conn.Close();
         }

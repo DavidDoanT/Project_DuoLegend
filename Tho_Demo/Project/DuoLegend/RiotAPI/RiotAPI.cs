@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 using Newtonsoft.Json;
 using DuoLegend.Models;
+using DuoLegend.DAO;
 
 namespace DuoLegend.RiotAPI
 {
@@ -144,6 +145,60 @@ namespace DuoLegend.RiotAPI
             {
                 return null;
             }           
+        }
+        public static string[] gettop3mastery(string inGameName, string server)
+        {
+            string id = UserDAO.getEncryptedSummonerId(inGameName, server);
+            WebRequest request = WebRequest.Create("https://" + server + ".api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/" + id + "?api_key=" + RiotKey);
+
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            Stream dataStream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(dataStream);
+            string responseFromServer = reader.ReadToEnd();
+            dynamic resultFromRiot = JsonConvert.DeserializeObject(responseFromServer);
+            string[] result = new string[3];
+
+            for (int i = 0; i < 3; i++)
+            {
+                result[i] = resultFromRiot[i].championId;
+            }
+            
+            reader.Close();
+            dataStream.Close();
+            response.Close();
+            return result;
+        }
+
+        public static void setChampionInfor()
+        {
+
+            WebRequest request = WebRequest.Create("https://ddragon.leagueoflegends.com/cdn/11.11.1/data/en_US/champion.json");
+
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            Stream dataStream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(dataStream);
+            string responseFromServer = reader.ReadToEnd();
+            dynamic resultFromRiot1 = JsonConvert.DeserializeObject(responseFromServer);
+
+            dynamic resultFromRiot2 = resultFromRiot1.data;
+            foreach (dynamic champName in resultFromRiot2)
+            {
+                foreach (var infor in champName)
+                {
+                    string championID = infor.key;
+                    string championName = infor.id;
+                    string iconpath = "img/Champions/" + championName + ".png";
+                    UserDAO.addChamp(championID, championName, iconpath);
+                }
+            }
+
+            ////string championID = resultFromRiot[i].key;
+            ////string championName = resultFromRiot[i].id;
+            ////string iconpath = "~/img/Champions/" + resultFromRiot[i].id + ".png";
+            ////UserDAO.addChamp(championID, championName, iconpath);
+            reader.Close();
+            dataStream.Close();
+            response.Close();
         }
     }
 }
