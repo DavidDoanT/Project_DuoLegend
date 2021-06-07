@@ -1,0 +1,6 @@
+﻿@model ProfileViewModel
+
+@foreach (var champion in Model.Top3Mastery)
+{
+    <script>getChampName(@champion);</script>
+}

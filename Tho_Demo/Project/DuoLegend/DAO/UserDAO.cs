@@ -21,7 +21,7 @@ namespace DuoLegend.DAO
 
             conn.Open();
             com.Connection = conn;
-            com.CommandText = "select top 3  inGameName from testUser order by NEWID() ";
+            com.CommandText = "select top 3  inGameName from testUser where server='KR' order by NEWID() ";
             SqlDataReader reader = com.ExecuteReader();
             MainPageViewModel infor = new MainPageViewModel();
             int count = 0;
@@ -35,8 +35,8 @@ namespace DuoLegend.DAO
             return infor;
         }
 
-        //ve sau doi para thanh email
-        public static string getEncryptedSummonerId(string inGameName)
+        
+        public static string getEncryptedSummonerId(string inGameName, string server)
         {
             com.Parameters.Clear();
             if(inGameName is null)
@@ -48,8 +48,8 @@ namespace DuoLegend.DAO
             conn.Open();
             com.Connection = conn;
 
-            com.CommandText = "select id  from testUser where inGameName = @inGameName";
-            
+            com.CommandText = "select id  from testUser where inGameName = @inGameName and server = @server";
+            com.Parameters.AddWithValue("@server", server);
             com.Parameters.AddWithValue("@inGameName", inGameName);
             SqlDataReader reader = com.ExecuteReader();
             string temp;
