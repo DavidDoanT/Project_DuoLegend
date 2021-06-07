@@ -42,6 +42,7 @@ namespace DuoLegend.Service
                 userInfor.Kill = Math.Round((double)totalKill / listMatch.Length, 1);
                 userInfor.Death = Math.Round((double)totalDeath / listMatch.Length, 1);
                 userInfor.Assist = Math.Round((double)totalAssist / listMatch.Length, 1);
+                infor.Server[i] = "KR";
                 infor.ListUserInfor[i] = userInfor;
             }
             return infor;

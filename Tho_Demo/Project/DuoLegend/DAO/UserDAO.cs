@@ -21,7 +21,7 @@ namespace DuoLegend.DAO
 
             conn.Open();
             com.Connection = conn;
-            com.CommandText = "select top 3  inGameName from testUser order by NEWID() ";
+            com.CommandText = "select top 3  inGameName from testUser where server='KR' order by NEWID() ";
             SqlDataReader reader = com.ExecuteReader();
             MainPageViewModel infor = new MainPageViewModel();
             int count = 0;
