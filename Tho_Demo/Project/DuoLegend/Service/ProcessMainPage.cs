@@ -24,11 +24,11 @@ namespace DuoLegend.Service
                 {
                     break;
                 }
-                infor.Rank[i] = RiotAPI.RiotAPI.getRankByEncryptedSummonerId(UserDAO.getEncryptedSummonerId(infor.InGameName[i]), "KR"); //hard code server KR
+                infor.Rank[i] = RiotAPI.RiotAPI.getRankByEncryptedSummonerId(UserDAO.getEncryptedSummonerId(infor.InGameName[i],"KR"), "KR"); //hard code server KR
                 string[] listMatch = RiotAPI.RiotAPI.getListMatchIDbyPuuId(UserDAO.getPuuId(infor.InGameName[i]), "ASIA");
                 for (int j = 0; j < listMatch.Length; j++)
                 {
-                    var smallMatchInfor = RiotAPI.RiotAPI.getMatchInfor(listMatch[j], "ASIA", UserDAO.getEncryptedSummonerId(infor.InGameName[i]));
+                    var smallMatchInfor = RiotAPI.RiotAPI.getMatchInfor(listMatch[j], "ASIA", UserDAO.getEncryptedSummonerId(infor.InGameName[i], "KR"));
                     userInfor.champName[j] = smallMatchInfor.ChampName;
                     if (smallMatchInfor.IsWin)
                     {
