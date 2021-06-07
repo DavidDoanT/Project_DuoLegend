@@ -57,6 +57,7 @@ namespace DuoLegend.Controllers
         /// <returns> redirect to homePage </returns>
         public IActionResult Logout()
         {
+            Response.Cookies.Delete("email");
             HttpContext.Session.Clear();
             return RedirectToAction("Index", "Home");
         }
