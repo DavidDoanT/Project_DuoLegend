@@ -125,8 +125,6 @@ E:\SU2021\dotnet\DuoLegend\obj\Debug\net5.0\DuoLegend.dll
 E:\SU2021\dotnet\DuoLegend\obj\Debug\net5.0\ref\DuoLegend.dll
 E:\SU2021\dotnet\DuoLegend\obj\Debug\net5.0\DuoLegend.pdb
 E:\SU2021\dotnet\DuoLegend\obj\Debug\net5.0\DuoLegend.genruntimeconfig.cache
-C:\Users\Admin\Documents\GitHub\Project_DuoLegend\Tho_Demo\Project\DuoLegend\bin\Debug\net5.0\appsettings.Development.json
-C:\Users\Admin\Documents\GitHub\Project_DuoLegend\Tho_Demo\Project\DuoLegend\bin\Debug\net5.0\appsettings.json
 C:\Users\Admin\Documents\GitHub\Project_DuoLegend\Tho_Demo\Project\DuoLegend\bin\Debug\net5.0\DuoLegend.exe
 C:\Users\Admin\Documents\GitHub\Project_DuoLegend\Tho_Demo\Project\DuoLegend\bin\Debug\net5.0\DuoLegend.deps.json
 C:\Users\Admin\Documents\GitHub\Project_DuoLegend\Tho_Demo\Project\DuoLegend\bin\Debug\net5.0\DuoLegend.runtimeconfig.json
@@ -252,3 +250,4 @@ C:\Users\Admin\Documents\GitHub\Project_DuoLegend\Tho_Demo\Project\DuoLegend\obj
 C:\Users\Admin\Documents\GitHub\Project_DuoLegend\Tho_Demo\Project\DuoLegend\obj\Debug\net5.0\ref\DuoLegend.dll
 C:\Users\Admin\Documents\GitHub\Project_DuoLegend\Tho_Demo\Project\DuoLegend\obj\Debug\net5.0\DuoLegend.pdb
 C:\Users\Admin\Documents\GitHub\Project_DuoLegend\Tho_Demo\Project\DuoLegend\obj\Debug\net5.0\DuoLegend.genruntimeconfig.cache
+C:\Users\Admin\Documents\GitHub\Project_DuoLegend\Tho_Demo\Project\DuoLegend\bin\Debug\net5.0\bundleconfig.json

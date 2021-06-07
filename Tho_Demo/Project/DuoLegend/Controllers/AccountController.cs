@@ -37,7 +37,9 @@ namespace DuoLegend.Controllers
             {
                 if(acc.RememberMe)
                 {
-                    
+                    CookieOptions newCookie = new CookieOptions();
+                    newCookie.Expires = DateTime.Now.AddDays(1);
+                    Response.Cookies.Append("email", acc.Email, newCookie);
                 }
                 HttpContext.Session.SetString("email", acc.Email);
                 return RedirectToAction("Index", "Home");

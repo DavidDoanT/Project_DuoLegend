@@ -31,12 +31,19 @@ namespace DuoLegend.Controllers
         /// <returns>redirect to mainPage with randomList information</returns>
         public IActionResult Index()
         {
+            //check session
             if (HttpContext.Session.GetString("email") is null)
             {
                 ViewBag.isLogin = false;
             }
             else
             {
+                ViewBag.isLogin = true;
+            }
+            //check cookie
+            if(Request.Cookies["email"] != null)
+            {
+                HttpContext.Session.SetString("email", Request.Cookies["email"]);
                 ViewBag.isLogin = true;
             }
             return View(Service.ProcessMainPage.getRandomList());
