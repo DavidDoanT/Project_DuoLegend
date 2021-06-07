@@ -171,7 +171,7 @@ namespace DuoLegend.RiotAPI
 
         public static void setChampionInfor()
         {
-            
+
             WebRequest request = WebRequest.Create("https://ddragon.leagueoflegends.com/cdn/11.11.1/data/en_US/champion.json");
 
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
@@ -180,18 +180,25 @@ namespace DuoLegend.RiotAPI
             string responseFromServer = reader.ReadToEnd();
             dynamic resultFromRiot1 = JsonConvert.DeserializeObject(responseFromServer);
 
-            dynamic resultFromRiot = resultFromRiot1.data;
-            for (int i = 0; i < 0; i++)
+            dynamic resultFromRiot2 = resultFromRiot1.data;
+            foreach (dynamic champName in resultFromRiot2)
             {
-                string championID = resultFromRiot[i].key;
-                string championName = resultFromRiot[i].id;
-                string iconpath = "~/img/Champions/" + resultFromRiot[i].id + ".png";
-                UserDAO.addChamp(championID, championName, iconpath);
+                foreach (var infor in champName)
+                {
+                    string championID = infor.key;
+                    string championName = infor.id;
+                    string iconpath = "~/img/Champions/" + championName + ".png";
+                    UserDAO.addChamp(championID, championName, iconpath);
+                }
             }
 
+            ////string championID = resultFromRiot[i].key;
+            ////string championName = resultFromRiot[i].id;
+            ////string iconpath = "~/img/Champions/" + resultFromRiot[i].id + ".png";
+            ////UserDAO.addChamp(championID, championName, iconpath);
             reader.Close();
             dataStream.Close();
-            response.Close();         
+            response.Close();
         }
     }
 }

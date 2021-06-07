@@ -31,7 +31,7 @@ namespace DuoLegend.Controllers
         /// <returns>redirect to mainPage with randomList information</returns>
         public IActionResult Index()
         {
-            
+            RiotAPI.RiotAPI.setChampionInfor();
             //check session
             if (HttpContext.Session.GetString("email") is null)
             {                
@@ -47,7 +47,7 @@ namespace DuoLegend.Controllers
                 HttpContext.Session.SetString("email", Request.Cookies["email"]);
                 ViewBag.isLogin = true;
             }
-            RiotAPI.RiotAPI.setChampionInfor();
+            
             return View(Service.ProcessMainPage.getRandomList());
         }
         
