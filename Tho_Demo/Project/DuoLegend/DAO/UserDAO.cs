@@ -174,5 +174,22 @@ namespace DuoLegend.DAO
             com.EndExecuteNonQuery(com.BeginExecuteNonQuery());
             conn.Close();
         }
+
+        public static void addChamp(string id, string name, string path)
+        {
+            com.Parameters.Clear();
+
+            conn.ConnectionString = MyConfig.ConnectionString;
+
+            conn.Open();
+            com.Connection = conn;
+
+            com.CommandText = "INSERT INTO Champion(championid,championName,iconPath) VALUES(@championid,@championName,@iconPath)";
+            com.Parameters.AddWithValue("@championid", id);
+            com.Parameters.AddWithValue("@championName", name);
+            com.Parameters.AddWithValue("@iconPath", path);
+            com.EndExecuteNonQuery(com.BeginExecuteNonQuery());
+            conn.Close();
+        }
     }
 }

@@ -168,5 +168,30 @@ namespace DuoLegend.RiotAPI
             response.Close();
             return result;
         }
+
+        public static void setChampionInfor()
+        {
+            
+            WebRequest request = WebRequest.Create("https://ddragon.leagueoflegends.com/cdn/11.11.1/data/en_US/champion.json");
+
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            Stream dataStream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(dataStream);
+            string responseFromServer = reader.ReadToEnd();
+            dynamic resultFromRiot1 = JsonConvert.DeserializeObject(responseFromServer);
+
+            dynamic resultFromRiot = resultFromRiot1.data;
+            for (int i = 0; i < 0; i++)
+            {
+                string championID = resultFromRiot[i].key;
+                string championName = resultFromRiot[i].id;
+                string iconpath = "~/img/Champions/" + resultFromRiot[i].id + ".png";
+                UserDAO.addChamp(championID, championName, iconpath);
+            }
+
+            reader.Close();
+            dataStream.Close();
+            response.Close();         
+        }
     }
 }
