@@ -161,7 +161,7 @@ namespace DuoLegend.DAO
             conn.Open();
             com.Connection = conn;
 
-            com.CommandText = "INSERT INTO testUser(inGameId,inGameName,password,server,email,id,accountId,puuid) VALUES(@inGameId,@inGameName,@password,@server,@email,@id,@accountId,@puuid)";
+            com.CommandText = "INSERT INTO testUser(inGameId,inGameName,password,server,email,id,accountId,puuid,isDeleted) VALUES(@inGameId,@inGameName,@password,@server,@email,@id,@accountId,@puuid,@isDeleted)";
             com.Parameters.AddWithValue("@inGameId", user.Id);
             com.Parameters.AddWithValue("@inGameName", user.InGameName );
             com.Parameters.AddWithValue("@password", user.Password );
@@ -170,6 +170,7 @@ namespace DuoLegend.DAO
             com.Parameters.AddWithValue("@id", user.Id);
             com.Parameters.AddWithValue("@accountId", user.AccountId);
             com.Parameters.AddWithValue("@puuid", user.Puuid);
+            com.Parameters.AddWithValue("@isDeleted", false);
             com.EndExecuteNonQuery(com.BeginExecuteNonQuery());
             conn.Close();
         }
