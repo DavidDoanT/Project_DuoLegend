@@ -187,7 +187,7 @@ namespace DuoLegend.RiotAPI
                 {
                     string championID = infor.key;
                     string championName = infor.id;
-                    string iconpath = "~/img/Champions/" + championName + ".png";
+                    string iconpath = "img/Champions/" + championName + ".png";
                     UserDAO.addChamp(championID, championName, iconpath);
                 }
             }

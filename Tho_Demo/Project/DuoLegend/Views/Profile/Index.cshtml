@@ -1,6 +1,555 @@
 ﻿@model ProfileViewModel
+@using DuoLegend.DAO
+    <link href="~/css/Profile.css" rel="stylesheet" />
+    <div class="ProfileWrapper">
+        <div class="ProfileTop">
+            <div class="ProfileMainInfo">
+                <div class="ProfileAvatarBox">
+                    <div class="ProfileAvatar">
+                        <img src="https://ik.imagekit.io/lienminhpro/profileicon/3556.png/tr:w-0,h-0">
+                    </div>
+                    <span class="ProfileLevel">74</span>
+                </div>
+                <div class="ProfileName">
+                    <h1>iloveyouall145</h1>
+                </div>
+            </div>
+            <div class="ProfileAction">
+                <button>Edit</button>
+                <button>Follow</button>
+                <button>Rate</button>
+            </div>
+        </div>
+        <div class="ProfileStats">
+            <div class="ProfileRankStats">
+                <h2 class="Profile_title__1H79G">Rank</h2>
+                <div class="ProfileListRank">
+                    <div class="ProfileRankItem">
+                        <div class="ProfileRankImage">
+                            <img src="https://lienminhpro.com/images/ranks/bronze_4.png">
+                        </div>
+                        <h3>Bronze 4</h3>
+                        <span class="score">
+                            0 Score
+                        </span>
+                        <span class="score">Duo rank</span>
+                    </div>
+                    <div class="ProfileRankItem">
+                        <div class="ProfileRankImage">
+                            <img src="https://lienminhpro.com/images/ranks/bronze_4.png">
+                        </div>
+                        <h3>Bronze 5</h3>
+                        <span class="score">
+                            0 Score
+                        </span>
+                        <span class="score">Duo rank</span>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="ProfileMasterStats">
+                <h2>Masteries</h2>
 
-@foreach (var champion in Model.Top3Mastery)
-{
-    <script>getChampName(@champion);</script>
-}
+            </div> -->
+            <div class="ProfileMasterStats">
+                <h2 class="Profile_title__1H79G">Masteries</h2>
+                <div>
+                    <div class="ProfileListMasters">
+                        <div class="ProfileMasterItem">
+                            <div class="ProfileImage">
+                                <img src="~/@ChampionDAO.getChampionImgURLbyID(Model.Top3Mastery[0])"/>
+                            </div>
+                            <div class="ProfileExpertImageBg">
+                                <img src="https://lienminhpro.com/images/nen-thong-thao/7.png" alt="Thông thạo 7" />
+                            </div>
+                            <div class="ProfileExpertImage">
+                                <img src="https://lienminhpro.com/images/thongthao/7.png"
+                                     alt="Thông thạo 7" />
+                            </div>
+                            <h3>@Model.Top3Mastery[0]</h3><span class="score">
+                                22,194
+                                <!-- -->
+                                <!-- -->Score
+                            </span>
+                        </div>
+                        <div class="ProfileMasterItem">
+                            <div class="ProfileImage">
+                                <img src="~/@ChampionDAO.getChampionImgURLbyID(Model.Top3Mastery[1])" />
+                            </div>
+                            <div class="ProfileExpertImageBg">
+                                <img src="https://lienminhpro.com/images/nen-thong-thao/7.png" alt="Thông thạo 7" />
+                            </div>
+                            <div class="ProfileExpertImage">
+                                <img src="https://lienminhpro.com/images/thongthao/7.png"
+                                     alt="Thông thạo 7" />
+                            </div>
+                            <h3>Master Yi</h3>
+                            <span class="score">
+                                32,454
+
+                                Score
+                            </span>
+                        </div>
+                        <div class="ProfileMasterItem">
+                            <div class="ProfileImage">
+                                <img src="~/@ChampionDAO.getChampionImgURLbyID(Model.Top3Mastery[2])" />
+                            </div>
+                            <div class="ProfileExpertImageBg">
+                                <img src="https://lienminhpro.com/images/nen-thong-thao/7.png" alt="Thông thạo 7" />
+                            </div>
+                            <div class="ProfileExpertImage">
+                                <img src="https://lienminhpro.com/images/thongthao/7.png"
+                                     alt="Thông thạo 7" />
+                            </div>
+                            <h3>Lux</h3><span class="score">
+                                21,454
+                                <!-- -->
+                                <!-- -->Score
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ProfileMainRoleStats">
+                <h2 class="Profile_title__1H79G">Main role</h2>
+                <div>
+                    <div class="ProfileListRoles">
+                        <div class="ProfileRoleItem">
+                            <div class="ProfileImage">
+                                <img src="https://lienminhpro.com/images/roles/jungle.png"
+                                     alt="JUNGLE" />
+                            </div>
+                            <div class="ProfileDesc">
+                                <h3>JUNGLE</h3><span class="score">
+                                    34
+                                    <!-- -->% | Winrate
+                                    <!-- -->53
+                                    <!-- -->%
+                                </span>
+                            </div>
+                        </div>
+                        <div class="ProfileRoleItem">
+                            <div class="ProfileImage">
+                                <img src="https://lienminhpro.com/images/roles/support.png"
+                                     alt="SUPPORT" />
+                            </div>
+                            <div class="ProfileDesc">
+                                <h3>SUPPORT</h3><span class="score">
+                                    23
+                                    <!-- -->% | Winrate
+                                    <!-- -->43
+                                    <!-- -->%
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ProfileContent">
+            <div class="ProfileReview">
+                <h2 class="Profile_title__1H79G">Rating</h2>
+                <div class="ProfileListReview">
+                    <div class="ProfileReviewItem">
+                        <div class="ProfileReviewInfo">
+                            <div class="ProfileAuthorImage">
+                                <img src="https://blitz-cdn.blitz.gg/blitz/lol/profileicon/3500.webp" alt="" />
+                            </div>
+                            <div class="ProfileName">
+                                <h4>HupXoi69</h4>
+                            </div>
+                        </div>
+                        <div class="ProfileReviewContent">
+                            <p>
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                <!-- -->
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ProfileHistory">
+                <div class="ProfileControl__1Jz_7">
+                    <h2 class="Profile_title__1H79G">Match History</h2>
+                    <!-- <div class="ProfileFilter"><button class=" ProfileDropdownButton"><span>Mọi chế độ</span> <i
+                                class="fas fa-caret-down"></i></button><button class=" ProfileDropdownButton"><span>Tất
+                                cả tướng</span> <i class="fas fa-caret-down"></i></button></div> -->
+                </div>
+                <div class="ProfileHistoryList">
+                    <!-- nếu thắng thì màu này, thua thì màu đỏ rgb(91, 10, 10) -->
+                    <div class="ProfileMatchContent" style="background-color: rgb(0, 0, 25);" onclick="myFunction()">
+                        <div class="ProfileMatchModeTime">
+                            <span><b>ARAM</b></span>
+                            <span>Howling Abyss</span>
+                            <span>25:43</span>
+                            <span>1/1/2021</span>
+                        </div>
+                        <div class="ProfileMatchChampionSpell">
+                            <div class="ProfileMatchChampionLevel">
+                                <div class="ProfileMatchChampion">
+                                    <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/champion/Nasus.png">
+                                    <span class="ProfileMatchLevel"> 15</span>
+                                </div>
+                            </div>
+                            <div class="ProfileMatchSpells">
+                                <div class="ProfileMatchSpell">
+                                    <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/spell/SummonerHeal.png">
+                                </div>
+                                <div class="ProfileMatchSpell">
+                                    <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/spell/SummonerHeal.png">
+                                </div>
+                            </div>
+                            <div class="ProfileMatchPerks">
+                                <div class="ProfileMainPerk">
+                                    <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Precision/LethalTempo/LethalTempoTemp.png">
+                                    <div class="ProfileSecondaryPerk">
+                                        <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Precision/LethalTempo/LethalTempoTemp.png">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ProfileMatchKDA">
+                            <span class="KDA">0/17/5</span>
+                        </div>
+                        <div class="ProfileMatchGoldMinion">
+                            <div class="ProfileGold">
+                                <span>10.4k</span>
+                                <img src="https://lienminhpro.com/images/icons/ico-gold.svg">
+                            </div>
+                            <div class="ProfileMinion">
+                                <span>124</span>
+                                <img src="https://lienminhpro.com/images/icons/ico-gold.svg">
+                            </div>
+                        </div>
+                        <div class="ProfileMatchListItem">
+                            <div class="ProfileMatchListItemMain">
+                                <div>
+                                    <div class="ProfileItem">
+                                        <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/item/3006.png">
+                                    </div>
+                                    <div class="ProfileItem">
+                                        <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/item/3006.png">
+                                    </div>
+                                    <div class="ProfileItem">
+                                        <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/item/3006.png">
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="ProfileItem">
+                                        <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/item/3006.png">
+                                    </div>
+                                    <div class="ProfileItem">
+                                        <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/item/3006.png">
+                                    </div>
+                                    <div class="ProfileItem">
+                                        <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/item/3006.png">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ProfileMatchListItemSecondary">
+                                <div class="ProfileItem">
+                                    <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/item/3006.png">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="ProfileMatchDetail">
+                        <div class="ProfileTeamInfo">
+                            <div class="ProfileMatchHeader">
+                                <span class="TeamName">Team 1</span>
+                                <span class="LoseResult">Lose</span>
+                                <span class="TotalKDA"><i class="fas fa-swords"></i>23/27/28</span>
+                                <span class="TotalGold"><i class="fas fa-coins"></i>57.8k</span>
+                            </div>
+                            <div class="ProfileTeamDetail">
+                                <div class="ProfileSummoner">
+                                    <!-- <div class="ProfilePlayer"> -->
+                                    <div class="ProfileChampion">
+                                        <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/champion/Mordekaiser.png">
+                                        <span>16</span>
+                                    </div>
+                                    <div class="ProfileSpells">
+                                        <div class="ProfileSpell">
+                                            <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/spell/SummonerHeal.png">
+                                        </div>
+                                        <div class="ProfileSpell">
+                                            <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/spell/SummonerHeal.png">
+                                        </div>
+                                    </div>
+                                    <div class="ProfilePerk">
+                                        <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/Electrocute/Electrocute.png">
+                                    </div>
+                                    <div class="ProfileSummonerName">
+                                        <span>Faker</span>
+                                    </div>
+                                    <div class="ProfileKDA">
+                                        <span class="KDA">0/17/5</span>
+                                    </div>
+                                    <div class="ProfileDamage">
+                                        <span>13.145</span>
+                                    </div>
+                                    <div class="ProfileGold_">
+                                        <span>10.4k</span>
+                                        <img src="https://lienminhpro.com/images/icons/ico-gold.svg">
+                                    </div>
+                                    <div class="ProfileMinion_">
+                                        <span>124</span>
+                                        <img src="https://lienminhpro.com/images/icons/ico-gold.svg">
+                                    </div>
+                                    <div class="ProfileListItem">
+                                        <div class="ProfileMainItem">
+                                            <div>
+                                                <div class="ProfileItem">
+                                                    <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/item/3006.png">
+                                                </div>
+                                                <div class="ProfileItem">
+                                                    <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/item/3006.png">
+                                                </div>
+                                                <div class="ProfileItem">
+                                                    <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/item/3006.png">
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="ProfileItem">
+                                                    <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/item/3006.png">
+                                                </div>
+                                                <div class="ProfileItem">
+                                                    <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/item/3006.png">
+                                                </div>
+                                                <div class="ProfileItem">
+                                                    <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/item/3006.png">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="ProfileSecondaryItem">
+                                            <div class="ProfileItem">
+                                                <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/item/3006.png">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- </div> -->
+                                </div>
+                                <div class="ProfileSummoner">
+
+                                    <div class="ProfileChampion">
+                                        <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/champion/Mordekaiser.png">
+                                        <span>16</span>
+                                    </div>
+                                    <div class="ProfileSpells">
+                                        <div class="ProfileSpell">
+                                            <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/spell/SummonerHeal.png">
+                                        </div>
+                                        <div class="ProfileSpell">
+                                            <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/spell/SummonerHeal.png">
+                                        </div>
+                                    </div>
+                                    <div class="ProfilePerk">
+                                        <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/Electrocute/Electrocute.png">
+                                    </div>
+                                    <div class="ProfileSummonerName">
+                                        <span>Faker</span>
+                                    </div>
+                                    <div class="ProfileKDA">
+                                        <span class="KDA">0/17/5</span>
+                                    </div>
+                                    <div class="ProfileDamage">
+                                        <span>13.145</span>
+                                    </div>
+                                    <div class="ProfileGold_">
+                                        <span>10.4k</span>
+                                        <img src="https://lienminhpro.com/images/icons/ico-gold.svg">
+                                    </div>
+                                    <div class="ProfileMinion_">
+                                        <span>124</span>
+                                        <img src="https://lienminhpro.com/images/icons/ico-gold.svg">
+                                    </div>
+                                    <div class="ProfileListItem">
+                                        <div class="ProfileMainItem">
+                                            <div>
+                                                <div class="ProfileItem">
+                                                    <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/item/3006.png">
+                                                </div>
+                                                <div class="ProfileItem">
+                                                    <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/item/3006.png">
+                                                </div>
+                                                <div class="ProfileItem">
+                                                    <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/item/3006.png">
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="ProfileItem">
+                                                    <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/item/3006.png">
+                                                </div>
+                                                <div class="ProfileItem">
+                                                    <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/item/3006.png">
+                                                </div>
+                                                <div class="ProfileItem">
+                                                    <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/item/3006.png">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="ProfileSecondaryItem">
+                                            <div class="ProfileItem">
+                                                <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/item/3006.png">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ProfileMatchHeader">
+                            <span class="TeamName">Team 2</span>
+                            <span class="WinResult">Win</span>
+                            <span class="TotalKDA"><i class="fas fa-swords"></i>23/27/28</span>
+                            <span class="TotalGold"><i class="fas fa-coins"></i>57.8k</span>
+                        </div>
+                        <div class="ProfileTeamDetail">
+                            <div class="ProfileSummoner">
+                                <div class="ProfileChampion">
+                                    <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/champion/Mordekaiser.png">
+                                    <span>16</span>
+                                </div>
+                                <div class="ProfileSpells">
+                                    <div class="ProfileSpell">
+                                        <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/spell/SummonerHeal.png">
+                                    </div>
+                                    <div class="ProfileSpell">
+                                        <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/spell/SummonerHeal.png">
+                                    </div>
+                                </div>
+                                <div class="ProfilePerk">
+                                    <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/Electrocute/Electrocute.png">
+                                </div>
+                                <div class="ProfileSummonerName">
+                                    <span>Faker</span>
+                                </div>
+                                <div class="ProfileKDA">
+                                    <span class="KDA">0/17/5</span>
+                                </div>
+                                <div class="ProfileDamage">
+                                    <span>13.145</span>
+                                </div>
+                                <div class="ProfileGold_">
+                                    <span>10.4k</span>
+                                    <img src="https://lienminhpro.com/images/icons/ico-gold.svg">
+                                </div>
+                                <div class="ProfileMinion_">
+                                    <span>124</span>
+                                    <img src="https://lienminhpro.com/images/icons/ico-gold.svg">
+                                </div>
+                                <div class="ProfileListItem">
+                                    <div class="ProfileMainItem">
+                                        <div>
+                                            <div class="ProfileItem">
+                                                <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/item/3006.png">
+                                            </div>
+                                            <div class="ProfileItem">
+                                                <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/item/3006.png">
+                                            </div>
+                                            <div class="ProfileItem">
+                                                <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/item/3006.png">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="ProfileItem">
+                                                <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/item/3006.png">
+                                            </div>
+                                            <div class="ProfileItem">
+                                                <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/item/3006.png">
+                                            </div>
+                                            <div class="ProfileItem">
+                                                <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/item/3006.png">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="ProfileSecondaryItem">
+                                        <div class="ProfileItem">
+                                            <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/item/3006.png">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ProfileSummoner">
+
+                                <div class="ProfileChampion">
+                                    <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/champion/Mordekaiser.png">
+                                    <span>16</span>
+                                </div>
+                                <div class="ProfileSpells">
+                                    <div class="ProfileSpell">
+                                        <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/spell/SummonerHeal.png">
+                                    </div>
+                                    <div class="ProfileSpell">
+                                        <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/spell/SummonerHeal.png">
+                                    </div>
+                                </div>
+                                <div class="ProfilePerk">
+                                    <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/Electrocute/Electrocute.png">
+                                </div>
+                                <div class="ProfileSummonerName">
+                                    <span>Faker</span>
+                                </div>
+                                <div class="ProfileKDA">
+                                    <span class="KDA">0/17/5</span>
+                                </div>
+                                <div class="ProfileDamage">
+                                    <span>13.145</span>
+                                </div>
+                                <div class="ProfileGold_">
+                                    <span>10.4k</span>
+                                    <img src="https://lienminhpro.com/images/icons/ico-gold.svg">
+                                </div>
+                                <div class="ProfileMinion_">
+                                    <span>124</span>
+                                    <img src="https://lienminhpro.com/images/icons/ico-gold.svg">
+                                </div>
+                                <div class="ProfileListItem">
+                                    <div class="ProfileMainItem">
+                                        <div>
+                                            <div class="ProfileItem">
+                                                <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/item/3006.png">
+                                            </div>
+                                            <div class="ProfileItem">
+                                                <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/item/3006.png">
+                                            </div>
+                                            <div class="ProfileItem">
+                                                <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/item/3006.png">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="ProfileItem">
+                                                <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/item/3006.png">
+                                            </div>
+                                            <div class="ProfileItem">
+                                                <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/item/3006.png">
+                                            </div>
+                                            <div class="ProfileItem">
+                                                <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/item/3006.png">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="ProfileSecondaryItem">
+                                        <div class="ProfileItem">
+                                            <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/item/3006.png">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function myFunction() {
+            var x = document.getElementById("ProfileMatchDetail");
+            if (x.style.display === "block") {
+                x.style.display = "none";
+            } else {
+                x.style.display = "block";
+            }
+        }
+    </script>
+
+
