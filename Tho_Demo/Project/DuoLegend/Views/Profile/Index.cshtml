@@ -1,3 +1,6 @@
-﻿<p>testttt</p>
-@ViewBag.inGameName
-@ViewBag.server
+﻿@model ProfileViewModel
+
+@foreach (var champion in Model.Top3Mastery)
+{
+    <script>getChampName(@champion);</script>
+}
