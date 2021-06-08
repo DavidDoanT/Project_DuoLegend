@@ -45,6 +45,65 @@ namespace DuoLegend.RiotAPI
             return tier;
 
         }
+        public static string getRankTierByEncryptedSummonerId(string id, string server)
+        {
+            WebRequest request = WebRequest.Create("https://" + server + ".api.riotgames.com/lol/league/v4/entries/by-summoner/" + id + "?api_key=" + RiotKey);
+
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            Stream dataStream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(dataStream);
+            string responseFromServer = reader.ReadToEnd();
+            // Display the content.
+            Console.WriteLine(responseFromServer);
+
+            dynamic resultFromRiot = JsonConvert.DeserializeObject(responseFromServer);
+            string tier;
+            try
+            {
+                tier = resultFromRiot[0].rank;
+            }
+            catch (Exception e)
+            {
+                tier = "unranked";
+            }
+
+            reader.Close();
+            dataStream.Close();
+            response.Close();
+
+            return tier;
+
+        }
+
+        public static int getLeaguePointByEncryptedSummonerId(string id, string server)
+        {
+            WebRequest request = WebRequest.Create("https://" + server + ".api.riotgames.com/lol/league/v4/entries/by-summoner/" + id + "?api_key=" + RiotKey);
+
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            Stream dataStream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(dataStream);
+            string responseFromServer = reader.ReadToEnd();
+            // Display the content.
+            Console.WriteLine(responseFromServer);
+
+            dynamic resultFromRiot = JsonConvert.DeserializeObject(responseFromServer);
+            int tier = 0;
+            try
+            {
+                tier = resultFromRiot[0].leaguePoints;
+            }
+            catch (Exception e)
+            {
+                
+            }
+
+            reader.Close();
+            dataStream.Close();
+            response.Close();
+
+            return tier;
+
+        }
 
         public static string[] getListMatchIDbyPuuId(string id, string server)
         {
@@ -162,7 +221,9 @@ namespace DuoLegend.RiotAPI
             for (int i = 0; i < 3; i++)
             {
                 result.Top3MasteryCode[i] = resultFromRiot[i].championId;
-                //result.Top3MasteryName = DAO.ChampionDAO.getChampionName(resultFromRiot[i].championId);
+                result.Top3MasteryName[i] = DAO.ChampionDAO.getChampionName(result.Top3MasteryCode[i]);
+                result.Top3MasteryPoint[i] = resultFromRiot[i].championPoints;
+                result.Top3MasteryLevel[i] = resultFromRiot[i].championLevel;
             }
             
             reader.Close();

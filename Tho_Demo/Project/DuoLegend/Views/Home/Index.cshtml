@@ -289,7 +289,7 @@
         @{for (int i = 0; i < 3; i++)
             {
                 <tr>
-                    <td>@Model.InGameName[i]</td>
+                    <td><a asp-controller="Profile" asp-action="Index" asp-route-inGameName="@Model.InGameName[i]" asp-route-server="@Model.Server[i]" >@Model.InGameName[i]</a></td>
                     <td><img src="img/Mid_icon.png"></td>
                     @*<td><img src="img/challengerIcon.png"></td>*@
                     <td>

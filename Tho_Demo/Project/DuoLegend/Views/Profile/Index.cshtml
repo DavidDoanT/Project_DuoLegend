@@ -26,24 +26,16 @@
                 <div class="ProfileListRank">
                     <div class="ProfileRankItem">
                         <div class="ProfileRankImage">
-                            <img src="https://lienminhpro.com/images/ranks/bronze_4.png">
+                            <img style="width: 6.5vw" src="~/@Model.RankImgPath">
                         </div>
-                        <h3>Bronze 4</h3>
+                         
+                        <h3>@Model.Rank @Model.Tier</h3>
                         <span class="score">
-                            0 Score
+                            @Model.RankScore LP
                         </span>
-                        <span class="score">Duo rank</span>
+                        
                     </div>
-                    <div class="ProfileRankItem">
-                        <div class="ProfileRankImage">
-                            <img src="https://lienminhpro.com/images/ranks/bronze_4.png">
-                        </div>
-                        <h3>Bronze 5</h3>
-                        <span class="score">
-                            0 Score
-                        </span>
-                        <span class="score">Duo rank</span>
-                    </div>
+
                 </div>
             </div>
             <!-- <div class="ProfileMasterStats">
@@ -59,16 +51,16 @@
                                 <img src="~/@ChampionDAO.getChampionImgURLbyID(Model.Top3MasteryCode[0])"/>
                             </div>
                             <div class="ProfileExpertImageBg">
-                                <img src="https://lienminhpro.com/images/nen-thong-thao/7.png" alt="Thông thạo 7" />
+                                <img src="@Url.Content(String.Format("~/img/MasteryFrame/{0}.png", Model.Top3MasteryLevel[0]))" alt="Thông thạo 7" />
                             </div>
                             <div class="ProfileExpertImage">
                                 <img src="https://lienminhpro.com/images/thongthao/7.png"
                                      alt="Thông thạo 7" />
                             </div>
                             <h3>@Model.Top3MasteryName[0]</h3><span class="score">
-                                22,194
+                                @Model.Top3MasteryPoint[0]
                                 <!-- -->
-                                <!-- -->Score
+                                
                             </span>
                         </div>
                         <div class="ProfileMasterItem">
@@ -76,7 +68,7 @@
                                 <img src="~/@ChampionDAO.getChampionImgURLbyID(Model.Top3MasteryCode[1])" />
                             </div>
                             <div class="ProfileExpertImageBg">
-                                <img src="https://lienminhpro.com/images/nen-thong-thao/7.png" alt="Thông thạo 7" />
+                                <img src="@Url.Content(String.Format("~/img/MasteryFrame/{0}.png", Model.Top3MasteryLevel[1]))" alt="Thông thạo 7" />
                             </div>
                             <div class="ProfileExpertImage">
                                 <img src="https://lienminhpro.com/images/thongthao/7.png"
@@ -84,8 +76,8 @@
                             </div>
                             <h3>@Model.Top3MasteryName[1]</h3>
                             <span class="score">
-                                32,454
-                                Score
+                                @Model.Top3MasteryPoint[1]
+                                
                             </span>
                         </div>
                         <div class="ProfileMasterItem">
@@ -93,16 +85,16 @@
                                 <img src="~/@ChampionDAO.getChampionImgURLbyID(Model.Top3MasteryCode[2])" />
                             </div>
                             <div class="ProfileExpertImageBg">
-                                <img src="https://lienminhpro.com/images/nen-thong-thao/7.png" alt="Thông thạo 7" />
+                                <img src="@Url.Content(String.Format("~/img/MasteryFrame/{0}.png", Model.Top3MasteryLevel[2]))" alt="Thông thạo 7" />
                             </div>
                             <div class="ProfileExpertImage">
                                 <img src="https://lienminhpro.com/images/thongthao/7.png"
                                      alt="Thông thạo 7" />
                             </div>
                             <h3>@Model.Top3MasteryName[2]</h3><span class="score">
-                                21,454
+                                @Model.Top3MasteryPoint[2]
                                 <!-- -->
-                                <!-- -->Score
+                                <!-- -->
                             </span>
                         </div>
                     </div>
