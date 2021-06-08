@@ -18,7 +18,7 @@ namespace DuoLegend.RiotAPI
     {
         private static string RiotKey = GlobalConfig.MyConfig.RiotKey;
         
-        public static string getRankByEncryptedSummonerId(string id, string server)
+        public static RankInfor getRankByEncryptedSummonerId(string id, string server)
         {
             WebRequest request = WebRequest.Create("https://"+server+".api.riotgames.com/lol/league/v4/entries/by-summoner/"+id+"?api_key="+RiotKey);
             
@@ -30,80 +30,86 @@ namespace DuoLegend.RiotAPI
             Console.WriteLine(responseFromServer);
 
             dynamic resultFromRiot = JsonConvert.DeserializeObject(responseFromServer);
-            string tier;
+            RankInfor rankInfor = new RankInfor();
+           
             try {
-                 tier = resultFromRiot[0].tier;
-            }catch(Exception e)
+                rankInfor.Rank = resultFromRiot[0].tier;
+                rankInfor.Tier = resultFromRiot[0].rank;
+                rankInfor.Lp = resultFromRiot[0].leaguePoints;
+            }
+            catch(Exception e)
             {
-                 tier = "unranked";
+                rankInfor.Rank = "unranked";
+                rankInfor.Tier = "unranked";
+                rankInfor.Lp = 0;
             }
             
             reader.Close();
             dataStream.Close();
             response.Close();
 
-            return tier;
+            return rankInfor;
 
         }
-        public static string getRankTierByEncryptedSummonerId(string id, string server)
-        {
-            WebRequest request = WebRequest.Create("https://" + server + ".api.riotgames.com/lol/league/v4/entries/by-summoner/" + id + "?api_key=" + RiotKey);
+        //public static string getRankTierByEncryptedSummonerId(string id, string server)
+        //{
+        //    WebRequest request = WebRequest.Create("https://" + server + ".api.riotgames.com/lol/league/v4/entries/by-summoner/" + id + "?api_key=" + RiotKey);
 
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            Stream dataStream = response.GetResponseStream();
-            StreamReader reader = new StreamReader(dataStream);
-            string responseFromServer = reader.ReadToEnd();
-            // Display the content.
-            Console.WriteLine(responseFromServer);
+        //    HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+        //    Stream dataStream = response.GetResponseStream();
+        //    StreamReader reader = new StreamReader(dataStream);
+        //    string responseFromServer = reader.ReadToEnd();
+        //    // Display the content.
+        //    Console.WriteLine(responseFromServer);
 
-            dynamic resultFromRiot = JsonConvert.DeserializeObject(responseFromServer);
-            string tier;
-            try
-            {
-                tier = resultFromRiot[0].rank;
-            }
-            catch (Exception e)
-            {
-                tier = "unranked";
-            }
+        //    dynamic resultFromRiot = JsonConvert.DeserializeObject(responseFromServer);
+        //    string tier;
+        //    try
+        //    {
+        //        tier = resultFromRiot[0].rank;
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        tier = "unranked";
+        //    }
 
-            reader.Close();
-            dataStream.Close();
-            response.Close();
+        //    reader.Close();
+        //    dataStream.Close();
+        //    response.Close();
 
-            return tier;
+        //    return tier;
 
-        }
+        //}
 
-        public static int getLeaguePointByEncryptedSummonerId(string id, string server)
-        {
-            WebRequest request = WebRequest.Create("https://" + server + ".api.riotgames.com/lol/league/v4/entries/by-summoner/" + id + "?api_key=" + RiotKey);
+        //public static int getLeaguePointByEncryptedSummonerId(string id, string server)
+        //{
+        //    WebRequest request = WebRequest.Create("https://" + server + ".api.riotgames.com/lol/league/v4/entries/by-summoner/" + id + "?api_key=" + RiotKey);
 
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            Stream dataStream = response.GetResponseStream();
-            StreamReader reader = new StreamReader(dataStream);
-            string responseFromServer = reader.ReadToEnd();
-            // Display the content.
-            Console.WriteLine(responseFromServer);
+        //    HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+        //    Stream dataStream = response.GetResponseStream();
+        //    StreamReader reader = new StreamReader(dataStream);
+        //    string responseFromServer = reader.ReadToEnd();
+        //    // Display the content.
+        //    Console.WriteLine(responseFromServer);
 
-            dynamic resultFromRiot = JsonConvert.DeserializeObject(responseFromServer);
-            int tier = 0;
-            try
-            {
-                tier = resultFromRiot[0].leaguePoints;
-            }
-            catch (Exception e)
-            {
+        //    dynamic resultFromRiot = JsonConvert.DeserializeObject(responseFromServer);
+        //    int tier = 0;
+        //    try
+        //    {
+        //        tier = resultFromRiot[0].leaguePoints;
+        //    }
+        //    catch (Exception e)
+        //    {
                 
-            }
+        //    }
 
-            reader.Close();
-            dataStream.Close();
-            response.Close();
+        //    reader.Close();
+        //    dataStream.Close();
+        //    response.Close();
 
-            return tier;
+        //    return tier;
 
-        }
+        //}
 
         public static string[] getListMatchIDbyPuuId(string id, string server)
         {
