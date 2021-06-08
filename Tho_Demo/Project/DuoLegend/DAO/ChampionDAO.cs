@@ -34,5 +34,28 @@ namespace DuoLegend.DAO
             conn.Close();
             return temp;
         }
+        public static string getChampionName(string id)
+        {
+            com.Parameters.Clear();
+
+            conn.ConnectionString = MyConfig.ConnectionString;
+
+            conn.Open();
+            com.Connection = conn;
+
+            com.CommandText = "select championName  from Champion where ChampionId = @id";
+
+            com.Parameters.AddWithValue("@id", id);
+            SqlDataReader reader = com.ExecuteReader();
+            string temp = null;
+            if (reader.Read())
+            {
+
+                temp = (string)reader["championName"];
+
+            }
+            conn.Close();
+            return temp;
+        }
     }
 }

@@ -13,7 +13,7 @@ namespace DuoLegend.Controllers
         public IActionResult Index(string inGameName, string server)
         {
             ProfileViewModel infor = new ProfileViewModel();
-            infor.Top3Mastery = RiotAPI.RiotAPI.gettop3mastery(inGameName, server);
+            infor = RiotAPI.RiotAPI.gettop3mastery(inGameName, server);
             return View(infor);
         }
     }

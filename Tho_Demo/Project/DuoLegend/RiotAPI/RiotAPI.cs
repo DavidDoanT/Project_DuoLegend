@@ -10,6 +10,7 @@ using System.Diagnostics;
 using Newtonsoft.Json;
 using DuoLegend.Models;
 using DuoLegend.DAO;
+using DuoLegend.ViewModels;
 
 namespace DuoLegend.RiotAPI
 {
@@ -146,7 +147,7 @@ namespace DuoLegend.RiotAPI
                 return null;
             }           
         }
-        public static string[] gettop3mastery(string inGameName, string server)
+        public static ProfileViewModel gettop3mastery(string inGameName, string server)
         {
             string id = UserDAO.getEncryptedSummonerId(inGameName, server);
             WebRequest request = WebRequest.Create("https://" + server + ".api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/" + id + "?api_key=" + RiotKey);
@@ -156,11 +157,12 @@ namespace DuoLegend.RiotAPI
             StreamReader reader = new StreamReader(dataStream);
             string responseFromServer = reader.ReadToEnd();
             dynamic resultFromRiot = JsonConvert.DeserializeObject(responseFromServer);
-            string[] result = new string[3];
+            ProfileViewModel result = new ProfileViewModel();
 
             for (int i = 0; i < 3; i++)
             {
-                result[i] = resultFromRiot[i].championId;
+                result.Top3MasteryCode[i] = resultFromRiot[i].championId;
+                //result.Top3MasteryName = DAO.ChampionDAO.getChampionName(resultFromRiot[i].championId);
             }
             
             reader.Close();
