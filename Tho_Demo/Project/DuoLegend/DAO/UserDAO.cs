@@ -1,4 +1,4 @@
-﻿using DuoLegend.GlobalConfig;
+using DuoLegend.GlobalConfig;
 using DuoLegend.Models;
 using DuoLegend.ViewModels;
 using System;
