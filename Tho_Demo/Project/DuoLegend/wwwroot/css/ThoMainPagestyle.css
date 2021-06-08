@@ -1,114 +1,128 @@
 
+:root {
+	--red: #c91d1d;
+	--blue: rgb(2,0,36);
+}
+
 body {
 	background-image: url("../img/test.jpg");
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 }
-.backContainer{
+
+.backContainer {
 	margin: 0 auto;
 	background-color: rgba(19,28,46,.9333333333333333);
 	width: 75vw;
-	height: 150vh; 
+	height: 150vh;
 }
-h3{
-	font-family:  Arial;
-	font-weight: 700;
-	font-size: 1vw;
-}
-.searchBar{
 
-	display:inline-block;
-	margin-top: 5vh;
-	margin-left: 2vw;
+h3 {
+	font-family: Friz Quadrata;
+	font-weight: 900;
+	font-size: 2vw;
+	color: white;
+}
+
+.searchBar {
+	display: block;
+	margin-top: 3vh;
 	padding-top: 0vw;
 }
 
-.searchBar img{
-	background-color: inherit;
-	display: inline-block;
-	width: 3.5vw;
-	height: 3.5vw;
-	border: 1px solid #ffffff26;
+	.searchBar img {
+		background-color: inherit;
+		display: inline-block;
+		width: 3.5vw;
+		height: 3.5vw;
+		/*border: 1px solid #ffffff26;*/
+	}
 
-}
+	.searchBar .midLane {
+		background-image: url("../img/Middle_icon.png");
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
 
-.searchBar .midLane{
-	background-image: url("../img/Middle_icon.png");
-	background-repeat: no-repeat;
-	background-size: cover;
-}
-
-.searchBar >fieldset >label>img:hover,focus {
-	background-color: #dc3545;
-}
-
-
-.searchBar .ironRank{
-	background-image: url("../img/ironIcon.png");
-}
-.searchBar .bronzeRank{
-	background-image: url("../img/BronzeIcon.png");
-}
-.searchBar .silverRank{
-	background-image: url("../img/silverIcon.png");
-}
-.searchBar .goldRank{
-	background-image: url("../img/goldIcon.png");
-}
-.searchBar .platinumRank{
-	background-image: url("../img/platinumIcon.png");
-}
-.searchBar .diamondRank{
-	background-image: url("../img/diamondIcon.png");
-}
-.searchBar .masterRank{
-	background-image: url("../img/masterIcon.png");
-}
-.searchBar .grandMaterRank{
-	background-image: url("../img/grandMasterIcon.png");
-}
-.searchBar .challengerRank{
-	background-image: url("../img/challengerIcon.png");
-}
-
-.searchBar select{
-	display: inline-block;
-	width: 4vw;
-	height: 3.5vw;
-	margin-left: 5vw;
-	background-color: rgba(145, 151, 165, 0.23);
-	font-family: Arial;
-	color: white;
-	font-weight: bold;
-}
-
-.searchBar select option{
-	background-color: rgba(145, 151, 165, 0.23);
-	font-family: Arial;
-	color: black;
-}
-
-.searchBar p{
-	display: inline-block;
-	margin-left: 11.5vw;
-	width: 20vw;
-	height: 10vh;
-	line-height: 10vh;
-	text-align: center;
-	background-color: #3835dc7a;
-	border-radius: 1vw;
-	color: white;
-	font-family: arial;
-	font-size: 2vw
-}
-
-.searchBar p:hover{
-	background-color: #dc3545;
-}
+	.searchBar > fieldset > label > img:hover, focus {
+		background-color: #dc3545;
+	}
 
 
+	.searchBar .ironRank {
+		background-image: url("../img/ironIcon.png");
+	}
 
-table{
+	.searchBar .bronzeRank {
+		background-image: url("../img/BronzeIcon.png");
+	}
+
+	.searchBar .silverRank {
+		background-image: url("../img/silverIcon.png");
+	}
+
+	.searchBar .goldRank {
+		background-image: url("../img/goldIcon.png");
+	}
+
+	.searchBar .platinumRank {
+		background-image: url("../img/platinumIcon.png");
+	}
+
+	.searchBar .diamondRank {
+		background-image: url("../img/diamondIcon.png");
+	}
+
+	.searchBar .masterRank {
+		background-image: url("../img/masterIcon.png");
+	}
+
+	.searchBar .grandMaterRank {
+		background-image: url("../img/grandMasterIcon.png");
+	}
+
+	.searchBar .challengerRank {
+		background-image: url("../img/challengerIcon.png");
+	}
+
+	.searchBar select {
+		display: inline-block;
+		width: 4vw;
+		height: 3.5vw;
+		margin-left: 5vw;
+		background-color: rgba(145, 151, 165, 0.23);
+		font-family: Arial;
+		color: white;
+		font-weight: bold;
+	}
+
+		.searchBar select option {
+			background-color: rgba(145, 151, 165, 0.23);
+			font-family: Arial;
+			color: black;
+		}
+
+	.searchBar p {
+		display: inline-block;
+		margin-left: 11.5vw;
+		width: 20vw;
+		height: 10vh;
+		line-height: 10vh;
+		text-align: center;
+		background-color: var(--blue);
+		border-radius: 1vw;
+		color: white;
+		font-family: arial;
+		font-size: 2vw
+	}
+
+		.searchBar p:hover {
+			background-color: var(--red);
+		}
+
+
+
+table {
 	width: 70vw;
 	color: white;
 	margin: 0 auto;
@@ -116,29 +130,75 @@ table{
 	color: rgb(91,92,100);
 }
 
-table, th, td{
-  	border-bottom:  1px solid #fbfbfbad;
-	font-family:  Arial;
+table, th, td {
+	border-bottom: 1px solid #fbfbfbad;
+	font-family: Arial;
 	text-align: center;
 	overflow: auto;
 }
 
-table img{
-	width: 5vw;
+	table img {
+		width: 5vw;
+	}
+
+	table tr td:nth-child(1) {
+		width: 15vw;
+	}
+
+	table tr td:nth-child(2), td:nth-child(3), td:nth-child(4) {
+		width: 7vw;
+	}
+
+	table tr td:nth-child(5) {
+		width: 5vw;
+	}
+
+	table tr td:nth-child(7) {
+		max-width: 10vw;
+		word-wrap: break-word;
+	}
+
+.buttons {
+	width: 20vw;
+	height: 10vh;
+	/*	line-height: 10vh;*/
+	text-align: center;
+	background-color: #3835dc7a;
+	border-radius: 1vw;
+	color: white;
+	font-family: arial;
+	font-size: 2vw;
 }
 
-table tr td:nth-child(1){
-	width: 15vw;
-}
-table tr td:nth-child(2),td:nth-child(3),td:nth-child(4){
-	width: 7vw;
+input[type="submit"].buttons:hover {
+	background-color: var(--red);
 }
 
-table tr td:nth-child(5){
-	width: 5vw;
+.btn-secondary:not(:disabled):not(.disabled).active, .btn-secondary:not(:disabled):not(.disabled):active, .show > .btn-secondary.dropdown-toggle {
+	background-color: var(--red);
+	border-color: var(--red);
 }
 
-table tr td:nth-child(7){
-	max-width: 10vw;
-	word-wrap: break-word;
+.btn-secondary:hover {
+	background-color: var(--red);
+	border-color: var(--red);
+}
+
+.btn-secondary {
+	background-color: var(--blue);
+	border: none;
+}
+
+.btn-sm {
+	background-color: var(--blue);
+}
+
+	.btn-sm:hover {
+		background-color: #060066;
+		border-color: #060066;
+	}
+
+.btnPlayStyle {
+	width: 100%;
+	padding: .5rem 3rem;
 }

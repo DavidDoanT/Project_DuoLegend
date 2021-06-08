@@ -18,7 +18,7 @@
                 x[i].style.backgroundColor = "inherit";
             }
         }
-    }    
+    }
     function focusSearchResult() {
         var elmnt = document.getElementById("searchResult");
         elmnt.scrollIntoView();
@@ -40,7 +40,7 @@
             <!--Đây là phần body của modal-->
             <!--Đây sẽ là phần mình để những ngôi sao để cho người ta click vào-->
             <div class="modal-body">
-                You need to login to use this feature               
+                You need to login to use this feature
             </div>
             <!--Đây là phần footer của modal-->
             <div class="modal-footer">
@@ -66,82 +66,166 @@
             <!--Đây là phần body của modal-->
             <!--Đây sẽ là phần mình để những ngôi sao để cho người ta click vào-->
             <div class="modal-body">
-                <center><H3 id="txtSearching" >SEARCHING PLEASE WAIT...</h3></center>
+                <center><H3 id="txtSearching">SEARCHING PLEASE WAIT...</H3></center>
                 <center><div style="width: 10vw; height: 10vw" class="spinner-border text-success"></div></center>
             </div>
-            <!--Đây là phần footer của modal-->           
+            <!--Đây là phần footer của modal-->
         </div>
     </div>
 </form>
 
 <div class="backContainer">
     <form>
+
+
+
+        @*<div class="searchBar">
+                <center>
+                    <fieldset id="laneOption">
+                        <legend><h3>Choose duo's lane</h3></legend>
+                        <label for="topLane"><img class="laneOptionLabel" src="img/Top_icon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
+                        <input type="radio" name="laneOption" id="topLane" style="display: none;">
+
+                        <label for="jungLane"><img class="laneOptionLabel" src="img/Jung_icon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
+                        <input type="radio" name="laneOption" id="jungLane" style="display: none;">
+
+                        <label for="midLane"><img class="laneOptionLabel" src="img/Mid_icon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
+                        <input type="radio" name="laneOption" id="midLane" style="display: none;">
+
+                        <label for="botLane"><img class="laneOptionLabel" src="img/Bot_icon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
+                        <input type="radio" name="laneOption" id="botLane" style="display: none;">
+
+                        <label for="supLane"><img class="laneOptionLabel" src="img/Sup_icon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
+                        <input type="radio" name="laneOption" id="supLane" style="display: none;">
+                    </fieldset>
+                </center>
+            </div>*@
         <center>
             <div class="searchBar">
-                @if (ViewBag.isLogin)
-                {
-                    <label data-toggle="modal" data-target="#test" for="submit"><p style="margin-left: 0vw; margin-bottom: 0vw;">Find your Duo</p></label>
-                    <input type="submit" name="" id="submit" style="display: none;">
-                }
-                else
-                {
-                    <button data-toggle="modal" data-target="#example" type="button" style="background-color: inherit; border: hidden"><p style="margin-left: 0vw; margin-bottom: 0vw;">Find your Duo</p></button>
-                }
+                <fieldset id="laneOption">
+                    <center><h3>Choose duo's lane</h3></center>
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-secondary btn-sm" title="Top lane">
+                            <img src="img/Top_icon.png">
+                            <input type="radio" name="laneOption" id="option1">
+                        </label>
+                        <label class="btn btn-secondary btn-sm" title="Jungle lane">
+                            <img src="img/Jung_icon.png">
+                            <input type="radio" name="laneOption" id="option2">
+                        </label>
+                        <label class="btn btn-secondary btn-sm" title="Mid lane">
+                            <img src="img/Mid_icon.png">
+                            <input type="radio" name="laneOption" id="option3">
+                        </label>
+                        <label class="btn btn-secondary btn-sm" title="Bottom lane">
+                            <img src="img/Bot_icon.png">
+                            <input type="radio" name="laneOption" id="option1">
+                        </label>
+                        <label class="btn btn-secondary btn-sm" title="Support lane">
+                            <img src="img/Sup_icon.png">
+                            <input type="radio" name="laneOption" id="option2">
+                        </label>
+                    </div>
+                </fieldset>
 
             </div>
         </center>
-        <br>
 
-        <div class="searchBar">
-            <fieldset id="laneOption">
-                <center><h3 style="color: white">Choose duo's lane</h3></center>
-                <label for="topLane"><img class="laneOptionLabel" src="img/Top_icon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
-                <input type="radio" name="laneOption" id="topLane" style="display: none;">
+        @*<div class="searchBar">
+                <center>
+                    <fieldset id="rankOption">
+                        <center><h3>Choose duo's rank</h3></center>
+                        <label for="ironRank"><img class="rankOptionLabel" src="img/ironIcon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
+                        <input type="radio" name="rankOption" id="ironRank" style="display: none;">
 
-                <label for="jungLane"><img class="laneOptionLabel" src="img/Jung_icon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
-                <input type="radio" name="laneOption" id="jungLane" style="display: none;">
+                        <label for="bronzeRank"><img class="rankOptionLabel" src="img/bronzeIcon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
+                        <input type="radio" name="rankOption" id="bronzeRank" style="display: none;">
 
-                <label for="midLane"><img class="laneOptionLabel" src="img/Mid_icon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
-                <input type="radio" name="laneOption" id="midLane" style="display: none;">
+                        <label for="silverRank"><img class="rankOptionLabel" src="img/silverIcon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
+                        <input type="radio" name="rankOption" id="silverRank" style="display: none;">
 
-                <label for="botLane"><img class="laneOptionLabel" src="img/Bot_icon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
-                <input type="radio" name="laneOption" id="botLane" style="display: none;">
+                        <label for="goldRank"><img class="rankOptionLabel" src="img/goldIcon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
+                        <input type="radio" name="rankOption" id="goldRank" style="display: none;">
 
-                <label for="supLane"><img class="laneOptionLabel" src="img/Sup_icon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
-                <input type="radio" name="laneOption" id="supLane" style="display: none;">
-            </fieldset>
-        </div>
-        <div class="searchBar">
-            <fieldset id="rankOption">
-                <center><h3 style="color: white">Choose duo's rank</h3></center>
-                <label for="ironRank"><img class="rankOptionLabel" src="img/ironIcon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
-                <input type="radio" name="rankOption" id="ironRank" style="display: none;">
+                        <label for="platinumRank"><img class="rankOptionLabel" src="img/platinumIcon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
+                        <input type="radio" name="rankOption" id="platinumRank" style="display: none;">
 
-                <label for="bronzeRank"><img class="rankOptionLabel" src="img/bronzeIcon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
-                <input type="radio" name="rankOption" id="bronzeRank" style="display: none;">
+                        <label for="diamondRank"><img class="rankOptionLabel" src="img/diamondIcon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
+                        <input type="radio" name="rankOption" id="diamondRank" style="display: none;">
+                        <label for="masterRank"><img class="rankOptionLabel" src="img/masterIcon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
 
-                <label for="silverRank"><img class="rankOptionLabel" src="img/silverIcon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
-                <input type="radio" name="rankOption" id="silverRank" style="display: none;">
+                        <label for="grandMasterRank"><img class="rankOptionLabel" src="img/grandMasterIcon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
+                        <input type="radio" name="rankOption" id="grandMasterRank" style="display: none;">
 
-                <label for="goldRank"><img class="rankOptionLabel" src="img/goldIcon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
-                <input type="radio" name="rankOption" id="goldRank" style="display: none;">
+                        <label for="challengerRank"><img class="rankOptionLabel" src="img/challengerIcon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
+                        <input type="radio" name="rankOption" id="challengerRank" style="display: none;">
+                    </fieldset>
+                </center>
+            </div>*@
 
-                <label for="platinumRank"><img class="rankOptionLabel" src="img/platinumIcon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
-                <input type="radio" name="rankOption" id="platinumRank" style="display: none;">
+        <center>
+            <div class="searchBar">
+                <fieldset id="rankOption">
+                    <center><h3>Choose duo's rank</h3></center>
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-secondary btn-sm" title="Iron">
+                            <img src="img/ironIcon.png">
+                            <input type="radio" name="rankOption" id="option1">
+                        </label>
+                        <label class="btn btn-secondary btn-sm" title="Bronze">
+                            <img src="img/bronzeIcon.png">
+                            <input type="radio" name="rankOption" id="option2">
+                        </label>
+                        <label class="btn btn-secondary btn-sm" title="Silver">
+                            <img src="img/silverIcon.png">
+                            <input type="radio" name="rankOption" id="option3">
+                        </label>
+                        <label class="btn btn-secondary btn-sm" title="Gold">
+                            <img src="img/goldIcon.png">
+                            <input type="radio" name="rankOption" id="option1">
+                        </label>
+                        <label class="btn btn-secondary btn-sm" title="Platinum">
+                            <img src="img/platinumIcon.png">
+                            <input type="radio" name="rankOption" id="option2">
+                        </label>
+                        <label class="btn btn-secondary btn-sm" title="Diamond">
+                            <img src="img/diamondIcon.png">
+                            <input type="radio" name="rankOption" id="option3">
+                        </label>
+                        <label class="btn btn-secondary btn-sm" title="Master">
+                            <img src="img/masterIcon.png">
+                            <input type="radio" name="rankOption" id="option3">
+                        </label>
+                        <label class="btn btn-secondary btn-sm" title="Grand Master">
+                            <img src="img/grandMasterIcon.png">
+                            <input type="radio" name="rankOption" id="option3">
+                        </label>
+                        <label class="btn btn-secondary btn-sm" title="Challenger">
+                            <img src="img/challengerIcon.png">
+                            <input type="radio" name="rankOption" id="option3">
+                        </label>
+                    </div>
+                </fieldset>
 
-                <label for="diamondRank"><img class="rankOptionLabel" src="img/diamondIcon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
-                <input type="radio" name="rankOption" id="diamondRank" style="display: none;">
-                <label for="masterRank"><img class="rankOptionLabel" src="img/masterIcon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
+            </div>
+        </center>
 
-                <label for="grandMasterRank"><img class="rankOptionLabel" src="img/grandMasterIcon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
-                <input type="radio" name="rankOption" id="grandMasterRank" style="display: none;">
 
-                <label for="challengerRank"><img class="rankOptionLabel" src="img/challengerIcon.png" onclick="removeOtherChoosing(this),Choosing(this)"></label>
-                <input type="radio" name="rankOption" id="challengerRank" style="display: none;">
-            </fieldset>
-        </div>
-        <div class="searchBar">
-            <h3 style="margin-left: 5vw; color: white">Server</h3>
+        <center>
+            <div class="searchBar">
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-secondary btn-lg btnPlayStyle">
+                        <input type="radio" name="playPurposeOption" id="option1"> Win is matter
+                    </label>
+                    <label class="btn btn-secondary btn-lg btnPlayStyle" style="border-style: none none none solid;border-color: #3835dc;">
+                        <input type="radio" name="playPurposeOption" id="option2"> Fun is matter
+                    </label>
+                </div>
+            </div>
+        </center>
+
+        <div class="searchBar" style="display:inline-block;">
+            <h3 style="margin-left: 5vw; font-size: 1vw;">Server</h3>
             <select>
                 <option>KR</option>
                 <option>EUN1</option>
@@ -156,22 +240,41 @@
                 <option>TR1</option>
             </select>
         </div>
-        <br>
-        <div class="searchBar">
-            <label for="playToWin"><p class="playPurposeOption" onclick="removeOtherChoosing(this),Choosing(this)">Win is matter</p></label>
-            <input type="radio" name="playPurposeOption" id="playToWin" style="display: none;">
-            <label for="playForFun"><p class="playPurposeOption" onclick="removeOtherChoosing(this),Choosing(this)">Fun is matter</p></label>
-            <input type="radio" name="playPurposeOption" id="playForFun" style="display: none;">
-        </div>
+
+        @*<div class="searchBar">
+                <label for="playToWin"><p class="playPurposeOption" onclick="removeOtherChoosing(this),Choosing(this)">Win is matter</p></label>
+                <input type="radio" name="playPurposeOption" id="playToWin" style="display: none;">
+                <label for="playForFun"><p class="playPurposeOption" onclick="removeOtherChoosing(this),Choosing(this)">Fun is matter</p></label>
+                <input type="radio" name="playPurposeOption" id="playForFun" style="display: none;">
+            </div>*@
+
+
+
     </form>
-    <br>
+
+
+    <!-- cái nút Find chính -->
+    <div class="searchBar">
+        <center>
+            @if (ViewBag.isLogin)
+            {
+                @*<label data-toggle="modal" data-target="#test" for="submit"><p style="margin-left: 0vw; margin-bottom: 0vw;">Find your Duo</p></label>
+                    <input type="submit" name="" id="submit" style="display: none;">*@
+                <input type="submit" name="" value="Find your Duo" class="buttons" data-toggle="modal" data-target="#test" style="font-family: Friz Quadrata;">
+            }
+            else
+            {
+                @*<button data-toggle="modal" data-target="#example" type="button" style="background-color: inherit; border: hidden"><p style="margin-left: 0vw; margin-bottom: 0vw;">Find your Duo</p></button>*@
+                <input type="submit" name="" value="Find your Duo" class="buttons" data-toggle="modal" data-target="#example" style="font-family: Friz Quadrata;">
+            }
+        </center>
+    </div>
+
+
 
 
     <br>
-
-
-    <br>
-    <table id="searchResult" >
+    <table id="searchResult">
         <tr>
             <th>Summoner</th>
             <th>Lane</th>

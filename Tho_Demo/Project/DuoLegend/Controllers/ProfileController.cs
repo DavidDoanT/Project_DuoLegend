@@ -1,4 +1,5 @@
 ﻿using DuoLegend.DAO;
+using DuoLegend.Models;
 using DuoLegend.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -13,7 +14,11 @@ namespace DuoLegend.Controllers
         public IActionResult Index(string inGameName, string server)
         {
             ProfileViewModel infor = new ProfileViewModel();
-            infor.Top3Mastery = RiotAPI.RiotAPI.gettop3mastery(inGameName, server);
+            infor = RiotAPI.RiotAPI.gettop3mastery(inGameName, server);
+            RankInfor rankInfor = RiotAPI.RiotAPI.getRankByEncryptedSummonerId(DAO.UserDAO.getEncryptedSummonerId(inGameName,server), server);
+            infor.Rank = rankInfor.Rank;
+            infor.Tier = rankInfor.Tier;
+            infor.RankScore = rankInfor.Lp;
             return View(infor);
         }
     }
