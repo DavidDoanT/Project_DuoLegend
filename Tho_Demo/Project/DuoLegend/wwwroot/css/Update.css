@@ -45,9 +45,11 @@ code {
 input{
   width: 100%;
 }
-body{
-  /*background-color: rgb(37, 43, 54);*/
-  background-image: url("test.jpg");
+body {
+	/*background-color: rgb(37, 43, 54);*/
+	background-image: url("../img/test.jpg");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
 }
 .backContainer{
   margin-top: 10%;

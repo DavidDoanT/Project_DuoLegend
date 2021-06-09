@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace DuoLegend.DAO
 {
     public static class UserDAO
@@ -35,11 +36,11 @@ namespace DuoLegend.DAO
             return infor;
         }
 
-        
+
         public static string getEncryptedSummonerId(string inGameName, string server)
         {
             com.Parameters.Clear();
-            if(inGameName is null)
+            if (inGameName is null)
             {
                 return null;
             }
@@ -135,7 +136,7 @@ namespace DuoLegend.DAO
 
             com.CommandText = "select email from testUser where email = @email";
             com.Parameters.AddWithValue("@email", email);
-            
+
             SqlDataReader reader = com.ExecuteReader();
             if (reader.Read())
             {
@@ -155,7 +156,7 @@ namespace DuoLegend.DAO
         public static void addUser(User user)
         {
             com.Parameters.Clear();
-        
+
             conn.ConnectionString = MyConfig.ConnectionString;
 
             conn.Open();
@@ -163,8 +164,8 @@ namespace DuoLegend.DAO
 
             com.CommandText = "INSERT INTO testUser(inGameId,inGameName,password,server,email,id,accountId,puuid,isDeleted) VALUES(@inGameId,@inGameName,@password,@server,@email,@id,@accountId,@puuid,@isDeleted)";
             com.Parameters.AddWithValue("@inGameId", user.Id);
-            com.Parameters.AddWithValue("@inGameName", user.InGameName );
-            com.Parameters.AddWithValue("@password", user.Password );
+            com.Parameters.AddWithValue("@inGameName", user.InGameName);
+            com.Parameters.AddWithValue("@password", user.Password);
             com.Parameters.AddWithValue("@server", user.Server);
             com.Parameters.AddWithValue("@email", user.Email);
             com.Parameters.AddWithValue("@id", user.Id);
@@ -205,7 +206,7 @@ namespace DuoLegend.DAO
 
             com.Parameters.AddWithValue("@email", email);
             SqlDataReader reader = com.ExecuteReader();
-            
+
             if (reader.Read())
             {
 
@@ -220,5 +221,37 @@ namespace DuoLegend.DAO
             conn.Close();
             return user;
         }
+        public static bool Update(User userIn, string oldEmail)
+        {
+            com.Parameters.Clear();
+            conn.ConnectionString = MyConfig.ConnectionString;
+
+            conn.Open();
+            com.Connection = conn;
+            
+
+            int temp;
+            //convert bool datatype to int because hasMic in DB is bit type
+            if (userIn.HasMic)
+            {
+                temp = 1;
+            }
+            else
+            {
+                temp = 0;
+            }
+
+            com.CommandText = "UPDATE TestUser SET inGameName = @NewInGameName, server = @NewServer, hasMic = @NewHasMic  WHERE email = @oldEmail";
+            com.Parameters.AddWithValue("@NewInGameName", userIn.InGameName);
+            com.Parameters.AddWithValue("@NewServer", userIn.Server);
+            com.Parameters.AddWithValue("@NewHasMic", temp);
+            com.Parameters.AddWithValue("@oldEmail", oldEmail);
+            com.EndExecuteNonQuery(com.BeginExecuteNonQuery());
+            conn.Close();
+            return true;
+
+        }
+
+
     }
 }

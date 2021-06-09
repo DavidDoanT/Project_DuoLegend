@@ -28,17 +28,17 @@ body{
   /* border:  */
 }
 
-.ProfileWrapper{
-  padding: 2%;
-  background-color: rgb(2,0,36);
-  /* margin: 0 auto; */
-  width: 100%;
-  /*max-width: 1200px;*/
-  margin: 0 auto;
-  padding-top: 20px;
-  background: url("../images/test.jpg");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+.ProfileWrapper {
+    padding: 2%;
+    background-color: rgb(2,0,36);
+    /* margin: 0 auto; */
+    width: 100%;
+    /*max-width: 1200px;*/
+    margin: 0 auto;
+    padding-top: 20px;
+    background-image: url("../img/test.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 .ProfileTop{
 	justify-content: space-between;
@@ -503,3 +503,14 @@ body{
     .ProfileListItem{
         width: 27%;
     }
+.button {
+    outline: none;
+    background: #0d171c;
+    border: 1px solid #c8aa6e;
+    color: #c8aa6e;
+    border-radius: 4px;
+    padding: 4px 14px;
+    font-weight: 600;
+    font-size: 16px;
+    margin-left: 10%;
+}

@@ -18,7 +18,7 @@
                 @if (@Context.Session.GetString("inGameName").Equals(Model.SummonerName) && @Context.Session.GetString("server").Equals(Model.Server))
                 {    
                     //CHINH CAI EDIT O TRONG DAY NE ANH GIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-                    <a class="btn btn-danger">edit</a>
+                    <a class="button" asp-controller="Profile" asp-action="UpdateUser">Edit</a>
                 }
 
                 <button>Follow</button>

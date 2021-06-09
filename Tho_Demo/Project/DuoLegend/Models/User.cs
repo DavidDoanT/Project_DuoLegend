@@ -17,7 +17,7 @@ namespace DuoLegend.Models
         private string _password;
         private int _summonerLevel;
         private int _profileIconId;
-
+        private bool _hasMic;
         public int ProfileIconId
         {
             get { return _profileIconId; }
@@ -80,5 +80,10 @@ namespace DuoLegend.Models
             set { _inGameName = value; }
         }
 
+        public bool HasMic
+        {
+            get { return _hasMic; }
+            set { _hasMic = value; }
+        }
     }
 }

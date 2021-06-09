@@ -1,0 +1,87 @@
+﻿@model User
+@{
+    ViewData["Title"] = "View";
+    Layout = "~/Views/Shared/_LayoutAfterLogin.cshtml";
+}
+<link href="~/css/Update.css" rel="stylesheet">
+<style type="text/css">
+    .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    .bg-dark {
+        background-color: rgb(2, 0, 36) !important;
+    }
+
+    .navbar-brand {
+        font-weight: bold;
+    }
+
+    .btn {
+        margin-left: 2%;
+        width: 10%;
+    }
+
+    header {
+        margin-bottom: 2 rem;
+    }
+    label {
+        text-align: left;
+        display: inherit;
+        color: white;
+    }
+
+    .form-signin {
+        max-width: 90%;
+    }
+
+    .backContainer {
+        width: 60%;
+    }
+</style>
+<center>
+    <div class="backContainer">
+        <form class="form-signin" asp-method="post" asp-controller="Profile" asp-action="UpdateUser">
+            <h1>Edit </h1>
+            <div class="form-group">
+                <label>Ingame name: </label>
+                <input type="text" class="form-control" id="ingameName"
+                       name="ingameName" =aria-describedby ="ingameName" placeholder="Please enter your new ingame name" asp-for="InGameName">
+            </div>
+            <div class="form-group">
+                <label>Server</label>
+                <select asp-for="Server" class="custom-select">
+                    <option>BR1</option>
+                    <option>EUN1</option>
+                    <option>EUW1</option>
+                    <option>JP1</option>
+                    <option>KR</option>
+                    <option>LA1</option>
+                    <option>LA2</option>
+                    <OPTION>NA1</OPTION>
+                    <OPTION>OC1</OPTION>
+                    <option>RU</option>
+                    <option>TR1</option>
+                </select>
+            </div>
+            <div class="form-group form-check ">
+                <input type="checkbox" class="form-check-input hasMicInput" id="exampleCheck1"  asp-for="HasMic">
+                <label class="form-check-label hasMicLabel" for="exampleCheck1">Do you play with mic?</label>
+            </div>
+            <div class="form-group">
+                <label>Description: </label>
+                <input type="text" class="form-control" id="description"
+                       name="description" =aria-describedby ="description" placeholder="Please enter your description">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-danger button">Save</button>
+            </div>
+        </form>
+    </div>
+</center>
+
