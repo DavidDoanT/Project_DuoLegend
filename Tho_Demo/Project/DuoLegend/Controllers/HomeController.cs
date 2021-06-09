@@ -45,6 +45,9 @@ namespace DuoLegend.Controllers
             if(Request.Cookies["email"] != null)
             {
                 HttpContext.Session.SetString("email", Request.Cookies["email"]);
+                User user = UserDAO.getUserByEmail(Request.Cookies["email"]);
+                HttpContext.Session.SetString("inGameName", user.InGameName);
+                HttpContext.Session.SetString("server", user.Server);
                 ViewBag.isLogin = true;
             }
             

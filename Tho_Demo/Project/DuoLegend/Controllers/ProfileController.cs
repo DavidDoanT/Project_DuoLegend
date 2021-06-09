@@ -25,7 +25,7 @@ namespace DuoLegend.Controllers
             infor.ProfileIconId = userInfor.ProfileIconId;
             infor.Win = rankInfor.Win;
             infor.Lose = rankInfor.Lose;
-            
+            infor.Server = server;
             return View(infor);
         }
     }

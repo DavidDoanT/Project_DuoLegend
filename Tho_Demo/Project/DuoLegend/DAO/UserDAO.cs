@@ -191,5 +191,34 @@ namespace DuoLegend.DAO
             com.EndExecuteNonQuery(com.BeginExecuteNonQuery());
             conn.Close();
         }
+
+        public static User getUserByEmail(string email)
+        {
+            User user = new User();
+            com.Parameters.Clear();
+            conn.ConnectionString = MyConfig.ConnectionString;
+
+            conn.Open();
+            com.Connection = conn;
+
+            com.CommandText = "select inGameName,server  from testUser where email = @email";
+
+            com.Parameters.AddWithValue("@email", email);
+            SqlDataReader reader = com.ExecuteReader();
+            
+            if (reader.Read())
+            {
+
+                user.InGameName = (string)reader["inGameName"];
+                user.Server = (string)reader["server"];
+            }
+            else
+            {
+                conn.Close();
+                return user;
+            }
+            conn.Close();
+            return user;
+        }
     }
 }

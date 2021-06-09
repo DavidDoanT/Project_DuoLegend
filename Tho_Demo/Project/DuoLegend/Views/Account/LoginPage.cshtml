@@ -83,12 +83,14 @@
                     {
                         <p style="color: red">Wrong email or password</p>
                       } 
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                <label class="" for="defaultCheck1" style="color: white;">
-                    Remember me
-                </label>
-            </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="RememberMe" value="true" id="RememberMe" asp-for="RememberMe">
+            <label class="" for="RememberMe" style="color: white;">
+                Remember me
+            </label>
+            @*<label for="RememberMe" style="color: white">Remember Me</label>
+            <input type="checkbox" value="true" class="form-control" id="RememberMe" name="RememberMe" asp-for="RememberMe">*@
+        </div>
             <button type="submit" class="btn btn-danger button "><i class="bi bi-box-arrow-in-right"></i>         Log in</button>
 
         </form>

@@ -41,7 +41,11 @@ namespace DuoLegend.Controllers
                     newCookie.Expires = DateTime.Now.AddDays(1);
                     Response.Cookies.Append("email", acc.Email, newCookie);
                 }
+                
                 HttpContext.Session.SetString("email", acc.Email);
+                User user = UserDAO.getUserByEmail(Request.Cookies["email"]);
+                HttpContext.Session.SetString("inGameName", user.InGameName);
+                HttpContext.Session.SetString("server", user.Server);
                 return RedirectToAction("Index", "Home");
             }
             else

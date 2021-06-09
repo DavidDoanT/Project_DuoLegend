@@ -28,6 +28,13 @@ namespace DuoLegend.ViewModels
         private int _lose;
         private string _profileIconPath;
         private int _profileIconId;
+        private string _server;
+
+        public string Server
+        {
+            get { return _server; }
+            set { _server = value; }
+        }
 
         public int ProfileIconId
         {           

@@ -39,8 +39,15 @@ using Microsoft.AspNetCore.Mvc;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 7 "C:\Users\Admin\Documents\GitHub\Project_DuoLegend\Tho_Demo\Project\DuoLegend\Views\_ViewImports.cshtml"
+using Microsoft.AspNetCore.Http;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"b1c0c7e12e95ab0cba3208e9cd6367cd18f47e98", @"/Views/Shared/_LayoutBeforeLogin.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"3813e280d58507e261de8b9eb2817ae227c2974c", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d924451c1d2b6f47cc6c02c9aca723d6c77527dc", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared__LayoutBeforeLogin : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #line hidden
@@ -69,7 +76,7 @@ using Microsoft.AspNetCore.Mvc;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
             WriteLiteral("<!DOCTYPE html>\r\n\r\n<html>\r\n");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b1c0c7e12e95ab0cba3208e9cd6367cd18f47e983771", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b1c0c7e12e95ab0cba3208e9cd6367cd18f47e983988", async() => {
                 WriteLiteral("\r\n    <meta name=\"viewport\" content=\"width=device-width\" />\r\n    <title>");
 #nullable restore
 #line 6 "C:\Users\Admin\Documents\GitHub\Project_DuoLegend\Tho_Demo\Project\DuoLegend\Views\Shared\_LayoutBeforeLogin.cshtml"
@@ -130,7 +137,7 @@ using Microsoft.AspNetCore.Mvc;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b1c0c7e12e95ab0cba3208e9cd6367cd18f47e986682", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b1c0c7e12e95ab0cba3208e9cd6367cd18f47e986899", async() => {
                 WriteLiteral(@"
     <header>
         <!-- HEADER -->

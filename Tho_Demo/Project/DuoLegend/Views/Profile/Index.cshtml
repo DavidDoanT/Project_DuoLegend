@@ -15,7 +15,12 @@
                 </div>
             </div>
             <div class="ProfileAction">
-                <button>Edit</button>
+                @if (@Context.Session.GetString("inGameName").Equals(Model.SummonerName) && @Context.Session.GetString("server").Equals(Model.Server))
+                {    
+                    //CHINH CAI EDIT O TRONG DAY NE ANH GIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                    <a class="btn btn-danger">edit</a>
+                }
+
                 <button>Follow</button>
                 <button>Rate</button>
             </div>
