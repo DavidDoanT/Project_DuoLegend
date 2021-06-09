@@ -10,6 +10,20 @@ namespace DuoLegend.Models
         private string _rank;
         private string _tier;
         private int _lp;
+        private int _win;
+        private int _lose;
+
+        public int Lose
+        {
+            get { return _lose; }
+            set { _lose = value; }
+        }
+
+        public int Win
+        {
+            get { return _win; }
+            set { _win = value; }
+        }
 
         public int Lp
         {
