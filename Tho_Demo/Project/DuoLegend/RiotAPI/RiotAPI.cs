@@ -36,12 +36,16 @@ namespace DuoLegend.RiotAPI
                 rankInfor.Rank = resultFromRiot[0].tier;
                 rankInfor.Tier = resultFromRiot[0].rank;
                 rankInfor.Lp = resultFromRiot[0].leaguePoints;
+                rankInfor.Win = resultFromRiot[0].wins;
+                rankInfor.Lose = resultFromRiot[0].losses;
             }
             catch(Exception e)
             {
                 rankInfor.Rank = "unranked";
                 rankInfor.Tier = "unranked";
                 rankInfor.Lp = 0;
+                rankInfor.Win = 0;
+                rankInfor.Lose = 0;
             }
             
             reader.Close();
@@ -201,6 +205,8 @@ namespace DuoLegend.RiotAPI
                 acc.AccountId = resultFromRiot.accountId;
                 acc.Id = resultFromRiot.id;
                 acc.Puuid = resultFromRiot.puuid;
+                acc.SummonerLevel = resultFromRiot.summonerLevel;
+                acc.ProfileIconId = resultFromRiot.profileIconId;
 
                 reader.Close();
                 dataStream.Close();

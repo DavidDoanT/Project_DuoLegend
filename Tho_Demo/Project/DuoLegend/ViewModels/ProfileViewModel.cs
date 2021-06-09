@@ -22,6 +22,51 @@ namespace DuoLegend.ViewModels
         private string _rankImgPath;
         private int[] _top3MasteryLevel;
         private int _rankScore;
+        private string _summonerName;
+        private int _summonerLevel;
+        private int _win;
+        private int _lose;
+        private string _profileIconPath;
+        private int _profileIconId;
+
+        public int ProfileIconId
+        {           
+            set { _profileIconId = value; }
+        }
+
+
+        public string ProfileIconPath
+        {
+            get { 
+                return "http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/"+_profileIconId.ToString()+".png"; 
+            }          
+        }
+
+
+        public int Lose
+        {
+            get { return _lose; }
+            set { _lose = value; }
+        }
+
+        public int Win
+        {
+            get { return _win; }
+            set { _win = value; }
+        }
+
+
+        public int SummonerLevel
+        {
+            get { return _summonerLevel; }
+            set { _summonerLevel = value; }
+        }
+
+        public string SummonerName
+        {
+            get { return _summonerName; }
+            set { _summonerName = value; }
+        }
 
         public int RankScore
         {

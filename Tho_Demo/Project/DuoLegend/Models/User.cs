@@ -15,6 +15,21 @@ namespace DuoLegend.Models
         private string _server;
         private string _email;
         private string _password;
+        private int _summonerLevel;
+        private int _profileIconId;
+
+        public int ProfileIconId
+        {
+            get { return _profileIconId; }
+            set { _profileIconId = value; }
+        }
+
+        public int SummonerLevel
+        {
+            get { return _summonerLevel; }
+            set { _summonerLevel = value; }
+        }
+
         public User()
         {
 

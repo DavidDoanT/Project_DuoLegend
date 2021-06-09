@@ -6,12 +6,12 @@
             <div class="ProfileMainInfo">
                 <div class="ProfileAvatarBox">
                     <div class="ProfileAvatar">
-                        <img src="https://ik.imagekit.io/lienminhpro/profileicon/3556.png/tr:w-0,h-0">
+                        <img src="@Model.ProfileIconPath">
                     </div>
-                    <span class="ProfileLevel">74</span>
+                    <span class="ProfileLevel">@Model.SummonerLevel</span>
                 </div>
                 <div class="ProfileName">
-                    <h1>iloveyouall145</h1>
+                    <h1>@Model.SummonerName</h1>
                 </div>
             </div>
             <div class="ProfileAction">
@@ -111,24 +111,8 @@
                             </div>
                             <div class="ProfileDesc">
                                 <h3>JUNGLE</h3><span class="score">
-                                    34
-                                    <!-- -->% | Winrate
-                                    <!-- -->53
-                                    <!-- -->%
-                                </span>
-                            </div>
-                        </div>
-                        <div class="ProfileRoleItem">
-                            <div class="ProfileImage">
-                                <img src="https://lienminhpro.com/images/roles/support.png"
-                                     alt="SUPPORT" />
-                            </div>
-                            <div class="ProfileDesc">
-                                <h3>SUPPORT</h3><span class="score">
-                                    23
-                                    <!-- -->% | Winrate
-                                    <!-- -->43
-                                    <!-- -->%
+                                    Win Rate<br>
+                                    @Model.Win / @Model.Lose
                                 </span>
                             </div>
                         </div>

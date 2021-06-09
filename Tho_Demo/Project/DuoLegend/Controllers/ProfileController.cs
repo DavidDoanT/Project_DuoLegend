@@ -19,6 +19,13 @@ namespace DuoLegend.Controllers
             infor.Rank = rankInfor.Rank;
             infor.Tier = rankInfor.Tier;
             infor.RankScore = rankInfor.Lp;
+            infor.SummonerName = inGameName;
+            User userInfor = RiotAPI.RiotAPI.GetAccountIdInfor(inGameName, server); 
+            infor.SummonerLevel = userInfor.SummonerLevel;
+            infor.ProfileIconId = userInfor.ProfileIconId;
+            infor.Win = rankInfor.Win;
+            infor.Lose = rankInfor.Lose;
+            
             return View(infor);
         }
     }
