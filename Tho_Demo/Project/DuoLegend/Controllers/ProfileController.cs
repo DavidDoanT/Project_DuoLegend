@@ -36,7 +36,7 @@ namespace DuoLegend.Controllers
             if (!RiotAPI.RiotAPI.isRealInGameName(userIn.InGameName, userIn.Server))
             {
                 ViewBag.isRealInGameNameUpdate = false;
-                return View();
+                return View("Update");
             }
             else
             {
