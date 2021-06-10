@@ -13,6 +13,12 @@ namespace DuoLegend.Controllers
 {
     public class ProfileController : Controller
     {
+        /// <summary>
+        /// return index with approriate data
+        /// </summary>
+        /// <param name="inGameName"> real ingame name of user</param>
+        /// <param name="server">server in game which user are using</param>
+        /// <returns></returns>
         public IActionResult Index(string inGameName, string server)
         {
             ProfileViewModel infor = new ProfileViewModel();
@@ -30,6 +36,12 @@ namespace DuoLegend.Controllers
             infor.Server = server;
             return View(infor);
         }
+
+        /// <summary>
+        /// update user information, allow user to update their note and mic status
+        /// </summary>
+        /// <param name="userIn">object userIn which have inGameName and Server</param>
+        /// <returns></returns>
         public IActionResult UpdateUser(User userIn)
         {
             //check if the new in game name is valid
@@ -51,6 +63,11 @@ namespace DuoLegend.Controllers
                 }
             }
         }
+
+        /// <summary>
+        /// redirect to view update
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult UpdateUser()
         {
