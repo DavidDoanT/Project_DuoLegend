@@ -22,7 +22,7 @@ namespace DuoLegend.DAO
 
             conn.Open();
             com.Connection = conn;
-            com.CommandText = "select top 3  inGameName from [User] where server=@server order by NEWID() ";
+            com.CommandText = "select top 3  inGameName from testUser where server=@server order by NEWID() ";
             com.Parameters.AddWithValue("@server", server);
             SqlDataReader reader = com.ExecuteReader();
             MainPageViewModel infor = new MainPageViewModel();
@@ -252,7 +252,6 @@ namespace DuoLegend.DAO
             com.EndExecuteNonQuery(com.BeginExecuteNonQuery());
             conn.Close();
             return true;
-
         }
 
 
