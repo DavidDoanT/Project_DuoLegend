@@ -53,7 +53,8 @@ namespace DuoLegend.Controllers
             {
                 ViewBag.isCorrect = false;
                 return View("LoginPage");
-            }   
+            }
+        
         }
         /// <summary>
         /// clear all session available
