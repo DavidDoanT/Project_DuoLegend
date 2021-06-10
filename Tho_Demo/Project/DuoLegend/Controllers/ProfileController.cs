@@ -30,6 +30,11 @@ namespace DuoLegend.Controllers
             infor.Server = server;
             return View(infor);
         }
+        /// <summary>
+        /// Update user information 
+        /// </summary>
+        /// <param name="userIn"></param>
+        /// <returns> Return to mainpage if updating successful</returns>
         public IActionResult UpdateUser(User userIn)
         {
             //check if the new in game name is valid
