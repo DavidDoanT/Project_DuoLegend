@@ -64,7 +64,7 @@ namespace DuoLegend.Controllers
             {
                 ViewBag.isLogin = true;
             }
-            return View("Index", Service.ProcessMainPage.getRandomList());
+            return View("Index", Service.ProcessMainPage.Search(searchInfor.search.Server));
         }
     }
 }
