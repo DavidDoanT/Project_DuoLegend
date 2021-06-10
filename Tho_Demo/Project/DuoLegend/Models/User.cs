@@ -18,6 +18,8 @@ namespace DuoLegend.Models
         private int _summonerLevel;
         private int _profileIconId;
         private bool _hasMic;
+        private string _lane;
+        private string _note;
         public int ProfileIconId
         {
             get { return _profileIconId; }
@@ -84,6 +86,17 @@ namespace DuoLegend.Models
         {
             get { return _hasMic; }
             set { _hasMic = value; }
+        }
+
+        public string Lane
+        {
+            get { return _lane; }
+            set { _lane = value; }
+        }
+        public string Note
+        {
+            get { return _note; }
+            set { _note = value; }
         }
     }
 }

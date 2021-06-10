@@ -15,14 +15,15 @@ namespace DuoLegend.DAO
         private static SqlConnection conn = new SqlConnection();
         private static SqlCommand com = new SqlCommand();
 
-        public static MainPageViewModel getRandomInGameName()
+        public static MainPageViewModel get3InGameNameByServer(string server)
         {
             com.Parameters.Clear();
             conn.ConnectionString = MyConfig.ConnectionString;
 
             conn.Open();
             com.Connection = conn;
-            com.CommandText = "select top 3  inGameName from testUser where server='KR' order by NEWID() ";
+            com.CommandText = "select top 3  inGameName from [User] where server=@server order by NEWID() ";
+            com.Parameters.AddWithValue("@server", server);
             SqlDataReader reader = com.ExecuteReader();
             MainPageViewModel infor = new MainPageViewModel();
             int count = 0;
@@ -241,11 +242,13 @@ namespace DuoLegend.DAO
                 temp = 0;
             }
 
-            com.CommandText = "UPDATE TestUser SET inGameName = @NewInGameName, server = @NewServer, hasMic = @NewHasMic  WHERE email = @oldEmail";
+            com.CommandText = "UPDATE TestUser SET inGameName = @NewInGameName, server = @NewServer, hasMic = @NewHasMic,note = @NewNote, lane = @NewLane  WHERE email = @oldEmail";
             com.Parameters.AddWithValue("@NewInGameName", userIn.InGameName);
             com.Parameters.AddWithValue("@NewServer", userIn.Server);
             com.Parameters.AddWithValue("@NewHasMic", temp);
             com.Parameters.AddWithValue("@oldEmail", oldEmail);
+            com.Parameters.AddWithValue("@NewNote", userIn.Note);
+            com.Parameters.AddWithValue("@NewLane", userIn.Lane);
             com.EndExecuteNonQuery(com.BeginExecuteNonQuery());
             conn.Close();
             return true;
