@@ -7,10 +7,18 @@ using System.Threading.Tasks;
 
 namespace DuoLegend.DAO
 {
+    /// <summary>
+    /// this class use to update img to local server and Database
+    /// </summary>
     public static class ChampionDAO
     {
         private static SqlConnection conn = new SqlConnection();
         private static SqlCommand com = new SqlCommand();
+        /// <summary>
+        /// get image URL in local server
+        /// </summary>
+        /// <param name="id"> champion Id </param>
+        /// <returns>image URL in local server</returns>
         public static string getChampionImgURLbyID(string id)
         {
             com.Parameters.Clear();
@@ -34,6 +42,11 @@ namespace DuoLegend.DAO
             conn.Close();
             return temp;
         }
+        /// <summary>
+        /// get champion name by champion id
+        /// </summary>
+        /// <param name="id"> id of champion </param>
+        /// <returns>champion id</returns>
         public static string getChampionName(string id)
         {
             com.Parameters.Clear();
