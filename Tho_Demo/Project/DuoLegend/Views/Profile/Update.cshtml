@@ -70,13 +70,22 @@
                 </select>
             </div>
             <div class="form-group form-check ">
-                <input type="checkbox" class="form-check-input hasMicInput" id="exampleCheck1"  asp-for="HasMic">
+                <input type="checkbox" class="form-check-input hasMicInput" id="exampleCheck1" asp-for="HasMic">
                 <label class="form-check-label hasMicLabel" for="exampleCheck1">Do you play with mic?</label>
             </div>
             <div class="form-group">
+                <label>Server</label>
+                <select asp-for="Lane" class="custom-select">
+                    <option>Top Lane</option>
+                    <option>Jungle Lane</option>
+                    <option>Mid Lane</option>
+                    <option>Bottom Lane</option>
+                    <option>Support Lane</option>
+                </select>
+            </div>
+            <div class="form-group">
                 <label>Description: </label>
-                <input type="text" class="form-control" id="description"
-                       name="description" =aria-describedby ="description" placeholder="Please enter your description">
+                <input type="text" class="form-control" id="description" name="description"  placeholder="Please enter your description" asp-for="Note">
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-danger button">Save</button>
