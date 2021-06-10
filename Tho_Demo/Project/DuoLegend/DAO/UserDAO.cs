@@ -232,6 +232,12 @@ namespace DuoLegend.DAO
             conn.Close();
             return user;
         }
+        /// <summary>
+        /// DAO for update user information
+        /// </summary>
+        /// <param name="userIn"></param> Object user contain new user information
+        /// <param name="oldEmail"></param> Email of user that are committing updating
+        /// <returns>boolean value</returns>
         public static bool Update(User userIn, string oldEmail)
         {
             com.Parameters.Clear();
