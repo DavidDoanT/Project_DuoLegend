@@ -14,7 +14,9 @@ namespace DuoLegend.ViewModels
             Rank = new string[3];
             ListUserInfor = new userInforMainPage[3];
             Server = new string[3];
+            search = new Search();
         }
+        public Search search { get; set; }
         public string[] Rank { get; set; }
         public string[] InGameName { get; set; }
         public string[] Server { get; set; }

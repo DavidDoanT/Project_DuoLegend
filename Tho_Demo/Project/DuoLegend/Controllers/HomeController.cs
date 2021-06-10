@@ -53,6 +53,14 @@ namespace DuoLegend.Controllers
             
             return View(Service.ProcessMainPage.getRandomList());
         }
+
+        [HttpPost]
+        public IActionResult Search(MainPageViewModel searchInfor)
+        {
+            int a = 0;
+            MainPageViewModel test = searchInfor;
+            return View("Index",Service.ProcessMainPage.getRandomList());
+        }
         
     }
 }
