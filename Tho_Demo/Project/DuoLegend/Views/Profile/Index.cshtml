@@ -15,10 +15,13 @@
                 </div>
             </div>
             <div class="ProfileAction">
-                @if (@Context.Session.GetString("inGameName").Equals(Model.SummonerName) && @Context.Session.GetString("server").Equals(Model.Server))
-                {    
-                    //CHINH CAI EDIT O TRONG DAY NE ANH GIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-                    <a class="button" asp-controller="Profile" asp-action="UpdateUser">Edit</a>
+                @if (@Context.Session.GetString("inGameName") != null && @Context.Session.GetString("server") != null )
+                {
+                    @if (@Context.Session.GetString("inGameName").Equals(Model.SummonerName) && @Context.Session.GetString("server").Equals(Model.Server))
+                    {
+                        //CHINH CAI EDIT O TRONG DAY NE ANH GIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                        <a class="button" asp-controller="Profile" asp-action="UpdateUser">Edit</a>
+                    }
                 }
 
                 <button>Follow</button>
