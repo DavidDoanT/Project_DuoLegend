@@ -53,6 +53,18 @@ namespace DuoLegend.Controllers
             
             return View(Service.ProcessMainPage.getRandomList());
         }
-        
+        [HttpPost]
+        public IActionResult Search(MainPageViewModel searchInfor)
+        {
+            if (HttpContext.Session.GetString("email") is null)
+            {
+                ViewBag.isLogin = false;
+            }
+            else
+            {
+                ViewBag.isLogin = true;
+            }
+            return View("Index", Service.ProcessMainPage.getRandomList());
+        }
     }
 }

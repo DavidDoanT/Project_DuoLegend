@@ -76,7 +76,7 @@
 </form>
 
 <div class="backContainer">
-    <form>
+    <form asp-method="post" asp-controller="Home" asp-action="Search" id="Form">
 
 
 
@@ -227,7 +227,7 @@
 
         <div class="searchBar" style="display:inline-block;">
             <h3 style="margin-left: 5vw; font-size: 1vw;">Server</h3>
-            <select>
+            <select asp-for="search.Server">
                 <option>KR</option>
                 <option>EUN1</option>
                 <option>EUW1</option>
