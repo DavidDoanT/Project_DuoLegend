@@ -53,6 +53,12 @@ namespace DuoLegend.Controllers
             
             return View(Service.ProcessMainPage.getRandomList());
         }
+
+        /// <summary>
+        /// call search service and return information
+        /// </summary>
+        /// <param name="searchInfor"> information for search (rank, skil...) </param>
+        /// <returns>view with approriate data</returns>
         [HttpPost]
         public IActionResult Search(MainPageViewModel searchInfor)
         {

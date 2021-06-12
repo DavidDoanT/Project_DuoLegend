@@ -15,6 +15,11 @@ namespace DuoLegend.DAO
         private static SqlConnection conn = new SqlConnection();
         private static SqlCommand com = new SqlCommand();
 
+        /// <summary>
+        /// get 3 in game name with is match with server
+        /// </summary>
+        /// <param name="server"> server of user </param>
+        /// <returns>3 in game name that available in that server</returns>
         public static MainPageViewModel get3InGameNameByServer(string server)
         {
             com.Parameters.Clear();
@@ -37,7 +42,12 @@ namespace DuoLegend.DAO
             return infor;
         }
 
-
+        /// <summary>
+        /// ID use for API
+        /// </summary>
+        /// <param name="inGameName"></param>
+        /// <param name="server"></param>
+        /// <returns></returns>
         public static string getEncryptedSummonerId(string inGameName, string server)
         {
             com.Parameters.Clear();
@@ -222,6 +232,12 @@ namespace DuoLegend.DAO
             conn.Close();
             return user;
         }
+        /// <summary>
+        /// DAO for update user information
+        /// </summary>
+        /// <param name="userIn"></param> Object user contain new user information
+        /// <param name="oldEmail"></param> Email of user that are committing updating
+        /// <returns>boolean value</returns>
         public static bool Update(User userIn, string oldEmail)
         {
             com.Parameters.Clear();
@@ -252,9 +268,70 @@ namespace DuoLegend.DAO
             com.EndExecuteNonQuery(com.BeginExecuteNonQuery());
             conn.Close();
             return true;
-
         }
 
+        public static string getNote(string inGameName, string server)
+        {
+            com.Parameters.Clear();
+            conn.ConnectionString = MyConfig.ConnectionString;
+
+            conn.Open();
+            com.Connection = conn;
+
+            com.CommandText = "select Note  from testUser where inGameName = @inGameName and server=@server";
+
+            com.Parameters.AddWithValue("@inGameName", inGameName);
+            com.Parameters.AddWithValue("@server", server);
+            SqlDataReader reader = com.ExecuteReader();
+
+            if (reader.Read())
+            {
+                string temp= (string)reader["Note"];
+                conn.Close();
+                return temp;
+            }
+            else
+            {
+                conn.Close();
+                return null;
+            }
+            
+        }
+
+        public static bool isHaveMic(string inGameName, string server)
+        {
+            com.Parameters.Clear();
+            conn.ConnectionString = MyConfig.ConnectionString;
+
+            conn.Open();
+            com.Connection = conn;
+
+            com.CommandText = "select hasMic  from testUser where inGameName = @inGameName and server=@server";
+
+            com.Parameters.AddWithValue("@inGameName", inGameName);
+            com.Parameters.AddWithValue("@server", server);
+            SqlDataReader reader = com.ExecuteReader();
+
+            if (reader.Read())
+            {
+                bool temp = (bool)reader["hasMic"];
+                if(temp)
+                {
+                    conn.Close();
+                    return true;
+                }
+                else
+                {
+                    conn.Close();
+                    return false;
+                }               
+            }
+            else
+            {
+                conn.Close();
+                return false;
+            }
+        }
 
     }
 }

@@ -15,11 +15,15 @@ namespace DuoLegend.ViewModels
             ListUserInfor = new userInforMainPage[3];
             Server = new string[3];
             search = new Search();
+            Note = new string[3];
+            HasMic = new bool[3];
         }
         public Search search { get; set; }
         public string[] Rank { get; set; }
         public string[] InGameName { get; set; }
         public string[] Server { get; set; }
+        public string[] Note { get; set; }
+        public bool[] HasMic { get; set; }
         public userInforMainPage[] ListUserInfor { get; set; }
 
         //public string[] LatestPlayByName { get; set; }

@@ -24,6 +24,10 @@ namespace DuoLegend.Service
                 {
                     break;
                 }
+
+                infor.Note[i] = UserDAO.getNote(infor.InGameName[i], "KR");
+                infor.HasMic[i] = UserDAO.isHaveMic(infor.InGameName[i], "KR");
+
                 infor.Rank[i] = RiotAPI.RiotAPI.getRankByEncryptedSummonerId(UserDAO.getEncryptedSummonerId(infor.InGameName[i],"KR"), "KR").Rank; //hard code server KR
                 string[] listMatch = RiotAPI.RiotAPI.getListMatchIDbyPuuId(UserDAO.getPuuId(infor.InGameName[i]), "ASIA");
                 for (int j = 0; j < listMatch.Length; j++)
@@ -48,9 +52,9 @@ namespace DuoLegend.Service
             return infor;
         }
 
-        private static string getContinent(string server)
+        static string getContinent(string server)
         {
-            if(server.Equals("KR")|| server.Equals("JP1") || server.Equals("OC1"))
+            if(server.Equals("JP1") || server.Equals("KR") || server.Equals("OC1"))
             {
                 return "ASIA";
             }
@@ -58,14 +62,14 @@ namespace DuoLegend.Service
             {
                 return "AMERICAS";
             }
-            if (server.Equals("EUN1") || server.Equals("EUW1") || server.Equals("TR1") || server.Equals("RU"))
+            if (server.Equals("EUN1") || server.Equals("EUW2") || server.Equals("NA1") || server.Equals("RU") || server.Equals("TR1"))
             {
                 return "EUROPE";
             }
             return null;
         }
 
-        public static MainPageViewModel Search(String server)
+        public static MainPageViewModel Search(string server)
         {
             var infor = UserDAO.get3InGameNameByServer(server);
             for (int i = 0; i < infor.InGameName.Length; i++)
@@ -79,6 +83,10 @@ namespace DuoLegend.Service
                 {
                     break;
                 }
+
+                infor.Note[i] = UserDAO.getNote(infor.InGameName[i], server);
+                infor.HasMic[i] = UserDAO.isHaveMic(infor.InGameName[i], server);
+
                 infor.Rank[i] = RiotAPI.RiotAPI.getRankByEncryptedSummonerId(UserDAO.getEncryptedSummonerId(infor.InGameName[i], server), server).Rank; //hard code server KR
                 string[] listMatch = RiotAPI.RiotAPI.getListMatchIDbyPuuId(UserDAO.getPuuId(infor.InGameName[i]), getContinent(server));
                 for (int j = 0; j < listMatch.Length; j++)
