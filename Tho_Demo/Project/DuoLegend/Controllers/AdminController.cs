@@ -1,9 +1,9 @@
-using DuoLegend.DAO;
+﻿using DuoLegend.DAO;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DuoLegend.Controllers
 {
-    class AdminController : Controller 
+    public class AdminController : Controller 
     {
         //Directs to Login page
         public IActionResult Login()
@@ -13,15 +13,16 @@ namespace DuoLegend.Controllers
 
         //Handles admin Login
         [HttpPost]
-        public IActionResult Login(string email, string password)
+        public IActionResult Login(string email, string adminPassword)
         {
-            bool isLoginAllowed = AdminLoginDAO.Login(email, password);
+            bool isLoginAllowed = AdminLoginDAO.Login(email, adminPassword);
 
             if(isLoginAllowed){
-                return View("AdminMain");   //AdminMain not yet implemented
+                return View("Main");   //AdminMain not yet implemented
             }
 
             return View();
         }
+
     }
 }
