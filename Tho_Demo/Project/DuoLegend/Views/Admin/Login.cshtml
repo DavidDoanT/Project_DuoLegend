@@ -1,5 +1,5 @@
   <!--Temporary using shared layout-->
-  
+  @model Admin
   <!--Page container-->
     <div class="container vh-100">
         <!--The login form container-->
@@ -11,15 +11,15 @@
                     <h1>Login form</h1>
                 </div>
                 <!--THE ACTUAL FORM-->
-                <form style="border: 1px;" class="align-items-center">
+                <form style="border: 1px;" class="align-items-center" asp-controller="Admin" asp-action="Login" method="POST">
                     <div class="form-group row w-100">
-                        <label class="col-3 col-form-label">ID</label>
-                        <input class="col-8">
+                        <label class="col-3 col-form-label">Email</label>
+                        <input asp-for="Email" class="col-8" >
                     </div>
 
                     <div class="form-group row w-100">
                         <label class="col-3 col-form-label">Password</label>
-                        <input class="col-8" type="password">
+                        <input asp-for="AdminPassword" class="col-8" type="password" >
                     </div>  
 
                     <button value="login" class="btn btn-primary">Login</button>
