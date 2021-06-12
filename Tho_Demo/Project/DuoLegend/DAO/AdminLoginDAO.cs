@@ -5,7 +5,7 @@ using DuoLegend.GlobalConfig;
 
 namespace DuoLegend.DAO
 {
-    class AdminLoginDAO    
+    public class AdminLoginDAO    
     {
         private static SqlConnection conn = new SqlConnection();
         private static SqlCommand   cmd = new SqlCommand();
