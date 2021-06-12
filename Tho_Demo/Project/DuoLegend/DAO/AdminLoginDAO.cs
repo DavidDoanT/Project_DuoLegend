@@ -10,7 +10,7 @@ namespace DuoLegend.DAO
         private static SqlConnection conn = new SqlConnection();
         private static SqlCommand   cmd = new SqlCommand();
 
-        public static bool Login(string email, string adminPassword)
+        public static bool Login(string email, string password)
         {
             cmd.Parameters.Clear();
             conn.ConnectionString = MyConfig.ConnectionString;
@@ -37,7 +37,7 @@ namespace DuoLegend.DAO
             }
             
             //Compare adminPassword with password
-            if(adminPassword.Equals(dbPassword))
+            if(password.Equals(dbPassword))
             {
                 conn.Close();
                 reader.Close();
