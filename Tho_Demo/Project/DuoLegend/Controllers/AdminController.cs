@@ -11,16 +11,16 @@ namespace DuoLegend.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(string email, string password)
+        public IActionResult Login(string email, string adminPassword)
         {
-            bool isLoginAllowed = AdminLoginDAO.Login(email, password);
+            bool isLoginAllowed = AdminLoginDAO.Login(email, adminPassword);
 
-            if (isLoginAllowed)
-            {
-                return View("AdminMain");   //AdminMain not yet implemented
+            if(isLoginAllowed){
+                return View("Main");   //AdminMain not yet implemented
             }
 
             return View();
         }
+
     }
 }
