@@ -286,9 +286,17 @@ namespace DuoLegend.DAO
 
             if (reader.Read())
             {
-                string temp= (string)reader["Note"];
-                conn.Close();
-                return temp;
+
+                try
+                {
+                    string temp = (string)reader["Note"];
+                    conn.Close();
+                    return temp;
+                }catch(Exception)
+                {
+                    conn.Close();
+                    return "";
+                }             
             }
             else
             {
@@ -314,17 +322,25 @@ namespace DuoLegend.DAO
 
             if (reader.Read())
             {
-                bool temp = (bool)reader["hasMic"];
-                if(temp)
+                try
                 {
-                    conn.Close();
-                    return true;
+                    bool temp = (bool)reader["hasMic"];
+                    if (temp)
+                    {
+                        conn.Close();
+                        return true;
+                    }
+                    else
+                    {
+                        conn.Close();
+                        return false;
+                    }
                 }
-                else
+                catch(Exception)
                 {
                     conn.Close();
                     return false;
-                }               
+                }           
             }
             else
             {
