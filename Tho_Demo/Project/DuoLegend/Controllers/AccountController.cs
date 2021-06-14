@@ -46,7 +46,7 @@ namespace DuoLegend.Controllers
                 User user = UserDAO.getUserByEmail(acc.Email);
                 HttpContext.Session.SetString("inGameName", user.InGameName);
                 HttpContext.Session.SetString("server", user.Server);
-
+                HttpContext.Session.SetInt32("id", UserDAO.getIdByInGameNameServer(user.InGameName,user.Server));
                 return RedirectToAction("Index", "Home");
             }
             else
