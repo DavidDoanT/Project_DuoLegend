@@ -250,6 +250,7 @@ body{
         flex: 1 1;
         /* width: 100%; */
         cursor: pointer;
+        margin: 2%;
     }
     .ProfileMatchModeTime{
         display: flex;
@@ -386,7 +387,7 @@ body{
     .score{
         color: white;
     }
-    #ProfileMatchDetail{
+    .ProfileMatchDetail{
         color: white;
         background-color: #0b0b30;
         display: none;
@@ -503,3 +504,7 @@ body{
     .ProfileListItem{
         width: 27%;
     }
+    .active {
+        background-color: #666;
+        color: white;
+      }
