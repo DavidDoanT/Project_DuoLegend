@@ -34,6 +34,7 @@ namespace DuoLegend.Controllers
             infor.Win = rankInfor.Win;
             infor.Lose = rankInfor.Lose;
             infor.Server = server;
+            infor.Id = UserDAO.getIdByInGameNameServer(inGameName, server);
             return View(infor);
         }
 

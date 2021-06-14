@@ -175,17 +175,17 @@ namespace DuoLegend.RiotAPI
         {
             WebRequest request = WebRequest.Create("https://"+server+".api.riotgames.com/lol/summoner/v4/summoners/by-name/"+name+"?api_key="+RiotKey);
 
-            try
-            {
+            //try
+            //{
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
                 Stream dataStream = response.GetResponseStream();
                 dataStream.Close();
                 response.Close();
-            }
-            catch( Exception e)
-            {
-                return false;
-            }
+            //}
+            //catch( Exception e)
+            //{
+            //    return false;
+            //}
             return true;
         }
 

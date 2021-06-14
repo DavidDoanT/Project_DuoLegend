@@ -1,0 +1,33 @@
+﻿<link href="~/css/ChatPopup.css" rel="stylesheet" />
+<div class="modal-dialog">
+    <!--Mọi thứ của modal(popup) sẽ nằm ở trong element có class "modal-content"-->
+    <div class="modal-content">
+        <!--Đây là cái cục header của modal(popup)-->
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalTitle"></h5>
+            <button type="button" class="close" data-dismiss="modal">
+                <!--%times; là character entity cho dấu "x" (hay còn gọi là cái cục đóng bên góc phải phía trên cùng ấy)-->
+                <span>&times;</span>
+            </button>
+        </div>
+        <!--Đây là phần body của modal-->
+        <!--Đây sẽ là phần mình để những ngôi sao để cho người ta click vào-->
+        <div class="modal-body">
+            <div class="leftMessage">testtttt</div>
+            <div class="rightMessage">testtttt</div>
+            <input type="button" id="sendButton" value="Send Message">
+            <input id="messageInput">
+            <input id="sender" value="@ViewData["sender"]" disabled style="display: none">
+            <input id="receiver" value="@ViewData["receiver"]" disabled style="display: none">
+
+
+        </div>
+        <!--Đây là phần footer của modal-->
+        <div class="modal-footer">
+            <button style="width: 5vw; font-size: 1.25vw;text-align: center; padding-left: 0; padding-right: 0" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <a style="width: 5vw; font-size: 1.25vw;text-align: center; padding-left: 0; padding-right: 0" href="Account/RedirectLoginPage" type="button" class="btn btn-primary">Login</a>
+        </div>
+    </div>
+</div>
+<script src="~/js/signalR/dist/browser/signalr.js"></script>
+<script src="~/js/chat.js"></script>
