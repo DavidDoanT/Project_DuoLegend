@@ -1,7 +1,11 @@
 ﻿@model ProfileViewModel
 @using DuoLegend.DAO
     <link href="~/css/Profile.css" rel="stylesheet" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 @*bao nguyen trang profile*@
+<form class="modal fade" id="example">
+    <partial name="_ChatPopup" />
+</form>
     <div class="ProfileWrapper">
 
     @* khung info tren đầu trang của profile, gồm tên ingamename, avatar, level, nút edit, follow, rate *@
@@ -29,6 +33,7 @@
 
                 <button>Follow</button>
                 <button>Rate</button>
+                <button data-toggle="modal" data-target="#example" >Chat</button>
             </div>
         </div>
 

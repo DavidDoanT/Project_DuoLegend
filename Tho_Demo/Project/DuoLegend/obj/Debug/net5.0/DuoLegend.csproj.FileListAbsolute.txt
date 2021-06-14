@@ -383,3 +383,4 @@ C:\Users\Admin\Documents\GitHub\Project_DuoLegend\Tho_Demo\Project\DuoLegend\bin
 C:\Users\Admin\Documents\GitHub\Project_DuoLegend\Tho_Demo\Project\DuoLegend\obj\Debug\net5.0\Razor\Views\Admin\Login.cshtml.g.cs
 C:\Users\Admin\Documents\GitHub\Project_DuoLegend\Tho_Demo\Project\DuoLegend\obj\Debug\net5.0\Razor\Views\Admin\Main.cshtml.g.cs
 C:\Users\Admin\Documents\GitHub\Project_DuoLegend\Tho_Demo\Project\DuoLegend\obj\Debug\net5.0\Razor\Views\Shared\_LayoutAdmin.cshtml.g.cs
+C:\Users\Admin\Documents\GitHub\Project_DuoLegend\Tho_Demo\Project\DuoLegend\obj\Debug\net5.0\Razor\Views\Shared\_ChatPopup.cshtml.g.cs
