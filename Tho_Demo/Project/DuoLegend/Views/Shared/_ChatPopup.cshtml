@@ -15,8 +15,12 @@
         <div class="modal-body">
             <div class="leftMessage">testtttt</div>
             <div class="rightMessage">testtttt</div>
-            @ViewData["sender"]
-            @ViewData["receiver"]
+            <input type="button" id="sendButton" value="Send Message">
+            <input id="messageInput">
+            <input id="sender" value="@ViewData["sender"]" disabled style="display: none">
+            <input id="receiver" value="@ViewData["receiver"]" disabled style="display: none">
+
+
         </div>
         <!--Đây là phần footer của modal-->
         <div class="modal-footer">
@@ -25,3 +29,5 @@
         </div>
     </div>
 </div>
+<script src="~/js/signalR/dist/browser/signalr.js"></script>
+<script src="~/js/chat.js"></script>

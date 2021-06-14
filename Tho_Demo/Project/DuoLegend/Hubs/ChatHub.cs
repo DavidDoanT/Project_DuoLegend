@@ -9,9 +9,15 @@ namespace DuoLegend.Hubs
 {
     public class ChatHub : Hub
     {
-        public async Task SendMessage(string user, string message)
+        public async Task SendMessage(string message, string sender, string reciever)
         {
-            await Clients.All.SendAsync("ReceiveMessage", user, message);
+            int chatBoxId = DAO.ChatDAO.getBoxChatId(Int32.Parse(sender), Int32.Parse(reciever));
+
+            if (chatBoxId == 0)
+            {
+                DAO.ChatDAO.addBoxChat(Int32.Parse(sender), Int32.Parse(reciever));
+            }
+            await Clients.All.SendAsync("ReceiveMessage", message);
         }
     }
 }
