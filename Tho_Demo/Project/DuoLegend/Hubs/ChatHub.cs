@@ -13,10 +13,10 @@ namespace DuoLegend.Hubs
         {
             int chatBoxId = DAO.ChatDAO.getBoxChatId(Int32.Parse(sender), Int32.Parse(reciever));
 
-            if (chatBoxId == 0)
-            {
-                DAO.ChatDAO.addBoxChat(Int32.Parse(sender), Int32.Parse(reciever));
-            }
+
+            int a = 3;
+            int cc = 4;
+            
             await Clients.All.SendAsync("ReceiveMessage", message);
         }
     }
