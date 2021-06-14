@@ -27,7 +27,7 @@ namespace DuoLegend.DAO
 
             conn.Open();
             com.Connection = conn;
-            com.CommandText = "select top 3  inGameName from testUser where server=@server order by NEWID() ";
+            com.CommandText = "select top 3  inGameName from [User] where server=@server order by NEWID() ";
             com.Parameters.AddWithValue("@server", server);
             SqlDataReader reader = com.ExecuteReader();
             MainPageViewModel infor = new MainPageViewModel();
@@ -60,7 +60,7 @@ namespace DuoLegend.DAO
             conn.Open();
             com.Connection = conn;
 
-            com.CommandText = "select id  from testUser where inGameName = @inGameName and server = @server";
+            com.CommandText = "select id  from [User] where inGameName = @inGameName and server = @server";
             com.Parameters.AddWithValue("@server", server);
             com.Parameters.AddWithValue("@inGameName", inGameName);
             SqlDataReader reader = com.ExecuteReader();
@@ -92,7 +92,7 @@ namespace DuoLegend.DAO
             conn.Open();
             com.Connection = conn;
 
-            com.CommandText = "select puuid  from testUser where inGameName = @inGameName";
+            com.CommandText = "select puuid  from [User] where inGameName = @inGameName";
 
             com.Parameters.AddWithValue("@inGameName", inGameName);
             SqlDataReader reader = com.ExecuteReader();
@@ -119,7 +119,7 @@ namespace DuoLegend.DAO
 
             conn.Open();
             com.Connection = conn;
-            com.CommandText = "select * from TestUser where email = '" + email + "' and password = '" + password + "' ";
+            com.CommandText = "select * from [User] where email = '" + email + "' and password = '" + password + "' ";
             SqlDataReader reader = com.ExecuteReader();
             if (reader.Read())
             {
@@ -145,7 +145,7 @@ namespace DuoLegend.DAO
             conn.Open();
             com.Connection = conn;
 
-            com.CommandText = "select email from testUser where email = @email";
+            com.CommandText = "select email from [User] where email = @email";
             com.Parameters.AddWithValue("@email", email);
 
             SqlDataReader reader = com.ExecuteReader();
@@ -173,7 +173,7 @@ namespace DuoLegend.DAO
             conn.Open();
             com.Connection = conn;
 
-            com.CommandText = "INSERT INTO testUser(inGameId,inGameName,password,server,email,id,accountId,puuid,isDeleted) VALUES(@inGameId,@inGameName,@password,@server,@email,@id,@accountId,@puuid,@isDeleted)";
+            com.CommandText = "INSERT INTO [User](inGameId,inGameName,password,server,email,id,accountId,puuid,isDeleted) VALUES(@inGameId,@inGameName,@password,@server,@email,@id,@accountId,@puuid,@isDeleted)";
             com.Parameters.AddWithValue("@inGameId", user.Id);
             com.Parameters.AddWithValue("@inGameName", user.InGameName);
             com.Parameters.AddWithValue("@password", user.Password);
@@ -213,7 +213,7 @@ namespace DuoLegend.DAO
             conn.Open();
             com.Connection = conn;
 
-            com.CommandText = "select inGameName,server  from testUser where email = @email";
+            com.CommandText = "select inGameName,server  from [User] where email = @email";
 
             com.Parameters.AddWithValue("@email", email);
             SqlDataReader reader = com.ExecuteReader();
@@ -258,7 +258,7 @@ namespace DuoLegend.DAO
                 temp = 0;
             }
 
-            com.CommandText = "UPDATE TestUser SET inGameName = @NewInGameName, server = @NewServer, hasMic = @NewHasMic,note = @NewNote, lane = @NewLane  WHERE email = @oldEmail";
+            com.CommandText = "UPDATE [User] SET inGameName = @NewInGameName, server = @NewServer, hasMic = @NewHasMic,note = @NewNote, lane = @NewLane  WHERE email = @oldEmail";
             com.Parameters.AddWithValue("@NewInGameName", userIn.InGameName);
             com.Parameters.AddWithValue("@NewServer", userIn.Server);
             com.Parameters.AddWithValue("@NewHasMic", temp);
@@ -278,7 +278,7 @@ namespace DuoLegend.DAO
             conn.Open();
             com.Connection = conn;
 
-            com.CommandText = "select Note  from testUser where inGameName = @inGameName and server=@server";
+            com.CommandText = "select Note  from [User] where inGameName = @inGameName and server=@server";
 
             com.Parameters.AddWithValue("@inGameName", inGameName);
             com.Parameters.AddWithValue("@server", server);
@@ -314,7 +314,7 @@ namespace DuoLegend.DAO
             conn.Open();
             com.Connection = conn;
 
-            com.CommandText = "select hasMic  from testUser where inGameName = @inGameName and server=@server";
+            com.CommandText = "select hasMic  from [User] where inGameName = @inGameName and server=@server";
 
             com.Parameters.AddWithValue("@inGameName", inGameName);
             com.Parameters.AddWithValue("@server", server);
