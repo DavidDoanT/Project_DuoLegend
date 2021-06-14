@@ -17,7 +17,6 @@
     <Folder Include="wwwroot\images\" />
     <Folder Include="wwwroot\img\Champions\" />
     <Folder Include="wwwroot\img\Items\" />
-    <Folder Include="wwwroot\js\" />
     <Folder Include="wwwroot\lib\bootstrap\" />
     <Folder Include="wwwroot\lib\bootstrap\dist\js\" />
     <Folder Include="wwwroot\lib\jquery-validation-unobtrusive\" />

@@ -232,6 +232,35 @@ namespace DuoLegend.DAO
             conn.Close();
             return user;
         }
+
+        public static int getIdByInGameNameServer(string inGameName, string server)
+        {
+            int id;
+            com.Parameters.Clear();
+            conn.ConnectionString = MyConfig.ConnectionString;
+
+            conn.Open();
+            com.Connection = conn;
+
+            com.CommandText = "select userid  from [User] where inGameName=@inGameName and server=@server";
+
+            com.Parameters.AddWithValue("@inGameName", inGameName);
+            com.Parameters.AddWithValue("@server", server);
+            SqlDataReader reader = com.ExecuteReader();
+
+            if (reader.Read())
+            {
+
+                id = Int32.Parse(reader["userid"].ToString());
+                conn.Close();
+                return id;
+            }
+            else
+            {
+                conn.Close();
+                return 0;
+            }
+        }
         /// <summary>
         /// DAO for update user information
         /// </summary>

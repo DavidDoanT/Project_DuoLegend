@@ -3,8 +3,12 @@
     <link href="~/css/Profile.css" rel="stylesheet" />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 @*bao nguyen trang profile*@
+@{ 
+    ViewData["receiver"] = Model.Id;
+    ViewData["sender"] = Context.Session.GetInt32("id");
+}
 <form class="modal fade" id="example">
-    <partial name="_ChatPopup" />
+    <partial name="_ChatPopup" view-data="ViewData"/>
 </form>
     <div class="ProfileWrapper">
 
