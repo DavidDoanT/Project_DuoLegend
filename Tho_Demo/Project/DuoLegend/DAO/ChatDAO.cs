@@ -80,33 +80,31 @@ namespace DuoLegend.DAO
             conn.Close();
         }
 
-        public static boxChatDetail GetBoxChatDetailById(int id)
+        public static List<boxChatDetail> GetListBoxChatDetailById(int id)
         {
-            boxChatDetail detail = new boxChatDetail();
+            List<boxChatDetail> list = new List<boxChatDetail>();
             com.Parameters.Clear();
             conn.ConnectionString = MyConfig.ConnectionString;
 
             conn.Open();
             com.Connection = conn;
 
-            com.CommandText = "select [content],sendFrom  from boxChatDetail where boxChatId=@id";
+            com.CommandText = "select top 15 [content],sendFrom  from boxChatDetail where boxChatId=@id";
 
             com.Parameters.AddWithValue("@id", id);
 
             SqlDataReader reader = com.ExecuteReader();
 
-            if (reader.Read())
+            while (reader.Read())
             {
+                boxChatDetail detail = new boxChatDetail();
                 detail.Content = reader["content"].ToString();
                 detail.SendFrom = Int32.Parse(reader["sendFrom"].ToString());
-                conn.Close();
-                return detail;
+                list.Add(detail);
             }
-            else
-            {
-                conn.Close();
-                return detail;
-            }
+            conn.Close();
+            return list;
+            
         }
 
     }

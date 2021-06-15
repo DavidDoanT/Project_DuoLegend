@@ -12,14 +12,12 @@
         </div>
         <!--Đây là phần body của modal-->
         <!--Đây sẽ là phần mình để những ngôi sao để cho người ta click vào-->
-        <div class="modal-body">
-            <div class="leftMessage">testtttt</div>
-            <div class="rightMessage">testtttt</div>
-            <input type="button" id="sendButton" value="Send Message">
+        <div class="modal-body" id="messagesList">
+
             <input id="messageInput">
             <input id="sender" value="@ViewData["sender"]" disabled style="display: none">
             <input id="receiver" value="@ViewData["receiver"]" disabled style="display: none">
-
+            <input type="button" id="sendButton" value="Send Message">
 
         </div>
         <!--Đây là phần footer của modal-->

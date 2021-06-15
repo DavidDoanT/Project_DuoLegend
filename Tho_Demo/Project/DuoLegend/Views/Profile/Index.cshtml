@@ -26,7 +26,7 @@
                 </div>
             </div>
             <div class="ProfileAction">
-                @if (@Context.Session.GetString("inGameName") != null && @Context.Session.GetString("server") != null )
+                @if (@Context.Session.GetString("inGameName") != null && @Context.Session.GetString("server") != null)
                 {
                     @if (@Context.Session.GetString("inGameName").Equals(Model.SummonerName) && @Context.Session.GetString("server").Equals(Model.Server))
                     {
@@ -37,7 +37,7 @@
 
                 <button>Follow</button>
                 <button>Rate</button>
-                <button data-toggle="modal" data-target="#example" >Chat</button>
+                <button data-toggle="modal" data-target="#example">Chat</button>
             </div>
         </div>
 
