@@ -32,7 +32,7 @@ namespace DuoLegend.Controllers
         public IActionResult Index()
         {
             //RiotAPI.RiotAPI.setChampionInfor(); // bo cmt dong nay 
-            RiotAPI.RiotAPI.setItemInfo();
+            //RiotAPI.RiotAPI.setItemInfo();
             //check session
             if (HttpContext.Session.GetString("email") is null)
             {                
