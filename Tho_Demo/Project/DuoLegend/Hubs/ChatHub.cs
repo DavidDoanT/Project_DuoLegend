@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DuoLegend.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.SignalR;
-
+using Microsoft.AspNetCore.Mvc;
 
 namespace DuoLegend.Hubs
 {
     public class ChatHub : Hub
     {
+
         public async Task SendMessage(string message, string sender, string reciever)
         {
             int boxChatId = DAO.ChatDAO.getBoxChatId(Int32.Parse(sender), Int32.Parse(reciever));
@@ -19,14 +21,12 @@ namespace DuoLegend.Hubs
                 DAO.ChatDAO.addBoxChat(Int32.Parse(sender), Int32.Parse(reciever));
                 boxChatId = DAO.ChatDAO.getBoxChatId(Int32.Parse(sender), Int32.Parse(reciever)); //dong nay chua optimize
             }
-
-            DAO.ChatDAO.addChatContent(boxChatId,message,Int32.Parse(sender));
-
-            boxChatDetail chatDetail = DAO.ChatDAO.GetBoxChatDetailById(boxChatId);
-            
-            
-
-            await Clients.All.SendAsync("ReceiveMessage", message);
+            if(message != null)
+            {
+                DAO.ChatDAO.addChatContent(boxChatId, message, Int32.Parse(sender));
+            }           
+            await Groups.AddToGroupAsync(Context.ConnectionId, boxChatId.ToString());
+            await Clients.Groups(boxChatId.ToString()).SendAsync("ReceiveMessage", message, sender);
         }
     }
 }
