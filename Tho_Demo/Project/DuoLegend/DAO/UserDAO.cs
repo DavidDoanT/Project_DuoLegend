@@ -203,6 +203,22 @@ namespace DuoLegend.DAO
             com.EndExecuteNonQuery(com.BeginExecuteNonQuery());
             conn.Close();
         }
+        public static void addItem(string id, string name, string path)
+        {
+            com.Parameters.Clear();
+
+            conn.ConnectionString = MyConfig.ConnectionString;
+
+            conn.Open();
+            com.Connection = conn;
+
+            com.CommandText = "INSERT INTO Item(itemId,itemName,iconPath) VALUES(@itemId,@itemName,@iconPath)";
+            com.Parameters.AddWithValue("@itemId", id);
+            com.Parameters.AddWithValue("@itemName", name);
+            com.Parameters.AddWithValue("@iconPath", path);
+            com.EndExecuteNonQuery(com.BeginExecuteNonQuery());
+            conn.Close();
+        }
 
         public static User getUserByEmail(string email)
         {

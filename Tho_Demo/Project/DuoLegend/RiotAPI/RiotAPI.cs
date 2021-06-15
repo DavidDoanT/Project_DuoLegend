@@ -266,7 +266,6 @@ namespace DuoLegend.RiotAPI
                     UserDAO.addChamp(championID, championName, iconpath);
                 }
             }
-
             ////string championID = resultFromRiot[i].key;
             ////string championName = resultFromRiot[i].id;
             ////string iconpath = "~/img/Champions/" + resultFromRiot[i].id + ".png";
@@ -274,6 +273,29 @@ namespace DuoLegend.RiotAPI
             reader.Close();
             dataStream.Close();
             response.Close();
+        }
+        public static void setItemInfo()
+        {
+            WebRequest request = WebRequest.Create("http://ddragon.leagueoflegends.com/cdn/11.12.1/data/en_US/item.json");
+
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            Stream dataStream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(dataStream);
+            string responseFromServer = reader.ReadToEnd();
+            dynamic resultFromRiot1 = JsonConvert.DeserializeObject(responseFromServer);
+            dynamic resultFromRiot2 = resultFromRiot1.data;
+            foreach (dynamic item in resultFromRiot2)
+            {
+                foreach (var infor in item)
+                {
+                    string it = infor.image.full;
+                    string[] itArr = it.Split(".");
+                    string itemID = itArr[0];
+                    string itName = infor.name;
+                    string iconpath = "img/Items/" + itemID + ".png";
+                    UserDAO.addItem(itemID, itName, iconpath);
+                }
+            }
         }
     }
 }
