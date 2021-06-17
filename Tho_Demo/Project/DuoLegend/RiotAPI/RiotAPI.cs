@@ -159,12 +159,27 @@ namespace DuoLegend.RiotAPI
                     break;
                 }
             }
+            //gan tung so lieu cua tran dau
             infor.Kill = resultFromRiot.info.participants[flag].kills;
             infor.Death = resultFromRiot.info.participants[flag].deaths;
             infor.Assist = resultFromRiot.info.participants[flag].assists;
             infor.IsWin = resultFromRiot.info.participants[flag].win;
             infor.ChampName = resultFromRiot.info.participants[flag].championName;
             infor.ChampId = resultFromRiot.info.participants[flag].championId;
+            infor.MatchMode = resultFromRiot.info.gameMode;
+            infor.Gold = resultFromRiot.info.participants[flag].goldEarned;
+            infor.MinionsKill = resultFromRiot.info.participants[flag].totalMinionsKilled;
+            infor.Spell1Id = resultFromRiot.info.participants[flag].summoner1Id;
+            infor.Spell2Id = resultFromRiot.info.participants[flag].summoner2Id;
+            infor.ChampLevel = resultFromRiot.info.participants[flag].champLevel;
+
+            infor.ItemId[0] = resultFromRiot.info.participants[flag].item0;
+            infor.ItemId[1] = resultFromRiot.info.participants[flag].item1;
+            infor.ItemId[2] = resultFromRiot.info.participants[flag].item2;
+            infor.ItemId[3] = resultFromRiot.info.participants[flag].item3;
+            infor.ItemId[4] = resultFromRiot.info.participants[flag].item4;
+            infor.ItemId[5] = resultFromRiot.info.participants[flag].item5;
+            infor.ItemId[6] = resultFromRiot.info.participants[flag].item6;
             reader.Close();
             dataStream.Close();
             response.Close();
