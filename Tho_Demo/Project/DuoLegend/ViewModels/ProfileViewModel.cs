@@ -1,5 +1,4 @@
-﻿using DuoLegend.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -143,6 +142,6 @@ namespace DuoLegend.ViewModels
             get { return _top3MasteryCode; }
             set { _top3MasteryCode = value; }
         }
-        public MatchInfor[] MatchList { get; set; } = new MatchInfor[3];
+
     }
 }
