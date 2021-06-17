@@ -46,6 +46,10 @@
                     </div>
 
                     <button value="login" class="btn btn-primary">Login</button>
+                    @if(ViewBag.loginFailed != null && ViewBag.loginFailed)
+                    {
+                        <span class="text-danger">Wrong email or password</span>
+                    }
                 </form>
             </div>
         </div>

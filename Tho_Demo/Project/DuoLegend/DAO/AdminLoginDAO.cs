@@ -1,52 +1,37 @@
 
-
+using DuoLegend.DatabaseConnection;
 using System.Data.SqlClient;
 using DuoLegend.GlobalConfig;
 
 namespace DuoLegend.DAO
 {
-    public class AdminLoginDAO    
+    public class AdminLoginDAO
     {
-        private static SqlConnection conn = new SqlConnection();
-        private static SqlCommand   cmd = new SqlCommand();
 
         public static bool Login(string email, string adminPassword)
         {
-            cmd.Parameters.Clear();
-            conn.ConnectionString = MyConfig.ConnectionString;
+            DbConnection.Connect();
 
-            conn.Open();
-            cmd.Connection = conn;
+            DbConnection.Cmd.CommandText = "SELECT email, adminPassword FROM admin WHERE email = @email";
+            DbConnection.Cmd.Parameters.AddWithValue("email", email);
 
-            cmd.CommandText = "SELECT email, adminPassword FROM admin WHERE email = @email";
-            cmd.Parameters.AddWithValue("email", email);
-
-            SqlDataReader reader = cmd.ExecuteReader();
+            SqlDataReader reader = DbConnection.Cmd.ExecuteReader();
 
             string dbPassword;
-            //Get adminPassword from database;
-            if(reader.Read())
+            //Get adminPassword from database and check for validity of inputted password;
+            if (reader.Read())
             {
                 dbPassword = reader["adminPassword"].ToString();
+
+                if (adminPassword.Equals(dbPassword))
+                {
+                    DbConnection.Disconnect();
+                    return true;
+                }
             }
-            else
-            {
-                conn.Close();
-                reader.Close();
-                return false;
-            }
-            
-            //Compare adminPassword with password
-            if(adminPassword.Equals(dbPassword))
-            {
-                conn.Close();
-                reader.Close();
-                return true;
-            }
-            
+            DbConnection.Disconnect();
             return false;
-            
         }
-    
+
     }
 }
