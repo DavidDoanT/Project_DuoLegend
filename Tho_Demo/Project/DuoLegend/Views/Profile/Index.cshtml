@@ -1,5 +1,6 @@
 ﻿@model ProfileViewModel
 @using DuoLegend.DAO
+@using DuoLegend.RiotAPI
     <link href="~/css/Profile.css" rel="stylesheet" />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 @*bao nguyen trang profile*@
@@ -181,16 +182,27 @@
                 <div class="ProfileControl__1Jz_7">
                     <h2 class="Profile_title__1H79G">Match History</h2>
                 </div>
-
+                @{ 
+                    string[] listMatchId = RiotAPI.getListMatchIDbyPuuId(UserDAO.getPuuId(@Model.SummonerName), "ASIA");
+                    for (int i = 0; i < listMatchId.Length; i++)
+                    {
+                        @Model.MatchList[i]= RiotAPI.getMatchInfor(listMatchId[i], "ASIA", UserDAO.getEncryptedSummonerId(@Model.SummonerName, "KR"));
+                    }
+                }
             @* danh sách từng trận *@
                 <div class="ProfileHistoryList">
+                    @{ 
+                        for (int i = 0; i < @Model.MatchList.Length; i++)
+                        {
+
+
 
                  <!-- nếu thắng thì màu này, thua thì màu đỏ rgb(91, 10, 10) -->
                     <div class="ProfileMatchContent" style="background-color: rgb(0, 0, 25);" onclick="myFunction(this.nextElementSibling)">
                    
                     @* chế độ và thời gian trận đấu *@
                         <div class="ProfileMatchModeTime">
-                            <span><b>ARAM</b></span>
+                            <span><b>@Model.MatchList[i].MatchMode</b></span>
                             <span>25:43</span>
                             <span>1/1/2021</span>
                         </div>
@@ -200,7 +212,7 @@
                             <div class="ProfileMatchChampionLevel">
                                 <div class="ProfileMatchChampion">
                                     <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/champion/Nasus.png">
-                                    <span class="ProfileMatchLevel"> 15</span>
+                                    <span class="ProfileMatchLevel"> @Model.MatchList[i].ChampLevel</span>
                                 </div>
                             </div>
                         @* Phép bổ trợ *@
@@ -225,17 +237,17 @@
 
                         @* KDA *@
                         <div class="ProfileMatchKDA">
-                            <span class="KDA">0/17/5</span>
+                            <span class="KDA">@Model.MatchList[i].Kill/@Model.MatchList[i].Death/@Model.MatchList[i].Assist</span>
                         </div>
 
                         @* Vàng và chỉ số lính *@
                         <div class="ProfileMatchGoldMinion">
                             <div class="ProfileGold">
-                                <span>10.4k</span>
+                                <span>@Model.MatchList[i].Gold</span>
                                 <img src="https://lienminhpro.com/images/icons/ico-gold.svg">
                             </div>
                             <div class="ProfileMinion">
-                                <span>124</span>
+                                <span>@Model.MatchList[i].MinionsKill</span>
                                 <img src="https://lienminhpro.com/images/icons/ico-gold.svg">
                             </div>
                         </div>
@@ -275,7 +287,7 @@
                             </div>
                         </div>
                     </div>
-                
+
                 @* Chi tiết trân đấu, gồm đầy đủ 10 player trong trận *@
                     <div id="ProfileMatchDetail">
                         <div class="ProfileTeamInfo">
@@ -577,7 +589,9 @@
 
                             </div>
                         </div>
-                    </div> -->
+                    </div>
+                        }
+                      }
                 </div>
             </div>
         </div>

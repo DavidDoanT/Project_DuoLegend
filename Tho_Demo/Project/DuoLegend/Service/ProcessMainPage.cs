@@ -27,8 +27,8 @@ namespace DuoLegend.Service
 
                 infor.Note[i] = UserDAO.getNote(infor.InGameName[i], "KR");
                 infor.HasMic[i] = UserDAO.isHaveMic(infor.InGameName[i], "KR");
-
                 infor.Rank[i] = RiotAPI.RiotAPI.getRankByEncryptedSummonerId(UserDAO.getEncryptedSummonerId(infor.InGameName[i],"KR"), "KR").Rank; //hard code server KR
+                
                 string[] listMatch = RiotAPI.RiotAPI.getListMatchIDbyPuuId(UserDAO.getPuuId(infor.InGameName[i]), "ASIA");
                 for (int j = 0; j < listMatch.Length; j++)
                 {
