@@ -35,6 +35,11 @@ namespace DuoLegend.Controllers
             infor.Lose = rankInfor.Lose;
             infor.Server = server;
             infor.Id = UserDAO.getIdByInGameNameServer(inGameName, server);
+            string[] listMatchId = RiotAPI.RiotAPI.getListMatchIDbyPuuId(UserDAO.getPuuId(infor.SummonerName), "ASIA");
+            for (int i = 0; i < listMatchId.Length; i++)
+            {
+                infor.MatchList[i] = RiotAPI.RiotAPI.getMatchInfor(listMatchId[i], "ASIA", UserDAO.getEncryptedSummonerId(infor.SummonerName, "KR"));
+            }
             return View(infor);
         }
 
