@@ -22,7 +22,11 @@
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
 <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js" type="text/javascript"></script>
 <script>
+    
     $().ready(function () {
+        $.validator.addMethod("validatePassword", function (value, element) {
+            return this.optional(element) || /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}$/i.test(value);
+        }, "Please enter password contains 8 to 16 letters, including uppercase, lowercase and at least one number");
         $("#Form").validate({
             rules: {
                 "ingameName": {
@@ -36,7 +40,9 @@
 
                 "password": {
                     required: true,
-                    maxlength: 32
+                    validatePassword: true,
+                    minlength: 8,
+                    
                 },
 
                 "passwordCheck": {
