@@ -1,10 +1,15 @@
 ﻿@model LoginInfor
 <link href="~/css/Login.css" rel="stylesheet" />
+
+<link rel="stylesheet" href="~/lib/icons-1.5.0/font/bootstrap-icons.css">
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
 <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js" type="text/javascript"></script>
 <style>
     label.error {
         color: red;
+    }
+    .form-control {
+        width: 95%;
     }
 </style>
 <script>
@@ -34,33 +39,6 @@
         });
     });
 </script>
-@*<div class="container">
-        <center>
-            <div class="backContainer">
-
-                <form class="form-signin" asp-method="post" asp-controller="Account" asp-action="Login">
-                    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="username" name = "username" asp-for="username" placeholder="Username" autofocus>
-                        <hr>
-                        <small id="usernamehelp" class="form-text text-muted">We'll never require your Garena account.</small>
-                    </div>
-                    <div class="form-group">
-                        <input type="password" name="password" class="form-control" asp-for="password" placeholder="Password">
-                    </div>
-                    <hr>
-                    <div class="form-group form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Remember me</label>
-                        <a href="#">Forgot password?</a>
-                    </div>
-                    <button type="submit" class="btn btn-danger button">Log in</button>
-                    <button type="button" class="btn btn-danger buttonfacebook">Log in with Facebook</button>
-                </form>
-            </div>
-        </center>
-    </div>*@
 
 <div class="container">
 
@@ -75,14 +53,19 @@
                        placeholder="Please enter your email">
                 <small id="usernamehelp" class="form-text text-muted">We'll never require your Garena account.</small>
             </div>
+
+
             <div class="form-group">
                 <input type="password" class="form-control" placeholder="Please enter your password" name="password"
-                       asp-for="Password">
+                       asp-for="Password" id="id_password" >
+                <i class="bi bi-eye-slash" id="togglePassword" style="margin-left: -30px; cursor: pointer;"></i>
             </div>
              @if (ViewBag.isCorrect == false)
                     {
                         <p style="color: red">Wrong email or password</p>
                       } 
+
+
         <div class="form-check">
             <input class="form-check-input" type="checkbox" name="RememberMe" value="true" id="RememberMe" asp-for="RememberMe">
             <label class="" for="RememberMe" style="color: white;">
@@ -99,3 +82,17 @@
 
 
 </div>
+
+@*Javascript code too show/hide password*@
+<script>
+    const togglePassword = document.querySelector('#togglePassword');
+    const password = document.querySelector('#id_password');
+
+    togglePassword.addEventListener('click', function (e) {
+        // toggle the type attribute
+        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+        password.setAttribute('type', type);
+        // toggle the eye slash icon
+        this.classList.toggle('bi-eye');
+    });
+</script>
