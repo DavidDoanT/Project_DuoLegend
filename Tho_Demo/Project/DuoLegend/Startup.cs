@@ -32,6 +32,7 @@ namespace DuoLegend
                 cfg.IdleTimeout = new TimeSpan(0, 120, 0);    // Thời gian tồn tại của Session
             });
             services.AddSignalR();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
