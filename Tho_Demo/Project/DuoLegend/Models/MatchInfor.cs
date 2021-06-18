@@ -14,5 +14,14 @@ namespace DuoLegend.Models
         public bool IsWin { get; set; }
         public string ChampName { get; set; }
         public int ChampId { get; set; }
+        public string MatchMode { get; set; }
+        public int Spell1Id { get; set; }
+        public int Spell1Name { get; set; }
+        public int Spell2Id { get; set; }
+        public int Spell2Name { get; set; }
+        public int ChampLevel { get; set; }
+        public int Gold { get; set; }
+        public int MinionsKill { get; set; }
+        public int[] ItemId { get; set; } = new int[7];
     }
 }

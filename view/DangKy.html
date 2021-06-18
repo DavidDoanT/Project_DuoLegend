@@ -92,7 +92,8 @@
         </div>
         <div class="form-group">
           <label>Password: </label>
-          <input type="password" class="form-control" name="password" placeholder="Enter password">
+          <input type="password" class="form-control" name="password" placeholder="Enter password" id="id_password">
+          <span onclick="ShowPassword();" style="color: white;"> showpassword</span>
         </div>
         <div class="form-group">
           <label> Password Confirm:</label>
@@ -112,7 +113,16 @@
     </center>
   </div>
 
-
+<script type="text/javascript">
+  function ShowPassword() {
+    var x = document.getElementById("id_password");
+      if (x.type === "password") {
+       x.type = "text";
+       } else {
+       x.type = "password";
+    }
+}
+</script>
 
 </body>
 </html>
