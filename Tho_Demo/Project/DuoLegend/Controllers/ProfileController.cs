@@ -77,7 +77,9 @@ namespace DuoLegend.Controllers
         [HttpGet]
         public IActionResult UpdateUser()
         {
-            return View("Update");
+            var emailuser = HttpContext.Session.GetString("email");
+            var userInfo = UserDAO.getUserByEmail(emailuser);
+            return View("Update",userInfo);
         }
     }
 }

@@ -229,14 +229,17 @@ namespace DuoLegend.DAO
             conn.Open();
             com.Connection = conn;
 
-            com.CommandText = "select inGameName,server  from [User] where email = @email";
+            com.CommandText = "select inGameName,server,hasMic,lane,note from [User] where email = @email";
 
             com.Parameters.AddWithValue("@email", email);
             SqlDataReader reader = com.ExecuteReader();
 
             if (reader.Read())
             {
-
+                
+                user.Note = (string)reader["note"];
+                user.Lane = (string)reader["lane"];
+                user.HasMic = (bool)reader["hasMic"];
                 user.InGameName = (string)reader["inGameName"];
                 user.Server = (string)reader["server"];
             }
