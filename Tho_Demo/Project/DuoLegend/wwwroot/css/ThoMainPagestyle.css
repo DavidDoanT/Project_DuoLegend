@@ -163,14 +163,16 @@ table, th, td {
 	height: 10vh;
 	/*	line-height: 10vh;*/
 	text-align: center;
-	background-color: #3835dc7a;
+	background-color: #3835dc;
 	border-radius: 1vw;
 	color: white;
 	font-family: arial;
 	font-size: 2vw;
+	font-family: Friz Quadrata;
+	border: hidden;
 }
 
-input[type="submit"].buttons:hover {
+.buttons:hover {
 	background-color: var(--red);
 }
 
@@ -199,6 +201,9 @@ input[type="submit"].buttons:hover {
 	}
 
 .btnPlayStyle {
-	width: 13rem;;
+	width: 13rem;
 	padding: .5rem 3rem;
+}
+i {
+	padding-right: 15px;
 }
