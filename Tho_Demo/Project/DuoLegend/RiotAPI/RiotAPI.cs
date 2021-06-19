@@ -129,7 +129,14 @@ namespace DuoLegend.RiotAPI
 
             for (int i = 0; i < 3; i++)
             {
-                matchList[i] = resultFromRiot[i];
+                try
+                {
+                    matchList[i] = resultFromRiot[i];
+                }
+                catch(Exception)
+                {
+                    break;
+                }
             }
 
             reader.Close();
@@ -140,6 +147,10 @@ namespace DuoLegend.RiotAPI
 
         public static MatchInfor getMatchInfor(string id, string server, string summonerID)
         {
+            if(id is null)
+            {
+                return new MatchInfor();
+            }
             WebRequest request = WebRequest.Create("https://"+server+".api.riotgames.com/lol/match/v5/matches/"+id+"?api_key="+RiotKey);
 
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();

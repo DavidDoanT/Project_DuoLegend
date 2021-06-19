@@ -25,6 +25,7 @@ namespace DuoLegend.Service
                     break;
                 }
 
+                infor.Lane[i] = UserDAO.getLane(infor.InGameName[i], "KR");
                 infor.Note[i] = UserDAO.getNote(infor.InGameName[i], "KR");
                 infor.HasMic[i] = UserDAO.isHaveMic(infor.InGameName[i], "KR");
 
@@ -86,7 +87,7 @@ namespace DuoLegend.Service
 
                 infor.Note[i] = UserDAO.getNote(infor.InGameName[i], server);
                 infor.HasMic[i] = UserDAO.isHaveMic(infor.InGameName[i], server);
-
+                infor.Lane[i] = UserDAO.getLane(infor.InGameName[i], server);
                 infor.Rank[i] = RiotAPI.RiotAPI.getRankByEncryptedSummonerId(UserDAO.getEncryptedSummonerId(infor.InGameName[i], server), server).Rank; //hard code server KR
                 string[] listMatch = RiotAPI.RiotAPI.getListMatchIDbyPuuId(UserDAO.getPuuId(infor.InGameName[i]), getContinent(server));
                 for (int j = 0; j < listMatch.Length; j++)
