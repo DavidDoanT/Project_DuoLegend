@@ -125,9 +125,9 @@ namespace DuoLegend.RiotAPI
             string responseFromServer = reader.ReadToEnd();
             
             dynamic resultFromRiot = JsonConvert.DeserializeObject(responseFromServer);
-            string[] matchList = new string[3];
+            string[] matchList = new string[resultFromRiot.Count];
 
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < resultFromRiot.Count; i++)
             {
                 try
                 {
