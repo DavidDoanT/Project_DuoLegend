@@ -32,7 +32,7 @@
                     {
                         //CHINH CAI EDIT O TRONG DAY NE ANH GIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
                         <a class="button" asp-controller="Profile" asp-action="UpdateUser">Edit</a>
-                        
+
                     }
                 }
 
@@ -176,7 +176,16 @@
 
                 </div>
             </div>
-
+        
+            @if (ViewBag.hasHistory == false) 
+            { 
+                <div class="ProfileHistory" >
+                    <h1>No history</h1>
+                </div>
+            
+            }
+            else
+            {
         @* lịch sử đấu tổng của player *@
             <div class="ProfileHistory">
                 <div class="ProfileControl__1Jz_7">
@@ -292,7 +301,7 @@
                             @* 5 người team 1 *@
                 <div class="ProfileTeamDetail">
                     @{
-                        for (int j = 0; j < @Model.MatchList[i].matchDetailPlayer.Length/2; j++)
+                        for (int j = 0; j < @Model.MatchList[i].matchDetailPlayer.Length / 2; j++)
                         {
                             @* từng player *@
                             <div class="ProfileSummoner">
@@ -385,7 +394,7 @@
                     @*5 người team 2  *@
             <div class="ProfileTeamDetail">
                 @{
-                    for (int j = @Model.MatchList[i].matchDetailPlayer.Length/2; j < @Model.MatchList[i].matchDetailPlayer.Length; j++)
+                    for (int j = @Model.MatchList[i].matchDetailPlayer.Length / 2; j < @Model.MatchList[i].matchDetailPlayer.Length; j++)
                     {
                         @* từng player *@
                         <div class="ProfileSummoner">
@@ -466,10 +475,12 @@
                 }
             </div>
                 </div> 
-                         } 
+                    }
                     }
             </div>
             </div>
+                    }
+        
         </div>
     </div>
     <script>
