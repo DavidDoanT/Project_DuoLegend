@@ -13,10 +13,10 @@ connection.on("ReceiveMessage", function (message, sender) {
     // should be aware of possible script injection concerns.
     div.textContent = `${message}`;
     if (sender === document.getElementById("sender").value) {
-        div.className = "leftMessage";
+        div.className = "rightMessage";
     }
     else {
-        div.className = "rightMessage";
+        div.className = "leftMessage";
     }
 });
 
