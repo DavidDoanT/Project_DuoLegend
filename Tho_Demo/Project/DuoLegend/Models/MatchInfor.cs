@@ -23,5 +23,10 @@ namespace DuoLegend.Models
         public int Gold { get; set; }
         public int MinionsKill { get; set; }
         public int[] ItemId { get; set; } = new int[7];
+        public MatchDetailPlayer[] matchDetailPlayer { get; set; }
+        public MatchInfor()
+        {
+            matchDetailPlayer = new MatchDetailPlayer[10];
+        }
     }
 }

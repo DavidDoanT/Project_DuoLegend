@@ -145,4 +145,5 @@ namespace DuoLegend.ViewModels
         }
         public MatchInfor[] MatchList { get; set; } = new MatchInfor[3];
     }
+
 }
