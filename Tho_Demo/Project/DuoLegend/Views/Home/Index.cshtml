@@ -237,7 +237,28 @@
                 }
                 <tr>
                     <td><a asp-controller="Profile" asp-action="Index" asp-route-inGameName="@Model.InGameName[i]" asp-route-server="@Model.Server[i]">@Model.InGameName[i]</a></td>
-                    <td><img src="~/img/Mid_icon.png"></td>
+                    <td>
+                        @{
+                            switch (@Model.Lane[i])
+                            {
+                                case "Top":
+                                    <img src="~/img/Top_icon.png">
+                                    break;
+                                case "Jung":
+                                    <img src="~/img/Jung_icon.png">
+                                    break;
+                                case "Mid":
+                                    <img src="~/img/Mid_icon.png">
+                                    break;
+                                case "ADC":
+                                    <img src="~/img/Bot_icon.png">
+                                    break;
+                                case "Support":
+                                    <img src="~/img/Sup_icon.png">
+                                    break;
+                            }
+                        }
+                    </td>
                     @*<td><img src="img/challengerIcon.png"></td>*@
                     <td>
                         @{

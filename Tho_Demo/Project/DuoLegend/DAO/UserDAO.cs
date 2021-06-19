@@ -173,8 +173,7 @@ namespace DuoLegend.DAO
             conn.Open();
             com.Connection = conn;
 
-            com.CommandText = "INSERT INTO [User](inGameId,inGameName,password,server,email,id,accountId,puuid,isDeleted) VALUES(@inGameId,@inGameName,@password,@server,@email,@id,@accountId,@puuid,@isDeleted)";
-            com.Parameters.AddWithValue("@inGameId", user.Id);
+            com.CommandText = "INSERT INTO [User](inGameName,password,server,email,id,accountId,puuid,isDeleted) VALUES(@inGameName,@password,@server,@email,@id,@accountId,@puuid,@isDeleted)";
             com.Parameters.AddWithValue("@inGameName", user.InGameName);
             com.Parameters.AddWithValue("@password", user.Password);
             com.Parameters.AddWithValue("@server", user.Server);
@@ -352,6 +351,43 @@ namespace DuoLegend.DAO
                 return null;
             }
             
+        }
+
+        public static string getLane(string inGameName, string server)
+        {
+            com.Parameters.Clear();
+            conn.ConnectionString = MyConfig.ConnectionString;
+
+            conn.Open();
+            com.Connection = conn;
+
+            com.CommandText = "select Lane  from [User] where inGameName = @inGameName and server=@server";
+
+            com.Parameters.AddWithValue("@inGameName", inGameName);
+            com.Parameters.AddWithValue("@server", server);
+            SqlDataReader reader = com.ExecuteReader();
+
+            if (reader.Read())
+            {
+
+                try
+                {
+                    string temp = (string)reader["Lane"];
+                    conn.Close();
+                    return temp;
+                }
+                catch (Exception)
+                {
+                    conn.Close();
+                    return "";
+                }
+            }
+            else
+            {
+                conn.Close();
+                return null;
+            }
+
         }
 
         public static bool isHaveMic(string inGameName, string server)
