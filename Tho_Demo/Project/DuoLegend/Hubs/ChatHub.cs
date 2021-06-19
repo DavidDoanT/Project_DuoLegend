@@ -21,11 +21,11 @@ namespace DuoLegend.Hubs
                 DAO.ChatDAO.addBoxChat(Int32.Parse(sender), Int32.Parse(reciever));
                 boxChatId = DAO.ChatDAO.getBoxChatId(Int32.Parse(sender), Int32.Parse(reciever)); //dong nay chua optimize
             }
-            if(message != null)
+            await Groups.AddToGroupAsync(Context.ConnectionId, boxChatId.ToString());
+            if (message != "")
             {
                 DAO.ChatDAO.addChatContent(boxChatId, message, Int32.Parse(sender));
-            }           
-            await Groups.AddToGroupAsync(Context.ConnectionId, boxChatId.ToString());
+            }                   
             await Clients.Groups(boxChatId.ToString()).SendAsync("ReceiveMessage", message, sender);
         }
     }
