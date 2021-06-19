@@ -15,6 +15,9 @@ connection.on("ReceiveMessage", function (message, sender) {
     if (sender === document.getElementById("sender").value) {
         div.className = "leftMessage";
     }
+    else {
+        div.className = "rightMessage";
+    }
 });
 
 connection.start().then(function () {
