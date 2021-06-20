@@ -1,12 +1,29 @@
-﻿.leftMessage{
-    color: red;
+﻿* {
+    box-sizing: border-box;
 }
 
-.leftMessage , .righMessage{
-    display: block;
-    width: inherit;
+.message {
+    color: white;
+    background-color: red;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+    width: fit-content;
+    max-width: 60%;
+    border-radius: 25px;
+    /* Cái này để cho xuống hàng nếu text quá dài */
+    word-break: break-all;
 }
+    /* tạo 1 khoảng trắng sau mỗi line chat */
+    .message::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
 
-.righMessage {
-    text-align: right
+.rightMessage {
+    background-color: blue;
+    margin-left: auto;
+    width: 30%;
+    width: fit-content;
 }

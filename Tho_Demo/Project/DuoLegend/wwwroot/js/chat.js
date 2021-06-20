@@ -13,7 +13,7 @@ connection.on("ReceiveMessage", function (message, sender) {
     // should be aware of possible script injection concerns.
     div.textContent = `${message}`;
     if (sender === document.getElementById("sender").value) {
-        div.className = "Message rightMessage";
+        div.className = "message rightMessage";
     }
     else {
         div.className = "message";
