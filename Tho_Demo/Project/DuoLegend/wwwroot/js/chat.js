@@ -22,6 +22,7 @@ connection.on("ReceiveMessage", function (message, sender) {
 
 connection.start().then(function () {
     document.getElementById("sendButton").disabled = false;
+    document.getElementById("sendButton").click();
 }).catch(function (err) {
     return console.error(err.toString());
 });
