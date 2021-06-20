@@ -1,5 +1,6 @@
 Tho_Demo\Project\DuoLegend\bin\Debug\net5.0\*
 Tho_Demo\Project\DuoLegend\obj\Debug\net5.0\*
 Tho_Demo\Project\DuoLegend\GlobalConfig\*
-
+Tho_Demo\Project\DuoLegendTesting\obj\*
+Tho_Demo\Project\DuoLegendTesting\bin\Debug\net5.0\*
 *.cache
