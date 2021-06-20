@@ -14,6 +14,7 @@
     .backContainer {
         width: 60%;
     }
+
     label.error {
         color: red;
     }
@@ -22,7 +23,7 @@
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
 <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js" type="text/javascript"></script>
 <script>
-    
+
     $().ready(function () {
         $.validator.addMethod("validatePassword", function (value, element) {
             return this.optional(element) || /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}$/i.test(value);
@@ -42,7 +43,7 @@
                     required: true,
                     validatePassword: true,
                     minlength: 8,
-                    
+
                 },
 
                 "passwordCheck": {
@@ -109,10 +110,14 @@
                 <div class="form-group">
                     <label>Password: </label>
                     <input type="password" class="form-control" name="password" id="Password" placeholder="Enter password" asp-for="Password">
+                    @*Button show/hide password*@
+                    <i class="bi bi-eye-slash" id="togglePassword" style="margin-left: -30px; cursor: pointer;"></i>
                 </div>
                 <div class="form-group">
                     <label> Password Confirm:</label>
                     <input type="password" class="form-control" name="passwordCheck" placeholder="Enter password again" id="PasswordCheck">
+                    @*Button show/hide password*@
+                    <i class="bi bi-eye-slash" id="togglePassword" style="margin-left: -30px; cursor: pointer;"></i>
                 </div>
                 <div class="form-group">
                     <label>Email:</label>
@@ -130,3 +135,16 @@
 
     </center>
 </div>
+@*Javascript code too show/hide password*@
+<script>
+    const togglePassword = document.querySelector('#togglePassword');
+    const password = document.querySelector('#password');
+
+    togglePassword.addEventListener('click', function (e) {
+        // toggle the type attribute
+        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+        password.setAttribute('type', type);
+        // toggle the eye slash icon
+        this.classList.toggle('bi-eye');
+    });
+</script>
