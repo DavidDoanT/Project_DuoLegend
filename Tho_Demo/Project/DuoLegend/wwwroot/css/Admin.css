@@ -18,6 +18,13 @@ body
     height: 50px;
     margin: 0 auto;
     text-align: center;
+    transition: 0.3s;
+}
+
+.icon-wrapper:hover
+{
+    opacity: 0.7;
+    cursor: pointer;
 }
 
 .icon-content
