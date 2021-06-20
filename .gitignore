@@ -1,11 +1,4 @@
-/practice/bin/Debug/net5.0/
-/practice/obj/Debug/net5.0/
-Tho_Demo/Riot API/practice/bin/Debug/net5.0/*
-Tho_Demo/Riot API/practice/obj/Debug/net5.0/*
-*.cache
-*.json
-*.props
-*.v2
+
 Tho_Demo/Project/DuoLegend/.vs/DuoLegend/v16/.suo
 Tho_Demo/Project/DuoLegend/GlobalConfig/*
 Tho_Demo/Project/DuoLegend/GlobalConfig/MyConfig.cs
@@ -61,3 +54,33 @@ Tho_Demo/Project/DuoLegend/GlobalConfig/MyConfig.cs
 Tho_Demo/Project/DuoLegend/bin/Debug/net5.0/DuoLegend.dll
 Tho_Demo/Project/DuoLegend/GlobalConfig/*
 Tho_Demo/Project/DuoLegendTesting/bin/Debug/net5.0/
+Tho_Demo/Project/DuoLegend/.vs/DuoLegend/config/applicationhost.config
+Tho_Demo/Project/DuoLegend/bin/Debug/net5.0/DuoLegend.exe
+Tho_Demo/Project/DuoLegend/bin/Debug/net5.0/DuoLegend.Views.dll
+Tho_Demo/Project/DuoLegend/bin/Debug/net5.0/DuoLegend.Views.pdb
+Tho_Demo/Project/DuoLegend/bin/Debug/net5.0/ref/DuoLegend.dll
+Tho_Demo/Project/DuoLegend/obj/Debug/net5.0/apphost.exe
+Tho_Demo/Project/DuoLegend/obj/Debug/net5.0/DuoLegend.Views.dll
+Tho_Demo/Project/DuoLegend/obj/Debug/net5.0/DuoLegend.Views.pdb
+Tho_Demo/Project/DuoLegend/obj/Debug/net5.0/Razor/Pages/_Layout.cshtml.g.cs
+Tho_Demo/Project/DuoLegend/obj/Debug/net5.0/Razor/Pages/_ViewImports.cshtml.g.cs
+Tho_Demo/Project/DuoLegend/obj/Debug/net5.0/Razor/Pages/_ViewStart.cshtml.g.cs
+Tho_Demo/Project/DuoLegend/obj/Debug/net5.0/Razor/Pages/Error.cshtml.g.cs
+Tho_Demo/Project/DuoLegend/obj/Debug/net5.0/Razor/Views/*
+Tho_Demo/Project/DuoLegendTesting/obj/project.assets.json
+Tho_Demo/Project/DuoLegendTesting/obj/project.nuget.cache
+Tho_Demo/Project/DuoLegendTesting/obj/DuoLegendTesting.csproj.nuget.g.props
+Tho_Demo/Project/DuoLegendTesting/obj/DuoLegendTesting.csproj.nuget.dgspec.json
+Tho_Demo/Project/DuoLegendTesting/obj/Debug/net5.0/DuoLegendTesting.csprojAssemblyReference.cache
+Tho_Demo/Project/DuoLegendTesting/obj/Debug/net5.0/DuoLegendTesting.assets.cache
+Tho_Demo/Project/DuoLegendTesting/obj/Debug/net5.0/DuoLegendTesting.AssemblyInfoInputs.cache
+Tho_Demo/Project/DuoLegend/Properties/launchSettings.json
+Tho_Demo/Project/DuoLegend/obj/project.nuget.cache
+Tho_Demo/Project/DuoLegend/obj/project.assets.json
+Tho_Demo/Project/DuoLegend/obj/DuoLegend.csproj.nuget.g.props
+Tho_Demo/Project/DuoLegend/obj/Debug/net5.0/ref/DuoLegend.dll
+Tho_Demo/Project/DuoLegend/obj/Debug/net5.0/staticwebassets/DuoLegend.StaticWebAssets.Manifest.cache
+Tho_Demo/Project/DuoLegend/obj/DuoLegend.csproj.nuget.dgspec.json
+Tho_Demo/Project/DuoLegend/obj/Debug/net5.0/ref/DuoLegend.dll
+Tho_Demo/Project/DuoLegend/obj/Debug/net5.0/DuoLegend.AssemblyInfoInputs.cache
+*.cache
