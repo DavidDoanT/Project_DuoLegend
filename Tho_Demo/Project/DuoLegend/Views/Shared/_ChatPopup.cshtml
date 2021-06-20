@@ -18,9 +18,12 @@
             <input id="messageInput">
             <input id="sender" value="@ViewData["sender"]" disabled style="display: none">
             <input id="receiver" value="@ViewData["receiver"]" disabled style="display: none">
-            <input type="button" id="sendButton" value="Send Message">
+
 
         </div>
+        <div class="modal-body">
+            <input type="button" id="sendButton" value="Send Message">
+        </div>  
         <!--Đây là phần footer của modal-->
         <div class="modal-footer">
             <button style="width: 5vw; font-size: 1.25vw;text-align: center; padding-left: 0; padding-right: 0" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
