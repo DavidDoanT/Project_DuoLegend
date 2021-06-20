@@ -41,8 +41,8 @@ namespace DuoLegend.RiotAPI
             }
             catch(Exception e)
             {
-                rankInfor.Rank = "unranked";
-                rankInfor.Tier = "unranked";
+                rankInfor.Rank = "Unranked";
+                rankInfor.Tier = "";
                 rankInfor.Lp = 0;
                 rankInfor.Win = 0;
                 rankInfor.Lose = 0;
@@ -199,6 +199,10 @@ namespace DuoLegend.RiotAPI
         }
         public static MatchInfor getMatchInfor1(string id, string server, string summonerID)
         {
+            if (id is null)
+            {
+                return null;
+            }
             WebRequest request = WebRequest.Create("https://" + server + ".api.riotgames.com/lol/match/v5/matches/" + id + "?api_key=" + RiotKey);
 
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();

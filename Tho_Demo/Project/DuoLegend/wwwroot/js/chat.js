@@ -22,6 +22,7 @@ connection.on("ReceiveMessage", function (message, sender) {
 
 connection.start().then(function () {
     document.getElementById("sendButton").disabled = false;
+    document.getElementById("sendButton").click();
 }).catch(function (err) {
     return console.error(err.toString());
 });
@@ -34,4 +35,13 @@ document.getElementById("sendButton").addEventListener("click", function (event)
         return console.error(err.toString());
     });
     event.preventDefault();
+});
+
+
+document.getElementById("messageInput").addEventListener("keyup", function (event) {
+    // Number 13 is the "Enter" key on the keyboard
+    if (event.keyCode === 13) {
+        event.preventDefault();
+        document.getElementById("sendButton").click();
+    }
 });
