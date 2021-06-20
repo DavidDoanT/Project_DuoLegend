@@ -42,6 +42,29 @@ namespace DuoLegend.DAO
             conn.Close();
             return temp;
         }
+        public static string getSpellImgURLbyID(int id)
+        {
+            com.Parameters.Clear();
+
+            conn.ConnectionString = MyConfig.ConnectionString;
+
+            conn.Open();
+            com.Connection = conn;
+
+            com.CommandText = "select iconPath  from Spell where spellId = @id";
+
+            com.Parameters.AddWithValue("@id", id);
+            SqlDataReader reader = com.ExecuteReader();
+            string temp = null;
+            if (reader.Read())
+            {
+
+                temp = (string)reader["iconPath"];
+
+            }
+            conn.Close();
+            return temp;
+        }
         /// <summary>
         /// get champion name by champion id
         /// </summary>

@@ -57,6 +57,7 @@
             <div class="form-group">
                 <input type="password" class="form-control" placeholder="Please enter your password" name="password"
                        asp-for="Password" id="id_password" >
+                @*Button show/hide password*@
                 <i class="bi bi-eye-slash" id="togglePassword" style="margin-left: -30px; cursor: pointer;"></i>
             </div>
              @if (ViewBag.isCorrect == false)
