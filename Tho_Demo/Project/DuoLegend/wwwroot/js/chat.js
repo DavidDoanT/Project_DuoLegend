@@ -23,6 +23,11 @@ connection.on("ReceiveMessage", function (message, sender) {
 connection.start().then(function () {
     document.getElementById("sendButton").disabled = false;
     document.getElementById("sendButton").click();
+    var sender = document.getElementById("sender").value;
+    var receiver = document.getElementById("receiver").value;
+    connection.invoke("InitMessage", sender, receiver).catch(function (err) {
+        return console.error(err.toString());
+    });
 }).catch(function (err) {
     return console.error(err.toString());
 });
@@ -31,6 +36,7 @@ document.getElementById("sendButton").addEventListener("click", function (event)
     var message = document.getElementById("messageInput").value;
     var sender = document.getElementById("sender").value;
     var receiver = document.getElementById("receiver").value;
+    document.getElementById('messageInput').value = '';
     connection.invoke("SendMessage", message, sender, receiver).catch(function (err) {
         return console.error(err.toString());
     });
@@ -44,4 +50,9 @@ document.getElementById("messageInput").addEventListener("keyup", function (even
         event.preventDefault();
         document.getElementById("sendButton").click();
     }
+});
+
+document.getElementById("closeButton").addEventListener("click", function (event) {
+    var list = document.getElementById("messagesList");  
+    list.removeChild(list.childNodes[0]); 
 });
