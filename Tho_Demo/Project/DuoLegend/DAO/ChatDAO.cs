@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using DuoLegend.DatabaseConnection;
 using DuoLegend.GlobalConfig;
 using DuoLegend.Models;
 
@@ -80,16 +81,16 @@ namespace DuoLegend.DAO
             conn.Close();
         }
 
-        public static List<boxChatDetail> GetListBoxChatDetailById(int id)
+        public static List<BoxChatDetail> GetListBoxChatDetailById(int id)
         {
-            List<boxChatDetail> list = new List<boxChatDetail>();
+            List<BoxChatDetail> list = new List<BoxChatDetail>();
             com.Parameters.Clear();
             conn.ConnectionString = MyConfig.ConnectionString;
 
             conn.Open();
             com.Connection = conn;
 
-            com.CommandText = "select top 15 [content],sendFrom  from boxChatDetail where boxChatId=@id";
+            com.CommandText = "select top 15 [content],sendFrom,timeSend,isSeen  from boxChatDetail where boxChatId=@id ORDER BY timeSend ";
 
             com.Parameters.AddWithValue("@id", id);
 
@@ -97,14 +98,15 @@ namespace DuoLegend.DAO
 
             while (reader.Read())
             {
-                boxChatDetail detail = new boxChatDetail();
+                BoxChatDetail detail = new BoxChatDetail();
                 detail.Content = reader["content"].ToString();
                 detail.SendFrom = Int32.Parse(reader["sendFrom"].ToString());
+                detail.TimeSend = (DateTime)reader["timeSend"];
+                detail.IsSeen = (bool)reader["isSeen"];
                 list.Add(detail);
             }
             conn.Close();
-            return list;
-            
+            return list;           
         }
 
     }

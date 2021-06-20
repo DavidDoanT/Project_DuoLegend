@@ -16,7 +16,7 @@ namespace DuoLegend.Hubs
         {
             int boxChatId = DAO.ChatDAO.getBoxChatId(Int32.Parse(sender), Int32.Parse(reciever));
 
-            if(boxChatId == 0)
+            if (boxChatId == 0)
             {
                 DAO.ChatDAO.addBoxChat(Int32.Parse(sender), Int32.Parse(reciever));
                 boxChatId = DAO.ChatDAO.getBoxChatId(Int32.Parse(sender), Int32.Parse(reciever)); //dong nay chua optimize
@@ -25,8 +25,24 @@ namespace DuoLegend.Hubs
             if (message != "")
             {
                 DAO.ChatDAO.addChatContent(boxChatId, message, Int32.Parse(sender));
-            }                   
+                //List<BoxChatDetail> test = DAO.ChatDAO.GetListBoxChatDetailById(boxChatId);
+            }
             await Clients.Groups(boxChatId.ToString()).SendAsync("ReceiveMessage", message, sender);
+        }
+
+        public async Task InitMessage(string sender, string reciever)
+        {
+            int boxChatId = DAO.ChatDAO.getBoxChatId(Int32.Parse(sender), Int32.Parse(reciever));
+            if(boxChatId != 0)
+            {
+                await Groups.AddToGroupAsync(Context.ConnectionId, boxChatId.ToString());
+
+                List<BoxChatDetail> chatList = DAO.ChatDAO.GetListBoxChatDetailById(boxChatId);
+                foreach (var chat in chatList)
+                {
+                    await Clients.Caller.SendAsync("ReceiveMessage", chat.Content, chat.SendFrom.ToString());
+                }              
+            }     
         }
     }
 }
