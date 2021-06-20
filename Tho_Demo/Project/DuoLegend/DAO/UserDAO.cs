@@ -293,6 +293,10 @@ namespace DuoLegend.DAO
             conn.Open();
             com.Connection = conn;
             
+            if(userIn.Note == null)
+            {
+                userIn.Note = "";
+            }
 
             int temp;
             //convert bool datatype to int because hasMic in DB is bit type

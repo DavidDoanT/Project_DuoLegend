@@ -53,7 +53,7 @@ namespace DuoLegend.Service
             return infor;
         }
 
-        static string getContinent(string server)
+        public static string getContinent(string server)
         {
             if(server.Equals("JP1") || server.Equals("KR") || server.Equals("OC1"))
             {

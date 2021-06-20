@@ -1,3 +1,12 @@
 ﻿.leftMessage{
     color: red;
 }
+
+.leftMessage , .righMessage{
+    display: block;
+    width: inherit;
+}
+
+.righMessage {
+    text-align: right
+}
