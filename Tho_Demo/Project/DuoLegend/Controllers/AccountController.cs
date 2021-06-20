@@ -93,6 +93,8 @@ namespace DuoLegend.Controllers
             return View("RegisterSuccess");
         }
 
+        
+
         //ham thua, se xoa trong tuong lai
         public IActionResult RedirectRegisterPage()
         {
