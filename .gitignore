@@ -1,6 +1,12 @@
-Tho_Demo\Project\DuoLegend\bin\Debug\net5.0\*
-Tho_Demo\Project\DuoLegend\obj\Debug\net5.0\*
-Tho_Demo\Project\DuoLegend\GlobalConfig\*
-Tho_Demo\Project\DuoLegendTesting\obj\*
-Tho_Demo\Project\DuoLegendTesting\bin\Debug\net5.0\*
+Tho_Demo/Project/DuoLegend/bin/Debug/net5.0/*
+Tho_Demo/Project/DuoLegend/obj/Debug/net5.0/*
+Tho_Demo/Project/DuoLegend/GlobalConfig/*
+Tho_Demo/Project/DuoLegendTesting/obj/*
+Tho_Demo/Project/DuoLegendTesting/bin/Debug/net5.0/*
 *.cache
+Tho_Demo/Project/DuoLegend/GlobalConfig/MyConfig.cs
+
+Tho_Demo/Project/DuoLegend/obj/Debug/net5.0/DuoLegend.csproj.FileListAbsolute.txt
+Tho_Demo/Project/DuoLegend/obj/project.assets.json
+Tho_Demo/Project/DuoLegend/obj/DuoLegend.csproj.nuget.g.props
+Tho_Demo/Project/DuoLegend/obj/DuoLegend.csproj.nuget.dgspec.json
