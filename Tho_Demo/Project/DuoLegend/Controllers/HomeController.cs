@@ -32,6 +32,7 @@ namespace DuoLegend.Controllers
         public IActionResult Index()
         {
             //RiotAPI.RiotAPI.setChampionInfor(); // bo cmt dong nay 
+            //RiotAPI.RiotAPI.setItemInfo();
             //check session
             if (HttpContext.Session.GetString("email") is null)
             {                
@@ -41,8 +42,9 @@ namespace DuoLegend.Controllers
             {
                 ViewBag.isLogin = true;
             }
+            
             //check cookie
-            if(Request.Cookies["email"] != null)
+            if (Request.Cookies["email"] != null)
             {
                 HttpContext.Session.SetString("email", Request.Cookies["email"]);
                 User user = UserDAO.getUserByEmail(Request.Cookies["email"]);

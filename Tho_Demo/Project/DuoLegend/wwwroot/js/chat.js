@@ -4,7 +4,7 @@ var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
 
 //Disable send button until connection is established
 document.getElementById("sendButton").disabled = true;
-var init = 0;
+
 connection.on("ReceiveMessage", function (message, sender) {
     var div = document.createElement("div");
     document.getElementById("messagesList").appendChild(div);
@@ -13,7 +13,7 @@ connection.on("ReceiveMessage", function (message, sender) {
     // should be aware of possible script injection concerns.
     div.textContent = `${message}`;
     if (sender === document.getElementById("sender").value) {
-        div.className = "righMessage";
+        div.className = "rightMessage";
     }
     else {
         div.className = "leftMessage";
@@ -24,15 +24,6 @@ connection.start().then(function () {
     document.getElementById("sendButton").disabled = false;
 }).catch(function (err) {
     return console.error(err.toString());
-});
-
-document.getElementById("sendButton").addEventListener("mouseout", function (event) {
-    var sender = document.getElementById("sender").value;
-    var receiver = document.getElementById("receiver").value;
-    connection.invoke("SendMessage", "", sender, receiver).catch(function (err) {
-        return console.error(err.toString());
-    });
-    event.preventDefault();
 });
 
 document.getElementById("sendButton").addEventListener("click", function (event) {

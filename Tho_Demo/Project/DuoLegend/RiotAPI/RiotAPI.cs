@@ -41,8 +41,8 @@ namespace DuoLegend.RiotAPI
             }
             catch(Exception e)
             {
-                rankInfor.Rank = "unranked";
-                rankInfor.Tier = "unranked";
+                rankInfor.Rank = "Unranked";
+                rankInfor.Tier = "";
                 rankInfor.Lp = 0;
                 rankInfor.Win = 0;
                 rankInfor.Lose = 0;
@@ -129,7 +129,14 @@ namespace DuoLegend.RiotAPI
 
             for (int i = 0; i < 3; i++)
             {
-                matchList[i] = resultFromRiot[i];
+                try
+                {
+                    matchList[i] = resultFromRiot[i];
+                }
+                catch(Exception)
+                {
+                    break;
+                }
             }
 
             reader.Close();
@@ -140,6 +147,10 @@ namespace DuoLegend.RiotAPI
 
         public static MatchInfor getMatchInfor(string id, string server, string summonerID)
         {
+            if(id is null)
+            {
+                return new MatchInfor();
+            }
             WebRequest request = WebRequest.Create("https://"+server+".api.riotgames.com/lol/match/v5/matches/"+id+"?api_key="+RiotKey);
 
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
@@ -159,18 +170,120 @@ namespace DuoLegend.RiotAPI
                     break;
                 }
             }
+            //gan tung so lieu cua tran dau vao player cua profile (1 player)
             infor.Kill = resultFromRiot.info.participants[flag].kills;
             infor.Death = resultFromRiot.info.participants[flag].deaths;
             infor.Assist = resultFromRiot.info.participants[flag].assists;
             infor.IsWin = resultFromRiot.info.participants[flag].win;
             infor.ChampName = resultFromRiot.info.participants[flag].championName;
             infor.ChampId = resultFromRiot.info.participants[flag].championId;
+            infor.MatchMode = resultFromRiot.info.gameMode;
+            infor.Gold = resultFromRiot.info.participants[flag].goldEarned;
+            infor.MinionsKill = resultFromRiot.info.participants[flag].totalMinionsKilled;
+            infor.Spell1Id = resultFromRiot.info.participants[flag].summoner1Id;
+            infor.Spell2Id = resultFromRiot.info.participants[flag].summoner2Id;
+            infor.ChampLevel = resultFromRiot.info.participants[flag].champLevel;
+
+            infor.ItemId[0] = resultFromRiot.info.participants[flag].item0;
+            infor.ItemId[1] = resultFromRiot.info.participants[flag].item1;
+            infor.ItemId[2] = resultFromRiot.info.participants[flag].item2;
+            infor.ItemId[3] = resultFromRiot.info.participants[flag].item3;
+            infor.ItemId[4] = resultFromRiot.info.participants[flag].item4;
+            infor.ItemId[5] = resultFromRiot.info.participants[flag].item5;
+            infor.ItemId[6] = resultFromRiot.info.participants[flag].item6;
+
             reader.Close();
             dataStream.Close();
             response.Close();
             return infor;
         }
+        public static MatchInfor getMatchInfor1(string id, string server, string summonerID)
+        {
+            if (id is null)
+            {
+                return null;
+            }
+            WebRequest request = WebRequest.Create("https://" + server + ".api.riotgames.com/lol/match/v5/matches/" + id + "?api_key=" + RiotKey);
 
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            Stream dataStream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(dataStream);
+            string responseFromServer = reader.ReadToEnd();
+
+            dynamic resultFromRiot = JsonConvert.DeserializeObject(responseFromServer);
+
+            MatchInfor infor = new MatchInfor();
+            int flag = 0; //luu lai nguoi dung muon lay infor o index so may, vi tra ve infor cua ca 10 nguoi choi 1 luc
+            for (int i = 0; i < 10; i++)
+            {
+                if (summonerID.Equals((string)resultFromRiot.info.participants[i].summonerId))
+                {
+                    flag = i;
+                    break;
+                }
+            }
+            //gan tung so lieu cua tran dau vao player cua profile (1 player)
+            infor.Kill = resultFromRiot.info.participants[flag].kills;
+            infor.Death = resultFromRiot.info.participants[flag].deaths;
+            infor.Assist = resultFromRiot.info.participants[flag].assists;
+            infor.IsWin = resultFromRiot.info.participants[flag].win;
+            infor.ChampName = resultFromRiot.info.participants[flag].championName;
+            infor.ChampId = resultFromRiot.info.participants[flag].championId;
+            infor.MatchMode = resultFromRiot.info.gameMode;
+            infor.Gold = resultFromRiot.info.participants[flag].goldEarned;
+            infor.MinionsKill = resultFromRiot.info.participants[flag].totalMinionsKilled;
+            infor.Spell1Id = resultFromRiot.info.participants[flag].summoner1Id;
+            infor.Spell2Id = resultFromRiot.info.participants[flag].summoner2Id;
+            infor.ChampLevel = resultFromRiot.info.participants[flag].champLevel;
+
+            infor.ItemId[0] = resultFromRiot.info.participants[flag].item0;
+            infor.ItemId[1] = resultFromRiot.info.participants[flag].item1;
+            infor.ItemId[2] = resultFromRiot.info.participants[flag].item2;
+            infor.ItemId[3] = resultFromRiot.info.participants[flag].item3;
+            infor.ItemId[4] = resultFromRiot.info.participants[flag].item4;
+            infor.ItemId[5] = resultFromRiot.info.participants[flag].item5;
+            infor.ItemId[6] = resultFromRiot.info.participants[flag].item6;
+
+            //gan so lieu cua tran dau vao 10 player trong muc chi tiet tran dau
+            for (int i = 0; i < 10; i++)
+            {
+                
+
+                //infor.matchDetailPlayer[i].ItemId[0] = resultFromRiot.info.participants[i].item0;
+                //infor.matchDetailPlayer[i].ItemId[1] = resultFromRiot.info.participants[i].item1;
+                //infor.matchDetailPlayer[i].ItemId[2] = resultFromRiot.info.participants[i].item2;
+                //infor.matchDetailPlayer[i].ItemId[3] = resultFromRiot.info.participants[i].item3;
+                //infor.matchDetailPlayer[i].ItemId[4] = resultFromRiot.info.participants[i].item4;
+                //infor.matchDetailPlayer[i].ItemId[5] = resultFromRiot.info.participants[i].item5;
+                //infor.matchDetailPlayer[i].ItemId[6] = resultFromRiot.info.participants[i].item6;
+                int kill= resultFromRiot.info.participants[i].kills;
+                int death = resultFromRiot.info.participants[i].deaths;
+                int assist = resultFromRiot.info.participants[i].assists;
+                bool isWin = resultFromRiot.info.participants[i].win;
+                string champName = resultFromRiot.info.participants[i].championName;
+                int champId = resultFromRiot.info.participants[i].championId;
+                int spell1Id = resultFromRiot.info.participants[i].summoner1Id;
+                int spell2Id = resultFromRiot.info.participants[i].summoner2Id;
+                int champLevel = resultFromRiot.info.participants[i].champLevel;
+                int gold = resultFromRiot.info.participants[i].goldEarned;
+                int minionsKill = resultFromRiot.info.participants[i].totalMinionsKilled;
+                string summmonerName = resultFromRiot.info.participants[i].summonerName;
+                int damage = resultFromRiot.info.participants[i].totalDamageDealtToChampions;
+                int[] itemId = new int[7];
+                itemId[0] = resultFromRiot.info.participants[i].item0;
+                itemId[1] = resultFromRiot.info.participants[i].item1;
+                itemId[2] = resultFromRiot.info.participants[i].item2;
+                itemId[3] = resultFromRiot.info.participants[i].item3;
+                itemId[4] = resultFromRiot.info.participants[i].item4;
+                itemId[5] = resultFromRiot.info.participants[i].item5;
+                itemId[6] = resultFromRiot.info.participants[i].item6;
+                infor.matchDetailPlayer[i] = new MatchDetailPlayer(kill, death,assist, isWin,champName, champId, spell1Id, spell2Id, champLevel, gold, minionsKill, summmonerName, damage,itemId);
+            }
+            reader.Close();
+            dataStream.Close();
+            response.Close();
+            return infor;
+        }
         public static bool isRealInGameName(string name, string server)
         {
             WebRequest request = WebRequest.Create("https://"+server+".api.riotgames.com/lol/summoner/v4/summoners/by-name/"+name+"?api_key="+RiotKey);
@@ -266,7 +379,6 @@ namespace DuoLegend.RiotAPI
                     UserDAO.addChamp(championID, championName, iconpath);
                 }
             }
-
             ////string championID = resultFromRiot[i].key;
             ////string championName = resultFromRiot[i].id;
             ////string iconpath = "~/img/Champions/" + resultFromRiot[i].id + ".png";
@@ -274,6 +386,29 @@ namespace DuoLegend.RiotAPI
             reader.Close();
             dataStream.Close();
             response.Close();
+        }
+        public static void setItemInfo()
+        {
+            WebRequest request = WebRequest.Create("http://ddragon.leagueoflegends.com/cdn/11.12.1/data/en_US/item.json");
+
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            Stream dataStream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(dataStream);
+            string responseFromServer = reader.ReadToEnd();
+            dynamic resultFromRiot1 = JsonConvert.DeserializeObject(responseFromServer);
+            dynamic resultFromRiot2 = resultFromRiot1.data;
+            foreach (dynamic item in resultFromRiot2)
+            {
+                foreach (var infor in item)
+                {
+                    string it = infor.image.full;
+                    string[] itArr = it.Split(".");
+                    string itemID = itArr[0];
+                    string itName = infor.name;
+                    string iconpath = "img/Items/" + itemID + ".png";
+                    UserDAO.addItem(itemID, itName, iconpath);
+                }
+            }
         }
     }
 }

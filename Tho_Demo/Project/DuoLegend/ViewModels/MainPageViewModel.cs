@@ -17,9 +17,11 @@ namespace DuoLegend.ViewModels
             search = new Search();
             Note = new string[3];
             HasMic = new bool[3];
+            Lane = new string[3];
         }
         public Search search { get; set; }
         public string[] Rank { get; set; }
+        public string[] Lane { get; set; }
         public string[] InGameName { get; set; }
         public string[] Server { get; set; }
         public string[] Note { get; set; }

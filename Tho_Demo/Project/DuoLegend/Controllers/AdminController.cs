@@ -15,9 +15,13 @@ namespace DuoLegend.Controllers
         {
             bool isLoginAllowed = AdminLoginDAO.Login(email, adminPassword);
 
+            //If email exist and has a corresponding password with inputted password,
+            //login succeed and redirect to main page
             if(isLoginAllowed){
-                return View("Main");   //AdminMain not yet implemented
+                return View("Main");   
             }
+
+            ViewBag.loginFailed = true;
 
             return View();
         }

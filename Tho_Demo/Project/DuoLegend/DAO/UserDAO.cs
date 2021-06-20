@@ -173,8 +173,7 @@ namespace DuoLegend.DAO
             conn.Open();
             com.Connection = conn;
 
-            com.CommandText = "INSERT INTO [User](inGameId,inGameName,password,server,email,id,accountId,puuid,isDeleted) VALUES(@inGameId,@inGameName,@password,@server,@email,@id,@accountId,@puuid,@isDeleted)";
-            com.Parameters.AddWithValue("@inGameId", user.Id);
+            com.CommandText = "INSERT INTO [User](inGameName,password,server,email,id,accountId,puuid,isDeleted) VALUES(@inGameName,@password,@server,@email,@id,@accountId,@puuid,@isDeleted)";
             com.Parameters.AddWithValue("@inGameName", user.InGameName);
             com.Parameters.AddWithValue("@password", user.Password);
             com.Parameters.AddWithValue("@server", user.Server);
@@ -203,6 +202,22 @@ namespace DuoLegend.DAO
             com.EndExecuteNonQuery(com.BeginExecuteNonQuery());
             conn.Close();
         }
+        public static void addItem(string id, string name, string path)
+        {
+            com.Parameters.Clear();
+
+            conn.ConnectionString = MyConfig.ConnectionString;
+
+            conn.Open();
+            com.Connection = conn;
+
+            com.CommandText = "INSERT INTO Item(itemId,itemName,iconPath) VALUES(@itemId,@itemName,@iconPath)";
+            com.Parameters.AddWithValue("@itemId", id);
+            com.Parameters.AddWithValue("@itemName", name);
+            com.Parameters.AddWithValue("@iconPath", path);
+            com.EndExecuteNonQuery(com.BeginExecuteNonQuery());
+            conn.Close();
+        }
 
         public static User getUserByEmail(string email)
         {
@@ -213,14 +228,17 @@ namespace DuoLegend.DAO
             conn.Open();
             com.Connection = conn;
 
-            com.CommandText = "select inGameName,server  from [User] where email = @email";
+            com.CommandText = "select inGameName,server,hasMic,lane,note from [User] where email = @email";
 
             com.Parameters.AddWithValue("@email", email);
             SqlDataReader reader = com.ExecuteReader();
 
             if (reader.Read())
             {
-
+                
+                user.Note = (string)reader["note"];
+                user.Lane = (string)reader["lane"];
+                user.HasMic = (bool)reader["hasMic"];
                 user.InGameName = (string)reader["inGameName"];
                 user.Server = (string)reader["server"];
             }
@@ -275,6 +293,10 @@ namespace DuoLegend.DAO
             conn.Open();
             com.Connection = conn;
             
+            if(userIn.Note == null)
+            {
+                userIn.Note = "";
+            }
 
             int temp;
             //convert bool datatype to int because hasMic in DB is bit type
@@ -333,6 +355,43 @@ namespace DuoLegend.DAO
                 return null;
             }
             
+        }
+
+        public static string getLane(string inGameName, string server)
+        {
+            com.Parameters.Clear();
+            conn.ConnectionString = MyConfig.ConnectionString;
+
+            conn.Open();
+            com.Connection = conn;
+
+            com.CommandText = "select Lane  from [User] where inGameName = @inGameName and server=@server";
+
+            com.Parameters.AddWithValue("@inGameName", inGameName);
+            com.Parameters.AddWithValue("@server", server);
+            SqlDataReader reader = com.ExecuteReader();
+
+            if (reader.Read())
+            {
+
+                try
+                {
+                    string temp = (string)reader["Lane"];
+                    conn.Close();
+                    return temp;
+                }
+                catch (Exception)
+                {
+                    conn.Close();
+                    return "";
+                }
+            }
+            else
+            {
+                conn.Close();
+                return null;
+            }
+
         }
 
         public static bool isHaveMic(string inGameName, string server)
