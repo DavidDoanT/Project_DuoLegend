@@ -21,7 +21,7 @@ namespace DuoLegend.Hubs
                 DAO.ChatDAO.addBoxChat(Int32.Parse(sender), Int32.Parse(reciever));
                 boxChatId = DAO.ChatDAO.getBoxChatId(Int32.Parse(sender), Int32.Parse(reciever)); //dong nay chua optimize
             }
-            if(message != null)
+            if( !message.Equals(""))
             {
                 DAO.ChatDAO.addChatContent(boxChatId, message, Int32.Parse(sender));
             }           
