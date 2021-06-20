@@ -24,7 +24,7 @@ code {
   margin: auto;
 }
 .form-signin .form-control {
-  position: relative;
+  display:inline-block;
   box-sizing: border-box;
   height: auto;
   padding: 10px;

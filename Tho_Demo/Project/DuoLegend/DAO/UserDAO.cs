@@ -218,7 +218,23 @@ namespace DuoLegend.DAO
             com.EndExecuteNonQuery(com.BeginExecuteNonQuery());
             conn.Close();
         }
+        public static void addSpell(string id, string name, string path)
+        {
+            com.Parameters.Clear();
 
+            conn.ConnectionString = MyConfig.ConnectionString;
+
+            conn.Open();
+            com.Connection = conn;
+            //com.CommandText = "SET IDENTITY_INSERT Spell ON";
+            com.CommandText = "INSERT INTO Spell(spellId,spellName,iconPath) VALUES(@spellId,@spellName,@iconPath)";
+            com.Parameters.AddWithValue("@spellId", id);
+            com.Parameters.AddWithValue("@spellName", name);
+            com.Parameters.AddWithValue("@iconPath", path);
+            //com.CommandText = "SET IDENTITY_INSERT Spell OFF";
+            com.EndExecuteNonQuery(com.BeginExecuteNonQuery());
+            conn.Close();
+        }
         public static User getUserByEmail(string email)
         {
             User user = new User();

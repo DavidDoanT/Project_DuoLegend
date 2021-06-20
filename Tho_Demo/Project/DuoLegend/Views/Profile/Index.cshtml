@@ -196,6 +196,7 @@
             <div class="ProfileHistoryList">
                 @{for (int i = 0; i < @Model.MatchList.Length; i++)
                     {
+
                         <!-- nếu thắng thì màu này, thua thì màu đỏ rgb(91, 10, 10) -->
                         <div class="ProfileMatchContent" style="background-color: rgb(0, 0, 25);" onclick="myFunction(this.nextElementSibling)">
 
@@ -307,16 +308,16 @@
                             <div class="ProfileSummoner">
                                 @* tướng *@
                                 <div class="ProfileChampion">
-                                    <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/champion/Mordekaiser.png">
+                                    <img src="@Url.Content(String.Format("~/img/Champions/{0}.png", Model.MatchList[i].matchDetailPlayer[j].ChampName))">
                                     <span>@Model.MatchList[i].matchDetailPlayer[j].ChampLevel</span>
                                 </div>
                                 @*Phép bổ trợ  *@
                                 <div class="ProfileSpells">
                                     <div class="ProfileSpell">
-                                        <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/spell/SummonerHeal.png">
+                                        <img src="~/@ChampionDAO.getSpellImgURLbyID(Model.MatchList[i].matchDetailPlayer[i].Spell1Id)">
                                     </div>
                                     <div class="ProfileSpell">
-                                        <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/spell/SummonerHeal.png">
+                                        <img src="~/@ChampionDAO.getSpellImgURLbyID(Model.MatchList[i].matchDetailPlayer[i].Spell2Id)">
                                     </div>
                                 </div>
                                 @*Ngọc bổ trợ  *@
@@ -350,30 +351,30 @@
                                     <div class="ProfileMainItem">
                                         <div>
                                             <div class="ProfileItem">
-                                                <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/item/3006.png">
+                                                <img src="@Url.Content(String.Format("~/img/Items/{0}.png", Model.MatchList[i].matchDetailPlayer[j].ItemId[0]))">
                                             </div>
                                             <div class="ProfileItem">
-                                                <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/item/3006.png">
+                                                <img src="@Url.Content(String.Format("~/img/Items/{0}.png", Model.MatchList[i].matchDetailPlayer[j].ItemId[1]))">
                                             </div>
                                             <div class="ProfileItem">
-                                                <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/item/3006.png">
+                                                <img src="@Url.Content(String.Format("~/img/Items/{0}.png", Model.MatchList[i].matchDetailPlayer[j].ItemId[2]))">
                                             </div>
                                         </div>
                                         <div>
                                             <div class="ProfileItem">
-                                                <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/item/3006.png">
+                                                <img src="@Url.Content(String.Format("~/img/Items/{0}.png", Model.MatchList[i].matchDetailPlayer[j].ItemId[3]))">
                                             </div>
                                             <div class="ProfileItem">
-                                                <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/item/3006.png">
+                                                <img src="@Url.Content(String.Format("~/img/Items/{0}.png", Model.MatchList[i].matchDetailPlayer[j].ItemId[4]))">
                                             </div>
                                             <div class="ProfileItem">
-                                                <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/item/3006.png">
+                                                <img src="@Url.Content(String.Format("~/img/Items/{0}.png", Model.MatchList[i].matchDetailPlayer[j].ItemId[5]))">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="ProfileSecondaryItem">
                                         <div class="ProfileItem">
-                                            <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/item/3006.png">
+                                            <img src="@Url.Content(String.Format("~/img/Items/{0}.png", Model.MatchList[i].matchDetailPlayer[j].ItemId[6]))">
                                         </div>
                                     </div>
                                 </div>
@@ -397,80 +398,80 @@
                     for (int j = @Model.MatchList[i].matchDetailPlayer.Length / 2; j < @Model.MatchList[i].matchDetailPlayer.Length; j++)
                     {
                         @* từng player *@
-                        <div class="ProfileSummoner">
-                            @* tướng *@
-                            <div class="ProfileChampion">
-                                <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/champion/Mordekaiser.png">
-                                <span>@Model.MatchList[i].matchDetailPlayer[j].ChampLevel</span>
-                            </div>
-                            @*Phép bổ trợ  *@
-                            <div class="ProfileSpells">
-                                <div class="ProfileSpell">
-                                    <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/spell/SummonerHeal.png">
+                <div class="ProfileSummoner">
+                    @* tướng *@
+                    <div class="ProfileChampion">
+                        <img src="@Url.Content(String.Format("~/img/Champions/{0}.png", Model.MatchList[i].matchDetailPlayer[j].ChampName))">
+                        <span>@Model.MatchList[i].matchDetailPlayer[j].ChampLevel</span>
+                    </div>
+                    @*Phép bổ trợ  *@
+                    <div class="ProfileSpells">
+                        <div class="ProfileSpell">
+                            <img src="~/@ChampionDAO.getSpellImgURLbyID(Model.MatchList[i].matchDetailPlayer[i].Spell1Id)">
+                        </div>
+                        <div class="ProfileSpell">
+                            <img src="~/@ChampionDAO.getSpellImgURLbyID(Model.MatchList[i].matchDetailPlayer[i].Spell2Id)">
+                        </div>
+                    </div>
+                    @*Ngọc bổ trợ  *@
+                    <div class="ProfilePerk">
+                        <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/Electrocute/Electrocute.png">
+                    </div>
+                    @* Tên ingame *@
+                    <div class="ProfileSummonerName">
+                        <span>@Model.MatchList[i].matchDetailPlayer[j].SummmonerName</span>
+                    </div>
+                    @*KDA  *@
+                    <div class="ProfileKDA">
+                        <span class="KDA">@Model.MatchList[i].matchDetailPlayer[j].Kill/@Model.MatchList[i].matchDetailPlayer[j].Death/@Model.MatchList[i].matchDetailPlayer[j].Assist</span>
+                    </div>
+                    @* Sát thương gây ra *@
+                    <div class="ProfileDamage">
+                        <span>@Model.MatchList[i].matchDetailPlayer[j].Damage</span>
+                    </div>
+                    @* vàng kiếm được*@
+                    <div class="ProfileGold_">
+                        <span>@Model.MatchList[i].matchDetailPlayer[j].Gold</span>
+                        <img src="https://lienminhpro.com/images/icons/ico-gold.svg">
+                    </div>
+                    @* Chỉ số lính  *@
+                    <div class="ProfileMinion_">
+                        <span>@Model.MatchList[i].matchDetailPlayer[j].MinionsKill</span>
+                        <img src="https://lienminhpro.com/images/icons/ico-gold.svg">
+                    </div>
+                    @*Trang bị  *@
+                    <div class="ProfileListItem">
+                        <div class="ProfileMainItem">
+                            <div>
+                                <div class="ProfileItem">
+                                    <img src="@Url.Content(String.Format("~/img/Items/{0}.png", Model.MatchList[i].matchDetailPlayer[j].ItemId[0]))">
                                 </div>
-                                <div class="ProfileSpell">
-                                    <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/spell/SummonerHeal.png">
+                                <div class="ProfileItem">
+                                    <img src="@Url.Content(String.Format("~/img/Items/{0}.png", Model.MatchList[i].matchDetailPlayer[j].ItemId[1]))">
+                                </div>
+                                <div class="ProfileItem">
+                                    <img src="@Url.Content(String.Format("~/img/Items/{0}.png", Model.MatchList[i].matchDetailPlayer[j].ItemId[2]))">
                                 </div>
                             </div>
-                            @*Ngọc bổ trợ  *@
-                            <div class="ProfilePerk">
-                                <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/Electrocute/Electrocute.png">
-                            </div>
-                            @* Tên ingame *@
-                            <div class="ProfileSummonerName">
-                                <span>@Model.MatchList[i].matchDetailPlayer[j].SummmonerName</span>
-                            </div>
-                            @*KDA  *@
-                            <div class="ProfileKDA">
-                                <span class="KDA">@Model.MatchList[i].matchDetailPlayer[j].Kill/@Model.MatchList[i].matchDetailPlayer[j].Death/@Model.MatchList[i].matchDetailPlayer[j].Assist</span>
-                            </div>
-                            @* Sát thương gây ra *@
-                            <div class="ProfileDamage">
-                                <span>@Model.MatchList[i].matchDetailPlayer[j].Damage</span>
-                            </div>
-                            @* vàng kiếm được*@
-                            <div class="ProfileGold_">
-                                <span>@Model.MatchList[i].matchDetailPlayer[j].Gold</span>
-                                <img src="https://lienminhpro.com/images/icons/ico-gold.svg">
-                            </div>
-                            @* Chỉ số lính  *@
-                            <div class="ProfileMinion_">
-                                <span>@Model.MatchList[i].matchDetailPlayer[j].MinionsKill</span>
-                                <img src="https://lienminhpro.com/images/icons/ico-gold.svg">
-                            </div>
-                            @*Trang bị  *@
-                            <div class="ProfileListItem">
-                                <div class="ProfileMainItem">
-                                    <div>
-                                        <div class="ProfileItem">
-                                            <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/item/3006.png">
-                                        </div>
-                                        <div class="ProfileItem">
-                                            <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/item/3006.png">
-                                        </div>
-                                        <div class="ProfileItem">
-                                            <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/item/3006.png">
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="ProfileItem">
-                                            <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/item/3006.png">
-                                        </div>
-                                        <div class="ProfileItem">
-                                            <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/item/3006.png">
-                                        </div>
-                                        <div class="ProfileItem">
-                                            <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/item/3006.png">
-                                        </div>
-                                    </div>
+                            <div>
+                                <div class="ProfileItem">
+                                    <img src="@Url.Content(String.Format("~/img/Items/{0}.png", Model.MatchList[i].matchDetailPlayer[j].ItemId[3]))">
                                 </div>
-                                <div class="ProfileSecondaryItem">
-                                    <div class="ProfileItem">
-                                        <img src="https://ddragon.leagueoflegends.com/cdn/11.6.1/img/item/3006.png">
-                                    </div>
+                                <div class="ProfileItem">
+                                    <img src="@Url.Content(String.Format("~/img/Items/{0}.png", Model.MatchList[i].matchDetailPlayer[j].ItemId[4]))">
+                                </div>
+                                <div class="ProfileItem">
+                                    <img src="@Url.Content(String.Format("~/img/Items/{0}.png", Model.MatchList[i].matchDetailPlayer[j].ItemId[5]))">
                                 </div>
                             </div>
                         </div>
+                        <div class="ProfileSecondaryItem">
+                            <div class="ProfileItem">
+                                <img src="@Url.Content(String.Format("~/img/Items/{0}.png", Model.MatchList[i].matchDetailPlayer[j].ItemId[6]))">
+                            </div>
+                        </div>
+                    </div>
+                </div>
                     }
                 }
             </div>

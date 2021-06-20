@@ -410,5 +410,26 @@ namespace DuoLegend.RiotAPI
                 }
             }
         }
+        public static void setSpellInfo()
+        {
+            WebRequest request = WebRequest.Create("http://ddragon.leagueoflegends.com/cdn/11.12.1/data/en_US/summoner.json");
+
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            Stream dataStream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(dataStream);
+            string responseFromServer = reader.ReadToEnd();
+            dynamic resultFromRiot1 = JsonConvert.DeserializeObject(responseFromServer);
+            dynamic resultFromRiot2 = resultFromRiot1.data;
+            foreach (dynamic spell in resultFromRiot2)
+            {
+                foreach (var infor in spell)
+                {
+                    string spellID =infor.id ;
+                    string spellName = infor.name;
+                    string iconpath = "img/Spells/" + spellID + ".png";
+                    UserDAO.addSpell(spellID, spellName, iconpath);
+                }
+            }
+        }
     }
 }

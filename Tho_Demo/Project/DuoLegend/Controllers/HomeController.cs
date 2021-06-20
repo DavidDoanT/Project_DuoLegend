@@ -33,6 +33,7 @@ namespace DuoLegend.Controllers
         {
             //RiotAPI.RiotAPI.setChampionInfor(); // bo cmt dong nay 
             //RiotAPI.RiotAPI.setItemInfo();
+            //RiotAPI.RiotAPI.setSpellInfo();
             //check session
             if (HttpContext.Session.GetString("email") is null)
             {                
