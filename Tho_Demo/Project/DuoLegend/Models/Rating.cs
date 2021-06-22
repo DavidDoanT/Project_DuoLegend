@@ -33,6 +33,13 @@ namespace DuoLegend.Models
             get { return _behaviorScore; }
             set { _behaviorScore = value; }
         }
-        
+        private string _comment;
+
+        public string Comment
+        {
+            get { return _comment; }
+            set { _comment = value; }
+        }
+
     }
 }

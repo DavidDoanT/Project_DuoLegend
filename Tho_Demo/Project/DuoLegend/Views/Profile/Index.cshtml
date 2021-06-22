@@ -9,7 +9,9 @@
 <form class="modal fade" id="example">
     <partial name="_ChatPopup" view-data="ViewData"/>
 </form>
-
+<form class="modal fade" id="Rating">
+    <partial name="_Rating" />
+</form>
     <div class="ProfileWrapper">
 
     @* khung info tren đầu trang của profile, gồm tên ingamename, avatar, level, nút edit, follow, rate *@
@@ -37,7 +39,7 @@
                 }
 
                 <button>Follow</button>
-                <button>Rate</button>
+                <button data-toggle="modal" data-target="#Rating">Rate</button>
                 <button data-toggle="modal" data-target="#example">Chat</button>
             </div>
         </div>
