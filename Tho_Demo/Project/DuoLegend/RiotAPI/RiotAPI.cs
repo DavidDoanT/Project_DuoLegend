@@ -55,65 +55,7 @@ namespace DuoLegend.RiotAPI
             return rankInfor;
 
         }
-        //public static string getRankTierByEncryptedSummonerId(string id, string server)
-        //{
-        //    WebRequest request = WebRequest.Create("https://" + server + ".api.riotgames.com/lol/league/v4/entries/by-summoner/" + id + "?api_key=" + RiotKey);
-
-        //    HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-        //    Stream dataStream = response.GetResponseStream();
-        //    StreamReader reader = new StreamReader(dataStream);
-        //    string responseFromServer = reader.ReadToEnd();
-        //    // Display the content.
-        //    Console.WriteLine(responseFromServer);
-
-        //    dynamic resultFromRiot = JsonConvert.DeserializeObject(responseFromServer);
-        //    string tier;
-        //    try
-        //    {
-        //        tier = resultFromRiot[0].rank;
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        tier = "unranked";
-        //    }
-
-        //    reader.Close();
-        //    dataStream.Close();
-        //    response.Close();
-
-        //    return tier;
-
-        //}
-
-        //public static int getLeaguePointByEncryptedSummonerId(string id, string server)
-        //{
-        //    WebRequest request = WebRequest.Create("https://" + server + ".api.riotgames.com/lol/league/v4/entries/by-summoner/" + id + "?api_key=" + RiotKey);
-
-        //    HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-        //    Stream dataStream = response.GetResponseStream();
-        //    StreamReader reader = new StreamReader(dataStream);
-        //    string responseFromServer = reader.ReadToEnd();
-        //    // Display the content.
-        //    Console.WriteLine(responseFromServer);
-
-        //    dynamic resultFromRiot = JsonConvert.DeserializeObject(responseFromServer);
-        //    int tier = 0;
-        //    try
-        //    {
-        //        tier = resultFromRiot[0].leaguePoints;
-        //    }
-        //    catch (Exception e)
-        //    {
-                
-        //    }
-
-        //    reader.Close();
-        //    dataStream.Close();
-        //    response.Close();
-
-        //    return tier;
-
-        //}
+ 
 
         public static string[] getListMatchIDbyPuuId(string id, string server)
         {
@@ -184,13 +126,6 @@ namespace DuoLegend.RiotAPI
             infor.Spell2Id = resultFromRiot.info.participants[flag].summoner2Id;
             infor.ChampLevel = resultFromRiot.info.participants[flag].champLevel;
 
-            infor.ItemId[0] = resultFromRiot.info.participants[flag].item0;
-            infor.ItemId[1] = resultFromRiot.info.participants[flag].item1;
-            infor.ItemId[2] = resultFromRiot.info.participants[flag].item2;
-            infor.ItemId[3] = resultFromRiot.info.participants[flag].item3;
-            infor.ItemId[4] = resultFromRiot.info.participants[flag].item4;
-            infor.ItemId[5] = resultFromRiot.info.participants[flag].item5;
-            infor.ItemId[6] = resultFromRiot.info.participants[flag].item6;
 
             reader.Close();
             dataStream.Close();
@@ -247,15 +182,7 @@ namespace DuoLegend.RiotAPI
             //gan so lieu cua tran dau vao 10 player trong muc chi tiet tran dau
             for (int i = 0; i < 10; i++)
             {
-                
 
-                //infor.matchDetailPlayer[i].ItemId[0] = resultFromRiot.info.participants[i].item0;
-                //infor.matchDetailPlayer[i].ItemId[1] = resultFromRiot.info.participants[i].item1;
-                //infor.matchDetailPlayer[i].ItemId[2] = resultFromRiot.info.participants[i].item2;
-                //infor.matchDetailPlayer[i].ItemId[3] = resultFromRiot.info.participants[i].item3;
-                //infor.matchDetailPlayer[i].ItemId[4] = resultFromRiot.info.participants[i].item4;
-                //infor.matchDetailPlayer[i].ItemId[5] = resultFromRiot.info.participants[i].item5;
-                //infor.matchDetailPlayer[i].ItemId[6] = resultFromRiot.info.participants[i].item6;
                 int kill= resultFromRiot.info.participants[i].kills;
                 int death = resultFromRiot.info.participants[i].deaths;
                 int assist = resultFromRiot.info.participants[i].assists;
@@ -379,10 +306,6 @@ namespace DuoLegend.RiotAPI
                     UserDAO.addChamp(championID, championName, iconpath);
                 }
             }
-            ////string championID = resultFromRiot[i].key;
-            ////string championName = resultFromRiot[i].id;
-            ////string iconpath = "~/img/Champions/" + resultFromRiot[i].id + ".png";
-            ////UserDAO.addChamp(championID, championName, iconpath);
             reader.Close();
             dataStream.Close();
             response.Close();

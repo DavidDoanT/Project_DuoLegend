@@ -49,7 +49,7 @@
                 "passwordCheck": {
                     required: true,
                     maxlength: 32,
-                    equalTo: '#Password'
+                    equalTo: '#password'
                 }
             },
             messages: {
@@ -109,7 +109,7 @@
                 </div>
                 <div class="form-group">
                     <label>Password: </label>
-                    <input type="password" class="form-control" name="password" id="Password" placeholder="Enter password" asp-for="Password">
+                    <input type="password" class="form-control" name="password" id="password" placeholder="Enter password" asp-for="Password">
                     @*Button show/hide password*@
                     <i class="bi bi-eye-slash" id="togglePassword" style="margin-left: -30px; cursor: pointer;"></i>
                 </div>
