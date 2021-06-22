@@ -25,9 +25,9 @@
 <script>
 
     $().ready(function () {
-        $.validator.addMethod("validatePassword", function (value, element) {
-            return this.optional(element) || /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}$/i.test(value);
-        }, "Please enter password contains 8 to 16 letters, including uppercase, lowercase and at least one number");
+        //$.validator.addMethod("validatePassword", function (value, element) {
+        //    return this.optional(element) || /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}$/i.test(value);
+        //}, "Please enter password contains 8 to 16 letters, including uppercase, lowercase and at least one number");
         $("#Form").validate({
             rules: {
                 "ingameName": {
@@ -39,12 +39,12 @@
                     email: true,
                 },
 
-                "password": {
-                    required: true,
-                    validatePassword: true,
-                    minlength: 8,
+                //"password": {
+                //    required: true,
+                //    validatePassword: true,
+                //    minlength: 8,
 
-                },
+                //},
 
                 "passwordCheck": {
                     required: true,
@@ -62,10 +62,10 @@
                     required: "Full name is required",
                     maxlength: "Full name is too long"
                 },
-                "password": {
-                    required: "Password is required",
-                    maxlength: "Password is too long"
-                },
+                //"password": {
+                //    required: "Password is required",
+                //    maxlength: "Password is too long"
+                //},
                 "passwordCheck": {
                     required: "Confirm password is required",
                     maxlength: "Confirm password is too long",
@@ -112,12 +112,13 @@
                     <input type="password" class="form-control" name="password" id="password" placeholder="Enter password" asp-for="Password">
                     @*Button show/hide password*@
                     <i class="bi bi-eye-slash" id="togglePassword" style="margin-left: -30px; cursor: pointer;"></i>
+                    <span asp-validation-for="@Model.Password" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label> Password Confirm:</label>
-                    <input type="password" class="form-control" name="passwordCheck" placeholder="Enter password again" id="PasswordCheck">
+                    <input type="password" class="form-control" name="passwordCheck" placeholder="Enter password again" id="passwordCheck">
                     @*Button show/hide password*@
-                    <i class="bi bi-eye-slash" id="togglePassword" style="margin-left: -30px; cursor: pointer;"></i>
+                    <i class="bi bi-eye-slash" id="togglePasswordCheck" style="margin-left: -30px; cursor: pointer;"></i>
                 </div>
                 <div class="form-group">
                     <label>Email:</label>
@@ -144,6 +145,17 @@
         // toggle the type attribute
         const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
         password.setAttribute('type', type);
+        // toggle the eye slash icon
+        this.classList.toggle('bi-eye');
+    });
+
+    const togglePasswordCheck = document.querySelector('#togglePasswordCheck');
+    const passwordCheck = document.querySelector('#passwordCheck');
+
+    togglePasswordCheck.addEventListener('click', function (e) {
+        // toggle the type attribute
+        const type = passwordCheck.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordCheck.setAttribute('type', type);
         // toggle the eye slash icon
         this.classList.toggle('bi-eye');
     });

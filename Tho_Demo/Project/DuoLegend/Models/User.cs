@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -55,14 +56,16 @@ namespace DuoLegend.Models
             set { _id = value; }
         }
 
-
+        [Required(ErrorMessage = "Password is required")]
+        [StringLength(16, MinimumLength = 8, ErrorMessage = "Please enter password contains 8 to 16 letters")]
         public string Password
         {
             get { return _password; }
             set { _password = value; }
         }
 
-
+        [Required(ErrorMessage = "The email address is required")]
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string Email
         {
             get { return _email; }
@@ -75,7 +78,7 @@ namespace DuoLegend.Models
             get { return _server; }
             set { _server = value; }
         }
-
+        [Required(ErrorMessage = "Ingame name is required")]
         public string InGameName
         {
             get { return _inGameName; }

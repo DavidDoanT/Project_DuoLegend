@@ -89,8 +89,13 @@ namespace DuoLegend.Controllers
             user.InGameName = register.InGameName;
             user.Server = register.Server;
             user.Password = register.Password;
-            DAO.UserDAO.addUser(user);
-            return View("RegisterSuccess");
+            if (ModelState.IsValid)
+            {
+                DAO.UserDAO.addUser(user);
+                return View("RegisterSuccess");
+            }
+            else return View();
+            
         }
 
         
