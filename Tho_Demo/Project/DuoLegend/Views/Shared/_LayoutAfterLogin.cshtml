@@ -1,4 +1,5 @@
-﻿
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
 <!DOCTYPE html>
 
 <html>
@@ -67,6 +68,24 @@
                     </li>
                 </ul>
                 @*<a type="button" class="btn btn-danger " href="/Account/Logout">Logout</a>*@
+
+                @{List<string[]> test = DuoLegend.DAO.ChatDAO.getUnseenList(@HttpContextAccessor.HttpContext.Session.GetInt32("id").Value);
+                    if (test.Count > 0)
+                    {
+                    <div class="dropdown" style="margin-right: 3vw;">
+                        <button style="width: inherit; background: linear-gradient(178deg,#ab1328,#621620)" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            New Message
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="background: #212529;">
+                            @foreach (var item in test)
+                            {
+                                <a class="dropdown-item" style="color: white;" asp-controller="Profile" asp-action="Index" asp-route-inGameName="@item[0]" asp-route-server="@item[1]">@item[0]</a>
+                            }
+
+                        </div>
+                    </div>
+                    }
+                  }
                 <div class="dropdown" style="margin-right: 3vw;">
                     <button style="width: inherit; background: linear-gradient(178deg,#ab1328,#621620)" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Dropdown
@@ -83,7 +102,8 @@
 
 
     @RenderBody()
-
+    <script src="~/js/signalR/dist/browser/signalr.js"></script>
+    <script src="~/js/chat.js"></script>
 </body>
 </html>
 

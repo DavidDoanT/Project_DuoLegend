@@ -453,5 +453,35 @@ namespace DuoLegend.DAO
             }
         }
 
+        public static string[] getInGameNameServerById(int id)
+        {
+            string[] result = new string[2];
+            com.Parameters.Clear();
+            conn.ConnectionString = MyConfig.ConnectionString;
+
+            conn.Open();
+            com.Connection = conn;
+
+            com.CommandText = "select inGameName, server from [User] where userid = @userid";
+
+            com.Parameters.AddWithValue("@userid", id);
+    
+            SqlDataReader reader = com.ExecuteReader();
+
+            if (reader.Read())
+            {
+
+                result[0] = (string)reader["inGameName"];
+                result[1] = (string)reader["server"];
+                conn.Close();
+                return result;
+            }
+            else
+            {
+                conn.Close();
+                return null;
+            }
+        }
+
     }
 }

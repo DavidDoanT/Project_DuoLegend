@@ -108,6 +108,49 @@ namespace DuoLegend.DAO
             conn.Close();
             return list;           
         }
+        
+        public static List<string[]> getUnseenList(int id)
+        {
+            com.Parameters.Clear();
+            conn.ConnectionString = MyConfig.ConnectionString;
 
+            conn.Open();
+            com.Connection = conn;
+
+            com.CommandText = "select boxChatId  from boxChat where user1 = @id1 or user2=@id1 ";
+
+            com.Parameters.AddWithValue("@id1", id);
+
+            SqlDataReader reader = com.ExecuteReader();
+            List<int> listBoxChatId = new();
+            while (reader.Read())
+            {
+                listBoxChatId.Add(Int32.Parse(reader["boxChatId"].ToString()));
+            }
+            conn.Close();
+            List<string[]> result = new();
+            foreach (var item in listBoxChatId)
+            {
+                com.Parameters.Clear();
+                conn.Open();
+                com.Connection = conn;
+
+                com.CommandText = "select top 1 sendFrom  from boxChatDetail where boxChatId=@boxChatId AND sendFrom <> @id" +
+                    " AND isSeen = 0" +
+                    "   ORDER BY timeSend DESC ";
+
+                com.Parameters.AddWithValue("@boxChatId", item);
+                com.Parameters.AddWithValue("@id", id);
+
+                reader = com.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    result.Add(UserDAO.getInGameNameServerById(Int32.Parse(reader["sendFrom"].ToString())));
+                }
+                conn.Close();
+            }
+            return result;
+        }
     }
 }
