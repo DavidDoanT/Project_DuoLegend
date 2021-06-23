@@ -10,11 +10,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Net;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNet.Identity;
+using MimeKit;
+using MimeKit.Text;
+using MailKit.Net.Smtp;
+using MailKit.Security;
+
 namespace DuoLegend.Controllers
 {
 
     public class AccountController : Controller
     {
+
         /// <summary>
         /// redirect to login view
         /// </summary>
@@ -35,18 +43,18 @@ namespace DuoLegend.Controllers
         {
             if (UserDAO.CheckLogin(acc.Email, acc.Password))
             {
-                if(acc.RememberMe)
+                if (acc.RememberMe)
                 {
                     CookieOptions newCookie = new CookieOptions();
                     newCookie.Expires = DateTime.Now.AddDays(1);
                     Response.Cookies.Append("email", acc.Email, newCookie);
                 }
-                
+
                 HttpContext.Session.SetString("email", acc.Email);
                 User user = UserDAO.getUserByEmail(acc.Email);
                 HttpContext.Session.SetString("inGameName", user.InGameName);
                 HttpContext.Session.SetString("server", user.Server);
-                HttpContext.Session.SetInt32("id", UserDAO.getIdByInGameNameServer(user.InGameName,user.Server));
+                HttpContext.Session.SetInt32("id", UserDAO.getIdByInGameNameServer(user.InGameName, user.Server));
                 return RedirectToAction("Index", "Home");
             }
             else
@@ -54,7 +62,7 @@ namespace DuoLegend.Controllers
                 ViewBag.isCorrect = false;
                 return View("LoginPage");
             }
-        
+
         }
         /// <summary>
         /// clear all session available
@@ -74,7 +82,7 @@ namespace DuoLegend.Controllers
         /// <returns></returns>
         public IActionResult Register(User register)
         {
-            if(!RiotAPI.RiotAPI.isRealInGameName(register.InGameName, register.Server))
+            if (!RiotAPI.RiotAPI.isRealInGameName(register.InGameName, register.Server))
             {
                 ViewBag.isRealInGameName = false;
                 return View();
@@ -98,7 +106,103 @@ namespace DuoLegend.Controllers
             
         }
 
-        
+        [HttpGet]
+        public IActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult ForgotPassword(ForgotPasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                if (DAO.UserDAO.isDuplicateUser(model.Email))
+                {
+                    string resetCode = Guid.NewGuid().ToString();
+                    SendEmail(model.Email, resetCode);
+                    DAO.UserDAO.addResetPasswordCode(resetCode, model.Email);
+                    return View("ForgotPasswordConfirmation");
+                }
+                return View("ForgotPasswordConfirmation");
+            }
+            return View(model);
+        }
+
+        public IActionResult ResetPassword(string code)
+        {
+            if (string.IsNullOrWhiteSpace(code))
+            {
+                return NotFound();
+            }
+            else
+            {
+                if (DAO.UserDAO.isResetPasswordCodeExist(code))
+                {
+                    ResetPasswordViewModel model = new ResetPasswordViewModel();
+                    model.ResetCode = code;
+                    return View(model);
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult ResetPassword(ResetPasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                if (DAO.UserDAO.isResetPasswordCodeExist(model.ResetCode))
+                {
+                    DAO.UserDAO.resetPassword(model.ResetCode, model.NewPassword);
+                    return View("ResetPasswordConfirmation");
+                }
+                return NotFound();
+            }
+            return View(model);
+        }
+
+        [NonAction]
+        public void SendEmail(string emailID, string code, string emailFor)
+        {
+            var verifyUrl = "/Account/" + emailFor + "/" + code;
+            var link = Url.Action(emailFor, "Account", new { code = code }, Request.Scheme);
+            // create email message
+            var email = new MimeMessage();
+            email.From.Add(new MailboxAddress("Duo Legend", "duolegendstaff@gmail.com"));
+            email.To.Add(MailboxAddress.Parse(emailID));
+            if (emailFor == "VerifyAccount")
+            {
+                email.Subject = "Please verify your email address in Duo Legend.";
+                email.Body = new TextPart(TextFormat.Html)
+                {
+                    Text = "<h1>Almost done,"+ emailID +"!</h1><br/>" +
+                    "We are excited to tell you that your Duo Legend account is" +
+                    " successfully created. Please click on the link below to verify your account" +
+                    "<a href='" + link + "' class='btn btn-primary'>VERIFY EMAIL ADDRESS</a>"
+                };
+            }
+            else if (emailFor == "ResetPassword")
+            {
+                email.Subject = "Password Reset Instructions For Duo Legend Account";
+                email.Body = new TextPart(TextFormat.Html)
+                {
+                    Text = "<h1>Password Reset Instructions</h1><br/>" +
+                    "Hello,<br/>Click the link below to reset your password for your Duo Legend account.<br/>" +
+                    "<a href='" + link + "' class='btn btn-primary'>RESET PASSWORD</a>"
+                };
+            }
+            // send email
+            using var smtp = new SmtpClient();
+            smtp.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
+            smtp.Authenticate("duolegendstaff@gmail.com", "legend2021");
+            smtp.Send(email);
+            smtp.Disconnect(true);
+        }
 
         //ham thua, se xoa trong tuong lai
         public IActionResult RedirectRegisterPage()

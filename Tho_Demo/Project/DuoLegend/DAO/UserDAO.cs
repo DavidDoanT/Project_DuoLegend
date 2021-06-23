@@ -1,4 +1,4 @@
-using DuoLegend.GlobalConfig;
+﻿using DuoLegend.GlobalConfig;
 using DuoLegend.Models;
 using DuoLegend.ViewModels;
 using System;
@@ -251,7 +251,7 @@ namespace DuoLegend.DAO
 
             if (reader.Read())
             {
-                
+
                 user.Note = (string)reader["note"];
                 user.Lane = (string)reader["lane"];
                 user.HasMic = (bool)reader["hasMic"];
@@ -308,8 +308,8 @@ namespace DuoLegend.DAO
 
             conn.Open();
             com.Connection = conn;
-            
-            if(userIn.Note == null)
+
+            if (userIn.Note == null)
             {
                 userIn.Note = "";
             }
@@ -359,18 +359,19 @@ namespace DuoLegend.DAO
                     string temp = (string)reader["Note"];
                     conn.Close();
                     return temp;
-                }catch(Exception)
+                }
+                catch (Exception)
                 {
                     conn.Close();
                     return "";
-                }             
+                }
             }
             else
             {
                 conn.Close();
                 return null;
             }
-            
+
         }
 
         public static string getLane(string inGameName, string server)
@@ -440,11 +441,11 @@ namespace DuoLegend.DAO
                         return false;
                     }
                 }
-                catch(Exception)
+                catch (Exception)
                 {
                     conn.Close();
                     return false;
-                }           
+                }
             }
             else
             {
@@ -457,15 +458,10 @@ namespace DuoLegend.DAO
         {
             string[] result = new string[2];
             com.Parameters.Clear();
-            conn.ConnectionString = MyConfig.ConnectionString;
-
-            conn.Open();
-            com.Connection = conn;
-
             com.CommandText = "select inGameName, server from [User] where userid = @userid";
 
             com.Parameters.AddWithValue("@userid", id);
-    
+
             SqlDataReader reader = com.ExecuteReader();
 
             if (reader.Read())
@@ -483,5 +479,63 @@ namespace DuoLegend.DAO
             }
         }
 
+        public static void addResetPasswordCode(string code, string email)
+        {
+            com.Parameters.Clear();
+
+            conn.ConnectionString = MyConfig.ConnectionString;
+
+            conn.Open();
+            com.Connection = conn;
+            com.CommandText = "UPDATE [User] SET resetPasswordCode=@resetPasswordCode WHERE email=@email";
+            com.Parameters.AddWithValue("@resetPasswordCode", code);
+            com.Parameters.AddWithValue("@email", email);
+            com.EndExecuteNonQuery(com.BeginExecuteNonQuery());
+            conn.Close();
+        }
+
+        public static bool isResetPasswordCodeExist(string code)
+        {
+            com.Parameters.Clear();
+            conn.ConnectionString = MyConfig.ConnectionString;
+            conn.Open();
+            com.Connection = conn;
+            com.CommandText = "SELECT resetPasswordCode FROM [User] WHERE resetPasswordCode=@resetPasswordCode";
+            com.Parameters.AddWithValue("@resetPasswordCode", code);
+
+            SqlDataReader reader = com.ExecuteReader();
+            if (reader.Read())
+            {
+                reader.Close();
+                conn.Close();
+                return true;
+
+            }
+            else
+            {
+                reader.Close();
+                conn.Close();
+                return false;
+            }
+        }
+
+        public static void resetPassword(string code, string newPassword)
+        {
+            com.Parameters.Clear();
+            conn.ConnectionString = MyConfig.ConnectionString;
+            conn.Open();
+            com.Connection = conn;
+            com.CommandText = "UPDATE [User] SET password=@newPassword WHERE resetPasswordCode=@resetPasswordCode";
+            com.Parameters.AddWithValue("@newPassword", newPassword);
+            com.Parameters.AddWithValue("@resetPasswordCode", code);
+            com.ExecuteNonQuery();
+
+            //Xóa reset password code sau khi đã đổi password
+            com.CommandText = "UPDATE [User] SET resetPasswordCode=@resetCode WHERE resetPasswordCode=@code";
+            com.Parameters.AddWithValue("@resetCode", "");
+            com.Parameters.AddWithValue("@code", code);
+            com.ExecuteNonQuery();
+            conn.Close();
+        }
     }
 }
