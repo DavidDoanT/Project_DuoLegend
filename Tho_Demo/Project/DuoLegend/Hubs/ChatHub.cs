@@ -40,7 +40,7 @@ namespace DuoLegend.Hubs
             if(boxChatId != 0)
             {
                 await Groups.AddToGroupAsync(Context.ConnectionId, boxChatId.ToString());
-
+                DAO.ChatDAO.changeSeenState(Int32.Parse(sender), boxChatId);
                 List<BoxChatDetail> chatList = DAO.ChatDAO.GetListBoxChatDetailById(boxChatId);
                 foreach (var chat in chatList)
                 {

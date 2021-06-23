@@ -90,7 +90,7 @@ namespace DuoLegend.Controllers
             user.Server = register.Server;
             user.Password = register.Password;
             DAO.UserDAO.addUser(user);
-            return View("RegisterSuccess");
+            return RedirectToAction("RedirectLoginPage", "Account");
         }
 
         
