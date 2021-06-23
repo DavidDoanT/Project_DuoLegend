@@ -100,6 +100,12 @@ namespace DuoLegend.Controllers
             if (ModelState.IsValid)
             {
                 DAO.UserDAO.addUser(user);
+                string activationCode = Guid.NewGuid().ToString();
+                SendEmail(user.Email, activationCode, "VerifyAccount");
+                DAO.UserDAO.addActivationCode(activationCode, user.Email);
+                string msg = "Registration successfully done. Account activation link " +
+                " has been sent to your email: " + user.Email;
+                ViewBag.Message = msg;
                 return View("RegisterSuccess");
             }
             else return View();
@@ -120,7 +126,7 @@ namespace DuoLegend.Controllers
                 if (DAO.UserDAO.isDuplicateUser(model.Email))
                 {
                     string resetCode = Guid.NewGuid().ToString();
-                    SendEmail(model.Email, resetCode);
+                    SendEmail(model.Email, resetCode, "ResetPassword");
                     DAO.UserDAO.addResetPasswordCode(resetCode, model.Email);
                     return View("ForgotPasswordConfirmation");
                 }
@@ -164,6 +170,16 @@ namespace DuoLegend.Controllers
                 return NotFound();
             }
             return View(model);
+        }
+
+        public IActionResult VerifyAccount(string code)
+        {
+            if (DAO.UserDAO.isActivationCodeExist(code)) 
+            {
+                DAO.UserDAO.verifyAccount(code);
+                return View("VerifyConfirmation");
+            }
+            return NotFound();
         }
 
         [NonAction]

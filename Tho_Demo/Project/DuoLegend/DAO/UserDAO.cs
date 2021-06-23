@@ -454,29 +454,60 @@ namespace DuoLegend.DAO
             }
         }
 
-        public static string[] getInGameNameServerById(int id)
+        public static void addActivationCode(string code, string email)
         {
-            string[] result = new string[2];
             com.Parameters.Clear();
-            com.CommandText = "select inGameName, server from [User] where userid = @userid";
 
-            com.Parameters.AddWithValue("@userid", id);
+            conn.ConnectionString = MyConfig.ConnectionString;
+
+            conn.Open();
+            com.Connection = conn;
+
+            com.CommandText = "UPDATE [User] SET activationCode=@code WHERE email=@email";
+            com.Parameters.AddWithValue("@code", code);
+            com.Parameters.AddWithValue("@email", email);
+            com.EndExecuteNonQuery(com.BeginExecuteNonQuery());
+            conn.Close();
+        }
+
+        public static bool isActivationCodeExist(string code)
+        {
+            com.Parameters.Clear();
+            conn.ConnectionString = MyConfig.ConnectionString;
+            conn.Open();
+            com.Connection = conn;
+            com.CommandText = "SELECT activationCode FROM [User] WHERE activationCode=@code";
+            com.Parameters.AddWithValue("@code", code);
 
             SqlDataReader reader = com.ExecuteReader();
-
             if (reader.Read())
             {
-
-                result[0] = (string)reader["inGameName"];
-                result[1] = (string)reader["server"];
+                reader.Close();
                 conn.Close();
-                return result;
+                return true;
+
             }
             else
             {
+                reader.Close();
                 conn.Close();
-                return null;
+                return false;
             }
+        }
+
+        public static void verifyAccount(string code)
+        {
+            com.Parameters.Clear();
+
+            conn.ConnectionString = MyConfig.ConnectionString;
+
+            conn.Open();
+            com.Connection = conn;
+
+            com.CommandText = "UPDATE [User] SET isVerified=1 WHERE activationCode=@code";
+            com.Parameters.AddWithValue("@code", code);
+            com.EndExecuteNonQuery(com.BeginExecuteNonQuery());
+            conn.Close();
         }
 
         public static void addResetPasswordCode(string code, string email)
@@ -487,6 +518,7 @@ namespace DuoLegend.DAO
 
             conn.Open();
             com.Connection = conn;
+
             com.CommandText = "UPDATE [User] SET resetPasswordCode=@resetPasswordCode WHERE email=@email";
             com.Parameters.AddWithValue("@resetPasswordCode", code);
             com.Parameters.AddWithValue("@email", email);
@@ -537,5 +569,36 @@ namespace DuoLegend.DAO
             com.ExecuteNonQuery();
             conn.Close();
         }
+
+        public static string[] getInGameNameServerById(int id)
+        {
+            string[] result = new string[2];
+            com.Parameters.Clear();
+            conn.ConnectionString = MyConfig.ConnectionString;
+
+            conn.Open();
+            com.Connection = conn;
+
+            com.CommandText = "select inGameName, server from [User] where userid = @userid";
+
+            com.Parameters.AddWithValue("@userid", id);
+    
+            SqlDataReader reader = com.ExecuteReader();
+
+            if (reader.Read())
+            {
+
+                result[0] = (string)reader["inGameName"];
+                result[1] = (string)reader["server"];
+                conn.Close();
+                return result;
+            }
+            else
+            {
+                conn.Close();
+                return null;
+            }
+        }
+
     }
 }

@@ -8,10 +8,11 @@ namespace DuoLegend.ViewModels
 {
     public class ResetPasswordViewModel
     {
-        [Required(ErrorMessage = "New password required", AllowEmptyStrings = false)]
+        [Required(ErrorMessage = "Password is required")]
+        [StringLength(16, MinimumLength = 8, ErrorMessage = "Please enter password contains 8 to 16 letters")]
         [DataType(DataType.Password)]
         public string NewPassword { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Confirm password is required")]
         [DataType(DataType.Password)]
         [Compare("NewPassword", ErrorMessage = "New password and confirm password does not match")]
         public string ConfirmPassword{ get; set; }
