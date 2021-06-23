@@ -347,9 +347,9 @@ namespace DuoLegend.RiotAPI
             {
                 foreach (var infor in spell)
                 {
-                    string spellID =infor.id ;
-                    string spellName = infor.name;
-                    string iconpath = "img/Spells/" + spellID + ".png";
+                    int spellID = infor.key ;
+                    string spellName = infor.id;
+                    string iconpath = "img/Spells/" + spellName + ".png";
                     UserDAO.addSpell(spellID, spellName, iconpath);
                 }
             }

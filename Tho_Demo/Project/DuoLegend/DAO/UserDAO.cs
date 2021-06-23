@@ -218,7 +218,7 @@ namespace DuoLegend.DAO
             com.EndExecuteNonQuery(com.BeginExecuteNonQuery());
             conn.Close();
         }
-        public static void addSpell(string id, string name, string path)
+        public static void addSpell(int id, string name, string path)
         {
             com.Parameters.Clear();
 
