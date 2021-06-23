@@ -16,7 +16,7 @@
 
                 "description": {
                     required: true,
-                    maxlength: 100
+                    maxlength: 100,
                 },
             },
             messages: {
@@ -25,7 +25,7 @@
                 },
                 "description": {
                     required: "Please say something to let people know about yourself",
-                    maxlength: "Description is too long"
+                    maxlength: "Description is too long",
                 },
             }
         });
@@ -120,7 +120,7 @@
 
             @*Input new Lane*@
             <div class="form-group">
-                <label>Server</label>
+                <label>Lane</label>
                 <select asp-for="Lane" class="custom-select" value="@Model.Lane">
                     <option>Top</option>
                     <option>Jungle</option>
@@ -133,7 +133,7 @@
             @*Input description*@
             <div class="form-group">
                 <label>Description: </label>
-                <input type="text"  name="Note" class="form-control input-des" id="description" placeholder="Say something about yourself" asp-for="Note" value="@Model.Note">
+                <input type="text" name="Note" class="form-control input-des" id="description" placeholder="Say something about yourself" asp-for="Note" value="@Model.Note">
             </div>
 
             @*Button Save change*@

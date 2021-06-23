@@ -1,0 +1,121 @@
+commit f25aabd8d52e02d2971ba7745806ce1caa56b359
+tree 533256b7dcad4991e73f050b774e3c5f4c9d1670
+parent 1d1964e185a5fe953db3bd2c7a32c70f10bbe082
+author khanhtoanioe <80748497+khanhtoanioe@users.noreply.github.com> 1624402695 +0700
+committer khanhtoanioe <80748497+khanhtoanioe@users.noreply.github.com> 1624402695 +0700
+
+    1 xiu phan rate
+
+diff --git a/Tho_Demo/Project/DuoLegend/DuoLegend.csproj.user b/Tho_Demo/Project/DuoLegend/DuoLegend.csproj.user
+index e07082c..5063cfe 100644
+--- a/Tho_Demo/Project/DuoLegend/DuoLegend.csproj.user
++++ b/Tho_Demo/Project/DuoLegend/DuoLegend.csproj.user
+@@ -1,12 +1,17 @@
+ ﻿<?xml version="1.0" encoding="utf-8"?>
+ <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+   <PropertyGroup>
+-    <View_SelectedScaffolderID>RazorViewEmptyScaffolder</View_SelectedScaffolderID>
++    <View_SelectedScaffolderID>RazorViewScaffolder</View_SelectedScaffolderID>
+     <View_SelectedScaffolderCategoryPath>root/Common/MVC/View</View_SelectedScaffolderCategoryPath>
+     <Controller_SelectedScaffolderID>MvcControllerEmptyScaffolder</Controller_SelectedScaffolderID>
+     <Controller_SelectedScaffolderCategoryPath>root/Common/MVC/Controller</Controller_SelectedScaffolderCategoryPath>
+     <WebStackScaffolding_EnablerDialogWidth>650</WebStackScaffolding_EnablerDialogWidth>
+     <ActiveDebugProfile>IIS Express</ActiveDebugProfile>
++    <WebStackScaffolding_ViewDialogWidth>650.4</WebStackScaffolding_ViewDialogWidth>
++    <WebStackScaffolding_IsLayoutPageSelected>True</WebStackScaffolding_IsLayoutPageSelected>
++    <WebStackScaffolding_IsPartialViewSelected>True</WebStackScaffolding_IsPartialViewSelected>
++    <WebStackScaffolding_IsReferencingScriptLibrariesSelected>False</WebStackScaffolding_IsReferencingScriptLibrariesSelected>
++    <WebStackScaffolding_LayoutPageFile />
+   </PropertyGroup>
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
+diff --git a/Tho_Demo/Project/DuoLegend/Models/Rating.cs b/Tho_Demo/Project/DuoLegend/Models/Rating.cs
+index eec9864..35b44f6 100644
+--- a/Tho_Demo/Project/DuoLegend/Models/Rating.cs
++++ b/Tho_Demo/Project/DuoLegend/Models/Rating.cs
+@@ -33,6 +33,13 @@ namespace DuoLegend.Models
+             get { return _behaviorScore; }
+             set { _behaviorScore = value; }
+         }
+-        
++        private string _comment;
++
++        public string Comment
++        {
++            get { return _comment; }
++            set { _comment = value; }
++        }
++
+     }
+ }
+diff --git a/Tho_Demo/Project/DuoLegend/Views/Profile/Index.cshtml b/Tho_Demo/Project/DuoLegend/Views/Profile/Index.cshtml
+index 0925179..ec761f7 100644
+--- a/Tho_Demo/Project/DuoLegend/Views/Profile/Index.cshtml
++++ b/Tho_Demo/Project/DuoLegend/Views/Profile/Index.cshtml
+@@ -9,7 +9,9 @@
+ <form class="modal fade" id="example">
+     <partial name="_ChatPopup" view-data="ViewData"/>
+ </form>
+-
++<form class="modal fade" id="Rating">
++    <partial name="_Rating" />
++</form>
+     <div class="ProfileWrapper">
+ 
+     @* khung info tren đầu trang của profile, gồm tên ingamename, avatar, level, nút edit, follow, rate *@
+@@ -37,7 +39,7 @@
+                 }
+ 
+                 <button>Follow</button>
+-                <button>Rate</button>
++                <button data-toggle="modal" data-target="#Rating">Rate</button>
+                 <button data-toggle="modal" data-target="#example">Chat</button>
+             </div>
+         </div>
+diff --git a/Tho_Demo/Project/DuoLegend/Views/Shared/_Rating.cshtml b/Tho_Demo/Project/DuoLegend/Views/Shared/_Rating.cshtml
+new file mode 100644
+index 0000000..02dd1a4
+--- /dev/null
++++ b/Tho_Demo/Project/DuoLegend/Views/Shared/_Rating.cshtml
+@@ -0,0 +1,40 @@
++﻿
++@*
++    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
++*@
++<div class="container" style="width:50%">
++    
++    <h1>Rate player</h1>
++    <form asp-action="" asp-controller="">
++        <div class="modal-body">
++            <div class="form-group">
++                <label>Skill Score</label>
++                <select>
++                    <option>1</option>
++                    <option>2</option>
++                    <option>3</option>
++                    <option>4</option>
++                    <option>5</option>
++                </select>
++            </div>
++            <div class="form-group">
++                <label>Behavior Score</label>
++                <select>
++                    <option>1</option>
++                    <option>2</option>
++                    <option>3</option>
++                    <option>4</option>
++                    <option>5</option>
++                </select>
++            </div>
++            <div class="form-group">
++                <label>Comment</label>
++                <input type="text" name="comment" class="form-control">
++            </div>
++        </div>
++        <div class="modal-footer">
++            <input type="submit" value="Submit" class="btn btn-primary">
++            <button class="btn btn-warning" data dismiss="modal">Đóng</button>
++        </div>
++</form>
++</div>
+\ No newline at end of file
