@@ -2,7 +2,7 @@
 @*
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
-<div class="container" style="width:50%">
+@*<div class="container" style="width:50%">
     
     <h1>Rate player</h1>
     <form asp-action="" asp-controller="">
@@ -37,4 +37,64 @@
             <button type="button" class="btn btn-warning" data dismiss="modal">Đóng</button>
         </div>
 </form>
+</div>*@
+<div class="modal-dialog">
+    <!--Mọi thứ của modal(popup) sẽ nằm ở trong element có class "modal-content"-->
+    <div class="modal-content">
+        <!--Đây là cái cục header của modal(popup)-->
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalTitle"></h5>
+            <button type="button" class="close" data-dismiss="modal">
+                <!--%times; là character entity cho dấu "x" (hay còn gọi là cái cục đóng bên góc phải phía trên cùng ấy)-->
+                <span>&times;</span>
+            </button>
+        </div>
+        <!--Đây là phần body của modal-->
+        <!--Đây sẽ là phần mình để những ngôi sao để cho người ta click vào-->
+        <div class="modal-body" id="messagesList">
+
+            <h1 style="color:black">Rate player</h1>
+            <form asp-action="" asp-controller="">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Skill Score</label>
+                        <select>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Behavior Score</label>
+                        <select>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Comment</label>
+                        <input type="text" name="comment" class="form-control">
+                    </div>
+                </div>
+                @*<div class="modal-footer">
+
+            <button type="button" class="btn btn-warning" data dismiss="modal">Đóng</button>
+        </div>*@
+                <input type="submit" value="Submit" class="btn btn-primary"  style="width: 5vw; font-size: 1.25vw;text-align: center; padding-left: 0; padding-right: 0; float: right" >
+            </form>
+          
+
+        </div>
+        
+        <!--Đây là phần footer của modal-->
+        <div class="modal-footer">
+            <button id="closeButton" style="width: 5vw; font-size: 1.25vw;text-align: center; padding-left: 0; padding-right: 0" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            @*<input type="button" id="sendButton" value="Send Message" class="btn btn-primary">*@
+        </div>
+    </div>
 </div>
