@@ -18,7 +18,7 @@ namespace DuoLegend.DAO.AdminDAO
             Connect();
 
             Cmd.CommandText = "INSERT INTO [BannedUser] (userId, adminId, expirationDate, reason) "
-                                + "Values (@userId, @adminId, @expirationDate, @reason";
+                                + "Values (@userId, @adminId, @expirationDate, @reason) ";
 
             Cmd.Parameters.AddWithValue("userId", userId);
             Cmd.Parameters.AddWithValue("adminId", adminId);
@@ -26,6 +26,8 @@ namespace DuoLegend.DAO.AdminDAO
             Cmd.Parameters.AddWithValue("reason", reason);
 
             int rowsAffected = Cmd.ExecuteNonQuery();
+
+            Disconnect();
 
             return rowsAffected;
         }

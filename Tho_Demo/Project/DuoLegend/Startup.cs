@@ -1,4 +1,5 @@
 ﻿using DuoLegend.Hubs;
+using DuoLegend.Middlewares.MiddlewareExtensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -53,6 +54,7 @@ namespace DuoLegend
             app.UseRouting();
             app.UseAuthorization();
             app.UseSession();
+            app.UseCheckBannedUserMiddleware();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

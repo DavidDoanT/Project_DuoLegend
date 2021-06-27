@@ -76,5 +76,10 @@ namespace DuoLegend.Controllers
             }
             return View("Index", Service.ProcessMainPage.Search(searchInfor.search.Server));
         }
+
+        public IActionResult Banned()
+        {
+            return View();
+        }
     }
 }

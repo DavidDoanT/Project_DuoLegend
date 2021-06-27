@@ -23,18 +23,22 @@ namespace DuoLegend.DAO.AdminDAO
 
             DbConnection.Connect();
 
-            DbConnection.Cmd.CommandText = "SELECT adminId"
-                                            + "WHERE email = @email"
-                                            + "FROM [Admin]";
+            DbConnection.Cmd.CommandText = "SELECT adminId "
+                                            + "FROM [Admin] "
+                                            + "WHERE email = @email";
+                                            
 
             DbConnection.Cmd.Parameters.AddWithValue("email", email);
             
             SqlDataReader dr = DbConnection.Cmd.ExecuteReader();
+            
 
             if(dr.Read())
             {
                 adminId = int.Parse(dr["adminId"].ToString());
             }
+
+            DbConnection.Disconnect();
 
             return adminId;
         }
