@@ -152,5 +152,20 @@ namespace DuoLegend.DAO
             }
             return result;
         }
+
+        public static void changeSeenState(int sender, int boxChatId)
+        {
+            com.Parameters.Clear();
+            conn.ConnectionString = MyConfig.ConnectionString;
+
+            conn.Open();
+            com.Connection = conn;
+
+            com.CommandText = "UPDATE boxChatDetail SET isSeen = 1  WHERE boxChatId = @boxChatId AND sendFrom <> @sender AND isSeen = 0";
+            com.Parameters.AddWithValue("@boxChatId", boxChatId);
+            com.Parameters.AddWithValue("@sender", sender);
+            com.EndExecuteNonQuery(com.BeginExecuteNonQuery());
+            conn.Close();
+        }
     }
 }
