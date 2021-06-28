@@ -11,7 +11,7 @@ namespace DuoLegend.Hubs
 {
     public class ChatHub : Hub
     {
-        Dictionary<string, string> ConnectionMap = new Dictionary<string, string>();
+        
         public async Task SendMessage(string message, string sender, string reciever)
         {
             //--------
@@ -51,7 +51,7 @@ namespace DuoLegend.Hubs
 
         public async Task Notification(string sender)
         {
-            ConnectionMap.Add(sender, Context.ConnectionId);
+            await Groups.AddToGroupAsync(Context.ConnectionId, sender+"notifi");
         }
     }
 }
