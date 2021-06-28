@@ -77,8 +77,18 @@ namespace DuoLegend.Controllers
             return View("Index", Service.ProcessMainPage.Search(searchInfor.search.Server));
         }
 
+        /// <summary>
+        /// BANISH THE UNWORTHY TO BRAZIL
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Banned()
         {
+            string userEmail = HttpContext.Session.GetString("email");
+            DateTime expirationDate = (DateTime)BanInfoDAO.GetBanExpirationDate(userEmail);
+
+            string expirationDateString = expirationDate.ToString("dd/MM/yyyy");
+            ViewBag.expirationDate = expirationDateString;
+
             return View();
         }
     }

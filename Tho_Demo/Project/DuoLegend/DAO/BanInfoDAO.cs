@@ -16,25 +16,34 @@ namespace DuoLegend.DAO
         {
             DateTime? expirationDate;
 
-            DbConnection.Connect();
-
-            DbConnection.Cmd.CommandText = "SELECT TOP (1) expirationDate "
-                                            + "FROM [BannedUser] JOIN [User] "
-                                            +   "ON [BannedUser].UserId = [User].UserId "
-                                            + "WHERE [User].email = @email "
-                                            + "ORDER BY [BannedUser].banId DESC";
-
-            DbConnection.Cmd.Parameters.AddWithValue("email", email);
-            SqlDataReader dr = DbConnection.Cmd.ExecuteReader();
-
-            if(dr.Read())
+            try
             {
-                expirationDate = DateTime.Parse(dr["expirationDate"].ToString());
-                DbConnection.Disconnect();
-                return expirationDate;
-            }
+                DbConnection.Connect();
 
-            DbConnection.Disconnect();
+                DbConnection.Cmd.CommandText = "SELECT TOP (1) expirationDate "
+                                                + "FROM [BannedUser] JOIN [User] "
+                                                + "ON [BannedUser].UserId = [User].UserId "
+                                                + "WHERE [User].email = @email "
+                                                + "ORDER BY [BannedUser].banId DESC";
+
+                DbConnection.Cmd.Parameters.AddWithValue("email", email);
+                SqlDataReader dr = DbConnection.Cmd.ExecuteReader();
+
+                if (dr.Read())
+                {
+                    expirationDate = DateTime.Parse(dr["expirationDate"].ToString());
+                    DbConnection.Disconnect();
+                    return expirationDate;
+                }
+            }
+            catch (InvalidOperationException ioe)
+            {
+                string message = ioe.Message;
+            }
+            finally
+            {
+                DbConnection.Disconnect();
+            }
             return null;
         }
 
@@ -47,29 +56,38 @@ namespace DuoLegend.DAO
         {
             BanInfo banInfo = new BanInfo();
 
-            DbConnection.Connect();
-            DbConnection.Cmd.CommandText = "SELECT TOP (1) userId, email, expirationDate, reason "
-                                            + "FROM [BannedUser] JOIN [Admin] "
-                                            + "ON [BannedUser].adminId = [Admin].adminId "
-                                            + "WHERE [BannedUser].userId = @userId "
-                                            + "ORDER BY [BannedUser].banId DESC";
-            DbConnection.Cmd.Parameters.AddWithValue("userId", userId);
-
-            SqlDataReader dr = DbConnection.Cmd.ExecuteReader();
-
-            if(dr.Read())
+            try
             {
-                banInfo.UserId = int.Parse(dr["userId"].ToString());
-                banInfo.AdminEmail = dr["email"].ToString();
-                banInfo.ExpirationDate = DateTime.Parse(dr["expirationDate"].ToString());
-                banInfo.Reason = dr["reason"].ToString();
+                DbConnection.Connect();
+                DbConnection.Cmd.CommandText = "SELECT TOP (1) userId, expirationDate, reason "
+                                                + "FROM [BannedUser] JOIN [Admin] "
+                                                + "ON [BannedUser].adminId = [Admin].adminId "
+                                                + "WHERE [BannedUser].userId = @userId "
+                                                + "ORDER BY [BannedUser].banId DESC";
+                DbConnection.Cmd.Parameters.AddWithValue("userId", userId);
 
+                SqlDataReader dr = DbConnection.Cmd.ExecuteReader();
+
+                if (dr.Read())
+                {
+                    banInfo.UserId = int.Parse(dr["userId"].ToString());
+                    banInfo.ExpirationDate = DateTime.Parse(dr["expirationDate"].ToString());
+                    banInfo.Reason = dr["reason"].ToString();
+
+                    DbConnection.Disconnect();
+                    return banInfo;
+                }
+            }
+            catch (InvalidOperationException ioe)
+            {
+                string message = ioe.Message;
+            }
+            finally
+            {
                 DbConnection.Disconnect();
-                return banInfo;
             }
 
-            DbConnection.Disconnect();
             return null;
-        } 
+        }
     }
 }
