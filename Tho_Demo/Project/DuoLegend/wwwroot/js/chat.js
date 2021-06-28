@@ -20,7 +20,27 @@ connection.on("ReceiveMessage", function (message, sender) {
     }
 });
 
+connection.on("ReceiveNotification", function (inGameName, server) {
+    //listMessageContainer
+    var a = document.createElement("a");
+    document.getElementById("listMessageContainer").appendChild(a);
+    if (document.getElementById(inGameName + server) == null) {
+        a.textContent = `${inGameName}`;
+        a.style.color = 'white';
+        a.className = 'dropdown-item';
+        a.href = '/Profile/Index/' + inGameName + '/' + server;
+        a.id = inGameName + server;
+    }
+
+    //document.getElementById("listMessageContainer").click()
+});
+
+
 connection.start().then(function () {
+    var sender = document.getElementById("userId").value;
+    connection.invoke("Notification", sender).catch(function (err) {
+        return console.error(err.toString());
+    });
 }).catch(function (err) {
     return console.error(err.toString());
 });
