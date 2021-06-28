@@ -70,9 +70,8 @@
                 @*<a type="button" class="btn btn-danger " href="/Account/Logout">Logout</a>*@
 
                 @{List<string[]> test = DuoLegend.DAO.ChatDAO.getUnseenList(@HttpContextAccessor.HttpContext.Session.GetInt32("id").Value);
-                    if (test.Count > 0)
-                    {
-                    <div class="dropdown" style="margin-right: 3vw;">
+                   
+                    <div class="dropdown" style="margin-right: 3vw;" @(test.Count > 0 ? string.Empty : "hidden") >
                         <button style="width: inherit; background: linear-gradient(178deg,#ab1328,#621620)" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             New Message
                         </button>
@@ -84,7 +83,7 @@
 
                         </div>
                     </div>
-                    }
+                    
                   }
                 <div class="dropdown" style="margin-right: 3vw;">
                     <button style="width: inherit; background: linear-gradient(178deg,#ab1328,#621620)" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -100,7 +99,7 @@
         </nav>
     </header>
 
-
+    <input id="userId" value='@HttpContextAccessor.HttpContext.Session.GetInt32("id")' disabled style="display: none">
     @RenderBody()
     <script src="~/js/signalR/dist/browser/signalr.js"></script>
     <script src="~/js/chat.js"></script>
