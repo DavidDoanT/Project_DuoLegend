@@ -1,31 +1,46 @@
 using System;
 using DuoLegend.DatabaseConnection;
+using DuoLegend.Models;
 
 namespace DuoLegend.DAO
 {
     //Name subjects to be changed
-    public static class WebsiteStatisticDAO
+    public static class WebsiteStatisticsDAO
     {
         private static DateTime _today;
-        public static bool IsTodayRecordExist()
+
+        /// <summary>
+        /// Get today's statistic
+        /// </summary>
+        /// <returns>A WebsiteStatistics object, containing the statistic of today</returns>
+        public static WebsiteStatistics GetTodayRecord()
         {
             _today = DateTime.Now.Date;
 
             DbConnection.Connect();
-            DbConnection.Cmd.CommandText = "SELECT [date] FROM WebsiteStatistics WHERE [date] = @today";
+            DbConnection.Cmd.CommandText = "SELECT [date], visitorCount, newAccountCount "
+                                            +"FROM WebsiteStatistics "
+                                            +"WHERE [date] = @today";
             DbConnection.Cmd.Parameters.AddWithValue("today", _today);
-            
+
             DbConnection.Dr = DbConnection.Cmd.ExecuteReader();
 
-            if(DbConnection.Dr.Read()){
-                DbConnection.Disconnect();
-                return true;
+            if(DbConnection.Dr.Read())
+            {
+                WebsiteStatistics todayStatistic = new WebsiteStatistics();
+                todayStatistic.Date = DateTime.Parse(DbConnection.Dr["date"].ToString());
+                todayStatistic.VisitorCount = int.Parse(DbConnection.Dr["visitorCount"].ToString());
+                todayStatistic.NewAccountCount = int.Parse(DbConnection.Dr["newAccountCount"].ToString());
+
+                return todayStatistic;
             }
 
-            DbConnection.Disconnect();
-            return false;
+            return null;
         }
 
+        /// <summary>
+        /// Create a record of today to store statistic
+        /// </summary>
         public static void CreateTodayRecord()
         {
             _today = DateTime.Now.Date;
@@ -39,6 +54,9 @@ namespace DuoLegend.DAO
             DbConnection.Disconnect();
         }
 
+        /// <summary>
+        /// Increment the visitorcount of today by one
+        /// </summary>
         public static void IncrementVisitorCount()
         {
             _today = DateTime.Now.Date;
@@ -53,6 +71,9 @@ namespace DuoLegend.DAO
             DbConnection.Disconnect();
         }
 
+        /// <summary>
+        /// Increment new account count of today by one
+        /// </summary>
         public static void IncrementNewAccCount()
         {
             _today = DateTime.Now.Date;
