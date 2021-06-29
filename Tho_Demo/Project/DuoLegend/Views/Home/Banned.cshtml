@@ -1,10 +1,21 @@
 @{
     ViewData["Title"] = "BANNED";
 }
-<center>
-    <div class="h-100 row align-items-center justify-content-center">
-        <div class="border border-dark col-5">
-            <h1>You have been banished to the shadow realm until <br/>@ViewBag.expirationDate</h1>
+
+
+
+<link href="~/css/Banned.css" rel="stylesheet" />
+<div class="container">
+    <center>
+        <div class="container-center row align-items-center">
+            <div class="col">
+                <div class="text-center">
+                    <i class="bi bi-emoji-smile-fill text-white"></i>
+                </div>
+                <h1>
+                    You have been banished to the shadow realm until <br/>@ViewBag.expirationDate
+                </h1>
+            </div>
         </div>
-    </div>
-</center>
+    </center>
+</div>
