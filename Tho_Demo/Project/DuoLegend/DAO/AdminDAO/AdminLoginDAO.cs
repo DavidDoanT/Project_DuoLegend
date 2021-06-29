@@ -3,7 +3,7 @@ using DuoLegend.DatabaseConnection;
 using System.Data.SqlClient;
 using DuoLegend.GlobalConfig;
 
-namespace DuoLegend.DAO
+namespace DuoLegend.DAO.AdminDAO
 {
     public class AdminLoginDAO
     {

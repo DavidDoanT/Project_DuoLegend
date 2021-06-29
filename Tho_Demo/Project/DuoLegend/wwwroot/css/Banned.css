@@ -1,0 +1,29 @@
+body
+{
+    background-image: url(../img/BackGrounds/Banished.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.container-center
+{
+    font-family: 'Friz Quadrata';
+    margin-top: 19%;
+    background-color: rgba(19,28,46,.9333333333333333);
+    width: 37vw;
+    border-radius: 5%;
+    height: 38vh;
+
+    min-height: 38vh;
+    min-width: 37vw;
+}
+
+h1
+{
+    color:antiquewhite;
+}
+
+i
+{
+    font-size: 4em;
+}
