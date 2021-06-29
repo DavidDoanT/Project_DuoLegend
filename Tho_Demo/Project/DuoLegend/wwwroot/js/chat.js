@@ -18,6 +18,7 @@ connection.on("ReceiveMessage", function (message, sender) {
     else {
         div.className = "message";
     }
+    DeleteChat(10, "messagesList");
 });
 
 connection.on("ReceiveNotification", function (inGameName, server) {
@@ -79,3 +80,11 @@ document.getElementById("openChatButton").addEventListener("click", function (ev
         return console.error(err.toString());
     });
 });
+
+function DeleteChat(numberOfElement, ParentId) { //delete chat trong khung chat, de khung chat ko bi qua dai
+    var parent = Document.getElementById(ParentId);
+    var child = parent.children;
+    if (child.length > numberOfElement) {
+        parent.removeChild(parent.childNodes[0]);
+    }
+}
