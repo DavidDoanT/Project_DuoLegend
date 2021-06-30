@@ -1,6 +1,9 @@
-﻿using DuoLegend.DAO.AdminDAO;
+using DuoLegend.DAO;
+using DuoLegend.Models;
+using DuoLegend.DAO.AdminDAO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace DuoLegend.Controllers
 {
@@ -40,6 +43,15 @@ namespace DuoLegend.Controllers
             return View();
         }
 
+        public IActionResult UserList()
+        {
+            IEnumerable<User> userList = DAO.UserDAO.getAllUser();
+            return View(userList);
+        }
+
+        public IActionResult BanUser()
+        {
+            return View();
         /// <summary>
         /// Log the admin out
         /// Clears all session

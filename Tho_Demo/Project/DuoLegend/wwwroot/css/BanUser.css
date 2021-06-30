@@ -1,0 +1,36 @@
+﻿.backContainer {
+    font-family: 'Friz Quadrata';
+    margin-top: 5%;
+    margin-left: 31%;
+    background-color: rgba(19,28,46,.9333333333333333);
+    width: 38vw;
+    border-radius: 5%;
+    height: 41vh;
+}
+
+.button {
+    width: 35%;
+    height: 16%;
+    background: linear-gradient( 178deg,#dd364d,#621620);
+    border: none;
+    font-size: 1.5vw;
+    margin-left: 33%;
+}
+
+.main {
+    display: inline-block;
+    position: absolute;
+}
+
+h1{
+    color:white;
+}
+
+.my-label{
+    color:white;
+    font-size:23px;
+}
+
+#Form{
+    height:100%;
+}

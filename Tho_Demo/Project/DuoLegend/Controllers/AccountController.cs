@@ -43,19 +43,27 @@ namespace DuoLegend.Controllers
         {
             if (UserDAO.CheckLogin(acc.Email, acc.Password))
             {
-                if (acc.RememberMe)
+                if (UserDAO.isVerified(acc.Email) == 1)
                 {
-                    CookieOptions newCookie = new CookieOptions();
-                    newCookie.Expires = DateTime.Now.AddDays(1);
-                    Response.Cookies.Append("email", acc.Email, newCookie);
-                }
+                    if (acc.RememberMe)
+                    {
+                        CookieOptions newCookie = new CookieOptions();
+                        newCookie.Expires = DateTime.Now.AddDays(1);
+                        Response.Cookies.Append("email", acc.Email, newCookie);
+                    }
 
-                HttpContext.Session.SetString("email", acc.Email);
-                User user = UserDAO.getUserByEmail(acc.Email);
-                HttpContext.Session.SetString("inGameName", user.InGameName);
-                HttpContext.Session.SetString("server", user.Server);
-                HttpContext.Session.SetInt32("id", UserDAO.getIdByInGameNameServer(user.InGameName, user.Server));
-                return RedirectToAction("Index", "Home");
+                    HttpContext.Session.SetString("email", acc.Email);
+                    User user = UserDAO.getUserByEmail(acc.Email);
+                    HttpContext.Session.SetString("inGameName", user.InGameName);
+                    HttpContext.Session.SetString("server", user.Server);
+                    HttpContext.Session.SetInt32("id", UserDAO.getIdByInGameNameServer(user.InGameName, user.Server));
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ViewBag.email = acc.Email;
+                    return View("VerifyRequest");
+                }
             }
             else
             {
@@ -103,13 +111,13 @@ namespace DuoLegend.Controllers
                 string activationCode = Guid.NewGuid().ToString();
                 SendEmail(user.Email, activationCode, "VerifyAccount");
                 DAO.UserDAO.addActivationCode(activationCode, user.Email);
-                string msg = "Registration successfully done. Account activation link " +
+                string msg = "Registration successfully done. Account verification link " +
                 " has been sent to your email: " + user.Email;
                 ViewBag.Message = msg;
                 return RedirectToAction("Login", "Account");
             }
             else return View();
-            
+
         }
 
         [HttpGet]
@@ -174,12 +182,23 @@ namespace DuoLegend.Controllers
 
         public IActionResult VerifyAccount(string code)
         {
-            if (DAO.UserDAO.isActivationCodeExist(code)) 
+            if (DAO.UserDAO.isActivationCodeExist(code))
             {
                 DAO.UserDAO.verifyAccount(code);
                 return View("VerifyConfirmation");
             }
             return NotFound();
+        }
+
+        public IActionResult ResendVerification(string email)
+        {
+            string activationCode = Guid.NewGuid().ToString();
+            SendEmail(email, activationCode, "VerifyAccount");
+            DAO.UserDAO.addActivationCode(activationCode, email);
+            string msg = "Account verification link " +
+            " has been sent to your email: " + email;
+            ViewBag.Message = msg;
+            return View("RegisterSuccess");
         }
 
         [NonAction]
@@ -196,7 +215,7 @@ namespace DuoLegend.Controllers
                 email.Subject = "Please verify your email address in Duo Legend.";
                 email.Body = new TextPart(TextFormat.Html)
                 {
-                    Text = "<h1>Almost done,"+ emailID +"!</h1><br/>" +
+                    Text = "<h1>Almost done," + emailID + "!</h1><br/>" +
                     "We are excited to tell you that your Duo Legend account is" +
                     " successfully created. Please click on the link below to verify your account" +
                     "<a href='" + link + "' class='btn btn-primary'>VERIFY EMAIL ADDRESS</a>"

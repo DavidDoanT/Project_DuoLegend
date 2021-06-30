@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Collections;
 
 
 namespace DuoLegend.DAO
@@ -174,7 +175,7 @@ namespace DuoLegend.DAO
             conn.Open();
             com.Connection = conn;
 
-            com.CommandText = "INSERT INTO [User](inGameName,password,server,email,id,accountId,puuid,isDeleted) VALUES(@inGameName,@password,@server,@email,@id,@accountId,@puuid,@isDeleted)";
+            com.CommandText = "INSERT INTO [User](inGameName,password,server,email,id,accountId,puuid,isDeleted,isVerified) VALUES(@inGameName,@password,@server,@email,@id,@accountId,@puuid,@isDeleted)";
             com.Parameters.AddWithValue("@inGameName", user.InGameName);
             com.Parameters.AddWithValue("@password", user.Password);
             com.Parameters.AddWithValue("@server", user.Server);
@@ -182,7 +183,8 @@ namespace DuoLegend.DAO
             com.Parameters.AddWithValue("@id", user.Id);
             com.Parameters.AddWithValue("@accountId", user.AccountId);
             com.Parameters.AddWithValue("@puuid", user.Puuid);
-            com.Parameters.AddWithValue("@isDeleted", false);
+            com.Parameters.AddWithValue("@isDeleted", 0);
+            com.Parameters.AddWithValue("@isVerified", 0);
             com.EndExecuteNonQuery(com.BeginExecuteNonQuery());
             conn.Close();
         }
@@ -511,6 +513,35 @@ namespace DuoLegend.DAO
             conn.Close();
         }
 
+        public static int isVerified(string email)
+        {
+            int isVerified;
+            com.Parameters.Clear();
+
+            conn.ConnectionString = MyConfig.ConnectionString;
+
+            conn.Open();
+            com.Connection = conn;
+
+            com.CommandText = "SELECT isVerified FROM [User] WHERE email=@email";
+            com.Parameters.AddWithValue("@email", email);
+
+            SqlDataReader reader = com.ExecuteReader();
+
+            if (reader.Read())
+            {
+
+                isVerified = Int32.Parse(reader["isVerified"].ToString());
+                conn.Close();
+                return isVerified;
+            }
+            else
+            {
+                conn.Close();
+                return -1;
+            }
+
+        }
         public static void addResetPasswordCode(string code, string email)
         {
             com.Parameters.Clear();
@@ -583,7 +614,7 @@ namespace DuoLegend.DAO
             com.CommandText = "select inGameName, server from [User] where userid = @userid";
 
             com.Parameters.AddWithValue("@userid", id);
-    
+
             SqlDataReader reader = com.ExecuteReader();
 
             if (reader.Read())
@@ -599,6 +630,33 @@ namespace DuoLegend.DAO
                 conn.Close();
                 return null;
             }
+        }
+
+        public static List<User> getAllUser()
+        {
+            List<User> userList = new List<User>();
+            com.Parameters.Clear();
+            conn.ConnectionString = MyConfig.ConnectionString;
+
+            conn.Open();
+            com.Connection = conn;
+
+            com.CommandText = "SELECT userId,email,inGameName,server,facebookLink,isVerified,isDeleted FROM [User]";
+            SqlDataReader reader = com.ExecuteReader();
+            User user = new User();
+            while (reader.Read())
+            {
+                user.UserID = (int)reader["userId"];
+                user.Email = reader["email"].ToString();
+                user.InGameName = reader["inGameName"].ToString();
+                user.Server = reader["server"].ToString();
+                user.FacebookLink = reader["facebookLink"].ToString();
+                user.IsVerified = (byte)reader["isVerified"];
+                user.IsDeleted = (byte)reader["isDeleted"];
+                userList.Add(user);
+            }
+            conn.Close();
+            return userList;
         }
 
     }
