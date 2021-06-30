@@ -13,7 +13,9 @@ namespace DuoLegend.DatabaseConnection
         public static SqlCommand Cmd { get => _cmd;}
         public static SqlDataReader Dr { get => _dr; set => _dr = value; }
 
-        //Set up connection with the database, set the connection for SqlCommand to the connection
+        /// <summary>
+        /// Set up connection with the database, set the connection for SqlCommand to the connection
+        /// </summary>
         public static void Connect()
         {
             _conn.ConnectionString = MyConfig.ConnectionString;
@@ -22,8 +24,10 @@ namespace DuoLegend.DatabaseConnection
             Cmd.Connection = _conn;
         }
 
-        //Disconnect with the databaes
-        //Clear all Parameters in Cmd, closes DataReader and  closes connection
+        /// <summary>
+        /// Disconnect with the databaes
+        /// Clear all Parameters in Cmd, closes DataReader and  closes connection
+        /// </summary>
         public static void Disconnect()
         {
             Cmd.Parameters.Clear();
