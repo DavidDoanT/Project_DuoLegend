@@ -18,14 +18,32 @@ connection.on("ReceiveMessage", function (message, sender) {
     else {
         div.className = "message";
     }
+    var list = document.getElementById("messagesList");
+    if (list.childNodes.length > 12) {
+        list.removeChild(list.childNodes[4]);
+    }
 });
 
+connection.on("ReceiveNotification", function (inGameName, server) {
+    //listMessageContainer
+    var a = document.createElement("a");
+    document.getElementById("notificationBox").removeAttribute("hidden");
+    document.getElementById("listMessageContainer").appendChild(a);
+    if (document.getElementById(inGameName + server) == null) {
+        a.textContent = `${inGameName}`;
+        a.style.color = 'white';
+        a.className = 'dropdown-item';
+        a.href = '/Profile/Index/' + inGameName + '/' + server;
+        a.id = inGameName + server;
+    }
+
+    //document.getElementById("listMessageContainer").click()
+});
+
+
 connection.start().then(function () {
-    document.getElementById("sendButton").disabled = false;
-    document.getElementById("sendButton").click();
-    var sender = document.getElementById("sender").value;
-    var receiver = document.getElementById("receiver").value;
-    connection.invoke("InitMessage", sender, receiver).catch(function (err) {
+    var sender = document.getElementById("userId").value;
+    connection.invoke("Notification", sender).catch(function (err) {
         return console.error(err.toString());
     });
 }).catch(function (err) {
@@ -56,3 +74,21 @@ document.getElementById("closeButton").addEventListener("click", function (event
     var list = document.getElementById("messagesList");  
     list.removeChild(list.childNodes[0]); 
 });
+
+document.getElementById("openChatButton").addEventListener("click", function (event) {
+    document.getElementById("sendButton").disabled = false;
+    document.getElementById("sendButton").click();
+    var sender = document.getElementById("sender").value;
+    var receiver = document.getElementById("receiver").value;
+    connection.invoke("InitMessage", sender, receiver).catch(function (err) {
+        return console.error(err.toString());
+    });
+});
+
+function DeleteChat(numberOfElement, ParentId) { //delete chat trong khung chat, de khung chat ko bi qua dai
+    var a = Document.getElementById(ParentId);
+    var child = a.children;
+    if (child.length > numberOfElement) {
+        a.removeChild(a.childNodes[0]);
+    }
+}
