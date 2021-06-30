@@ -79,7 +79,7 @@
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="background: #212529;" id="listMessageContainer" >
                             @foreach (var item in test)
                             {
-                                <a class="dropdown-item" style="color: white;" asp-controller="Profile" asp-action="Index" asp-route-inGameName="@item[0]" asp-route-server="@item[1]">@item[0]</a>
+                                <a class="dropdown-item" style="color: white;" id="@item[0]@item[1]" asp-controller="Profile" asp-action="ViewChat" asp-route-inGameName="@item[0]" asp-route-server="@item[1]">@item[0]</a>
                             }
 
                         </div>
