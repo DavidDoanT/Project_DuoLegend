@@ -1,5 +1,7 @@
 ﻿using DuoLegend.DAO;
+using DuoLegend.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace DuoLegend.Controllers
 {
@@ -23,6 +25,17 @@ namespace DuoLegend.Controllers
 
             ViewBag.loginFailed = true;
 
+            return View();
+        }
+
+        public IActionResult UserList()
+        {
+            IEnumerable<User> userList = DAO.UserDAO.getAllUser();
+            return View(userList);
+        }
+
+        public IActionResult BanUser()
+        {
             return View();
         }
 

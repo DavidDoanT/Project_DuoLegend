@@ -21,6 +21,33 @@ namespace DuoLegend.Models
         private bool _hasMic;
         private string _lane;
         private string _note;
+        private string _facebookLink;
+        private int _isVerified;
+        private int _isDeleted;
+        private int _userId;
+
+        public int UserID
+        {
+            get { return _userId; }
+            set { _userId = value; }
+        }
+
+        public int IsDeleted
+        {
+            get { return _isDeleted; }
+            set { _isDeleted = value; }
+        }
+
+        public int IsVerified {
+            get { return _isVerified; }
+            set { _isVerified = value; }
+        }
+
+        public string FacebookLink
+        {
+            get { return _facebookLink; }
+            set { _facebookLink = value; }
+        }
         public int ProfileIconId
         {
             get { return _profileIconId; }
