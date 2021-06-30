@@ -72,7 +72,7 @@
 
                 @{List<string[]> test = DuoLegend.DAO.ChatDAO.getUnseenList(@HttpContextAccessor.HttpContext.Session.GetInt32("id").Value);
                    
-                    <div class="dropdown" style="margin-right: 3vw;" @(test.Count > 0 ? string.Empty : "hidden")>
+                    <div class="dropdown" style="margin-right: 3vw;" @(test.Count > 0 ? string.Empty : "hidden") id="notificationBox" >
                         <button style="width: inherit; background: linear-gradient(178deg,#ab1328,#621620)" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             New Message
                         </button>

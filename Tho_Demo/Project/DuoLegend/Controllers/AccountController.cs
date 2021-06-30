@@ -106,7 +106,7 @@ namespace DuoLegend.Controllers
                 string msg = "Registration successfully done. Account activation link " +
                 " has been sent to your email: " + user.Email;
                 ViewBag.Message = msg;
-                return View("RegisterSuccess");
+                return RedirectToAction("Login", "Account");
             }
             else return View();
             

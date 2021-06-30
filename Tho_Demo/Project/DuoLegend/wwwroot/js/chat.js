@@ -27,6 +27,7 @@ connection.on("ReceiveMessage", function (message, sender) {
 connection.on("ReceiveNotification", function (inGameName, server) {
     //listMessageContainer
     var a = document.createElement("a");
+    document.getElementById("notificationBox").removeAttribute("hidden");
     document.getElementById("listMessageContainer").appendChild(a);
     if (document.getElementById(inGameName + server) == null) {
         a.textContent = `${inGameName}`;
