@@ -20,7 +20,6 @@ namespace DuoLegendTesting
         public void Setup()
         {
 
-
         }
 
         [OneTimeTearDown]
@@ -61,7 +60,19 @@ namespace DuoLegendTesting
         }
 
         [Test]
-        [TestCase("KR",3)]
+        [TestCase("KR", "KR")]
+        public void Testget3InGameNameByServer3(string server, string expected)
+        {
+            var result = UserDAO.get3InGameNameByServer(server);
+            
+
+            Assert.AreSame(expected, result.Server);
+        }
+
+
+
+        [Test]
+        [TestCase("KR", 3)]
         public void Testget3InGameNameByServer2(string server, int expected)
         {
             var result = UserDAO.get3InGameNameByServer(server);
