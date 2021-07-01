@@ -11,7 +11,13 @@ namespace DuoLegend.Hubs
 {
     public class ChatHub : Hub
     {
-        
+        /// <summary>
+        /// receive message from client, add to database, and send message to receiver
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="sender"></param>
+        /// <param name="reciever"></param>
+        /// <returns></returns>
         public async Task SendMessage(string message, string sender, string reciever)
         {
             //--------
@@ -35,7 +41,12 @@ namespace DuoLegend.Hubs
             }
 
         }
-
+        /// <summary>
+        /// send a list of recent message
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="reciever"></param>
+        /// <returns></returns>
         public async Task InitMessage(string sender, string reciever)
         {
             int boxChatId = DAO.ChatDAO.getBoxChatId(Int32.Parse(sender), Int32.Parse(reciever));
@@ -50,7 +61,11 @@ namespace DuoLegend.Hubs
                 }              
             }     
         }
-
+        /// <summary>
+        /// Add connection
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <returns></returns>
         public async Task Notification(string sender)
         {
             await Groups.AddToGroupAsync(Context.ConnectionId, sender+"notifi");

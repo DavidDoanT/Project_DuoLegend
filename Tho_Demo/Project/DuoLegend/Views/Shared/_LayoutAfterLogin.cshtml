@@ -70,6 +70,7 @@
                 </ul>
                 @*<a type="button" class="btn btn-danger " href="/Account/Logout">Logout</a>*@
 
+                @*notification box*@
                 @{List<string[]> test = DuoLegend.DAO.ChatDAO.getUnseenList(@HttpContextAccessor.HttpContext.Session.GetInt32("id").Value);
                    
                     <div class="dropdown" style="margin-right: 3vw;" @(test.Count > 0 ? string.Empty : "hidden") id="notificationBox" >

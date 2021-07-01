@@ -52,6 +52,7 @@ namespace DuoLegend.Controllers
         public IActionResult BanUser()
         {
             return View();
+        }
         /// <summary>
         /// Log the admin out
         /// Clears all session

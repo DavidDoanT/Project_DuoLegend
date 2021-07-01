@@ -93,6 +93,10 @@ namespace DuoLegend.Controllers
         public IActionResult UpdateUser()
         {
             var emailuser = HttpContext.Session.GetString("email");
+            if(emailuser is null)
+            {
+                return RedirectToAction("RedirectLoginPage", "Account");
+            }
             var userInfo = UserDAO.getUserByEmail(emailuser);
             return View("Update",userInfo);
         }
