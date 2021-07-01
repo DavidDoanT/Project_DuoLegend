@@ -28,6 +28,8 @@ namespace DuoLegend.Middlewares
                 cookieOptions.Expires = System.DateTime.Now.Date.AddDays(1);
                 httpContext.Response.Cookies.Append(SessionKeys.Keys.VisitedToday, "1", cookieOptions);
 
+                //Check if url path is of user or admin
+                // if(httpContext.Request.Path.StartsWithSegments())
                 //Check if today record exist in database
                 if (IsTodayRecordExistHelper())
                 {
