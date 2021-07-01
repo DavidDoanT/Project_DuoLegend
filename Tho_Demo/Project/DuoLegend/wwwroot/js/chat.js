@@ -33,7 +33,7 @@ connection.on("ReceiveNotification", function (inGameName, server) {
         a.textContent = `${inGameName}`;
         a.style.color = 'white';
         a.className = 'dropdown-item';
-        a.href = '/Profile/Index/' + inGameName + '/' + server;
+        a.href = '/Profile/ViewChat/' + inGameName + '/' + server;
         a.id = inGameName + server;
     }
 
