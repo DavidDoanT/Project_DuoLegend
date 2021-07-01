@@ -6,6 +6,18 @@
     <title>Admin's Page</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/lib/icons-1.5.0/font/bootstrap-icons.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link href="~/css/UserList.css" rel="stylesheet" />
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.noConflict();
+            $('#example').DataTable({ responsive: true });
+        });
+    </script>
     <link rel="stylesheet" href="~/css/Admin.css" />
 </head>
 
@@ -32,15 +44,16 @@
 
             <div class="col-2">
                 <div class="h-100 d-flex justify-content-end align-items-center">
+
                     <div class="icon-container">
-                        <div class="icon-wrapper mr-2">
-                            <i class="bi-bell text-white icon-content"></i>
+                        <div class="icon-wrapper">
+                            <i class="bi-person text-white icon-content"></i>
                         </div>
                     </div>
 
                     <div class="icon-container">
                         <div class="icon-wrapper">
-                            <i class="bi-person text-white icon-content"></i>
+                            <a class="bi-power text-white icon-content" asp-action="Logout"></a>
                         </div>
                     </div>
                 </div>
@@ -60,7 +73,7 @@
                     <i class="bi-bar-chart-line text-white icon-content"></i>
                 </div>
                 <div class="icon-wrapper mb-2">
-                    <i class="bi-clipboard text-white icon-content"></i>
+                    <a class="bi-clipboard text-white icon-content" asp-action="UserList"></a>
                 </div>
             </div>
         </div>

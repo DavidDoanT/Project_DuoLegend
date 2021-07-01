@@ -643,9 +643,10 @@ namespace DuoLegend.DAO
 
             com.CommandText = "SELECT userId,email,inGameName,server,facebookLink,isVerified,isDeleted FROM [User]";
             SqlDataReader reader = com.ExecuteReader();
-            User user = new User();
+            User user;
             while (reader.Read())
             {
+                user = new User();
                 user.UserID = (int)reader["userId"];
                 user.Email = reader["email"].ToString();
                 user.InGameName = reader["inGameName"].ToString();

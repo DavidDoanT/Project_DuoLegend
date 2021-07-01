@@ -31,9 +31,9 @@ namespace DuoLegend.Controllers
         /// <returns>redirect to mainPage with randomList information</returns>
         public IActionResult Index()
         {
-            //RiotAPI.RiotAPI.setChampionInfor(); // bo cmt dong nay 
-            //RiotAPI.RiotAPI.setItemInfo();
-            //RiotAPI.RiotAPI.setSpellInfo();
+            // RiotAPI.RiotAPI.setChampionInfor(); // bo cmt dong nay 
+            // RiotAPI.RiotAPI.setItemInfo();
+            // RiotAPI.RiotAPI.setSpellInfo();
             //check session
             if (HttpContext.Session.GetString("email") is null)
             {                

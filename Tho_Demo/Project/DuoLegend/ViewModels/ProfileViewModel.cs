@@ -144,6 +144,8 @@ namespace DuoLegend.ViewModels
             set { _top3MasteryCode = value; }
         }
         public MatchInfor[] MatchList { get; set; } = new MatchInfor[3];
+        public List<Rating> ListRate {get;set;}
+        
     }
 
 }

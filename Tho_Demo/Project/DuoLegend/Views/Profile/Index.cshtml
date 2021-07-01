@@ -1,6 +1,8 @@
 ﻿@model ProfileViewModel
 @using DuoLegend.DAO
 <link href="~/css/Profile.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 @*bao nguyen trang profile*@
 @{
     ViewData["receiver"] = Model.Id;
@@ -10,9 +12,10 @@
 <form class="modal fade" id="example">
     <partial name="_ChatPopup" view-data="ViewData" />
 </form>
-<form class="modal fade" id="Rating">
+
+<div class="modal fade" id="Rating">
     <partial name="_Rating" />
-</form>
+</div>
 <div class="ProfileWrapper">
 
     @* khung info tren đầu trang của profile, gồm tên ingamename, avatar, level, nút edit, follow, rate *@
@@ -40,7 +43,22 @@
             }
 
             <button>Follow</button>
-            <button data-toggle="modal" data-target="#Rating">Rate</button>
+            @if (@Context.Session.GetString("inGameName") != null && @Context.Session.GetString("server") != null)
+            {
+                @if (@Context.Session.GetString("inGameName").Equals(Model.SummonerName) && @Context.Session.GetString("server").Equals(Model.Server))
+                {
+
+
+                    <button onclick="swal('Error!','You can not rate yourself','error');">Rate</button>
+                }
+                else
+                {
+                    <button data-toggle="modal" data-target="#Rating" >Rate</button>
+                }
+            }
+
+
+
             <button data-toggle="modal" data-target="#example" id="openChatButton">Chat</button>
         </div>
     </div>
@@ -158,25 +176,52 @@
         <div class="ProfileReview">
             <h2 class="Profile_title__1H79G">Rating</h2>
             <div class="ProfileListReview">
+                @foreach (var item in Model.ListRate)
+                {
+
 
                 @* từng review *@
                 <div class="ProfileReviewItem">
                     <div class="ProfileReviewInfo">
-                        <div class="ProfileAuthorImage">
+                        @*<div class="ProfileAuthorImage">
                             <img src="https://blitz-cdn.blitz.gg/blitz/lol/profileicon/3500.webp" alt="" />
-                        </div>
+                        </div>*@
                         <div class="ProfileName">
-                            <h4>HupXoi69</h4>
+                            <a asp-controller="Profile" asp-action="Index" asp-route-inGameName="@UserDAO.getInGameNameServerById(item.RaterId)[0]" asp-route-server="@UserDAO.getInGameNameServerById(item.RaterId)[1]">
+                            <h4>@UserDAO.getInGameNameServerById(item.RaterId)[0]</h4>
+                            </a>
                         </div>
                     </div>
                     <div class="ProfileReviewContent">
+                        <div class="rating">
+                            Skill Score:
+                            @for (int i = 1; i <= item.SkillScore; i++)
+                            {
+                                <i class="fa fa-star"></i>
+                            }
+                            @for (int i = item.SkillScore; i < 5; i++)
+                            {
+                                <i class="fa fa-star-o"></i>
+                            }
+                            <br />
+                            Behavior Score:
+                            @for (int i = 1; i <= item.BehaviorScore; i++)
+                            {
+                                <i class="fa fa-star"></i>
+                            }
+                            @for (int i = item.BehaviorScore; i < 5; i++)
+                            {
+                                <i class="fa fa-star-o"></i>
+                            }
+                        </div>
                         <p>
                             @* nội dung review *@
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                            Comment: 
+                            @item.Comment
                         </p>
                     </div>
                 </div>
-
+                }
             </div>
         </div>
 
@@ -201,7 +246,7 @@
                         {
 
                             <!-- nếu thắng thì màu này, thua thì màu đỏ rgb(91, 10, 10) -->
-                            <div class="ProfileMatchContent" style="background-color: rgb(0, 0, 25);" onclick="">
+                            <div class="ProfileMatchContent" style="background-color: rgb(0, 0, 25);" onclick="myFunction(this.nextElementSibling)">
 
                                 @* chế độ và thời gian trận đấu *@
                                 <div class="ProfileMatchModeTime">
@@ -483,6 +528,19 @@
                     }
                 </div>
             </div>
+        }
+
+    </div>
+</div>
+<script>
+    function myFunction(x) {
+        if (x.style.display === "block") {
+            x.style.display = "none";
+        } else {
+            x.style.display = "block";
+        }
+    }
+</script>
         }
 
     </div>

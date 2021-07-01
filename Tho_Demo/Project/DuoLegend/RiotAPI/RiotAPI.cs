@@ -39,7 +39,7 @@ namespace DuoLegend.RiotAPI
                 rankInfor.Win = resultFromRiot[0].wins;
                 rankInfor.Lose = resultFromRiot[0].losses;
             }
-            catch(Exception e)
+            catch(Exception)
             {
                 rankInfor.Rank = "Unranked";
                 rankInfor.Tier = "";
@@ -222,7 +222,7 @@ namespace DuoLegend.RiotAPI
                 dataStream.Close();
                 response.Close();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }
@@ -253,7 +253,7 @@ namespace DuoLegend.RiotAPI
                 response.Close();
                 return acc;
             }
-            catch(Exception e)
+            catch(Exception)
             {
                 return null;
             }           
@@ -354,5 +354,6 @@ namespace DuoLegend.RiotAPI
                 }
             }
         }
+
     }
 }

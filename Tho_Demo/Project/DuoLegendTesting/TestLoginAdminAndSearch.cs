@@ -20,7 +20,6 @@ namespace DuoLegendTesting
         public void Setup()
         {
 
-
         }
 
         [OneTimeTearDown]
@@ -53,16 +52,6 @@ namespace DuoLegendTesting
 
         [Test]
         [TestCase("KR")]
-        [TestCase("BR1")]
-        [TestCase("EUN1")]
-        [TestCase("EUW1")]
-        [TestCase("JP1")]
-        [TestCase("LA1")]
-        [TestCase("LA2")]
-        [TestCase("NA1")]
-        [TestCase("OC1")]
-        [TestCase("RU")]
-        [TestCase("TR1")]
         public void Testget3InGameNameByServer(string server)
         {
             var result = UserDAO.get3InGameNameByServer(server);
@@ -71,17 +60,19 @@ namespace DuoLegendTesting
         }
 
         [Test]
-        [TestCase("KR",3)]
-        [TestCase("BR1",3)]
-        [TestCase("EUN1",3)]
-        [TestCase("EUW1",3)]
-        [TestCase("JP1",3)]
-        [TestCase("LA1",3)]
-        [TestCase("LA2",3)]
-        [TestCase("NA1",3)]
-        [TestCase("OC1",3)]
-        [TestCase("RU",3)]
-        [TestCase("TR1",3)]
+        [TestCase("KR", "KR")]
+        public void Testget3InGameNameByServer3(string server, string expected)
+        {
+            var result = UserDAO.get3InGameNameByServer(server);
+            
+
+            Assert.AreSame(expected, result.Server);
+        }
+
+
+
+        [Test]
+        [TestCase("KR", 3)]
         public void Testget3InGameNameByServer2(string server, int expected)
         {
             var result = UserDAO.get3InGameNameByServer(server);
