@@ -41,16 +41,12 @@ namespace DuoLegend.Controllers
                 {
                     
                     infor.MatchList[i] = RiotAPI.RiotAPI.getMatchInfor1(listMatchId[i], Service.ProcessMainPage.getContinent(server), UserDAO.getEncryptedSummonerId(infor.SummonerName, server));
-                    //if (infor.MatchList[i] is null) {
-                    //    ViewBag.hasHistory = false;
-                    //    break;
-                    //}
                 }
             
-           
-            
+            infor.ListRate = RatingDAO.getAllRating(infor.Id);
             return View(infor);
         }
+
 
         /// <summary>
         /// update user information, allow user to update their note and mic status
@@ -90,5 +86,22 @@ namespace DuoLegend.Controllers
             var userInfo = UserDAO.getUserByEmail(emailuser);
             return View("Update",userInfo);
         }
+        [HttpPost]
+        public IActionResult RateUser([Bind("RaterId,UserId,SkillScore,BehaviorScore,Comment")] Rating r)
+        {
+            string[] nameAndServer = UserDAO.getInGameNameServerById(r.UserId);
+
+            if (RatingDAO.addRating(r))
+            {
+                return RedirectToAction("Index", new { inGameName =nameAndServer[0], server =nameAndServer[1]});
+            }
+            else
+            {
+                RatingDAO.updateRating(r);
+                return RedirectToAction("Index", new { inGameName = nameAndServer[0], server = nameAndServer[1] });
+            }
+            
+        }
+        
     }
 }

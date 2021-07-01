@@ -1,0 +1,88 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+}
+
+.SkillScore {
+    display: inline-block;
+    height: 32px;
+    padding: 0 10px;
+}
+
+    .SkillScore:not(:checked) > input {
+        position: absolute;
+        top: -9999px;
+    }
+
+    .SkillScore:not(:checked) > label {
+        float: right;
+        width: 1em;
+        overflow: hidden;
+        white-space: nowrap;
+        cursor: pointer;
+        font-size: 30px;
+        color: #ccc;
+    }
+
+        .SkillScore:not(:checked) > label:before {
+            content: '★ ';
+        }
+
+    .SkillScore > input:checked ~ label {
+        color: #ffc700;
+    }
+
+    .SkillScore:not(:checked) > label:hover,
+    .SkillScore:not(:checked) > label:hover ~ label {
+        color: #deb217;
+    }
+
+    .SkillScore > input:checked + label:hover,
+    .SkillScore > input:checked + label:hover ~ label,
+    .SkillScore > input:checked ~ label:hover,
+    .SkillScore > input:checked ~ label:hover ~ label,
+    .SkillScore > label:hover ~ input:checked ~ label {
+        color: #c59b08;
+    }
+
+.BehaviorScore {
+    height: 32px;
+    padding: 0 10px;
+    display: inline-block;
+}
+
+    .BehaviorScore:not(:checked) > input {
+        position: absolute;
+        top: -9999px;
+    }
+
+    .BehaviorScore:not(:checked) > label {
+        float: right;
+        width: 1em;
+        overflow: hidden;
+        white-space: nowrap;
+        cursor: pointer;
+        font-size: 30px;
+        color: #ccc;
+    }
+
+        .BehaviorScore:not(:checked) > label:before {
+            content: '★ ';
+        }
+
+    .BehaviorScore > input:checked ~ label {
+        color: #ffc700;
+    }
+
+    .BehaviorScore:not(:checked) > label:hover,
+    .BehaviorScore:not(:checked) > label:hover ~ label {
+        color: #deb217;
+    }
+
+    .BehaviorScore > input:checked + label:hover,
+    .BehaviorScore > input:checked + label:hover ~ label,
+    .BehaviorScore > input:checked ~ label:hover,
+    .BehaviorScore > input:checked ~ label:hover ~ label,
+    .BehaviorScore > label:hover ~ input:checked ~ label {
+        color: #c59b08
+    }

@@ -9,19 +9,20 @@ namespace DuoLegend.Models
     {
         // private string _raterId,_userId;
         // private int _skillScore, _behaviorScore;
-        private string _raterId;
-        public string RaterId
+        private int _raterId;
+        public int RaterId
         {
             get { return _raterId; }
             set { _raterId = value; }
         }
-        private string _userId;
-        public string UserId
+        private int _userId;
+        public int UserId
         {
             get { return _userId; }
             set { _userId = value; }
         }
         private int _skillScore;
+
         public int SkillScore
         {
             get { return _skillScore; }
@@ -41,5 +42,17 @@ namespace DuoLegend.Models
             set { _comment = value; }
         }
 
+        public Rating(int raterId, int userId, int skillScore, int behaviorScore, string comment)
+        {
+            RaterId = raterId;
+            UserId = userId;
+            SkillScore = skillScore;
+            BehaviorScore = behaviorScore;
+            Comment = comment;
+        }
+        public Rating()
+        {
+
+        }
     }
 }
