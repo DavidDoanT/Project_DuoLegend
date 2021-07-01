@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewData["Title"] = "Verify Request";
+}
+<link href="~/css/Confirmation.css" rel="stylesheet" />
+<div class="container">
+    <center>
+        <div class="backContainer row align-items-center">
+            <div class="col">
+                <div class="text-center">
+                    <i class="bi bi-x-circle-fill" style="font-size: 4rem; color: red;"></i>
+                </div>
+                <h3>
+                    Your account has not been verified. Please check your email for the verification link. 
+                    If you do not see the email of us, check your spam folder or 
+                    click <a asp-controller="Account" asp-action="ResendVerification" asp-route-email="@ViewBag.email">here</a> to resend the verification email.
+                </h3>
+            </div>
+        </div>
+    </center>
+</div>

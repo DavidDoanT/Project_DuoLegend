@@ -90,7 +90,7 @@ namespace DuoLegend.DAO
             conn.Open();
             com.Connection = conn;
 
-            com.CommandText = "select top 10 [content],sendFrom,timeSend,isSeen  from boxChatDetail where boxChatId=@id ORDER BY timeSend DESC";
+            com.CommandText = "select top 8 [content],sendFrom,timeSend,isSeen  from boxChatDetail where boxChatId=@id ORDER BY timeSend DESC";
 
             com.Parameters.AddWithValue("@id", id);
 

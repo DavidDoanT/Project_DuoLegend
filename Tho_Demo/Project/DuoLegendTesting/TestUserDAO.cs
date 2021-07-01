@@ -95,6 +95,7 @@ namespace DuoLegendTesting
             user.Id = null;
             Assert.Throws<System.Data.SqlClient.SqlException>(() => UserDAO.addUser(user));
         }
+        
 
     }
 }

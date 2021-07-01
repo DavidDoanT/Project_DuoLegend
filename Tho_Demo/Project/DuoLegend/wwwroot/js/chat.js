@@ -18,18 +18,22 @@ connection.on("ReceiveMessage", function (message, sender) {
     else {
         div.className = "message";
     }
-    DeleteChat(10, "messagesList");
+    var list = document.getElementById("messagesList");
+    if (list.childNodes.length > 12) {
+        list.removeChild(list.childNodes[4]);
+    }
 });
 
 connection.on("ReceiveNotification", function (inGameName, server) {
     //listMessageContainer
     var a = document.createElement("a");
+    document.getElementById("notificationBox").removeAttribute("hidden");
     document.getElementById("listMessageContainer").appendChild(a);
     if (document.getElementById(inGameName + server) == null) {
         a.textContent = `${inGameName}`;
         a.style.color = 'white';
         a.className = 'dropdown-item';
-        a.href = '/Profile/Index/' + inGameName + '/' + server;
+        a.href = '/Profile/ViewChat/' + inGameName + '/' + server;
         a.id = inGameName + server;
     }
 
@@ -82,9 +86,9 @@ document.getElementById("openChatButton").addEventListener("click", function (ev
 });
 
 function DeleteChat(numberOfElement, ParentId) { //delete chat trong khung chat, de khung chat ko bi qua dai
-    var parent = Document.getElementById(ParentId);
-    var child = parent.children;
+    var a = Document.getElementById(ParentId);
+    var child = a.children;
     if (child.length > numberOfElement) {
-        parent.removeChild(parent.childNodes[0]);
+        a.removeChild(a.childNodes[0]);
     }
 }

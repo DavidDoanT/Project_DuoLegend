@@ -49,7 +49,13 @@ namespace DuoLegend.Controllers
             
            
             
-            return View(infor);
+            return View("Index",infor);
+        }
+
+        public IActionResult ViewChat(string inGameName, string server)
+        {
+            ViewBag.viewChat = true;
+            return Index(inGameName, server);
         }
 
         /// <summary>

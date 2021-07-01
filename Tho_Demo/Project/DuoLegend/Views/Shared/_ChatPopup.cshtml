@@ -5,27 +5,27 @@
     <div class="modal-content">
         <!--Đây là cái cục header của modal(popup)-->
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalTitle"></h5>
+            <h5 class="modal-title" id="exampleModalTitle">Tên người nhận</h5>
+
             <button type="button" class="close" data-dismiss="modal">
                 <!--%times; là character entity cho dấu "x" (hay còn gọi là cái cục đóng bên góc phải phía trên cùng ấy)-->
-                <span>&times;</span>
+                <span class="xicon">&times;</span>
             </button>
         </div>
         <!--Đây là phần body của modal-->
         <!--Đây sẽ là phần mình để những ngôi sao để cho người ta click vào-->
         <div class="modal-body" id="messagesList">
 
-            
             <input id="sender" value="@ViewData["sender"]" disabled style="display: none">
             <input id="receiver" value="@ViewData["receiver"]" disabled style="display: none">
 
-
         </div>
+
         <!--Đây là phần footer của modal-->
-        <div class="modal-footer">    
-            
-            <input class="form-control" id="messageInput">
-            <button type="button" id="sendButton" value="Send Message" class="btn btn-primary" >Enter</button>
+        <div class="modal-footer">
+
+            <input class="form-control" placeholder="Aa" id="messageInput">
+            <button type="button" id="sendButton" class="btn"><i class="bi bi-arrow-left-circle-fill"></i></button>
 
         </div>
     </div>

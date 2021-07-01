@@ -26,5 +26,11 @@
     "inputFiles": [
       "wwwroot/css/Login.css"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/css/UserList.min.css",
+    "inputFiles": [
+      "wwwroot/css/UserList.css"
+    ]
   }
 ]
