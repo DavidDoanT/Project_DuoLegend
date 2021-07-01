@@ -11,7 +11,7 @@ namespace DuoLegend.Hubs
 {
     public class ChatHub : Hub
     {
-        Dictionary<string, string> ConnectionMap = new Dictionary<string, string>();
+        
         public async Task SendMessage(string message, string sender, string reciever)
         {
             //--------
@@ -30,6 +30,8 @@ namespace DuoLegend.Hubs
                 DAO.ChatDAO.addChatContent(boxChatId, message, Int32.Parse(sender));
                 //List<BoxChatDetail> test = DAO.ChatDAO.GetListBoxChatDetailById(boxChatId);
                 await Clients.Groups(boxChatId.ToString()).SendAsync("ReceiveMessage", message, sender);
+                string[] inforSender = DAO.UserDAO.getInGameNameServerById(Int32.Parse(sender));
+                await Clients.Groups(reciever + "notifi").SendAsync("ReceiveNotification", inforSender[0],inforSender[1]);
             }
 
         }
@@ -51,7 +53,7 @@ namespace DuoLegend.Hubs
 
         public async Task Notification(string sender)
         {
-            ConnectionMap.Add(sender, Context.ConnectionId);
+            await Groups.AddToGroupAsync(Context.ConnectionId, sender+"notifi");
         }
     }
 }

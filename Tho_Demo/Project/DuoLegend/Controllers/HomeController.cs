@@ -31,9 +31,9 @@ namespace DuoLegend.Controllers
         /// <returns>redirect to mainPage with randomList information</returns>
         public IActionResult Index()
         {
-            //RiotAPI.RiotAPI.setChampionInfor(); // bo cmt dong nay 
-            //RiotAPI.RiotAPI.setItemInfo();
-            //RiotAPI.RiotAPI.setSpellInfo();
+            // RiotAPI.RiotAPI.setChampionInfor(); // bo cmt dong nay 
+            // RiotAPI.RiotAPI.setItemInfo();
+            // RiotAPI.RiotAPI.setSpellInfo();
             //check session
             if (HttpContext.Session.GetString("email") is null)
             {                
@@ -75,6 +75,21 @@ namespace DuoLegend.Controllers
                 ViewBag.isLogin = true;
             }
             return View("Index", Service.ProcessMainPage.Search(searchInfor.search.Server));
+        }
+
+        /// <summary>
+        /// BANISH THE UNWORTHY TO BRAZIL
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult Banned()
+        {
+            string userEmail = HttpContext.Session.GetString("email");
+            DateTime expirationDate = (DateTime)BanInfoDAO.GetBanExpirationDate(userEmail);
+
+            string expirationDateString = expirationDate.ToString("dd/MM/yyyy");
+            ViewBag.expirationDate = expirationDateString;
+
+            return View();
         }
     }
 }

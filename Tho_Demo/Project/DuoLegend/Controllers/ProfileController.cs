@@ -43,8 +43,15 @@ namespace DuoLegend.Controllers
                     infor.MatchList[i] = RiotAPI.RiotAPI.getMatchInfor1(listMatchId[i], Service.ProcessMainPage.getContinent(server), UserDAO.getEncryptedSummonerId(infor.SummonerName, server));
                 }
             
-            infor.ListRate = RatingDAO.getAllRating(infor.Id);
-            return View(infor);
+           
+            
+            return View("Index",infor);
+        }
+
+        public IActionResult ViewChat(string inGameName, string server)
+        {
+            ViewBag.viewChat = true;
+            return Index(inGameName, server);
         }
 
 

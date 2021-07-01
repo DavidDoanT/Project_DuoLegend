@@ -3,11 +3,17 @@ using DuoLegend.DatabaseConnection;
 using System.Data.SqlClient;
 using DuoLegend.GlobalConfig;
 
-namespace DuoLegend.DAO
+namespace DuoLegend.DAO.AdminDAO
 {
     public class AdminLoginDAO
     {
 
+        /// <summary>
+        /// Check if email and password matches
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="adminPassword"></param>
+        /// <returns></returns>
         public static bool Login(string email, string adminPassword)
         {
             DbConnection.Connect();

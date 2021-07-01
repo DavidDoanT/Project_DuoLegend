@@ -8,6 +8,7 @@
     ViewData["receiver"] = Model.Id;
     ViewData["sender"] = Context.Session.GetInt32("id");
 }
+
 <form class="modal fade" id="example">
     <partial name="_ChatPopup" view-data="ViewData" />
 </form>
@@ -58,7 +59,7 @@
 
 
 
-            <button data-toggle="modal" data-target="#example">Chat</button>
+            <button data-toggle="modal" data-target="#example" id="openChatButton">Chat</button>
         </div>
     </div>
 
@@ -540,5 +541,19 @@
         }
     }
 </script>
+        }
+
+    </div>
+</div>
+@if (ViewBag.viewChat != null)
+{
+    <script>    
+        window.onload = function () { // this will be run when the whole page is loaded
+            document.getElementById("openChatButton").click();
+        };
+    </script>
+
+}
+<script></script>
 
 

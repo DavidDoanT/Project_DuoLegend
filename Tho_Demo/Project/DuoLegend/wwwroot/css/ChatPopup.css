@@ -4,7 +4,7 @@
 
 .message {
     color: white;
-    background-color: red;
+    background-color: rgb(68, 68, 68);
     border-radius: 5px;
     padding: 10px;
     margin: 10px 0;
@@ -14,6 +14,7 @@
     /* Cái này để cho xuống hàng nếu text quá dài */
     word-break: break-all;
 }
+
     /* tạo 1 khoảng trắng sau mỗi line chat */
     .message::after {
         content: "";
@@ -22,8 +23,89 @@
     }
 
 .rightMessage {
-    background-color: blue;
+    color: white;
+    background-color: rgb(0, 162, 255);
     margin-left: auto;
     width: 30%;
     width: fit-content;
 }
+
+.form-control {
+    display: inline-block;
+    width: 70%;
+    margin-left: 2rem;
+}
+
+i {
+    display: inline-block;
+    margin-left: 2%;
+    font-size: 2.5rem;
+    color: rgb(40,32,180);
+}
+
+.modal-dialog {
+    height: 60%;
+    width: 30%;
+    background-color: transparent;
+}
+
+.modal-content {
+    height: 100%;
+    border-radius: 2rem 2rem 2rem 2rem;
+    border: 0;
+    background-color: transparent;
+}
+
+body {
+    height: 100vh;
+}
+
+.modal-footer {
+    background-color: black;
+    padding: 0;
+    border-radius: 0 0 2rem 2rem;
+    border: none;
+}
+
+.modal-header {
+    background-color: black;
+    border-radius: 2rem 2rem 0 0;
+    border: none;
+}
+
+.xicon {
+    color: white;
+    font-size: 2rem;
+}
+
+.modal-body {
+    background-color: #1d1d1d;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.modal-title {
+    color: white;
+    margin-left: 2rem;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: blue;
+    border-radius: 10px;
+}
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: rgb(40,32,180);
+    }

@@ -6,6 +6,7 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
+    <link rel="icon" href="~/img/favicon.jpg">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -70,21 +71,20 @@
                 @*<a type="button" class="btn btn-danger " href="/Account/Logout">Logout</a>*@
 
                 @{List<string[]> test = DuoLegend.DAO.ChatDAO.getUnseenList(@HttpContextAccessor.HttpContext.Session.GetInt32("id").Value);
-                    if (test.Count > 0)
-                    {
-                    <div class="dropdown" style="margin-right: 3vw;">
+                   
+                    <div class="dropdown" style="margin-right: 3vw;" @(test.Count > 0 ? string.Empty : "hidden") id="notificationBox" >
                         <button style="width: inherit; background: linear-gradient(178deg,#ab1328,#621620)" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             New Message
                         </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="background: #212529;">
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="background: #212529;" id="listMessageContainer" >
                             @foreach (var item in test)
                             {
-                                <a class="dropdown-item" style="color: white;" asp-controller="Profile" asp-action="Index" asp-route-inGameName="@item[0]" asp-route-server="@item[1]">@item[0]</a>
+                                <a class="dropdown-item" style="color: white;" id="@item[0]@item[1]" asp-controller="Profile" asp-action="ViewChat" asp-route-inGameName="@item[0]" asp-route-server="@item[1]">@item[0]</a>
                             }
 
                         </div>
                     </div>
-                    }
+                    
                   }
                 <div class="dropdown" style="margin-right: 3vw;">
                     <button style="width: inherit; background: linear-gradient(178deg,#ab1328,#621620)" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -100,8 +100,9 @@
         </nav>
     </header>
 
-
+    <input id="userId" value='@HttpContextAccessor.HttpContext.Session.GetInt32("id")' disabled style="display: none">
     @RenderBody()
+    <button id="sendButton" hidden ></button>
     <script src="~/js/signalR/dist/browser/signalr.js"></script>
     <script src="~/js/chat.js"></script>
 </body>
