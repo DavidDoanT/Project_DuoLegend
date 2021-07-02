@@ -35,7 +35,7 @@ namespace DuoLegend.Controllers
             infor.Lose = rankInfor.Lose;
             infor.Server = server;
             infor.Id = UserDAO.getIdByInGameNameServer(inGameName, server);
-            string[] listMatchId = RiotAPI.RiotAPI.getListMatchIDbyPuuId(UserDAO.getPuuId(infor.SummonerName), Service.ProcessMainPage.getContinent(server));
+            string[] listMatchId = RiotAPI.RiotAPI.getListMatchIDbyPuuId(UserDAO.getPuuId(infor.SummonerName,infor.Server), Service.ProcessMainPage.getContinent(server));
             if (listMatchId.Length == 0) { ViewBag.hasHistory = false; }
                 for (int i = 0; i < listMatchId.Length; i++)
                 {

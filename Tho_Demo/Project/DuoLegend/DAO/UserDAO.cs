@@ -81,7 +81,7 @@ namespace DuoLegend.DAO
             conn.Close();
             return temp;
         }
-        public static string getPuuId(string inGameName)
+        public static string getPuuId(string inGameName, string server)
         {
 
             com.Parameters.Clear();
@@ -94,9 +94,10 @@ namespace DuoLegend.DAO
             conn.Open();
             com.Connection = conn;
 
-            com.CommandText = "select puuid  from [User] where inGameName = @inGameName";
+            com.CommandText = "select puuid  from [User] where inGameName = @inGameName and server = @server ";
 
             com.Parameters.AddWithValue("@inGameName", inGameName);
+            com.Parameters.AddWithValue("@server", server);
             SqlDataReader reader = com.ExecuteReader();
             string temp;
             if (reader.Read())
