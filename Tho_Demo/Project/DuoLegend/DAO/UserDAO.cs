@@ -176,7 +176,7 @@ namespace DuoLegend.DAO
             conn.Open();
             com.Connection = conn;
 
-            com.CommandText = "INSERT INTO [User](inGameName,password,server,email,id,accountId,puuid,isDeleted,isVerified) VALUES(@inGameName,@password,@server,@email,@id,@accountId,@puuid,@isDeleted)";
+            com.CommandText = "INSERT INTO [User](inGameName,password,server,email,id,accountId,puuid,isDeleted,isVerified) VALUES(@inGameName,@password,@server,@email,@id,@accountId,@puuid,@isDeleted,@isVerified)";
             com.Parameters.AddWithValue("@inGameName", user.InGameName);
             com.Parameters.AddWithValue("@password", user.Password);
             com.Parameters.AddWithValue("@server", user.Server);

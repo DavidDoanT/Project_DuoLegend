@@ -8,7 +8,7 @@ namespace DuoLegend.Controllers
 {
     public class ChatController : Controller
     {
-        public IActionResult ChatDashBoard()
+        public IActionResult ChatDashBoard(string inGameName, string server)
         {
             return View();
         }

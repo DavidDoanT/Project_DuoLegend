@@ -53,7 +53,7 @@
                 }
                 else
                 {
-                    <button data-toggle="modal" data-target="#Rating" >Rate</button>
+                    <button data-toggle="modal" data-target="#Rating">Rate</button>
                 }
             }
 
@@ -176,52 +176,56 @@
         <div class="ProfileReview">
             <h2 class="Profile_title__1H79G">Rating</h2>
             <div class="ProfileListReview">
-                @foreach (var item in Model.ListRate)
+                @if (Model.ListRate != null)
                 {
+                    @foreach (var item in Model.ListRate)
+                    {
 
 
-                @* từng review *@
-                <div class="ProfileReviewItem">
-                    <div class="ProfileReviewInfo">
-                        @*<div class="ProfileAuthorImage">
-                            <img src="https://blitz-cdn.blitz.gg/blitz/lol/profileicon/3500.webp" alt="" />
-                        </div>*@
-                        <div class="ProfileName">
-                            <a asp-controller="Profile" asp-action="Index" asp-route-inGameName="@UserDAO.getInGameNameServerById(item.RaterId)[0]" asp-route-server="@UserDAO.getInGameNameServerById(item.RaterId)[1]">
-                            <h4>@UserDAO.getInGameNameServerById(item.RaterId)[0]</h4>
-                            </a>
+                        @* từng review *@
+                        <div class="ProfileReviewItem">
+                            <div class="ProfileReviewInfo">
+                                @*<div class="ProfileAuthorImage">
+                                        <img src="https://blitz-cdn.blitz.gg/blitz/lol/profileicon/3500.webp" alt="" />
+                                    </div>*@
+                                <div class="ProfileName">
+                                    <a asp-controller="Profile" asp-action="Index" asp-route-inGameName="@UserDAO.getInGameNameServerById(item.RaterId)[0]" asp-route-server="@UserDAO.getInGameNameServerById(item.RaterId)[1]">
+                                        <h4>@UserDAO.getInGameNameServerById(item.RaterId)[0]</h4>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="ProfileReviewContent">
+                                <div class="rating">
+                                    Skill Score:
+                                    @for (int i = 1; i <= item.SkillScore; i++)
+                                    {
+                                        <i class="fa fa-star"></i>
+                                    }
+                                    @for (int i = item.SkillScore; i < 5; i++)
+                                    {
+                                        <i class="fa fa-star-o"></i>
+                                    }
+                                    <br />
+                                    Behavior Score:
+                                    @for (int i = 1; i <= item.BehaviorScore; i++)
+                                    {
+                                        <i class="fa fa-star"></i>
+                                    }
+                                    @for (int i = item.BehaviorScore; i < 5; i++)
+                                    {
+                                        <i class="fa fa-star-o"></i>
+                                    }
+                                </div>
+                                <p>
+                                    @* nội dung review *@
+                                    Comment:
+                                    @item.Comment
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="ProfileReviewContent">
-                        <div class="rating">
-                            Skill Score:
-                            @for (int i = 1; i <= item.SkillScore; i++)
-                            {
-                                <i class="fa fa-star"></i>
-                            }
-                            @for (int i = item.SkillScore; i < 5; i++)
-                            {
-                                <i class="fa fa-star-o"></i>
-                            }
-                            <br />
-                            Behavior Score:
-                            @for (int i = 1; i <= item.BehaviorScore; i++)
-                            {
-                                <i class="fa fa-star"></i>
-                            }
-                            @for (int i = item.BehaviorScore; i < 5; i++)
-                            {
-                                <i class="fa fa-star-o"></i>
-                            }
-                        </div>
-                        <p>
-                            @* nội dung review *@
-                            Comment: 
-                            @item.Comment
-                        </p>
-                    </div>
-                </div>
+                    }
                 }
+
             </div>
         </div>
 
@@ -547,7 +551,7 @@
 </div>
 @if (ViewBag.viewChat != null)
 {
-    <script>    
+    <script>
         window.onload = function () { // this will be run when the whole page is loaded
             document.getElementById("openChatButton").click();
         };
