@@ -68,7 +68,7 @@ namespace DuoLegend.Controllers
             else
             {
                 ViewBag.isCorrect = false;
-                return View("LoginPage");
+                return View("Login");
             }
 
         }
@@ -247,7 +247,7 @@ namespace DuoLegend.Controllers
         //ham thua, se xoa trong tuong lai
         public IActionResult RedirectLoginPage()
         {
-            return View("LoginPage");
+            return View("Login");
         }
 
     }

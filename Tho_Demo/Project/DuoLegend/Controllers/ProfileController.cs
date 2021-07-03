@@ -36,8 +36,7 @@ namespace DuoLegend.Controllers
             infor.Lose = rankInfor.Lose;
             infor.Server = server;
             infor.Id = UserDAO.getIdByInGameNameServer(inGameName, server);
-           //Show 3 matches in history
-            string[] listMatchId = RiotAPI.RiotAPI.getListMatchIDbyPuuId(UserDAO.getPuuId(infor.SummonerName), Service.ProcessMainPage.getContinent(server));
+            string[] listMatchId = RiotAPI.RiotAPI.getListMatchIDbyPuuId(UserDAO.getPuuId(infor.SummonerName,infor.Server), Service.ProcessMainPage.getContinent(server));
             if (listMatchId.Length == 0) { ViewBag.hasHistory = false; }
                 for (int i = 0; i < listMatchId.Length; i++)
                 {
@@ -92,6 +91,10 @@ namespace DuoLegend.Controllers
         public IActionResult UpdateUser()
         {
             var emailuser = HttpContext.Session.GetString("email");
+            if(emailuser is null)
+            {
+                return RedirectToAction("RedirectLoginPage", "Account");
+            }
             var userInfo = UserDAO.getUserByEmail(emailuser);
             return View("Update",userInfo);
         }

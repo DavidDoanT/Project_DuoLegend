@@ -5,6 +5,8 @@ var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
 //Disable send button until connection is established
 document.getElementById("sendButton").disabled = true;
 
+//wait for incoming message
+//if message more than 8 delete at front-end old message
 connection.on("ReceiveMessage", function (message, sender) {
     var div = document.createElement("div");
     document.getElementById("messagesList").appendChild(div);
@@ -24,6 +26,8 @@ connection.on("ReceiveMessage", function (message, sender) {
     }
 });
 
+//wait for incoming message
+//when message come, add a notification box to header
 connection.on("ReceiveNotification", function (inGameName, server) {
     //listMessageContainer
     var a = document.createElement("a");
@@ -40,7 +44,7 @@ connection.on("ReceiveNotification", function (inGameName, server) {
     //document.getElementById("listMessageContainer").click()
 });
 
-
+// start realtime (hub) connection between client and server
 connection.start().then(function () {
     var sender = document.getElementById("userId").value;
     connection.invoke("Notification", sender).catch(function (err) {
@@ -50,6 +54,7 @@ connection.start().then(function () {
     return console.error(err.toString());
 });
 
+//send message to server
 document.getElementById("sendButton").addEventListener("click", function (event) {
     var message = document.getElementById("messageInput").value;
     var sender = document.getElementById("sender").value;
@@ -61,20 +66,23 @@ document.getElementById("sendButton").addEventListener("click", function (event)
     event.preventDefault();
 });
 
-
+//send message when user press enter
 document.getElementById("messageInput").addEventListener("keyup", function (event) {
     // Number 13 is the "Enter" key on the keyboard
-    if (event.keyCode === 13) {
+    if (event.keyCode === 13) { //13 is code of enter button
         event.preventDefault();
         document.getElementById("sendButton").click();
     }
 });
 
+//remove the init message
+//init message is an empty message send to server which is not stored in database
 document.getElementById("closeButton").addEventListener("click", function (event) {
     var list = document.getElementById("messagesList");  
     list.removeChild(list.childNodes[0]); 
 });
 
+//load old message when user open chat
 document.getElementById("openChatButton").addEventListener("click", function (event) {
     document.getElementById("sendButton").disabled = false;
     document.getElementById("sendButton").click();
@@ -85,6 +93,7 @@ document.getElementById("openChatButton").addEventListener("click", function (ev
     });
 });
 
+//delete chat when chat box contain more than [numberOfElement] message
 function DeleteChat(numberOfElement, ParentId) { //delete chat trong khung chat, de khung chat ko bi qua dai
     var a = Document.getElementById(ParentId);
     var child = a.children;
