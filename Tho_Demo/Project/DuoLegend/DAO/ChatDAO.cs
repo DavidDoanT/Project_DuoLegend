@@ -168,5 +168,61 @@ namespace DuoLegend.DAO
             com.EndExecuteNonQuery(com.BeginExecuteNonQuery());
             conn.Close();
         }
+
+        public static List<int> getListUserHaveChat(int id)
+        {
+            List<int> resultList = new List<int>();
+            com.Parameters.Clear();
+            conn.ConnectionString = MyConfig.ConnectionString;
+
+            conn.Open();
+            com.Connection = conn;
+
+            com.CommandText = "select user1  from boxChat where user2 = @id";
+            com.Parameters.AddWithValue("@id", id);
+            SqlDataReader reader = com.ExecuteReader();
+            while(reader.Read())
+            {
+                resultList.Add(Int32.Parse(reader["user1"].ToString()));
+            }
+            reader.Close();
+            com.CommandText = "select user2  from boxChat where user1 = @id";
+            reader = com.ExecuteReader();
+            while (reader.Read())
+            {
+                resultList.Add(Int32.Parse(reader["user2"].ToString()));
+            }
+
+            conn.Close();
+            return resultList;
+        }
+
+        public static BoxChatDetail GetLastMessageDetail(int id)
+        {
+            BoxChatDetail detail = new BoxChatDetail();
+            com.Parameters.Clear();
+            conn.ConnectionString = MyConfig.ConnectionString;
+
+            conn.Open();
+            com.Connection = conn;
+
+            com.CommandText = "select top 1 [content],sendFrom,timeSend,isSeen  from boxChatDetail where boxChatId=@id ORDER BY timeSend DESC";
+
+            com.Parameters.AddWithValue("@id", id);
+
+            SqlDataReader reader = com.ExecuteReader();
+
+            while (reader.Read())
+            {
+                
+                detail.Content = reader["content"].ToString();
+                detail.SendFrom = Int32.Parse(reader["sendFrom"].ToString());
+                detail.TimeSend = (DateTime)reader["timeSend"];
+                detail.IsSeen = (bool)reader["isSeen"];
+            }
+            conn.Close();   
+            return detail;
+        }
+
     }
 }
