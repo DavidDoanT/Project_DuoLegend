@@ -23,6 +23,7 @@ namespace DuoLegend.Controllers
         {
             ProfileViewModel infor = new ProfileViewModel();
             infor = RiotAPI.RiotAPI.gettop3mastery(inGameName, server);
+            //get info from Riot API 
             RankInfor rankInfor = RiotAPI.RiotAPI.getRankByEncryptedSummonerId(DAO.UserDAO.getEncryptedSummonerId(inGameName, server), server);
             infor.Rank = rankInfor.Rank;
             infor.Tier = rankInfor.Tier;
@@ -35,6 +36,7 @@ namespace DuoLegend.Controllers
             infor.Lose = rankInfor.Lose;
             infor.Server = server;
             infor.Id = UserDAO.getIdByInGameNameServer(inGameName, server);
+           //Show 3 matches in history
             string[] listMatchId = RiotAPI.RiotAPI.getListMatchIDbyPuuId(UserDAO.getPuuId(infor.SummonerName), Service.ProcessMainPage.getContinent(server));
             if (listMatchId.Length == 0) { ViewBag.hasHistory = false; }
                 for (int i = 0; i < listMatchId.Length; i++)
@@ -42,7 +44,7 @@ namespace DuoLegend.Controllers
                     
                     infor.MatchList[i] = RiotAPI.RiotAPI.getMatchInfor1(listMatchId[i], Service.ProcessMainPage.getContinent(server), UserDAO.getEncryptedSummonerId(infor.SummonerName, server));
                 }
-            
+            //Check rating condition
            
             
             return View("Index",infor);
