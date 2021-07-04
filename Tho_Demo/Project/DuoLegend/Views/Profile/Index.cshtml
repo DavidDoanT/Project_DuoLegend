@@ -51,6 +51,10 @@
 
                     <button onclick="swal('Error!','You can not rate yourself','error');">Rate</button>
                 }
+                else if (ViewBag.ratingCondition == false)
+                {
+                    <button onclick="swal('You are in no condition to rate this user!','You must play with this player in 3 recent matches to rate ','error');">Rate</button>
+                }
                 else
                 {
                     <button data-toggle="modal" data-target="#Rating">Rate</button>
@@ -96,10 +100,11 @@
                             <img src="~/@ChampionDAO.getChampionImgURLbyID(Model.Top3MasteryCode[0])" />
                         </div>
                         <div class="ProfileExpertImageBg">
-                            <img src="@Url.Content(String.Format("~/img/MasteryFrame/{0}.png", Model.Top3MasteryLevel[0]))" alt="Thông thạo 7" />
+                            <img src="@Url.Content(String.Format("~/img/MasteryFrame/{0}.png", Model.Top3MasteryLevel[0]))" alt="Thông thạo" />
                         </div>
                         <div class="ProfileExpertImage">
-                            <img src="https://lienminhpro.com/images/thongthao/7.png"
+
+                            <img src="@Url.Content(String.Format("https://lienminhpro.com/images/thongthao/{0}.png", Model.Top3MasteryLevel[0]))"
                                  alt="Thông thạo 7" />
                         </div>
                         <h3>@Model.Top3MasteryName[0]</h3><span class="score">
@@ -112,10 +117,10 @@
                             <img src="~/@ChampionDAO.getChampionImgURLbyID(Model.Top3MasteryCode[1])" />
                         </div>
                         <div class="ProfileExpertImageBg">
-                            <img src="@Url.Content(String.Format("~/img/MasteryFrame/{0}.png", Model.Top3MasteryLevel[1]))" alt="Thông thạo 7" />
+                            <img src="@Url.Content(String.Format("~/img/MasteryFrame/{0}.png", Model.Top3MasteryLevel[1]))" alt="Thông thạo" />
                         </div>
                         <div class="ProfileExpertImage">
-                            <img src="https://lienminhpro.com/images/thongthao/7.png"
+                            <img src="@Url.Content(String.Format("https://lienminhpro.com/images/thongthao/{0}.png", Model.Top3MasteryLevel[1]))"
                                  alt="Thông thạo 7" />
                         </div>
                         <h3>@Model.Top3MasteryName[1]</h3>
@@ -130,10 +135,10 @@
                             <img src="~/@ChampionDAO.getChampionImgURLbyID(Model.Top3MasteryCode[2])" />
                         </div>
                         <div class="ProfileExpertImageBg">
-                            <img src="@Url.Content(String.Format("~/img/MasteryFrame/{0}.png", Model.Top3MasteryLevel[2]))" alt="Thông thạo 7" />
+                            <img src="@Url.Content(String.Format("~/img/MasteryFrame/{0}.png", Model.Top3MasteryLevel[2]))" alt="Thông thạo" />
                         </div>
                         <div class="ProfileExpertImage">
-                            <img src="https://lienminhpro.com/images/thongthao/7.png"
+                            <img src="@Url.Content(String.Format("https://lienminhpro.com/images/thongthao/{0}.png", Model.Top3MasteryLevel[2]))"
                                  alt="Thông thạo 7" />
                         </div>
                         <h3>@Model.Top3MasteryName[2]</h3><span class="score">
@@ -255,8 +260,8 @@
                                 @* chế độ và thời gian trận đấu *@
                                 <div class="ProfileMatchModeTime">
                                     <span><b>@Model.MatchList[i].MatchMode</b></span>
-                                    <span>25:43</span>
-                                    <span>1/1/2021</span>
+                                    <span>@Model.MatchList[i].gameDuration</span>
+                                    <span>@Model.MatchList[i].gameStart</span>
                                 </div>
                                 @*Level tướng, phép bổ trợ và ngọc bổ trợ *@
                                 <div class="ProfileMatchChampionSpell">
@@ -279,9 +284,9 @@
                                     @* Ngọc bổ trợ  *@
                                     <div class="ProfileMatchPerks">
                                         <div class="ProfileMainPerk">
-                                            <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Precision/LethalTempo/LethalTempoTemp.png">
+                                            <img src="~/@ChampionDAO.getRuneImgURLbyID(Model.MatchList[i].MainRuneId)">
                                             <div class="ProfileSecondaryPerk">
-                                                <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Precision/LethalTempo/LethalTempoTemp.png">
+                                                <img src="~/@ChampionDAO.getRuneImgURLbyID(Model.MatchList[i].SubRuneId)">
                                             </div>
                                         </div>
                                     </div>
@@ -300,7 +305,7 @@
                                     </div>
                                     <div class="ProfileMinion">
                                         <span>@Model.MatchList[i].MinionsKill</span>
-                                        <img src="https://lienminhpro.com/images/icons/ico-gold.svg">
+                                        <img src="https://lienminhpro.com/images/icons/ico-cs.svg">
                                     </div>
                                 </div>
 
@@ -346,9 +351,9 @@
                                     @* Header trận đấu của team 1 *@
                                     <div class="ProfileMatchHeader">
                                         <span class="TeamName">Team 1</span>
-                                        <span class="LoseResult">Lose</span>
-                                        <span class="TotalKDA"><i class="fas fa-swords"></i>23/27/28</span>
-                                        <span class="TotalGold"><i class="fas fa-coins"></i>57.8k</span>
+                                        <span class="@Model.MatchList[i].matchHeader[0].Result">@Model.MatchList[i].matchHeader[0].Result</span>
+                                        <span class="TotalKDA"><i class="fas fa-swords"></i>@Model.MatchList[i].matchHeader[0].TotalKills/@Model.MatchList[i].matchHeader[0].TotalDeaths/@Model.MatchList[i].matchHeader[0].TotalAssists</span>
+                                        <span class="TotalGold"><i class="fas fa-coins"></i>@Model.MatchList[i].matchHeader[0].TotalGold</span>
                                     </div>
 
                                     @* 5 người team 1 *@
@@ -374,7 +379,7 @@
                                                     </div>
                                                     @*Ngọc bổ trợ  *@
                                                     <div class="ProfilePerk">
-                                                        <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/Electrocute/Electrocute.png">
+                                                        <img src="~/@ChampionDAO.getRuneImgURLbyID(Model.MatchList[i].matchDetailPlayer[j].MainRuneId)">
                                                     </div>
                                                     @* Tên ingame *@
                                                     <div class="ProfileSummonerName">
@@ -396,7 +401,7 @@
                                                     @* Chỉ số lính  *@
                                                     <div class="ProfileMinion_">
                                                         <span>@Model.MatchList[i].matchDetailPlayer[j].MinionsKill</span>
-                                                        <img src="https://lienminhpro.com/images/icons/ico-gold.svg">
+                                                        <img src="https://lienminhpro.com/images/icons/ico-cs.svg">
                                                     </div>
                                                     @*Trang bị  *@
                                                     <div class="ProfileListItem">
@@ -439,9 +444,9 @@
                                 @* Header trận đấu của team 2 *@
                                 <div class="ProfileMatchHeader">
                                     <span class="TeamName">Team 2</span>
-                                    <span class="WinResult">Win</span>
-                                    <span class="TotalKDA"><i class="fas fa-swords"></i>23/27/28</span>
-                                    <span class="TotalGold"><i class="fas fa-coins"></i>57.8k</span>
+                                    <span class="@Model.MatchList[i].matchHeader[1].Result">@Model.MatchList[i].matchHeader[1].Result</span>
+                                    <span class="TotalKDA"><i class="fas fa-swords"></i>@Model.MatchList[i].matchHeader[1].TotalKills/@Model.MatchList[i].matchHeader[1].TotalDeaths/@Model.MatchList[i].matchHeader[1].TotalAssists</span>
+                                    <span class="TotalGold"><i class="fas fa-coins"></i>@Model.MatchList[i].matchHeader[1].TotalGold</span>
                                 </div>
 
                                 @*5 người team 2  *@
@@ -467,7 +472,7 @@
                                                 </div>
                                                 @*Ngọc bổ trợ  *@
                                                 <div class="ProfilePerk">
-                                                    <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/Electrocute/Electrocute.png">
+                                                    <img src="~/@ChampionDAO.getRuneImgURLbyID(Model.MatchList[i].matchDetailPlayer[j].MainRuneId)">
                                                 </div>
                                                 @* Tên ingame *@
                                                 <div class="ProfileSummonerName">
@@ -489,7 +494,7 @@
                                                 @* Chỉ số lính  *@
                                                 <div class="ProfileMinion_">
                                                     <span>@Model.MatchList[i].matchDetailPlayer[j].MinionsKill</span>
-                                                    <img src="https://lienminhpro.com/images/icons/ico-gold.svg">
+                                                    <img src="https://lienminhpro.com/images/icons/ico-cs.svg">
                                                 </div>
                                                 @*Trang bị  *@
                                                 <div class="ProfileListItem">
@@ -545,10 +550,9 @@
         }
     }
 </script>
-        }
+        
 
-    </div>
-</div>
+
 @if (ViewBag.viewChat != null)
 {
     <script>

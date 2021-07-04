@@ -114,6 +114,38 @@ namespace DuoLegend.DAO
             conn.Close();
             return temp;
         }
+        public static string getPuuIdById(int? userId)
+        {
+
+            com.Parameters.Clear();
+            if (userId is null)
+            {
+                return null;
+            }
+            conn.ConnectionString = MyConfig.ConnectionString;
+
+            conn.Open();
+            com.Connection = conn;
+
+            com.CommandText = "select puuid  from [User] where userId = @userId ";
+
+            com.Parameters.AddWithValue("@userId", userId);
+            SqlDataReader reader = com.ExecuteReader();
+            string temp;
+            if (reader.Read())
+            {
+
+                temp = (string)reader["puuid"];
+
+            }
+            else
+            {
+                conn.Close();
+                return null;
+            }
+            conn.Close();
+            return temp;
+        }
 
         public static bool CheckLogin(string email, string password)
         {
@@ -190,55 +222,6 @@ namespace DuoLegend.DAO
             conn.Close();
         }
 
-        public static void addChamp(string id, string name, string path)
-        {
-            com.Parameters.Clear();
-
-            conn.ConnectionString = MyConfig.ConnectionString;
-
-            conn.Open();
-            com.Connection = conn;
-
-            com.CommandText = "INSERT INTO Champion(championid,championName,iconPath) VALUES(@championid,@championName,@iconPath)";
-            com.Parameters.AddWithValue("@championid", id);
-            com.Parameters.AddWithValue("@championName", name);
-            com.Parameters.AddWithValue("@iconPath", path);
-            com.EndExecuteNonQuery(com.BeginExecuteNonQuery());
-            conn.Close();
-        }
-        public static void addItem(string id, string name, string path)
-        {
-            com.Parameters.Clear();
-
-            conn.ConnectionString = MyConfig.ConnectionString;
-
-            conn.Open();
-            com.Connection = conn;
-
-            com.CommandText = "INSERT INTO Item(itemId,itemName,iconPath) VALUES(@itemId,@itemName,@iconPath)";
-            com.Parameters.AddWithValue("@itemId", id);
-            com.Parameters.AddWithValue("@itemName", name);
-            com.Parameters.AddWithValue("@iconPath", path);
-            com.EndExecuteNonQuery(com.BeginExecuteNonQuery());
-            conn.Close();
-        }
-        public static void addSpell(int id, string name, string path)
-        {
-            com.Parameters.Clear();
-
-            conn.ConnectionString = MyConfig.ConnectionString;
-
-            conn.Open();
-            com.Connection = conn;
-            //com.CommandText = "SET IDENTITY_INSERT Spell ON";
-            com.CommandText = "INSERT INTO Spell(spellId,spellName,iconPath) VALUES(@spellId,@spellName,@iconPath)";
-            com.Parameters.AddWithValue("@spellId", id);
-            com.Parameters.AddWithValue("@spellName", name);
-            com.Parameters.AddWithValue("@iconPath", path);
-            //com.CommandText = "SET IDENTITY_INSERT Spell OFF";
-            com.EndExecuteNonQuery(com.BeginExecuteNonQuery());
-            conn.Close();
-        }
         public static User getUserByEmail(string email)
         {
             User user = new User();
@@ -660,6 +643,71 @@ namespace DuoLegend.DAO
             conn.Close();
             return userList;
         }
+        public static void addChamp(string id, string name, string path)
+        {
+            com.Parameters.Clear();
 
+            conn.ConnectionString = MyConfig.ConnectionString;
+
+            conn.Open();
+            com.Connection = conn;
+
+            com.CommandText = "INSERT INTO Champion(championid,championName,iconPath) VALUES(@championid,@championName,@iconPath)";
+            com.Parameters.AddWithValue("@championid", id);
+            com.Parameters.AddWithValue("@championName", name);
+            com.Parameters.AddWithValue("@iconPath", path);
+            com.EndExecuteNonQuery(com.BeginExecuteNonQuery());
+            conn.Close();
+        }
+        public static void addItem(string id, string name, string path)
+        {
+            com.Parameters.Clear();
+
+            conn.ConnectionString = MyConfig.ConnectionString;
+
+            conn.Open();
+            com.Connection = conn;
+
+            com.CommandText = "INSERT INTO Item(itemId,itemName,iconPath) VALUES(@itemId,@itemName,@iconPath)";
+            com.Parameters.AddWithValue("@itemId", id);
+            com.Parameters.AddWithValue("@itemName", name);
+            com.Parameters.AddWithValue("@iconPath", path);
+            com.EndExecuteNonQuery(com.BeginExecuteNonQuery());
+            conn.Close();
+        }
+        public static void addSpell(int id, string name, string path)
+        {
+            com.Parameters.Clear();
+
+            conn.ConnectionString = MyConfig.ConnectionString;
+
+            conn.Open();
+            com.Connection = conn;
+            //com.CommandText = "SET IDENTITY_INSERT Spell ON";
+            com.CommandText = "INSERT INTO Spell(spellId,spellName,iconPath) VALUES(@spellId,@spellName,@iconPath)";
+            com.Parameters.AddWithValue("@spellId", id);
+            com.Parameters.AddWithValue("@spellName", name);
+            com.Parameters.AddWithValue("@iconPath", path);
+            //com.CommandText = "SET IDENTITY_INSERT Spell OFF";
+            com.EndExecuteNonQuery(com.BeginExecuteNonQuery());
+            conn.Close();
+        }
+        public static void addRune(int id, string name, string path)
+        {
+            com.Parameters.Clear();
+
+            conn.ConnectionString = MyConfig.ConnectionString;
+
+            conn.Open();
+            com.Connection = conn;
+            //com.CommandText = "SET IDENTITY_INSERT Spell ON";
+            com.CommandText = "INSERT INTO Rune(runeId,runeName,iconPath) VALUES(@runeId,@runeName,@iconPath)";
+            com.Parameters.AddWithValue("@runeId", id);
+            com.Parameters.AddWithValue("@runeName", name);
+            com.Parameters.AddWithValue("@iconPath", path);
+            //com.CommandText = "SET IDENTITY_INSERT Spell OFF";
+            com.EndExecuteNonQuery(com.BeginExecuteNonQuery());
+            conn.Close();
+        }
     }
 }
