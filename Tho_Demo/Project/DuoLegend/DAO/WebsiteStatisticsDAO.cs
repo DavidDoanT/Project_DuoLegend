@@ -63,7 +63,7 @@ namespace DuoLegend.DAO
         }
 
         /// <summary>
-        /// Increment the visitorcount of today by one
+        /// Increment the uniqueVisitor of today by one
         /// </summary>
         public static void IncrementUniqueVisitorCount()
         {
@@ -80,7 +80,7 @@ namespace DuoLegend.DAO
         }
 
         /// <summary>
-        /// Increment new account count of today by one
+        /// Increment new account column of today by one
         /// </summary>
         public static void IncrementNewAccCount()
         {
@@ -88,12 +88,32 @@ namespace DuoLegend.DAO
 
             DbConnection.Connect();
 
-            DbConnection.Cmd.CommandText = "UPDATE WebsiteStatistics SET newAccount = newAccount + 1 WHERE [date] = @today";
+            DbConnection.Cmd.CommandText = "UPDATE WebsiteStatistics "
+                                            +"SET newAccount = newAccount + 1 "
+                                            +"WHERE [date] = @today";
             DbConnection.Cmd.Parameters.AddWithValue("today", _today);
             
             DbConnection.Cmd.ExecuteNonQuery();
 
             DbConnection.Disconnect();
+        }
+
+        /// <summary>
+        /// Increment siteVisit column by 1
+        /// </summary>
+        public static void IncrementSiteVisit()
+        {
+            _today = DateTime.Now.Date;
+
+            DbConnection.Connect();
+            DbConnection.Cmd.CommandText = "UPDATE WebsiteStatistics "
+                                            +"SET siteVisit = siteVisit + 1 "
+                                            +"WHERE [date] = @today";
+            DbConnection.Cmd.Parameters.AddWithValue("today", _today);
+
+            DbConnection.Cmd.ExecuteNonQuery();
+
+            DbConnection.Disconnect();                                   
         }
 
         /// <summary>
@@ -123,6 +143,31 @@ namespace DuoLegend.DAO
             }
             DbConnection.Disconnect();
             return webStats;
+        }
+
+
+        /// <summary>
+        /// Check if a record of today's statistic already exist in databse
+        /// </summary>
+        /// <returns>A Boolean value</returns>
+        public static bool IsTodayRecordExist()
+        {
+            _today = DateTime.Now.Date;
+
+            DbConnection.Connect();
+            DbConnection.Cmd.CommandText = "SELECT [date] FROM WebsiteStatistics "
+                                            +"WHERE [date] = @today";
+            DbConnection.Cmd.Parameters.AddWithValue("today", _today);
+
+            DbConnection.Dr = DbConnection.Cmd.ExecuteReader();
+
+            if(DbConnection.Dr.Read())
+            {
+                DbConnection.Disconnect();
+                return true;
+            }
+            DbConnection.Disconnect();
+            return false;
         }
     }
 }

@@ -70,21 +70,32 @@ namespace DuoLegend.Controllers
         public IActionResult WebsiteStatistic()
         {
             IList<WebsiteStatistics> webStatList = WebsiteStatisticsDAO.GetRecords();
-            IList<DataPoint> siteVisitDataPoints = new List<DataPoint>();
+            IList<DataPoint> uniqueVisitorDataPoints = new List<DataPoint>();
+            IList<DataPoint> siteVisitorDataPoitns = new List<DataPoint>();
+            IList<DataPoint> newAccountDataPoints = new List<DataPoint>();
             DataPoint dp;
 
             //Create datapoints
             foreach(WebsiteStatistics webStat in webStatList)
             {
+                //Create datapoints containing data about UniqueVisitor
                 dp = new DataPoint(webStat.Date.ToString("dd/MM"), webStat.UniqueVisitor);
-
-                siteVisitDataPoints.Add(dp);
+                uniqueVisitorDataPoints.Add(dp);
+                //Create datapoints containing data about siteVisit
+                dp = new DataPoint(webStat.Date.ToString("dd/MM"), webStat.SiteVisit);
+                siteVisitorDataPoitns.Add(dp);
+                //Create datapoints containing data about newAccount numbers 
+                dp = new DataPoint(webStat.Date.ToString("dd/MM"), webStat.NewAccount);
+                newAccountDataPoints.Add(dp);
             }
 
             JsonSerializerSettings jsonSetting = new JsonSerializerSettings();
             jsonSetting.NullValueHandling = NullValueHandling.Ignore;
 
-            ViewBag.SiteVisitData = JsonConvert.SerializeObject(siteVisitDataPoints, jsonSetting);
+            ViewBag.UniqueVisitorData = JsonConvert.SerializeObject(uniqueVisitorDataPoints, jsonSetting);
+            ViewBag.SiteVisitData = JsonConvert.SerializeObject(siteVisitorDataPoitns, jsonSetting);
+            ViewBag.NewAccountData = JsonConvert.SerializeObject(newAccountDataPoints, jsonSetting);
+
 
             return View();
         }

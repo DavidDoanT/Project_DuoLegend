@@ -31,7 +31,7 @@ namespace DuoLegend.Middlewares
                 //Check if url path is of user or admin
                 // if(httpContext.Request.Path.StartsWithSegments())
                 //Check if today record exist in database
-                if (IsTodayRecordExistHelper())
+                if (WebsiteStatisticsDAO.IsTodayRecordExist())
                 {
                     WebsiteStatisticsDAO.IncrementUniqueVisitorCount();
                 }
@@ -42,22 +42,6 @@ namespace DuoLegend.Middlewares
                 }
             }
             await _next(httpContext);
-        }
-
-
-        /// <summary>
-        /// Helper method to check if there exist a record of today
-        /// </summary>
-        /// <returns>True if exist, otherwise false</returns>
-        private bool IsTodayRecordExistHelper()
-        {
-            WebsiteStatistics todayStats = WebsiteStatisticsDAO.GetTodayRecord();
-
-            if (todayStats == null)
-            {
-                return false;
-            }
-            return true;
         }
     }
 }

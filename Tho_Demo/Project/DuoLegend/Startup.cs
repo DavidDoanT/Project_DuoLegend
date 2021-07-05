@@ -54,7 +54,8 @@ namespace DuoLegend
             app.UseRouting();
             app.UseAuthorization();
             app.UseSession();
-            app.UseUniqueVisitorCounterMiddleware();      //Middleware to count number of visitor
+            app.UseSiteVisitCounterMiddleware();    //Midldeware to count number of site visit
+            app.UseUniqueVisitorCounterMiddleware();      //Middleware to count number of unique visitor
             app.UseCheckBannedUserMiddleware();     //Middleware to restrict banned users access
             app.UseEndpoints(endpoints =>
             {

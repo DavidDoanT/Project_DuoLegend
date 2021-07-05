@@ -7,9 +7,12 @@ namespace DuoLegend.SessionKeys
     {
         private const string _adminId = "_AdminId" ;
         private const string _visitedToday = "_VisitedToday";   //This one is for persistence cookie
+        private const string _visitingSession = "_VisitingSession";
 
         public static string AdminId => _adminId;
 
         public static string VisitedToday => _visitedToday;
+
+        public static string VisitingSession => _visitingSession;
     }
 }
