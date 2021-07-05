@@ -5,11 +5,11 @@ using Microsoft.AspNetCore.Http;
 
 namespace DuoLegend.Middlewares
 {
-    public class VisitorCounterMiddleware
+    public class UniqueVisitorCounterMiddleware
     {
         private readonly RequestDelegate _next;
 
-        public VisitorCounterMiddleware(RequestDelegate next)
+        public UniqueVisitorCounterMiddleware(RequestDelegate next)
         {
             _next = next;
         }
@@ -21,7 +21,7 @@ namespace DuoLegend.Middlewares
         /// <returns></returns>
         public async Task InvokeAsync(HttpContext httpContext)
         {
-            if (httpContext.Request.Cookies["VisitedToday"] == null)
+            if (httpContext.Request.Cookies[SessionKeys.Keys.VisitedToday] == null)
             {
                 //Add visitedToday cookie
                 CookieOptions cookieOptions = new CookieOptions();
@@ -33,12 +33,12 @@ namespace DuoLegend.Middlewares
                 //Check if today record exist in database
                 if (IsTodayRecordExistHelper())
                 {
-                    WebsiteStatisticsDAO.IncrementVisitorCount();
+                    WebsiteStatisticsDAO.IncrementUniqueVisitorCount();
                 }
                 else
                 {
                     WebsiteStatisticsDAO.CreateTodayRecord();
-                    WebsiteStatisticsDAO.IncrementVisitorCount();
+                    WebsiteStatisticsDAO.IncrementUniqueVisitorCount();
                 }
             }
             await _next(httpContext);

@@ -1,0 +1,47 @@
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewData["Title"] = "Site Statistic";
+}
+<script type="text/javascript" src="~/js/Chart/chart.min.js"></script>
+
+<div class="col-sm-6 col-md-8 col-lg-11 mx-auto">
+    @* <div class="card"> *@
+        @* <div class="card-header">
+            Site traffic
+        </div> *@
+        <div id="chartParent" class="h-75 bg-white">
+            <canvas id="siteTraffic"></canvas>
+        </div>
+    @* </div> *@
+</div>
+
+<!--Charting script-->
+<script type="text/javascript">
+    var siteVisitData = @Html.Raw(ViewBag.SiteVisitData)
+    var chartParent = document.getElementById("chartParent")
+    var siteTraffic = document.getElementById("siteTraffic")
+    
+    siteTraffic.height = chartParent.height
+
+    var siteTrafficChart = new Chart(siteTraffic, {
+        type: 'line',
+        data: {
+            datasets: [{
+                label: 'Site Traffic',
+                data: siteVisitData,
+                borderColor: 'rgba(50,100,150)'
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    })
+</script>

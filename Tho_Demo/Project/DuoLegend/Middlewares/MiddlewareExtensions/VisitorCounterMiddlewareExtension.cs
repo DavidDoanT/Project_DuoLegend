@@ -4,9 +4,9 @@ namespace DuoLegend.Middlewares.MiddlewareExtensions
 {
     public static class VisitorCounterMiddlewareExtension
     {
-        public static IApplicationBuilder UseVisitorCounterMiddleware(this IApplicationBuilder builder)
+        public static IApplicationBuilder UseUniqueVisitorCounterMiddleware(this IApplicationBuilder builder)
         {
-            return builder.UseMiddleware<VisitorCounterMiddleware>();
+            return builder.UseMiddleware<UniqueVisitorCounterMiddleware>();
         }
     }
 }

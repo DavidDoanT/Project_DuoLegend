@@ -4,6 +4,7 @@ using DuoLegend.DAO.AdminDAO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace DuoLegend.Controllers
 {
@@ -65,5 +66,27 @@ namespace DuoLegend.Controllers
             return RedirectToAction("Login");
         }
 
+        //Go to website statistic page
+        public IActionResult WebsiteStatistic()
+        {
+            IList<WebsiteStatistics> webStatList = WebsiteStatisticsDAO.GetRecords();
+            IList<DataPoint> siteVisitDataPoints = new List<DataPoint>();
+            DataPoint dp;
+
+            //Create datapoints
+            foreach(WebsiteStatistics webStat in webStatList)
+            {
+                dp = new DataPoint(webStat.Date.ToString("dd/MM"), webStat.UniqueVisitor);
+
+                siteVisitDataPoints.Add(dp);
+            }
+
+            JsonSerializerSettings jsonSetting = new JsonSerializerSettings();
+            jsonSetting.NullValueHandling = NullValueHandling.Ignore;
+
+            ViewBag.SiteVisitData = JsonConvert.SerializeObject(siteVisitDataPoints, jsonSetting);
+
+            return View();
+        }
     }
 }

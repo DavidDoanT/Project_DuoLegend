@@ -7,7 +7,9 @@ namespace DuoLegend.Models
     {
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }
-        public int VisitorCount { get; set; }
-        public int NewAccountCount { get; set; }
+        public int SiteVisit { get; set; }
+
+        public int UniqueVisitor { get; set; }
+        public int NewAccount { get; set; }
     }
 }
