@@ -33,9 +33,10 @@ namespace DuoLegend.Controllers
 
             //If email exist and has a corresponding password with inputted password,
             //login succeed and redirect to main page
-            if(isLoginAllowed){
+            if (isLoginAllowed)
+            {
                 HttpContext.Session.SetInt32(SessionKeys.Keys.AdminId, AdminInfoDAO.GetAdminId(email));
-                return View("Main");   
+                return View("Main");
             }
 
             ViewBag.loginFailed = true;
@@ -52,6 +53,8 @@ namespace DuoLegend.Controllers
         public IActionResult BanUser()
         {
             return View();
+        }
+
         /// <summary>
         /// Log the admin out
         /// Clears all session
