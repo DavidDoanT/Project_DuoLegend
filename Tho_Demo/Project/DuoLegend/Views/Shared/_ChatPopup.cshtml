@@ -1,11 +1,10 @@
 ﻿<link href="~/css/ChatPopup.css" rel="stylesheet" />
-
 <div class="modal-dialog">
     <!--Mọi thứ của modal(popup) sẽ nằm ở trong element có class "modal-content"-->
     <div class="modal-content">
         <!--Đây là cái cục header của modal(popup)-->
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalTitle">Tên người nhận</h5>
+            <h5 class="modal-title" id="exampleModalTitle">@DuoLegend.DAO.UserDAO.getInGameNameServerById((int)ViewData["receiver"])[0]</h5>
 
             <button type="button" class="close" data-dismiss="modal">
                 <!--%times; là character entity cho dấu "x" (hay còn gọi là cái cục đóng bên góc phải phía trên cùng ấy)-->
@@ -30,4 +29,9 @@
         </div>
     </div>
 </div>
-
+<script>
+    window.onload = function () { // this will be run when the whole page is loaded
+        var objDiv = document.getElementById("messagesList");
+        objDiv.scrollTop = objDiv.scrollHeight;
+    };
+</script>

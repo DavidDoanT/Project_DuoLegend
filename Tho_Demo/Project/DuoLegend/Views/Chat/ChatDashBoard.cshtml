@@ -1,0 +1,197 @@
+﻿@model ChatDashBoardViewModel
+@using DuoLegend.DAO
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+<link href="~/css/chatDashBoard.css" rel="stylesheet" />
+
+<!-- bắt đầu làm tại đây -->
+
+<div class="container-fluid p-0" style="height: 88%; ">
+    <div class="row no-gutters" style="height: 100%;">
+        <div class="col-md-3 col-2" style="height: 100%;">
+            <!-- Thanh search danh sách những người đã chat -->
+            <div class="search m-4" style="height: 36px;">
+                <form>
+                    <input class="form-control search-field" placeholder="Search">
+                </form>
+            </div>
+
+            <div class="list-chat">
+                <!-- Danh sách những người đã từng chat -->
+                <ul class="list-contact" id="myList">
+
+                    <!--<a href="#" style="text-decoration: none;">
+                    <li class="person myChoose chosen" data-chat="person1">
+                        <div class="row justify-content-start align-items-center no-gutters">-->
+                    <!-- Avatar -->
+                    <!--<div class="user col-auto mr-3">
+                        <img src="https://www.bootdey.com/img/Content/avatar/avatar3.png" alt="Retail Admin" class="avatar">
+                        <span class="status busy"></span>
+                    </div>-->
+                    <!-- Tên và thời gian chat lần cuối -->
+                    <!--<p class="name-time col-md-auto col-xs-0">
+                                    <span class="name">Steve Bangalter</span>
+                                    <br>
+                                    <span class="time">15/02/2019</span>
+                                </p>
+                            </div>
+                        </li>
+                    </a>-->
+
+                    @foreach (var user in Model.ListMessageAndUserHaveChatWith)
+                    {
+                        <a href="#" style="text-decoration: none;">
+                            <li class="person myChoose chosen" data-chat="person1">
+                                <div class="row justify-content-start align-items-center no-gutters">
+                                    @*Avatar*@
+                                    <div class="user col-auto mr-3">
+                                        <img src="https://www.bootdey.com/img/Content/avatar/avatar3.png" alt="Retail Admin" class="avatar">
+                                        <span class="status busy"></span>
+                                    </div>
+                                    @*Tên và thời gian chat lần cuối*@
+                                <p class="name-time col-md-auto col-xs-0">
+                                    <span class="name">@UserDAO.getInGameNameServerById(user.Key)[0]</span>
+                                    <br>
+                                    <span class="time">@user.Value.Content</span><br>
+                                    <span class="time">@DuoLegend.Service.TimeProcess.HowLongSince(@user.Value.TimeSend)[0]</span>
+                                    <span class="time">@DuoLegend.Service.TimeProcess.HowLongSince(@user.Value.TimeSend)[1]</span>
+                                </p>
+                                </div>
+                            </li>
+                        </a>
+                    }
+
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-9 col-10" style="height: 100%;">
+            <!-- Tên và avatar của người hiện tại đang chat -->
+            <div class="selected-user">
+                <div class="contact-profile row justify-content-start no-gutters align-items-center">
+                    <div class="col-auto mr-3">
+                        <img src="https://www.bootdey.com/img/Content/avatar/avatar3.png" alt="contact avatar" class="avatar">
+                    </div>
+                    <div class="col-auto">
+                        <h4 class="contact-name">Steve Bangalter</h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nội dung chat -->
+            <div class="content p-2">
+                <div class="message message--self">
+                    <div class="message__avatar">
+                        <img src="avatar.jpg" class="msg-avatar">
+                    </div>
+                    <div class="message__body message--self__body">
+                        Tessttttttttttttttttttttttttttttttttt
+                    </div>
+                </div>
+
+                <div class="message message--other">
+                    <div class="message__avatar">
+                        <img src="https://www.bootdey.com/img/Content/avatar/avatar3.png" class="msg-avatar">
+                    </div>
+                    <div class="message__body">
+                        <p>Hi hi</p>
+                    </div>
+                </div>
+
+                <div class="message message--self">
+                    <div class="message__avatar">
+                        <img src="avatar.jpg" class="msg-avatar">
+                    </div>
+                    <div class="message__body message--self__body">
+                        <p>Chào bạn, làm quen với mình nhé! :D</p>
+                    </div>
+                </div>
+
+                <div class="message message--other">
+                    <div class="message__avatar">
+                        <img src="https://www.bootdey.com/img/Content/avatar/avatar3.png" class="msg-avatar">
+                    </div>
+                    <div class="message__body">
+                        <p>Hi hi</p>
+                    </div>
+                </div>
+
+                <div class="message message--self">
+                    <div class="message__avatar">
+                        <img src="avatar.jpg" class="msg-avatar">
+                    </div>
+                    <div class="message__body message--self__body">
+                        <p>Chào bạn, làm quen với mình nhé! :D</p>
+                    </div>
+                </div>
+
+                <div class="message message--other">
+                    <div class="message__avatar">
+                        <img src="https://www.bootdey.com/img/Content/avatar/avatar3.png" class="msg-avatar">
+                    </div>
+                    <div class="message__body">
+                        <p>Hi hi</p>
+                    </div>
+                </div>
+
+                <div class="message message--self">
+                    <div class="message__avatar">
+                        <img src="avatar.jpg" class="msg-avatar">
+                    </div>
+                    <div class="message__body message--self__body">
+                        <p>Chào bạn, làm quen với mình nhé! :D</p>
+                    </div>
+                </div>
+
+                <div class="message message--other">
+                    <div class="message__avatar">
+                        <img src="https://www.bootdey.com/img/Content/avatar/avatar3.png" class="msg-avatar">
+                    </div>
+                    <div class="message__body">
+                        <p>Hi hi</p>
+                    </div>
+                </div>
+                <div class="message message--other">
+                    <div class="message__avatar">
+                        <img src="https://www.bootdey.com/img/Content/avatar/avatar3.png" class="msg-avatar">
+                    </div>
+                    <div class="message__body">
+                        <p>Hi hi</p>
+                    </div>
+                </div>
+                <div class="message message--other">
+                    <div class="message__avatar">
+                        <img src="https://www.bootdey.com/img/Content/avatar/avatar3.png" class="msg-avatar">
+                    </div>
+                    <div class="message__body">
+                        <p>Hi hi</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ô nhập tin nhắn và nút gửi tin nhắn -->
+            <form>
+                <div class="form-group input mt-2 mb-0 ml-4 row">
+                    <textarea rows="3" class="form-control input-field col-md-11 col-10"
+                              placeholder="Type your message..."></textarea>
+                    <button class="send-button col-md-1 col-1">
+                        <i class="bi bi-cursor-fill"
+                           style="color: #0084ff; padding: 0;"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Add active class to the current button (highlight it)
+    var list = document.getElementById("myList");
+    var options = list.getElementsByClassName("myChoose");
+    for (var i = 0; i < options.length; i++) {
+        options[i].addEventListener("click", function () {
+            var current = document.getElementsByClassName("chosen");
+            current[0].className = current[0].className.replace(" chosen", "");
+            this.className += " chosen";
+        });
+    }
+</script>

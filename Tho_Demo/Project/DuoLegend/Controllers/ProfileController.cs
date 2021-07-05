@@ -23,6 +23,7 @@ namespace DuoLegend.Controllers
         {
             ProfileViewModel infor = new ProfileViewModel();
             infor = RiotAPI.RiotAPI.gettop3mastery(inGameName, server);
+            //get info from Riot API 
             RankInfor rankInfor = RiotAPI.RiotAPI.getRankByEncryptedSummonerId(DAO.UserDAO.getEncryptedSummonerId(inGameName, server), server);
             infor.Rank = rankInfor.Rank;
             infor.Tier = rankInfor.Tier;
@@ -35,20 +36,25 @@ namespace DuoLegend.Controllers
             infor.Lose = rankInfor.Lose;
             infor.Server = server;
             infor.Id = UserDAO.getIdByInGameNameServer(inGameName, server);
-            string[] listMatchId = RiotAPI.RiotAPI.getListMatchIDbyPuuId(UserDAO.getPuuId(infor.SummonerName), Service.ProcessMainPage.getContinent(server));
+            //get match history
+            string[] listMatchId = RiotAPI.RiotAPI.getListMatchIDbyPuuId(UserDAO.getPuuId(infor.SummonerName,infor.Server), Service.ProcessMainPage.getContinent(server));
             if (listMatchId.Length == 0) { ViewBag.hasHistory = false; }
                 for (int i = 0; i < listMatchId.Length; i++)
                 {
                     
-                    infor.MatchList[i] = RiotAPI.RiotAPI.getMatchInfor1(listMatchId[i], Service.ProcessMainPage.getContinent(server), UserDAO.getEncryptedSummonerId(infor.SummonerName, server));
-                    //if (infor.MatchList[i] is null) {
-                    //    ViewBag.hasHistory = false;
-                    //    break;
-                    //}
+                    infor.MatchList[i] = RiotAPI.RiotAPI.getFullMatchInfor(listMatchId[i], Service.ProcessMainPage.getContinent(server), UserDAO.getEncryptedSummonerId(infor.SummonerName, server));
                 }
-            
-           
-            
+            //Check rating condition
+            ViewBag.ratingCondition = false;
+            for (int i = 0; i < listMatchId.Length; i++)
+            {
+                if (RiotAPI.RiotAPI.checkRatingCondition(listMatchId[i], Service.ProcessMainPage.getContinent(server), infor.Id, HttpContext.Session.GetInt32("id")))
+                {
+                    ViewBag.ratingCondition = true;
+                break;
+            }
+
+        }
             return View("Index",infor);
         }
 
@@ -57,6 +63,7 @@ namespace DuoLegend.Controllers
             ViewBag.viewChat = true;
             return Index(inGameName, server);
         }
+
 
         /// <summary>
         /// update user information, allow user to update their note and mic status
@@ -93,8 +100,29 @@ namespace DuoLegend.Controllers
         public IActionResult UpdateUser()
         {
             var emailuser = HttpContext.Session.GetString("email");
+            if(emailuser is null)
+            {
+                return RedirectToAction("RedirectLoginPage", "Account");
+            }
             var userInfo = UserDAO.getUserByEmail(emailuser);
             return View("Update",userInfo);
         }
+        [HttpPost]
+        public IActionResult RateUser([Bind("RaterId,UserId,SkillScore,BehaviorScore,Comment")] Rating r)
+        {
+            string[] nameAndServer = UserDAO.getInGameNameServerById(r.UserId);
+
+            if (RatingDAO.addRating(r))
+            {
+                return RedirectToAction("Index", new { inGameName =nameAndServer[0], server =nameAndServer[1]});
+            }
+            else
+            {
+                RatingDAO.updateRating(r);
+                return RedirectToAction("Index", new { inGameName = nameAndServer[0], server = nameAndServer[1] });
+            }
+            
+        }
+        
     }
 }

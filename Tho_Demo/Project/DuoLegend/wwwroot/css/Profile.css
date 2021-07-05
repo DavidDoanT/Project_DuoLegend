@@ -394,9 +394,10 @@ body{
     .ProfileMatchHeader{
 
         display: flex;
-        justify-content: flex-start;
-        align-items: center;
+        justify-content: center;
+        align-items: flex-end;
         padding: 1%;
+        height: 25px;
     }
     .ProfileMatchHeader span{
         margin-inline: 3%;
@@ -404,10 +405,10 @@ body{
     .TotalKDA{
         letter-spacing: 2px;
     }
-    .LoseResult{
+    .Lose{
         color: red;
     }
-    .WinResult{
+    .Win{
         color: greenyellow;
     }
     .ProfileSummoner{
@@ -513,4 +514,7 @@ body{
     font-weight: 600;
     font-size: 16px;
     margin-left: 10%;
+}
+.fa{
+    color:yellow;
 }

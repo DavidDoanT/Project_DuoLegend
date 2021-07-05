@@ -27,7 +27,7 @@ namespace DuoLegend.ViewModels
         private int _summonerLevel;
         private int _win;
         private int _lose;
-        private string _profileIconPath;
+        //private string _profileIconPath;
         private int _profileIconId;
         private string _server;
         private int _id;
@@ -144,6 +144,8 @@ namespace DuoLegend.ViewModels
             set { _top3MasteryCode = value; }
         }
         public MatchInfor[] MatchList { get; set; } = new MatchInfor[3];
+        public List<Rating> ListRate {get;set;}
+        
     }
 
 }

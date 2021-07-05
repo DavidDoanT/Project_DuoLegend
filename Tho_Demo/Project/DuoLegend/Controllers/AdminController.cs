@@ -50,11 +50,12 @@ namespace DuoLegend.Controllers
             return View(userList);
         }
 
-        public IActionResult BanUser()
+        public IActionResult BanUser(int id)
         {
+            ViewBag.userId = id;
             return View();
         }
-
+        
         /// <summary>
         /// Log the admin out
         /// Clears all session

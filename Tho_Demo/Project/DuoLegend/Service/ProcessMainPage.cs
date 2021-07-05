@@ -30,7 +30,7 @@ namespace DuoLegend.Service
                 infor.HasMic[i] = UserDAO.isHaveMic(infor.InGameName[i], "KR");
 
                 infor.Rank[i] = RiotAPI.RiotAPI.getRankByEncryptedSummonerId(UserDAO.getEncryptedSummonerId(infor.InGameName[i],"KR"), "KR").Rank; //hard code server KR
-                string[] listMatch = RiotAPI.RiotAPI.getListMatchIDbyPuuId(UserDAO.getPuuId(infor.InGameName[i]), "ASIA");
+                string[] listMatch = RiotAPI.RiotAPI.getListMatchIDbyPuuId(UserDAO.getPuuId(infor.InGameName[i], "KR"), "ASIA");
                 for (int j = 0; j < listMatch.Length; j++)
                 {
                     var smallMatchInfor = RiotAPI.RiotAPI.getMatchInfor(listMatch[j], "ASIA", UserDAO.getEncryptedSummonerId(infor.InGameName[i], "KR"));
@@ -89,7 +89,7 @@ namespace DuoLegend.Service
                 infor.HasMic[i] = UserDAO.isHaveMic(infor.InGameName[i], server);
                 infor.Lane[i] = UserDAO.getLane(infor.InGameName[i], server);
                 infor.Rank[i] = RiotAPI.RiotAPI.getRankByEncryptedSummonerId(UserDAO.getEncryptedSummonerId(infor.InGameName[i], server), server).Rank; //hard code server KR
-                string[] listMatch = RiotAPI.RiotAPI.getListMatchIDbyPuuId(UserDAO.getPuuId(infor.InGameName[i]), getContinent(server));
+                string[] listMatch = RiotAPI.RiotAPI.getListMatchIDbyPuuId(UserDAO.getPuuId(infor.InGameName[i], server), getContinent(server));
                 for (int j = 0; j < listMatch.Length; j++)
                 {
                     var smallMatchInfor = RiotAPI.RiotAPI.getMatchInfor(listMatch[j], getContinent(server), UserDAO.getEncryptedSummonerId(infor.InGameName[i], server));
