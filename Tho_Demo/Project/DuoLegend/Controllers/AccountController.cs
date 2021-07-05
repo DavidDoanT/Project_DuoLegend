@@ -108,6 +108,8 @@ namespace DuoLegend.Controllers
             if (ModelState.IsValid)
             {
                 DAO.UserDAO.addUser(user);
+                DAO.WebsiteStatisticsDAO.IncrementNewAccCount(); //Increment new account counter
+
                 string activationCode = Guid.NewGuid().ToString();
                 SendEmail(user.Email, activationCode, "VerifyAccount");
                 DAO.UserDAO.addActivationCode(activationCode, user.Email);
