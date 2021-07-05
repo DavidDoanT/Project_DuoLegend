@@ -8,7 +8,7 @@ namespace DuoLegend.Models
     public class MatchDetailPlayer
     {
 
-        public MatchDetailPlayer(int kill, int death, int assist, bool isWin, string champName, int champId, int spell1Id, int spell2Id, int champLevel, int gold, int minionsKill, string summmonerName, int damage, int[]itemId)
+        public MatchDetailPlayer(int kill, int death, int assist, bool isWin, string champName, int champId, int spell1Id, int spell2Id,int mainRuneId, int champLevel, int gold, int minionsKill, string summmonerName, int damage, int[]itemId)
         {
             Kill = kill;
             Death = death;
@@ -18,6 +18,7 @@ namespace DuoLegend.Models
             ChampId = champId;
             Spell1Id = spell1Id;
             Spell2Id = spell2Id;
+            MainRuneId = mainRuneId;
             ChampLevel = champLevel;
             Gold = gold;
             MinionsKill = minionsKill;
@@ -37,11 +38,13 @@ namespace DuoLegend.Models
         public int Spell1Name { get; set; }
         public int Spell2Id { get; set; }
         public int Spell2Name { get; set; }
+        public int MainRuneId { get; set; }
         public int ChampLevel { get; set; }
         public int Gold { get; set; }
         public int MinionsKill { get; set; }
         public string SummmonerName { get; set; }
         public int Damage { get; set; }
+        
         public int[] ItemId { get; set; } = new int[7];
     }
 }
