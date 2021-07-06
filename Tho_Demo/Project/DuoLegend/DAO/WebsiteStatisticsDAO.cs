@@ -171,30 +171,30 @@ namespace DuoLegend.DAO
             return webStats;
         }
 
-        private static IList<WebsiteStatistics> GetRecords(string interval)
-        {
-            string sqlQuery = "SELECT [date], SUM(uniqueVisitor), SUM(siteVisit), SUM(newAccount) "
-                                +"FROM WebsiteStatistics "
-                                +"GROUP BY DATEPART(" + interval +",[date])";
-            IList<WebsiteStatistics> webStats = new List<WebsiteStatistics>();
+        // private static IList<WebsiteStatistics> GetRecords(string interval)
+        // {
+        //     string sqlQuery = "SELECT [date], SUM(uniqueVisitor), SUM(siteVisit), SUM(newAccount) "
+        //                         +"FROM WebsiteStatistics "
+        //                         +"GROUP BY DATEPART(" + interval +",[date])";
+        //     IList<WebsiteStatistics> webStats = new List<WebsiteStatistics>();
 
-            DbConnection.Connect();
-            DbConnection.Cmd.CommandText = sqlQuery;
-            DbConnection.Dr = DbConnection.Cmd.ExecuteReader();
+        //     DbConnection.Connect();
+        //     DbConnection.Cmd.CommandText = sqlQuery;
+        //     DbConnection.Dr = DbConnection.Cmd.ExecuteReader();
 
-            while(DbConnection.Dr.Read())
-            {
-                WebsiteStatistics stat = new WebsiteStatistics();
-                stat.Date = DateTime.Parse(DbConnection.Dr["date"].ToString());
-                stat.SiteVisit = int.Parse(DbConnection.Dr["siteVisit"].ToString());
-                stat.UniqueVisitor = int.Parse(DbConnection.Dr["uniqueVisitor"].ToString());
-                stat.NewAccount = int.Parse(DbConnection.Dr["newAccount"].ToString());
+        //     while(DbConnection.Dr.Read())
+        //     {
+        //         WebsiteStatistics stat = new WebsiteStatistics();
+        //         stat.Date = DbConnection.Dr.GetDateTime("date")
+        //         stat.SiteVisit = int.Parse(DbConnection.Dr["siteVisit"].ToString());
+        //         stat.UniqueVisitor = int.Parse(DbConnection.Dr["uniqueVisitor"].ToString());
+        //         stat.NewAccount = int.Parse(DbConnection.Dr["newAccount"].ToString());
 
-                webStats.Add(stat);
-            }
+        //         webStats.Add(stat);
+        //     }
 
-            return webStats;
-        }
+        //     return webStats;
+        // }
 
         /// <summary>
         /// Check if a record of today's statistic already exist in databse

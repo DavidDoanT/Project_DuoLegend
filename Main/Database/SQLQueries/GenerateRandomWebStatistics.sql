@@ -11,8 +11,8 @@ DECLARE @e float
 DECLARE @f int
 DECLARE @x int
 
-SELECT @Dt = '2021-04-14'
-SELECT @Dt2 = '2021-07-05'
+SELECT @Dt = '2021-01-14'
+SELECT @Dt2 = '2021-07-06'
 SELECT @a = 0.06	
 SELECT @b = 1	
 SELECT @c = 0.04
