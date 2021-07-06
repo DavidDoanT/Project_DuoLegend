@@ -23,22 +23,32 @@ namespace DuoLegend.Service
             }
             if(temp.TotalMinutes < 60)
             {
-                result[0] = temp.Minutes.ToString();
+                result[0] = ((int)temp.TotalMinutes).ToString();
                 result[1] = "m";
                 return result;
             }
             if (temp.TotalHours < 24)
             {
-                result[0] = temp.Hours.ToString();
+                result[0] = ((int)temp.TotalHours).ToString();
                 result[1] = "h";
                 return result;
             }
             if (temp.TotalDays < 7)
             {
-                result[0] = temp.Days.ToString();
+                result[0] = ((int)temp.TotalDays).ToString();
                 result[1] = "d";
                 return result;
             }
+            if (temp.TotalDays < 365)
+            {
+                int day = (int)temp.TotalDays;
+                result[0] = ((int)(day / 7)).ToString();
+                result[1] = "w";
+                return result;
+            }
+            int day2 = (int)temp.TotalDays;
+            result[0] = ((int)(day2 / 365)).ToString();
+            result[1] = "y";
             return result;
 
 

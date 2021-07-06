@@ -93,7 +93,7 @@
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="background: #212529;">
                         <a class="dropdown-item" style="color: white;" asp-controller="Profile" asp-action="Index" asp-route-inGameName="@Context.Session.GetString("inGameName")" asp-route-server="@Context.Session.GetString("server")">My Profile</a>
-                        <a class="dropdown-item" style="color: white;" asp-controller="Chat" asp-action="ChatDashBoard">Chat DashBoard</a>
+                        <a class="dropdown-item" style="color: white;" asp-controller="Chat" asp-action="ChatDashBoard" asp-route-otherId="0" >Chat DashBoard</a>
                         <a class="dropdown-item" style="color: white;" href="/Account/Logout">Logout</a>
                     </div>
                 </div>

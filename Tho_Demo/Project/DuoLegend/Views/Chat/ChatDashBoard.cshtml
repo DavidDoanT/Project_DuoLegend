@@ -39,22 +39,22 @@
 
                     @foreach (var user in Model.ListMessageAndUserHaveChatWith)
                     {
-                        <a href="#" style="text-decoration: none;">
-                            <li class="person myChoose chosen" data-chat="person1">
+                        <a id='@("id"+user.Key)' asp-controller="Chat" asp-action="ChatDashBoard" asp-route-otherId="@user.Key" style="text-decoration: none;">
+                            <li class="@(user.Key == Model.UserOtherId ? "person myChoose chosen" : "person myChoose" )" data-chat="person1">
                                 <div class="row justify-content-start align-items-center no-gutters">
                                     @*Avatar*@
                                     <div class="user col-auto mr-3">
-                                        <img src="https://www.bootdey.com/img/Content/avatar/avatar3.png" alt="Retail Admin" class="avatar">
+                                        <img src="@Model.UserOtherAvatarPath" alt="Retail Admin" class="avatar">
                                         <span class="status busy"></span>
                                     </div>
                                     @*Tên và thời gian chat lần cuối*@
-                                <p class="name-time col-md-auto col-xs-0">
-                                    <span class="name">@UserDAO.getInGameNameServerById(user.Key)[0]</span>
-                                    <br>
-                                    <span class="time">@user.Value.Content</span><br>
-                                    <span class="time">@DuoLegend.Service.TimeProcess.HowLongSince(@user.Value.TimeSend)[0]</span>
-                                    <span class="time">@DuoLegend.Service.TimeProcess.HowLongSince(@user.Value.TimeSend)[1]</span>
-                                </p>
+                                    <p class="name-time col-md-auto col-xs-0">
+                                        <span class="name">@UserDAO.getInGameNameServerById(user.Key)[0]</span>
+                                        <br>
+                                        <span class="time @("content"+user.Key)">@(user.Value.SendFrom == Model.UserSelfId ? "You:" : string.Empty ) @user.Value.Content</span><br>
+                                        <span class="time @("content"+user.Key) ">@DuoLegend.Service.TimeProcess.HowLongSince(@user.Value.TimeSend)[0]</span>
+                                        <span class="time @("content"+user.Key) ">@DuoLegend.Service.TimeProcess.HowLongSince(@user.Value.TimeSend)[1]</span>
+                                    </p>
                                 </div>
                             </li>
                         </a>
@@ -69,111 +69,31 @@
             <div class="selected-user">
                 <div class="contact-profile row justify-content-start no-gutters align-items-center">
                     <div class="col-auto mr-3">
-                        <img src="https://www.bootdey.com/img/Content/avatar/avatar3.png" alt="contact avatar" class="avatar">
+                        <img src="@Model.UserOtherAvatarPath" alt="contact avatar" class="avatar">
                     </div>
                     <div class="col-auto">
-                        <h4 class="contact-name">Steve Bangalter</h4>
+                        @{
+                            string[] routeInfor = UserDAO.getInGameNameServerById(Model.UserOtherId);
+                            <a asp-controller="Profile" asp-action="Index" asp-route-inGameName="@routeInfor[0]" asp-route-server="@routeInfor[1]" class="contact-name">@UserDAO.getInGameNameServerById(Model.UserOtherId)[0]</a>
+                        }
+
                     </div>
                 </div>
             </div>
 
             <!-- Nội dung chat -->
-            <div class="content p-2">
-                <div class="message message--self">
-                    <div class="message__avatar">
-                        <img src="avatar.jpg" class="msg-avatar">
-                    </div>
-                    <div class="message__body message--self__body">
-                        Tessttttttttttttttttttttttttttttttttt
-                    </div>
-                </div>
+            <div class="content p-2" id="messagesList">
 
-                <div class="message message--other">
-                    <div class="message__avatar">
-                        <img src="https://www.bootdey.com/img/Content/avatar/avatar3.png" class="msg-avatar">
-                    </div>
-                    <div class="message__body">
-                        <p>Hi hi</p>
-                    </div>
-                </div>
-
-                <div class="message message--self">
-                    <div class="message__avatar">
-                        <img src="avatar.jpg" class="msg-avatar">
-                    </div>
-                    <div class="message__body message--self__body">
-                        <p>Chào bạn, làm quen với mình nhé! :D</p>
-                    </div>
-                </div>
-
-                <div class="message message--other">
-                    <div class="message__avatar">
-                        <img src="https://www.bootdey.com/img/Content/avatar/avatar3.png" class="msg-avatar">
-                    </div>
-                    <div class="message__body">
-                        <p>Hi hi</p>
-                    </div>
-                </div>
-
-                <div class="message message--self">
-                    <div class="message__avatar">
-                        <img src="avatar.jpg" class="msg-avatar">
-                    </div>
-                    <div class="message__body message--self__body">
-                        <p>Chào bạn, làm quen với mình nhé! :D</p>
-                    </div>
-                </div>
-
-                <div class="message message--other">
-                    <div class="message__avatar">
-                        <img src="https://www.bootdey.com/img/Content/avatar/avatar3.png" class="msg-avatar">
-                    </div>
-                    <div class="message__body">
-                        <p>Hi hi</p>
-                    </div>
-                </div>
-
-                <div class="message message--self">
-                    <div class="message__avatar">
-                        <img src="avatar.jpg" class="msg-avatar">
-                    </div>
-                    <div class="message__body message--self__body">
-                        <p>Chào bạn, làm quen với mình nhé! :D</p>
-                    </div>
-                </div>
-
-                <div class="message message--other">
-                    <div class="message__avatar">
-                        <img src="https://www.bootdey.com/img/Content/avatar/avatar3.png" class="msg-avatar">
-                    </div>
-                    <div class="message__body">
-                        <p>Hi hi</p>
-                    </div>
-                </div>
-                <div class="message message--other">
-                    <div class="message__avatar">
-                        <img src="https://www.bootdey.com/img/Content/avatar/avatar3.png" class="msg-avatar">
-                    </div>
-                    <div class="message__body">
-                        <p>Hi hi</p>
-                    </div>
-                </div>
-                <div class="message message--other">
-                    <div class="message__avatar">
-                        <img src="https://www.bootdey.com/img/Content/avatar/avatar3.png" class="msg-avatar">
-                    </div>
-                    <div class="message__body">
-                        <p>Hi hi</p>
-                    </div>
-                </div>
             </div>
 
             <!-- Ô nhập tin nhắn và nút gửi tin nhắn -->
             <form>
+                <input id="sender" value="@Model.UserSelfId" disabled style="display: none">
+                <input id="receiver" value="@Model.UserOtherId" disabled style="display: none">
                 <div class="form-group input mt-2 mb-0 ml-4 row">
-                    <textarea rows="3" class="form-control input-field col-md-11 col-10"
-                              placeholder="Type your message..."></textarea>
-                    <button class="send-button col-md-1 col-1">
+                    <input id="messageInput" rows="3" class="form-control input-field col-md-11 col-10"
+                           placeholder="Type your message...">
+                    <button class="send-button col-md-1 col-1" type="button" id="sendButton">
                         <i class="bi bi-cursor-fill"
                            style="color: #0084ff; padding: 0;"></i>
                     </button>
@@ -182,7 +102,9 @@
         </div>
     </div>
 </div>
-
+<button class="btn btn-primary" data-toggle="modal" data-target="#example" id="openChatButton" hidden>Chat</button>
+<input id="UserSelfAvatarPath" value="@Model.UserSelfAvatarPath" disabled hidden>
+<input id="UserOtherAvatarPath" value="@Model.UserOtherAvatarPath" disabled hidden>
 <script>
     // Add active class to the current button (highlight it)
     var list = document.getElementById("myList");
@@ -194,4 +116,62 @@
             this.className += " chosen";
         });
     }
+    function Right(div) {
+        var textContent = div.textContent;
+        var avatarPath = document.getElementById("UserSelfAvatarPath").value;
+        div.innerHTML = "";
+        div.className = "message message--self";
+        var avatarContainer = document.createElement("div");
+        var image = document.createElement("img");
+        image.className = "msg-avatar";
+        image.src = avatarPath;
+
+        avatarContainer.className = "message__avatar";
+        avatarContainer.appendChild(image);
+        div.appendChild(avatarContainer);
+        var chatContentContainer = document.createElement("div");
+        chatContentContainer.className = "message__body message--self__body";
+        chatContentContainer.textContent = textContent;
+        div.appendChild(chatContentContainer);
+    }
+
+    function Left(div) {
+        var textContent = div.textContent;
+        var avatarPath = document.getElementById("UserOtherAvatarPath").value;
+        div.innerHTML = "";
+        div.className = "message message--other";
+        var avatarContainer = document.createElement("div");
+        var image = document.createElement("img");
+        image.className = "msg-avatar";
+        image.src = avatarPath;
+
+        avatarContainer.className = "message__avatar";
+        avatarContainer.appendChild(image);
+        div.appendChild(avatarContainer);
+        var chatContentContainer = document.createElement("div");
+        chatContentContainer.className = "message__body";
+        chatContentContainer.textContent = textContent;
+        div.appendChild(chatContentContainer);
+    }
+
+    function openChat() {
+        document.getElementById("openChatButton").click();
+    }
+
+    function receiveMessageFromOtherBox(senderId, messageContent) {
+        var messageList = document.getElementById("myList");
+        var floatBox = document.getElementById("id" + senderId);
+        messageList.removeChild(floatBox);
+        messageList.insertBefore(floatBox, messageList.childNodes[1]);
+        var boxContent = document.getElementsByClassName("content" + senderId);
+        boxContent[0].innerHTML = messageContent;
+        boxContent[1].innerHTML = "just now";
+        boxContent[2].innerHTML = "";
+    }
+    document.getElementById("sendButton").addEventListener("click", function (event) {
+        content = document.getElementById("messageInput").value;
+        if (content != "") {
+            receiveMessageFromOtherBox(document.getElementById("receiver").value, content);
+        }       
+    });
 </script>

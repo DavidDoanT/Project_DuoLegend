@@ -28,7 +28,8 @@ namespace DuoLegend
             services.AddHttpContextAccessor();
             services.AddControllersWithViews();
             services.AddDistributedMemoryCache();           // Đăng ký dịch vụ lưu cache trong bộ nhớ (Session sẽ sử dụng nó)
-            services.AddSession(cfg => {                    // Đăng ký dịch vụ Session
+            services.AddSession(cfg =>
+            {                    // Đăng ký dịch vụ Session
                 cfg.Cookie.Name = "login";             // Đặt tên Session - tên này sử dụng ở Browser (Cookie)
                 cfg.IdleTimeout = new TimeSpan(0, 120, 0);    // Thời gian tồn tại của Session
             });

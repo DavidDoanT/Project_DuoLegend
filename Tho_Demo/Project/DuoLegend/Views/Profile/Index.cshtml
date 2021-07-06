@@ -58,8 +58,11 @@
             }
 
 
+            @if (Model.Id != Context.Session.GetInt32("id"))
+            {
+                <button data-toggle="modal" data-target="#example" id="openChatButton">Chat</button>
+            }
 
-            <button data-toggle="modal" data-target="#example" id="openChatButton">Chat</button>
         </div>
     </div>
 
