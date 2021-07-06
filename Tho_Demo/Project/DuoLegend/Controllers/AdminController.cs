@@ -36,10 +36,42 @@ namespace DuoLegend.Controllers
             //login succeed and redirect to main page
             if(isLoginAllowed){
                 HttpContext.Session.SetInt32(SessionKeys.Keys.AdminId, AdminInfoDAO.GetAdminId(email));
-                return View("Main");   
+                return RedirectToAction("Main");   
             }
 
             ViewBag.loginFailed = true;
+
+            return View();
+        }
+
+        public IActionResult Main()
+        {   
+            IList<WebsiteStatistics> webStatList = WebsiteStatisticsDAO.GetRecords(30);
+            IList<DataPoint> uniqueVisitorDataPoints = new List<DataPoint>();
+            IList<DataPoint> siteVisitorDataPoitns = new List<DataPoint>();
+            IList<DataPoint> newAccountDataPoints = new List<DataPoint>();
+            DataPoint dp;
+
+            //Create datapoints
+            foreach(WebsiteStatistics webStat in webStatList)
+            {
+                //Create datapoints containing data about UniqueVisitor
+                dp = new DataPoint(webStat.Date.ToString("dd/MM"), webStat.UniqueVisitor);
+                uniqueVisitorDataPoints.Add(dp);
+                //Create datapoints containing data about siteVisit
+                dp = new DataPoint(webStat.Date.ToString("dd/MM"), webStat.SiteVisit);
+                siteVisitorDataPoitns.Add(dp);
+                //Create datapoints containing data about newAccount numbers 
+                dp = new DataPoint(webStat.Date.ToString("dd/MM"), webStat.NewAccount);
+                newAccountDataPoints.Add(dp);
+            }
+
+            JsonSerializerSettings jsonSetting = new JsonSerializerSettings();
+            jsonSetting.NullValueHandling = NullValueHandling.Ignore;
+
+            ViewBag.UniqueVisitorData = JsonConvert.SerializeObject(uniqueVisitorDataPoints, jsonSetting);
+            ViewBag.SiteVisitData = JsonConvert.SerializeObject(siteVisitorDataPoitns, jsonSetting);
+            ViewBag.NewAccountData = JsonConvert.SerializeObject(newAccountDataPoints, jsonSetting);
 
             return View();
         }

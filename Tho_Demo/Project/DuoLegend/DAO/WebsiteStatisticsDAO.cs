@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
 using DuoLegend.DatabaseConnection;
 using DuoLegend.Models;
 using Microsoft.Extensions.Logging;
@@ -63,20 +64,30 @@ namespace DuoLegend.DAO
         }
 
         /// <summary>
+        /// Performs increment update for selected field in database
+        /// </summary>
+        /// <param name="field"></param>
+        private static void Increment(string field)
+        {
+            string sqlQuery = "UPDATE WebsiteStatistics "
+                                +"SET " + field + " = " + field + " + 1 "
+                                +"WHERE [date] = @today";
+            _today = DateTime.Now.Date;
+
+            DbConnection.Connect();
+            DbConnection.Cmd.CommandText = sqlQuery;
+            DbConnection.Cmd.Parameters.AddWithValue("today", _today);
+
+            DbConnection.Cmd.EndExecuteNonQuery(DbConnection.Cmd.BeginExecuteNonQuery());
+            DbConnection.Disconnect();
+        }
+
+        /// <summary>
         /// Increment the uniqueVisitor of today by one
         /// </summary>
         public static void IncrementUniqueVisitorCount()
         {
-            _today = DateTime.Now.Date;
-
-            DbConnection.Connect();
-
-            DbConnection.Cmd.CommandText = "UPDATE WebsiteStatistics SET uniqueVisitor = uniqueVisitor + 1 WHERE [date] = @today";
-            DbConnection.Cmd.Parameters.AddWithValue("today", _today);
-            
-            DbConnection.Cmd.ExecuteNonQuery();
-
-            DbConnection.Disconnect();
+            Increment("uniqueVisitor");
         }
 
         /// <summary>
@@ -84,18 +95,7 @@ namespace DuoLegend.DAO
         /// </summary>
         public static void IncrementNewAccCount()
         {
-            _today = DateTime.Now.Date;
-
-            DbConnection.Connect();
-
-            DbConnection.Cmd.CommandText = "UPDATE WebsiteStatistics "
-                                            +"SET newAccount = newAccount + 1 "
-                                            +"WHERE [date] = @today";
-            DbConnection.Cmd.Parameters.AddWithValue("today", _today);
-            
-            DbConnection.Cmd.ExecuteNonQuery();
-
-            DbConnection.Disconnect();
+            Increment("newAccount");
         }
 
         /// <summary>
@@ -103,17 +103,7 @@ namespace DuoLegend.DAO
         /// </summary>
         public static void IncrementSiteVisit()
         {
-            _today = DateTime.Now.Date;
-
-            DbConnection.Connect();
-            DbConnection.Cmd.CommandText = "UPDATE WebsiteStatistics "
-                                            +"SET siteVisit = siteVisit + 1 "
-                                            +"WHERE [date] = @today";
-            DbConnection.Cmd.Parameters.AddWithValue("today", _today);
-
-            DbConnection.Cmd.ExecuteNonQuery();
-
-            DbConnection.Disconnect();                                   
+            Increment("siteVisit");                                
         }
 
         /// <summary>
@@ -145,6 +135,66 @@ namespace DuoLegend.DAO
             return webStats;
         }
 
+        /// <summary>
+        /// Get a specified number of Record from the database
+        /// </summary>
+        /// <param name="numberOfRecord">The number of records to get</param>
+        /// <returns>A list containing n number of records</returns>
+        public static IList<WebsiteStatistics> GetRecords(int numberOfRecord)
+        {
+            string sqlQuery = "SELECT TOP(@numberOfRecord) [date], siteVisit, uniqueVisitor, newAccount "
+                            +"FROM WebsiteStatistics "
+                            +"ORDER BY [date] DESC";
+            IList<WebsiteStatistics> webStats = new List<WebsiteStatistics>();
+
+            DbConnection.Connect();
+            DbConnection.Cmd.CommandText = sqlQuery;
+            DbConnection.Cmd.Parameters.AddWithValue("numberOfRecord", numberOfRecord);
+
+            DbConnection.Dr = DbConnection.Cmd.ExecuteReader();
+
+            //Create list of records
+            while(DbConnection.Dr.Read())
+            {
+                WebsiteStatistics stats = new WebsiteStatistics();
+
+                stats.Date = DateTime.Parse(DbConnection.Dr["date"].ToString());
+                stats.SiteVisit = int.Parse(DbConnection.Dr["siteVisit"].ToString());
+                stats.UniqueVisitor = int.Parse(DbConnection.Dr["uniqueVisitor"].ToString());
+                stats.NewAccount = int.Parse(DbConnection.Dr["newAccount"].ToString());
+
+                webStats.Add(stats);
+            }
+            DbConnection.Disconnect();
+            webStats = webStats.Reverse().ToList();
+            
+            return webStats;
+        }
+
+        private static IList<WebsiteStatistics> GetRecords(string interval)
+        {
+            string sqlQuery = "SELECT [date], SUM(uniqueVisitor), SUM(siteVisit), SUM(newAccount) "
+                                +"FROM WebsiteStatistics "
+                                +"GROUP BY DATEPART(" + interval +",[date])";
+            IList<WebsiteStatistics> webStats = new List<WebsiteStatistics>();
+
+            DbConnection.Connect();
+            DbConnection.Cmd.CommandText = sqlQuery;
+            DbConnection.Dr = DbConnection.Cmd.ExecuteReader();
+
+            while(DbConnection.Dr.Read())
+            {
+                WebsiteStatistics stat = new WebsiteStatistics();
+                stat.Date = DateTime.Parse(DbConnection.Dr["date"].ToString());
+                stat.SiteVisit = int.Parse(DbConnection.Dr["siteVisit"].ToString());
+                stat.UniqueVisitor = int.Parse(DbConnection.Dr["uniqueVisitor"].ToString());
+                stat.NewAccount = int.Parse(DbConnection.Dr["newAccount"].ToString());
+
+                webStats.Add(stat);
+            }
+
+            return webStats;
+        }
 
         /// <summary>
         /// Check if a record of today's statistic already exist in databse

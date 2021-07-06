@@ -14,7 +14,7 @@
 
 
 <!--Main content body-->
-<div class="col-10">
+<div class="col-11">
     <div class="flex-container-space-between">
         <!--Statistics-->
         <div class="body-column">
@@ -26,8 +26,8 @@
                         </h1>
                     </div>
 
-                    <div class="widget-asset-body-container">
-                        <img src="~/img/Admin/statistic-temp.png" class="flex-shrink-img">
+                    <div class="widget-asset-body-container" id="siteTrafficParent">
+                        <canvas id="siteTraffic" class="flex-shrink-img"></canvas>
                     </div>
                 </div>
             </div>
@@ -44,10 +44,79 @@
                     </div>
 
                     <div class="widget-asset-body-container">
-                        <img src="~/img/Admin/statistic-temp.png" class="flex-shrink-img">
+                        <canvas class="flex-shrink-img" id="newAccount">
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script src="~/js/Chart/chart.min.js"></script>
+<script type="text/javascript">
+    var siteVisitData = @Html.Raw(ViewBag.SiteVisitData)
+    var uniqueVisitorData = @Html.Raw(ViewBag.UniqueVisitorData)
+    var newAccountData = @Html.Raw(ViewBag.NewAccountData)
+
+    var siteTrafficParent = document.getElementById("siteTrafficParent")
+    var siteTraffic = document.getElementById("siteTraffic")
+    var siteTrafficChart = new Chart(siteTraffic, 
+    {
+        type: 'line',
+        data: 
+        {
+            datasets: 
+            [
+                {
+                    label: 'Unique Visitor',
+                    data: uniqueVisitorData,
+                    borderColor: 'rgba(100,170,200)' //Original(50,100,150)
+                },
+                {
+                    label: 'Site Visit',
+                    data: siteVisitData,
+                    borderColor: 'rgba(200,100,100)'  //Original(100,50,50)
+                }
+            ]
+        },
+        options: {
+            response: true,
+            maintainAspectRatio: false,
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    })
+
+    var newAccountC = document.getElementById("newAccount")
+    var newAccountChart = new Chart(newAccountC, {
+        type: 'line',
+        data: 
+        {
+            datasets: 
+            [
+                {
+                    label: 'New Account',
+                    data: newAccountData,
+                    borderColor: 'rgba(150,90,150)'
+                }
+            ]
+        },
+        options: 
+        {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    })
+</script>

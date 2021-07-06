@@ -11,47 +11,20 @@
 </div>
 
 <!--Charting script-->
+<script src="~/js/Chart/WebsiteStatisticChart.js"></script>
 <script type="text/javascript">
+    //Loads in the data from controller
     var uniqueVisitorData = @Html.Raw(ViewBag.UniqueVisitorData)
     var siteVisitData = @Html.Raw(ViewBag.SiteVisitData)
     var newAccountData = @Html.Raw(ViewBag.NewAccountData)
 
+    //Get the chart parent and the chart container
     var chartParent = document.getElementById("chartParent")
     var siteTraffic = document.getElementById("siteTraffic")
     
     siteTraffic.height = chartParent.height
 
-    var siteTrafficChart = new Chart(siteTraffic, {
-        type: 'line',
-        data: {
-            datasets: [
-            {
-                label: 'Unique Visitor',
-                data: uniqueVisitorData,
-                borderColor: 'rgba(50,100,150)'
-            },
-            {
-                label: 'Site Visit',
-                data: siteVisitData,
-                borderColor: 'rgba(100,50,50)'
-            },
-            {
-                label: 'New Account',
-                data: newAccountData,
-                borderColor: 'rgba(150, 90, 150)'
-            }
-            ]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
-        }
-    })
+    //Create the chart on page load
+    window.onload = createChart(siteTraffic, uniqueVisitorData, siteVisitData, newAccountData)
+
 </script>
