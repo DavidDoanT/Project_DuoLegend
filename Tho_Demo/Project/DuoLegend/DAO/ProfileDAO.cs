@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DuoLegend.DAO
 {
-    public class RatingDAO
+    public class ProfileDAO
     {
         private static SqlConnection conn = new SqlConnection();
         private static SqlCommand com = new SqlCommand();
@@ -49,21 +49,7 @@ namespace DuoLegend.DAO
             DbConnection.Cmd.ExecuteNonQuery();
             DbConnection.Disconnect();
         }
-        public static bool checkRated(int raterId, int userId)
-        {
-            DbConnection.Connect();
-            DbConnection.Cmd.CommandText = "SELECT behaviorScore FROM Rating WHERE raterId = @raterId and userId=@userId ";
-            DbConnection.Cmd.Parameters.AddWithValue("@raterId", raterId);
-            DbConnection.Cmd.Parameters.AddWithValue("@userId", userId);
-            DbConnection.Dr = DbConnection.Cmd.ExecuteReader();
-            if (DbConnection.Dr.Read())
-            {
-                DbConnection.Disconnect();
-                return true;
-            }
-            DbConnection.Disconnect();
-            return false;
-        }
+       
         public static List<Rating> getAllRating(int userId)
         {
             List<Rating> listRate = new();
@@ -83,6 +69,69 @@ namespace DuoLegend.DAO
             }
             DbConnection.Disconnect();
             return listRate;
+        }
+        public static bool addLike(int likerId,int userId)
+        {
+            DbConnection.Connect();
+            DbConnection.Cmd.CommandText = "INSERT INTO [Like](likerId,userId) VALUES(@likerId,@userId)";
+            DbConnection.Cmd.Parameters.AddWithValue("@likerId", likerId);
+            DbConnection.Cmd.Parameters.AddWithValue("@userId", userId);
+            try
+            {
+                DbConnection.Cmd.ExecuteNonQuery();
+                DbConnection.Disconnect();
+                return true;
+            }
+            catch (SqlException)
+            {
+                DbConnection.Disconnect();
+                return false;
+            }
+        }
+        public static void deleteLike(int likerId, int userId)
+        {
+            DbConnection.Connect();
+            DbConnection.Cmd.CommandText = "DELETE FROM [Like] WHERE likerId = @likerId and userId=@userId";
+            DbConnection.Cmd.Parameters.AddWithValue("@likerId", likerId);
+            DbConnection.Cmd.Parameters.AddWithValue("@userId", userId);
+            DbConnection.Cmd.ExecuteNonQuery();
+            DbConnection.Disconnect();
+        }
+        public static bool checkLiked(int? likerId, int userId)
+        {
+            if (likerId is null) return false;
+            DbConnection.Connect();
+            DbConnection.Cmd.CommandText = "SELECT likerId,userId FROM [Like] WHERE likerId = @likerId and userId=@userId ";
+            DbConnection.Cmd.Parameters.AddWithValue("@likerId", likerId);
+            DbConnection.Cmd.Parameters.AddWithValue("@userId", userId);
+            DbConnection.Dr = DbConnection.Cmd.ExecuteReader();
+            if (DbConnection.Dr.Read())
+            {
+                DbConnection.Disconnect();
+                return true;
+            }
+            DbConnection.Disconnect();
+            return false;
+        }
+        public static List<User> getLikedList(int likerId)
+        {
+            List <User> LikedList = new();
+            DbConnection.Connect();
+            DbConnection.Cmd.CommandText = "SELECT ingameName, server,hasMic,lane,note FROM[User] INNER JOIN[Like] ON[User].userId = [Like].userId WHERE[Like].likerId =@likerId";
+            DbConnection.Cmd.Parameters.AddWithValue("@likerId", likerId);
+            DbConnection.Dr = DbConnection.Cmd.ExecuteReader();
+            while (DbConnection.Dr.Read())
+            {
+                User user = new();
+                user.InGameName = DbConnection.Dr["inGameName"].ToString();
+                user.Server = DbConnection.Dr["server"].ToString();
+                user.HasMic = (bool)DbConnection.Dr["hasMic"];
+                user.Lane = DbConnection.Dr["lane"].ToString();
+                user.Note = DbConnection.Dr["note"].ToString();
+                LikedList.Add(user);
+            }
+            DbConnection.Disconnect();
+            return LikedList;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿@model ProfileViewModel
+﻿
+@model ProfileViewModel
 @using DuoLegend.DAO
 <link href="~/css/Profile.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -34,21 +35,17 @@
         <div class="ProfileAction">
             @if (@Context.Session.GetString("inGameName") != null && @Context.Session.GetString("server") != null)
             {
+                //nut edit
                 @if (@Context.Session.GetString("inGameName").Equals(Model.SummonerName) && @Context.Session.GetString("server").Equals(Model.Server))
                 {
                     //CHINH CAI EDIT O TRONG DAY NE ANH GIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
                     <a class="button" asp-controller="Profile" asp-action="UpdateUser">Edit</a>
 
                 }
-            }
 
-            <button>Follow</button>
-            @if (@Context.Session.GetString("inGameName") != null && @Context.Session.GetString("server") != null)
-            {
+                //nut rating
                 @if (@Context.Session.GetString("inGameName").Equals(Model.SummonerName) && @Context.Session.GetString("server").Equals(Model.Server))
                 {
-
-
                     <button onclick="swal('Error!','You can not rate yourself','error');">Rate</button>
                 }
                 else if (ViewBag.ratingCondition == false)
@@ -59,8 +56,19 @@
                 {
                     <button data-toggle="modal" data-target="#Rating">Rate</button>
                 }
+                @if (TempData["delLike"] is false)
+                {
+                    <button id="likeButton">Unlike</button> }
+                else
+                {
+                    <button id="likeButton">Like</button>
+                }
+
             }
 
+
+            <input id="liker" value="@Context.Session.GetInt32("id")" disabled style="display: none">
+            <input id="user" value="@Model.Id" disabled style="display: none">
 
 
             <button data-toggle="modal" data-target="#example" id="openChatButton">Chat</button>

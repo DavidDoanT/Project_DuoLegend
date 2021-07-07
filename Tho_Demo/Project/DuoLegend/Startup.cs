@@ -61,6 +61,7 @@ namespace DuoLegend
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{inGameName?}/{server?}");
                 endpoints.MapHub<ChatHub>("/chatHub");
+                endpoints.MapHub<LikeHub>("/likeHub");
             });
         }
     }

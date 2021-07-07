@@ -17,7 +17,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 
     <style>
         .bd-placeholder-img {
@@ -38,7 +40,7 @@
         }
 
         header {
-            margin-bottom: 2 rem;
+            margin-bottom: 2rem;
         }
 
         a {
@@ -72,12 +74,12 @@
 
                 @*notification box*@
                 @{List<string[]> test = DuoLegend.DAO.ChatDAO.getUnseenList(@HttpContextAccessor.HttpContext.Session.GetInt32("id").Value);
-                   
-                    <div class="dropdown" style="margin-right: 3vw;" @(test.Count > 0 ? string.Empty : "hidden") id="notificationBox" >
+
+                    <div class="dropdown" style="margin-right: 3vw;" @(test.Count > 0 ? string.Empty : "hidden") id="notificationBox">
                         <button style="width: inherit; background: linear-gradient(178deg,#ab1328,#621620)" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             New Message
                         </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="background: #212529;" id="listMessageContainer" >
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="background: #212529;" id="listMessageContainer">
                             @foreach (var item in test)
                             {
                                 <a class="dropdown-item" style="color: white;" id="@item[0]@item[1]" asp-controller="Profile" asp-action="ViewChat" asp-route-inGameName="@item[0]" asp-route-server="@item[1]">@item[0]</a>
@@ -85,8 +87,8 @@
 
                         </div>
                     </div>
-                    
-                  }
+
+                }
                 <div class="dropdown" style="margin-right: 3vw;">
                     <button style="width: inherit; background: linear-gradient(178deg,#ab1328,#621620)" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Dropdown
@@ -94,6 +96,7 @@
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="background: #212529;">
                         <a class="dropdown-item" style="color: white;" asp-controller="Profile" asp-action="Index" asp-route-inGameName="@Context.Session.GetString("inGameName")" asp-route-server="@Context.Session.GetString("server")">My Profile</a>
                         <a class="dropdown-item" style="color: white;" asp-controller="Chat" asp-action="ChatDashBoard">Chat DashBoard</a>
+                        <a class="dropdown-item" style="color: white;" asp-controller="Profile" asp-action="LikedList" asp-route-likerId="@Context.Session.GetInt32("id")">Liked List</a>
                         <a class="dropdown-item" style="color: white;" href="/Account/Logout">Logout</a>
                     </div>
                 </div>
@@ -103,9 +106,10 @@
 
     <input id="userId" value='@HttpContextAccessor.HttpContext.Session.GetInt32("id")' disabled style="display: none">
     @RenderBody()
-    <button id="sendButton" hidden ></button>
+    <button id="sendButton" hidden></button>
     <script src="~/js/signalR/dist/browser/signalr.js"></script>
     <script src="~/js/chat.js"></script>
+    <script src="~/js/Like.js"></script>
 </body>
 </html>
 

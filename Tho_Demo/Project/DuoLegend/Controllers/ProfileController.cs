@@ -52,9 +52,13 @@ namespace DuoLegend.Controllers
                 {
                     ViewBag.ratingCondition = true;
                 break;
+                }
             }
-
-        }
+            if (ProfileDAO.checkLiked(HttpContext.Session.GetInt32("id"), infor.Id))
+            {
+                TempData["delLike"] = false;
+            }
+            else { TempData["delLike"] = true; }
             return View("Index",infor);
         }
 
@@ -112,17 +116,42 @@ namespace DuoLegend.Controllers
         {
             string[] nameAndServer = UserDAO.getInGameNameServerById(r.UserId);
 
-            if (RatingDAO.addRating(r))
+            if (ProfileDAO.addRating(r))
             {
                 return RedirectToAction("Index", new { inGameName =nameAndServer[0], server =nameAndServer[1]});
             }
             else
             {
-                RatingDAO.updateRating(r);
+                ProfileDAO.updateRating(r);
                 return RedirectToAction("Index", new { inGameName = nameAndServer[0], server = nameAndServer[1] });
+            }  
+        }
+        public IActionResult LikeUser(int likerId, int userId)
+        {
+            if (ProfileDAO.addLike(likerId, userId)) {
+                ViewBag.delLike = false;
+                string[] nameAndServer = UserDAO.getInGameNameServerById(userId);
+                TempData["delLike"] = false;
+                return RedirectToAction("Index", new { inGameName = nameAndServer[0], server = nameAndServer[1] });
+                //return View("Index");
+            }
+            else
+            {
+                ViewBag.delLike = true;
+                ProfileDAO.deleteLike(likerId,userId);
+                string[] nameAndServer = UserDAO.getInGameNameServerById(userId);
+                TempData["delLike"] = true;
+                return RedirectToAction("Index", new { inGameName = nameAndServer[0], server = nameAndServer[1] });
+                //return View("Index");
             }
             
+            //string[] nameAndServer = UserDAO.getInGameNameServerById(userId);
+            //return RedirectToAction("Index", new { inGameName = nameAndServer[0], server = nameAndServer[1] });
         }
-        
+        public IActionResult LikedList(int likerId)
+        {
+            List<User> LikedUsers = ProfileDAO.getLikedList(likerId);
+            return View(LikedUsers);
+        }
     }
 }
