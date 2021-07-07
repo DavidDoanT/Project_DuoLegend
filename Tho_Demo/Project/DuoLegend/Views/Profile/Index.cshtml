@@ -70,8 +70,11 @@
             <input id="liker" value="@Context.Session.GetInt32("id")" disabled style="display: none">
             <input id="user" value="@Model.Id" disabled style="display: none">
 
+            @if (Model.Id != Context.Session.GetInt32("id"))
+            {
+                <button data-toggle="modal" data-target="#example" id="openChatButton">Chat</button>
+            }
 
-            <button data-toggle="modal" data-target="#example" id="openChatButton">Chat</button>
         </div>
     </div>
 
