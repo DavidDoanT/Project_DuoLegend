@@ -28,6 +28,6 @@ namespace DuoLegend.Controllers
             }
 
             return NotFound();
-        }
+        }      
     }
 }

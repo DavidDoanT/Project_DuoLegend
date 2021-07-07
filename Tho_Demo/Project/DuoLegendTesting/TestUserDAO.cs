@@ -39,7 +39,7 @@ namespace DuoLegendTesting
         public void TearDown()
         {
             DbConnection.Connect();
-            DbConnection.Cmd.CommandText = "DELETE FROM [User] WHERE inGameId = @inGameId";
+            DbConnection.Cmd.CommandText = "DELETE FROM [User] WHERE id = @inGameId";
             DbConnection.Cmd.Parameters.AddWithValue("inGameId", _inGameId);
 
             DbConnection.Cmd.ExecuteNonQuery();
