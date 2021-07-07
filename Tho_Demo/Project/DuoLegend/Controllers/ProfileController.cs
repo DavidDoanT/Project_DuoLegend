@@ -87,7 +87,7 @@ namespace DuoLegend.Controllers
                 if (UserDAO.Update(userIn, HttpContext.Session.GetString("email")))
                 {
                     return RedirectToAction("Index", "Home");
-                }
+                } 
                 else
                 {
                     ViewBag.isCorrect = false;

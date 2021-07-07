@@ -1,209 +1,255 @@
 
 :root {
-	--red: #c91d1d;
-	--blue: rgb(2,0,36);
+    --red: #c91d1d;
+    --blue: rgb(2,0,36);
 }
 
 body {
-	background-image: url("../img/test.jpg");
-	background-repeat: no-repeat;
-	background-attachment: fixed;
+    background-image: url("../img/test.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 .backContainer {
-	margin: 0 auto;
-	background-color: rgba(19,28,46,.9333333333333333);
-	width: 75vw;
-	height: 150vh;
+    margin: 0 auto;
+    background-color: rgba(19,28,46,.9333333333333333);
+    width: 75vw;
+    height: 150vh;
 }
 
 h3 {
-	font-family: Friz Quadrata;
-	font-weight: 900;
-	font-size: 2vw;
-	color: white;
+    font-family: Friz Quadrata;
+    font-weight: 900;
+    font-size: 2vw;
+    color: white;
 }
 
 .searchBar {
-	display: block;
-	margin-top: 3vh;
-	padding-top: 0vw;
+    display: block;
+    margin-top: 3vh;
+    padding-top: 0vw;
 }
 
-	.searchBar img {
-		background-color: inherit;
-		display: inline-block;
-		width: 3.5vw;
-		height: 3.5vw;
-		/*border: 1px solid #ffffff26;*/
-	}
+    .searchBar img {
+        background-color: inherit;
+        display: inline-block;
+        width: 3.5vw;
+        height: 3.5vw;
+        /*border: 1px solid #ffffff26;*/
+    }
 
-	.searchBar .midLane {
-		background-image: url("../img/Middle_icon.png");
-		background-repeat: no-repeat;
-		background-size: cover;
-	}
+    .searchBar .midLane {
+        background-image: url("../img/Middle_icon.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
 
-	.searchBar > fieldset > label > img:hover, focus {
-		background-color: #dc3545;
-	}
+    .searchBar > fieldset > label > img:hover, focus {
+        background-color: #dc3545;
+    }
 
 
-	.searchBar .ironRank {
-		background-image: url("../img/ironIcon.png");
-	}
+    .searchBar .ironRank {
+        background-image: url("../img/ironIcon.png");
+    }
 
-	.searchBar .bronzeRank {
-		background-image: url("../img/BronzeIcon.png");
-	}
+    .searchBar .bronzeRank {
+        background-image: url("../img/BronzeIcon.png");
+    }
 
-	.searchBar .silverRank {
-		background-image: url("../img/silverIcon.png");
-	}
+    .searchBar .silverRank {
+        background-image: url("../img/silverIcon.png");
+    }
 
-	.searchBar .goldRank {
-		background-image: url("../img/goldIcon.png");
-	}
+    .searchBar .goldRank {
+        background-image: url("../img/goldIcon.png");
+    }
 
-	.searchBar .platinumRank {
-		background-image: url("../img/platinumIcon.png");
-	}
+    .searchBar .platinumRank {
+        background-image: url("../img/platinumIcon.png");
+    }
 
-	.searchBar .diamondRank {
-		background-image: url("../img/diamondIcon.png");
-	}
+    .searchBar .diamondRank {
+        background-image: url("../img/diamondIcon.png");
+    }
 
-	.searchBar .masterRank {
-		background-image: url("../img/masterIcon.png");
-	}
+    .searchBar .masterRank {
+        background-image: url("../img/masterIcon.png");
+    }
 
-	.searchBar .grandMaterRank {
-		background-image: url("../img/grandMasterIcon.png");
-	}
+    .searchBar .grandMaterRank {
+        background-image: url("../img/grandMasterIcon.png");
+    }
 
-	.searchBar .challengerRank {
-		background-image: url("../img/challengerIcon.png");
-	}
+    .searchBar .challengerRank {
+        background-image: url("../img/challengerIcon.png");
+    }
 
-	.searchBar select {
-		display: inline-block;
-		width: 4vw;
-		height: 3.5vw;
-		margin-left: 5vw;
-		background-color: rgba(145, 151, 165, 0.23);
-		font-family: Arial;
-		color: white;
-		font-weight: bold;
-	}
+    .searchBar select {
+        display: inline-block;
+        /*width: 4vw;*/
+        height: 3.5vw;
+        margin-left: 5vw;
+        background-color: rgba(145, 151, 165, 0.23);
+        font-family: Arial;
+        color: white;
+        font-weight: bold;
+    }
 
-		.searchBar select option {
-			background-color: rgba(145, 151, 165, 0.23);
-			font-family: Arial;
-			color: black;
-		}
+        .searchBar select option {
+            background-color: rgba(145, 151, 165, 0.23);
+            font-family: Arial;
+            color: black;
+        }
 
-	.searchBar p {
-		display: inline-block;
-		margin-left: 11.5vw;
-		width: 20vw;
-		height: 10vh;
-		line-height: 10vh;
-		text-align: center;
-		background-color: var(--blue);
-		border-radius: 1vw;
-		color: white;
-		font-family: arial;
-		font-size: 2vw
-	}
+    .searchBar p {
+        display: inline-block;
+        margin-left: 11.5vw;
+        width: 20vw;
+        height: 10vh;
+        line-height: 10vh;
+        text-align: center;
+        background-color: var(--blue);
+        border-radius: 1vw;
+        color: white;
+        font-family: arial;
+        font-size: 2vw
+    }
 
-		.searchBar p:hover {
-			background-color: var(--red);
-		}
+        .searchBar p:hover {
+            background-color: var(--red);
+        }
 
 
 
 table {
-	width: 70vw;
-	color: white;
-	margin: 0 auto;
-	font-size: 1vw;
-	color: rgb(91,92,100);
+    width: 70vw;
+    color: white;
+    margin: 0 auto;
+    font-size: 1vw;
+    color: rgb(91,92,100);
 }
 
 table, th, td {
-	border-bottom: 1px solid #fbfbfbad;
-	font-family: Arial;
-	text-align: center;
-	overflow: auto;
+    border-bottom: 1px solid #fbfbfbad;
+    font-family: Arial;
+    text-align: center;
+    overflow: auto;
 }
 
-	table img {
-		width: 5vw;
-	}
+    table img {
+        width: 5vw;
+    }
 
-	table tr td:nth-child(1) {
-		width: 15vw;
-	}
+    table tr td:nth-child(1) {
+        width: 15vw;
+    }
 
-	table tr td:nth-child(2), td:nth-child(3), td:nth-child(4) {
-		width: 7vw;
-	}
+    table tr td:nth-child(2), td:nth-child(3), td:nth-child(4) {
+        width: 7vw;
+    }
 
-	table tr td:nth-child(5) {
-		width: 5vw;
-	}
+    table tr td:nth-child(5) {
+        width: 5vw;
+    }
 
-	table tr td:nth-child(7) {
-		max-width: 10vw;
-		word-wrap: break-word;
-	}
+    table tr td:nth-child(7) {
+        max-width: 10vw;
+        word-wrap: break-word;
+    }
 
 .buttons {
-	width: 20vw;
-	height: 10vh;
-	/*	line-height: 10vh;*/
-	text-align: center;
-	background-color: #3835dc;
-	border-radius: 1vw;
-	color: white;
-	font-family: arial;
-	font-size: 2vw;
-	font-family: Friz Quadrata;
-	border: hidden;
+    width: 25vw;
+    height: 10vh;
+    /*	line-height: 10vh;*/
+    text-align: center;
+    color: white;
+    font-family: arial;
+    font-size: 2vw;
+    border: hidden;
 }
 
-.buttons:hover {
-	background-color: var(--red);
-}
+    .buttons:hover {
+        background-color: var(--red);
+    }
 
-.btn-secondary:not(:disabled):not(.disabled).active, .btn-secondary:not(:disabled):not(.disabled):active, .show > .btn-secondary.dropdown-toggle {
+/*.btn-secondary:not(:disabled):not(.disabled).active, .btn-secondary:not(:disabled):not(.disabled):active, .show > .btn-secondary.dropdown-toggle {
 	background-color: var(--red);
 	border-color: var(--red);
+}*/
+label.btn.btn-secondary.btn-lg.btnPlayStyle.btn-grad2.active {
+    background: linear-gradient(0deg, rgba(143,3,3,1) 0%, rgba(18,18,18,1) 100%);
 }
 
 .btn-secondary:hover {
-	background-color: var(--red);
-	border-color: var(--red);
+    background-color: var(--red);
+    border-color: var(--red);
 }
 
 .btn-secondary {
-	background-color: var(--blue);
-	border: none;
+    background-color: var(--blue);
+    border: none;
 }
 
 .btn-sm {
-	background-color: var(--blue);
+    background-color: var(--blue);
 }
 
-	.btn-sm:hover {
-		background-color: #060066;
-		border-color: #060066;
-	}
+    .btn-sm:hover {
+        background-color: #060066;
+        border-color: #060066;
+    }
 
 .btnPlayStyle {
-	width: 13rem;
-	padding: .5rem 3rem;
+    width: 13rem;
+    padding: .5rem 3rem;
 }
+
 i {
-	padding-right: 15px;
+    padding-right: 15px;
 }
+
+.btn-grad {
+    background-image: linear-gradient(to right, #16222A 0%, #3A6073 51%, #16222A 100%)
+}
+
+.btn-grad {
+    margin: 10px;
+    padding: 15px 45px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    display: block;
+}
+
+    .btn-grad:hover {
+        background-position: right center; /* change the direction of the change here */
+        color: #fff;
+        text-decoration: none;
+    }
+
+.btn-grad2 {
+    background-image: linear-gradient(to right, #4b6cb7 0%, #182848 51%, #4b6cb7 100%)
+}
+
+.btn-grad2 {
+    margin: 10px;
+    padding: 15px 45px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    display: block;
+}
+
+    .btn-grad2:hover {
+        background-position: right center; /* change the direction of the change here */
+        color: #fff;
+        text-decoration: none;
+    }

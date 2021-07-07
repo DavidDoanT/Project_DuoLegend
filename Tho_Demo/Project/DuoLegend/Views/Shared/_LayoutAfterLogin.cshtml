@@ -52,6 +52,9 @@
                 text-decoration: none;
                 color: inherit;
             }
+        .dropdown-item:focus, .dropdown-item:hover {
+            background-color: #020024;
+        }
     </style>
 </head>
 <body onload="focusSearchResult()">
@@ -93,7 +96,7 @@
                     <button style="width: inherit; background: linear-gradient(178deg,#ab1328,#621620)" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Dropdown
                     </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="background: #212529;">
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="background: #131c2c;">
                         <a class="dropdown-item" style="color: white;" asp-controller="Profile" asp-action="Index" asp-route-inGameName="@Context.Session.GetString("inGameName")" asp-route-server="@Context.Session.GetString("server")">My Profile</a>
                         <a class="dropdown-item" style="color: white;" asp-controller="Chat" asp-action="ChatDashBoard">Chat DashBoard</a>
                         <a class="dropdown-item" style="color: white;" asp-controller="Profile" asp-action="LikedList" asp-route-likerId="@Context.Session.GetInt32("id")">Liked List</a>
