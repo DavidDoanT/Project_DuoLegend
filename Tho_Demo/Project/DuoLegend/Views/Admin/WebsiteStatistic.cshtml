@@ -5,26 +5,76 @@
 <script type="text/javascript" src="~/js/Chart/chart.min.js"></script>
 
 <div class="col-sm-6 col-md-8 col-lg-11 mx-auto">
-        <div id="chartParent" class="h-75 bg-white">
-            <canvas id="siteTraffic"></canvas>
-        </div>
+    <!--Selecting time interval of chart-->
+    <select id="chartTimeInterval">
+        <option value="1">Day</option>
+        <option value="2">Week</option>
+        <option value="3">Month</option>
+    </select>
+
+    <button class="btn btn-primary" id="resetZoom">Reset Zoom</button>
+
+    <!--The chart-->
+    <div id="chartParent" class="h-75 bg-white">
+        <canvas id="siteTraffic"></canvas>
+    </div>
 </div>
 
 <!--Charting script-->
+<script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8"></script>
+<script src="~/js/Chart/chartjs-plugin-zoom.min.js"></script>
 <script src="~/js/Chart/WebsiteStatisticChart.js"></script>
 <script type="text/javascript">
-    //Loads in the data from controller
+    //Loads in daily data from controller
     var uniqueVisitorData = @Html.Raw(ViewBag.UniqueVisitorData)
     var siteVisitData = @Html.Raw(ViewBag.SiteVisitData)
     var newAccountData = @Html.Raw(ViewBag.NewAccountData)
 
+    //Loads in weekly data from controller
+    var uniqueVisitorDataWeekly = @Html.Raw(ViewBag.UniqueVisitorDataWeekly)
+    var siteVisitDataWeekly = @Html.Raw(ViewBag.SiteVisitDataWeekly)
+    var newAccountDataWeekly = @Html.Raw(ViewBag.NewAccountDataWeekly)
+
+    //Loads in monthly data from controller
+    var uniqueVisitorDataMonthly = @Html.Raw(ViewBag.UniqueVisitorDataMonthly)
+    var siteVisitDataMonthly = @Html.Raw(ViewBag.SiteVisitDataMonthly)
+    var newAccountDataMonthly = @Html.Raw(ViewBag.NewAccountDataMonthly)
+
     //Get the chart parent and the chart container
     var chartParent = document.getElementById("chartParent")
     var siteTraffic = document.getElementById("siteTraffic")
-    
+
     siteTraffic.height = chartParent.height
 
+    var siteTrafficChart //Test
     //Create the chart on page load
-    window.onload = createChart(siteTraffic, uniqueVisitorData, siteVisitData, newAccountData)
+    window.onload = function() {
+        siteTrafficChart = createChart(siteTraffic, uniqueVisitorData, siteVisitData, newAccountData)
+    }
 
+    //Get select object
+    var intervalSelector = document.getElementById('chartTimeInterval')
+
+    //Update chart data
+    intervalSelector.onchange = function() {
+        var interval = this.value
+
+        if(interval == 1)
+        {
+            updateChart(siteTrafficChart, uniqueVisitorData, siteVisitData, newAccountData)
+        }
+        else if(interval == 2)
+        {
+            updateChart(siteTrafficChart, uniqueVisitorDataWeekly, siteVisitDataWeekly, newAccountDataWeekly)
+        }
+        else if(interval == 3)
+        {
+            updateChart(siteTrafficChart, uniqueVisitorDataMonthly, siteVisitDataMonthly, newAccountDataMonthly)
+        }
+    }
+
+    var resetZoom = document.getElementById('resetZoom')
+    resetZoom.onclick = function() {
+        siteTrafficChart.resetZoom()
+    }
 </script>

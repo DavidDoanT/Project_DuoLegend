@@ -171,30 +171,50 @@ namespace DuoLegend.DAO
             return webStats;
         }
 
-        // private static IList<WebsiteStatistics> GetRecords(string interval)
-        // {
-        //     string sqlQuery = "SELECT [date], SUM(uniqueVisitor), SUM(siteVisit), SUM(newAccount) "
-        //                         +"FROM WebsiteStatistics "
-        //                         +"GROUP BY DATEPART(" + interval +",[date])";
-        //     IList<WebsiteStatistics> webStats = new List<WebsiteStatistics>();
+        /// <summary>
+        /// Get statistic records grouped by an interval of time
+        /// </summary>
+        /// <param name="interval">An sql keyword representing an interval of time</param>
+        /// <returns></returns>
+        private static IList<WebsiteStatistics> GetRecords(string interval)
+        {
+            string sqlQuery = "SELECT MIN([date]), " 
+                                    +"SUM(uniqueVisitor), "
+                                    +"SUM(siteVisit), "
+                                    +"SUM(newAccount) "
+                                +"FROM WebsiteStatistics "
+                                +"GROUP BY DATEPART(" + interval +",[date])";
+            IList<WebsiteStatistics> webStats = new List<WebsiteStatistics>();
 
-        //     DbConnection.Connect();
-        //     DbConnection.Cmd.CommandText = sqlQuery;
-        //     DbConnection.Dr = DbConnection.Cmd.ExecuteReader();
+            DbConnection.Connect();
+            DbConnection.Cmd.CommandText = sqlQuery;
+            DbConnection.Dr = DbConnection.Cmd.ExecuteReader();
 
-        //     while(DbConnection.Dr.Read())
-        //     {
-        //         WebsiteStatistics stat = new WebsiteStatistics();
-        //         stat.Date = DbConnection.Dr.GetDateTime("date")
-        //         stat.SiteVisit = int.Parse(DbConnection.Dr["siteVisit"].ToString());
-        //         stat.UniqueVisitor = int.Parse(DbConnection.Dr["uniqueVisitor"].ToString());
-        //         stat.NewAccount = int.Parse(DbConnection.Dr["newAccount"].ToString());
+            while(DbConnection.Dr.Read())
+            {
+                WebsiteStatistics stat = new WebsiteStatistics();
+                stat.Date = DbConnection.Dr.GetDateTime(0);
+                stat.UniqueVisitor = DbConnection.Dr.GetInt32(1);
+                stat.SiteVisit = DbConnection.Dr.GetInt32(2);
+                stat.NewAccount = DbConnection.Dr.GetInt32(3);
 
-        //         webStats.Add(stat);
-        //     }
+                webStats.Add(stat);
+            }
 
-        //     return webStats;
-        // }
+            DbConnection.Disconnect();
+
+            return webStats;
+        }
+
+        public static IList<WebsiteStatistics> GetRecordsWeekly()
+        {
+            return GetRecords("week");
+        }
+
+        public static IList<WebsiteStatistics> GetRecordsMonthly()
+        {
+            return GetRecords("month");
+        }
 
         /// <summary>
         /// Check if a record of today's statistic already exist in databse
