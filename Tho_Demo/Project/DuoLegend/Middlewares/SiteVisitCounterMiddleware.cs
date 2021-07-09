@@ -15,6 +15,7 @@ namespace DuoLegend.Middlewares
 
         public async Task InvokeAsync(HttpContext httpContext)
         {
+            //Site visits only counts those visiting the main site, not the admin site
             if (!httpContext.Request.Path.ToString().Contains("Admin"))
             {
                 if (httpContext.Session.GetInt32(SessionKeys.Keys.VisitingSession) == null)
