@@ -69,11 +69,10 @@
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
                         <span class="navbar-text">
-                            A long Slogan for the project DuoLegend
+                            Expect the Unexpected
                         </span>
                     </li>
                 </ul>
-                @*<a type="button" class="btn btn-danger " href="/Account/Logout">Logout</a>*@
 
                 @*notification box*@
                 @{List<string[]> test = DuoLegend.DAO.ChatDAO.getUnseenList(@HttpContextAccessor.HttpContext.Session.GetInt32("id").Value);
