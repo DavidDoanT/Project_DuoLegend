@@ -15,22 +15,27 @@ namespace DuoLegend.Middlewares
 
         public async Task InvokeAsync(HttpContext httpContext)
         {
-            if(httpContext.Session.GetInt32(SessionKeys.Keys.VisitingSession) == null)
+            //Site visits only counts those visiting the main site, not the admin site
+            if (!httpContext.Request.Path.ToString().Contains("Admin"))
             {
-                httpContext.Session.SetInt32(SessionKeys.Keys.VisitingSession, 1);
+                if (httpContext.Session.GetInt32(SessionKeys.Keys.VisitingSession) == null)
+                {
+                    httpContext.Session.SetInt32(SessionKeys.Keys.VisitingSession, 1);
 
-                //If today record exists, increment siteVisit
-                //Else create new record, then increment siteVisit
-                if(WebsiteStatisticsDAO.IsTodayRecordExist())
-                {
-                    WebsiteStatisticsDAO.IncrementSiteVisit();
-                }
-                else
-                {
-                    WebsiteStatisticsDAO.CreateTodayRecord();
-                    WebsiteStatisticsDAO.IncrementSiteVisit();
+                    //If today record exists, increment siteVisit
+                    //Else create new record, then increment siteVisit
+                    if (WebsiteStatisticsDAO.IsTodayRecordExist())
+                    {
+                        WebsiteStatisticsDAO.IncrementSiteVisit();
+                    }
+                    else
+                    {
+                        WebsiteStatisticsDAO.CreateTodayRecord();
+                        WebsiteStatisticsDAO.IncrementSiteVisit();
+                    }
                 }
             }
+
             await _next(httpContext);
         }
     }
