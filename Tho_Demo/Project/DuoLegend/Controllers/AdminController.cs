@@ -44,18 +44,6 @@ namespace DuoLegend.Controllers
             return View();
         }
 
-        public IActionResult UserList()
-        {
-            IEnumerable<User> userList = DAO.UserDAO.getAllUser();
-            return View(userList);
-        }
-
-        public IActionResult BanUser(int id)
-        {
-            ViewBag.userId = id;
-            return View();
-        }
-        
         /// <summary>
         /// Log the admin out
         /// Clears all session

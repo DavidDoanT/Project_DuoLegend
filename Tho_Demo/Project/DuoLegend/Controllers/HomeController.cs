@@ -31,20 +31,20 @@ namespace DuoLegend.Controllers
         /// <returns>redirect to mainPage with randomList information</returns>
         public IActionResult Index()
         {
-            //RiotAPI.RiotAPI.setChampionInfor(); // bo cmt dong nay 
-            //RiotAPI.RiotAPI.setItemInfo();
-            //RiotAPI.RiotAPI.setSpellInfo();
-            //RiotAPI.RiotAPI.setRuneInfo();
+            RiotAPI.RiotAPI.setChampionInfor(); // bo cmt dong nay 
+            RiotAPI.RiotAPI.setItemInfo();
+            RiotAPI.RiotAPI.setSpellInfo();
+            RiotAPI.RiotAPI.setRuneInfo();
             //check session
             if (HttpContext.Session.GetString("email") is null)
-            {                
+            {
                 ViewBag.isLogin = false;
             }
             else
             {
                 ViewBag.isLogin = true;
             }
-            
+
             //check cookie
             if (Request.Cookies["email"] != null)
             {
@@ -55,7 +55,7 @@ namespace DuoLegend.Controllers
                 HttpContext.Session.SetInt32("id", UserDAO.getIdByInGameNameServer(user.InGameName, user.Server));
                 ViewBag.isLogin = true;
             }
-            
+
             return View(Service.ProcessMainPage.getRandomList());
         }
 
