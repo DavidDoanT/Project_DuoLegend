@@ -52,8 +52,33 @@
                 text-decoration: none;
                 color: inherit;
             }
+
         .dropdown-item:focus, .dropdown-item:hover {
             background-color: #020024;
+        }
+        .button {
+            background: #292f52;
+            border-radius: 50%;
+            border: none;
+            padding: 10% 30%;
+            font-size: 2rem;
+            margin-left: 5%;
+        }
+
+            .button:focus {
+                background: rgb(57 61 114);
+            }
+
+            .button:hover {
+                background: rgb(57 61 114);
+            }
+        .bi {
+            /* font-size: 1.5rem; */
+            color: rgb(190 190 190);
+        }
+        .btn-group {
+            margin-left: 1%;
+            margin-right: 1%;
         }
     </style>
 </head>
@@ -69,34 +94,32 @@
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
                         <span class="navbar-text">
-                            A long Slogan for the project DuoLegend
+                            Expect the Unexpected
                         </span>
                     </li>
                 </ul>
-                @*<a type="button" class="btn btn-danger " href="/Account/Logout">Logout</a>*@
 
                 @*notification box*@
                 @{List<string[]> test = DuoLegend.DAO.ChatDAO.getUnseenList(@HttpContextAccessor.HttpContext.Session.GetInt32("id").Value);
-
-                    <div class="dropdown" style="margin-right: 3vw;" @(test.Count > 0 ? string.Empty : "hidden") id="notificationBox">
-                        <button style="width: inherit; background: linear-gradient(178deg,#ab1328,#621620)" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            New Message
+                    <div class="btn-group" @(test.Count > 0 ? string.Empty : "hidden") id="notificationBox">
+                        <button class="button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="bi bi-envelope"></i>
                         </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="background: #212529;" id="listMessageContainer">
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton" style="background: #131c2c;" id="listMessageContainer">
                             @foreach (var item in test)
                             {
                                 <a class="dropdown-item" style="color: white;" id="@item[0]@item[1]" asp-controller="Profile" asp-action="ViewChat" asp-route-inGameName="@item[0]" asp-route-server="@item[1]">@item[0]</a>
                             }
-
                         </div>
                     </div>
-
                 }
-                <div class="dropdown" style="margin-right: 3vw;">
-                    <button style="width: inherit; background: linear-gradient(178deg,#ab1328,#621620)" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown
+
+                
+                <div class="btn-group">
+                    <button class="button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="bi bi-caret-down-fill"></i>
                     </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="background: #131c2c;">
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton" style="background: #131c2c;">
                         <a class="dropdown-item" style="color: white;" asp-controller="Profile" asp-action="Index" asp-route-inGameName="@Context.Session.GetString("inGameName")" asp-route-server="@Context.Session.GetString("server")">My Profile</a>
                         <a class="dropdown-item" style="color: white;" asp-controller="Chat" asp-action="ChatDashBoard">Chat DashBoard</a>
                         <a class="dropdown-item" style="color: white;" asp-controller="Profile" asp-action="LikedList" asp-route-likerId="@Context.Session.GetInt32("id")">Liked List</a>
