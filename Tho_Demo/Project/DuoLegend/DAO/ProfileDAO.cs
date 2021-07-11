@@ -133,5 +133,49 @@ namespace DuoLegend.DAO
             DbConnection.Disconnect();
             return LikedList;
         }
+
+        public static List<User> getListUserSortByAvgSkillScore()
+        {
+            List<User> list = new();
+            DbConnection.Connect();
+            DbConnection.Cmd.CommandText = "SELECT [User].userId,[User].inGameName,[User].server,AVG(Cast(skillScore as Float)) as skillAvg"+
+                                            "FROM Rating inner join[User] on Rating.userId = [User].userId"+
+                                           "GROUP BY [User].userId, [User].inGameName, [User].server"+
+                                           "order by skillAvg desc";
+            DbConnection.Dr = DbConnection.Cmd.ExecuteReader();
+            while (DbConnection.Dr.Read())
+            {
+                User user = new();
+                user.UserID = (int)DbConnection.Dr["userId"];
+                user.InGameName = DbConnection.Dr["inGameName"].ToString();
+                user.Server = DbConnection.Dr["server"].ToString();
+                
+                list.Add(user);
+            }
+            DbConnection.Disconnect();
+            return list;
+        }
+        public static List<User> getListUserSortByAvgBehaviorScore()
+        {
+            List<User> list = new();
+            DbConnection.Connect();
+            DbConnection.Cmd.CommandText = "SELECT [User].userId,[User].inGameName,[User].server,AVG(Cast(behaviorScore as Float)) as behaviorAvg" +
+                                            "FROM Rating inner join[User] on Rating.userId = [User].userId" +
+                                           "GROUP BY [User].userId, [User].inGameName, [User].server" +
+                                           "order by behaviorAvg desc";
+            DbConnection.Dr = DbConnection.Cmd.ExecuteReader();
+            while (DbConnection.Dr.Read())
+            {
+                User user = new();
+                user.UserID = (int)DbConnection.Dr["userId"];
+                user.InGameName = DbConnection.Dr["inGameName"].ToString();
+                user.Server = DbConnection.Dr["server"].ToString();
+
+                list.Add(user);
+            }
+            DbConnection.Disconnect();
+            return list;
+        }
     }
+    
 }
