@@ -1,4 +1,5 @@
-﻿"use strict";
+﻿
+"use strict";
 
 var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
 
@@ -16,19 +17,23 @@ connection.on("ReceiveMessage", function (message, sender) {
     div.textContent = `${message}`;
     if (sender === document.getElementById("sender").value) {
         div.className = "message rightMessage";
+        div = Right(div);
     }
     else {
         div.className = "message";
+        div = Left(div);
     }
     var list = document.getElementById("messagesList");
     if (list.childNodes.length > 12) {
         list.removeChild(list.childNodes[4]);
     }
+    var objDiv = document.getElementById("messagesList");
+    objDiv.scrollTop = objDiv.scrollHeight;
 });
 
 //wait for incoming message
 //when message come, add a notification box to header
-connection.on("ReceiveNotification", function (inGameName, server) {
+connection.on("ReceiveNotification", function (inGameName, server, senderId, messageContent) {
     //listMessageContainer
     var a = document.createElement("a");
     document.getElementById("notificationBox").removeAttribute("hidden");
@@ -40,7 +45,7 @@ connection.on("ReceiveNotification", function (inGameName, server) {
         a.href = '/Profile/ViewChat/' + inGameName + '/' + server;
         a.id = inGameName + server;
     }
-
+    receiveMessageFromOtherBox(senderId, messageContent);
     //document.getElementById("listMessageContainer").click()
 });
 
@@ -50,6 +55,7 @@ connection.start().then(function () {
     connection.invoke("Notification", sender).catch(function (err) {
         return console.error(err.toString());
     });
+    openChat();
 }).catch(function (err) {
     return console.error(err.toString());
 });
@@ -75,15 +81,9 @@ document.getElementById("messageInput").addEventListener("keyup", function (even
     }
 });
 
-//remove the init message
-//init message is an empty message send to server which is not stored in database
-document.getElementById("closeButton").addEventListener("click", function (event) {
-    var list = document.getElementById("messagesList");  
-    list.removeChild(list.childNodes[0]); 
-});
 
 //load old message when user open chat
-document.getElementById("openChatButton").addEventListener("click", function (event) {
+document.getElementById("openChatButton").addEventListener("click", function init (event) {
     document.getElementById("sendButton").disabled = false;
     document.getElementById("sendButton").click();
     var sender = document.getElementById("sender").value;
@@ -91,6 +91,7 @@ document.getElementById("openChatButton").addEventListener("click", function (ev
     connection.invoke("InitMessage", sender, receiver).catch(function (err) {
         return console.error(err.toString());
     });
+    document.getElementById("openChatButton").removeEventListener("click", init);
 });
 
 //delete chat when chat box contain more than [numberOfElement] message

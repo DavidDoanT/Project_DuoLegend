@@ -25,7 +25,7 @@
 
     <!--This is the header bar-->
     <div class="header">
-        <div class="w-row d-flex justify-content-space-between">
+        <div class="row d-flex flex-nowrap justify-content-space-between">
             <div class="col-1 side-nav-bar" style="background-color:darkred">
                 <div class="icon-container">
                     <div class="icon-wrapper">
@@ -62,15 +62,16 @@
     </div>
 
 
-    <!--Side navigation bar-->
-    <div class="w-row" style="height:92vh;">
+    
+    <div class="row" style="height:92vh; width:100vw">
+        <!--Side navigation bar-->
         <div class="col-1 side-nav-bar" style="height:100%; background-color:#0c0b0b">
             <div class="icon-container">
                 <div class="icon-wrapper mb-2">
-                    <i class="bi-house-door text-white icon-content"></i>
+                    <a class="bi-house-door text-white icon-content" asp-action="Main"></a>
                 </div>
                 <div class="icon-wrapper mb-2">
-                    <i class="bi-bar-chart-line text-white icon-content"></i>
+                    <a class="bi-bar-chart-line text-white icon-content" asp-action="WebsiteStatistic"></a>
                 </div>
                 <div class="icon-wrapper mb-2">
                     <a class="bi-clipboard text-white icon-content" asp-action="UserList" asp-controller="AdminManagement"></a>

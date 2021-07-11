@@ -28,7 +28,8 @@ namespace DuoLegend
             services.AddHttpContextAccessor();
             services.AddControllersWithViews();
             services.AddDistributedMemoryCache();           // Đăng ký dịch vụ lưu cache trong bộ nhớ (Session sẽ sử dụng nó)
-            services.AddSession(cfg => {                    // Đăng ký dịch vụ Session
+            services.AddSession(cfg =>
+            {                    // Đăng ký dịch vụ Session
                 cfg.Cookie.Name = "login";             // Đặt tên Session - tên này sử dụng ở Browser (Cookie)
                 cfg.IdleTimeout = new TimeSpan(0, 120, 0);    // Thời gian tồn tại của Session
             });
@@ -54,13 +55,16 @@ namespace DuoLegend
             app.UseRouting();
             app.UseAuthorization();
             app.UseSession();
-            app.UseCheckBannedUserMiddleware();
+            app.UseSiteVisitCounterMiddleware();    //Midldeware to count number of site visit
+            app.UseUniqueVisitorCounterMiddleware();      //Middleware to count number of unique visitor
+            app.UseCheckBannedUserMiddleware();     //Middleware to restrict banned users access
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{inGameName?}/{server?}");
                 endpoints.MapHub<ChatHub>("/chatHub");
+                endpoints.MapHub<LikeHub>("/likeHub");
             });
         }
     }

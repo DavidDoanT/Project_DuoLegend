@@ -37,7 +37,7 @@ namespace DuoLegend.Hubs
                 //List<BoxChatDetail> test = DAO.ChatDAO.GetListBoxChatDetailById(boxChatId);
                 await Clients.Groups(boxChatId.ToString()).SendAsync("ReceiveMessage", message, sender);
                 string[] inforSender = DAO.UserDAO.getInGameNameServerById(Int32.Parse(sender));
-                await Clients.Groups(reciever + "notifi").SendAsync("ReceiveNotification", inforSender[0],inforSender[1]);
+                await Clients.Groups(reciever + "notifi").SendAsync("ReceiveNotification", inforSender[0],inforSender[1],sender,message);
             }
 
         }

@@ -10,39 +10,47 @@ namespace DuoLegend.ViewModels
     {
         public Dictionary<int, BoxChatDetail> ListMessageAndUserHaveChatWith { get; set; }
 
-        private int _userUsingAvatarId;
-        private int _userChatWithAvatarId;
-        private int _userChatWithId;
+        private int _userSelfAvatarId;
+        private int _userOtherAvatarId;
+        private int _userOtherId;
+        private int _userSelfId;
 
-        public int UserChatWithId
+        public int UserSelfId
         {
-            get { return _userChatWithId; }
-            set { _userChatWithId = value; }
+            get { return _userSelfId; }
+            set { _userSelfId = value; }
         }
 
 
-        public int UserChatWithAvatarId
+        public int UserOtherId
         {
-            set { _userChatWithAvatarId = value; }
+            get { return _userOtherId; }
+            set { _userOtherId = value; }
         }
 
 
-        public int UserUsingAvatarId
+        public int UserOtherAvatarId
         {
-            set { _userUsingAvatarId = value; }
+            set { _userOtherAvatarId = value; }
         }
-        public string UserChatWithAvatarPath
+
+
+        public int UserSelfAvatarId
+        {
+            set { _userSelfAvatarId = value; }
+        }
+        public string UserOtherAvatarPath
         {
             get
             {
-                return "http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/" + _userChatWithAvatarId.ToString() + ".png";
+                return "http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/" + _userOtherAvatarId.ToString() + ".png";
             }
         }
-        public string UserUsingAvatarPath
+        public string UserSelfAvatarPath
         {
             get
             {
-                return "http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/" + _userUsingAvatarId.ToString() + ".png";
+                return "http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/" + _userSelfAvatarId.ToString() + ".png";
             }
         }
     }

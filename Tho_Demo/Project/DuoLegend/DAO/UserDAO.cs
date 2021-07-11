@@ -290,9 +290,11 @@ namespace DuoLegend.DAO
         /// <returns>boolean value</returns>
         public static bool Update(User userIn, string oldEmail)
         {
+            //get additional information of the UserIn because UserIn only contain InGameName,Server,Note,Lane
+            var UpdatedUser = RiotAPI.RiotAPI.GetAccountIdInfor(userIn.InGameName,userIn.Server);
+
             com.Parameters.Clear();
             conn.ConnectionString = MyConfig.ConnectionString;
-
             conn.Open();
             com.Connection = conn;
 
@@ -311,9 +313,19 @@ namespace DuoLegend.DAO
             {
                 temp = 0;
             }
+            com.CommandText = "UPDATE [User] SET inGameName = @NewInGameName, " +
+                                                "id = @NewId, " +
+                                                "accountId = @NewAccountId, " +
+                                                "puuid = @NewPUUID, " +
+                                                "server = @NewServer, " +
+                                                "hasMic = @NewHasMic, " +
+                                                "note = @NewNote, " +
+                                                "lane = @NewLane  WHERE email = @oldEmail";
 
-            com.CommandText = "UPDATE [User] SET inGameName = @NewInGameName, server = @NewServer, hasMic = @NewHasMic,note = @NewNote, lane = @NewLane  WHERE email = @oldEmail";
             com.Parameters.AddWithValue("@NewInGameName", userIn.InGameName);
+            com.Parameters.AddWithValue("@NewId", UpdatedUser.Id);
+            com.Parameters.AddWithValue("@NewAccountId", UpdatedUser.AccountId);
+            com.Parameters.AddWithValue("@NewPUUID", UpdatedUser.Puuid);
             com.Parameters.AddWithValue("@NewServer", userIn.Server);
             com.Parameters.AddWithValue("@NewHasMic", temp);
             com.Parameters.AddWithValue("@oldEmail", oldEmail);
