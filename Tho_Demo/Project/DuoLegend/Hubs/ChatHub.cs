@@ -82,6 +82,19 @@ namespace DuoLegend.Hubs
                 }
             }
         }
+
+        public async Task SendCheckOnline(string[] userIdArray, string userRequestId)
+        {
+            foreach (var user in userIdArray)
+            {
+                await Clients.Group(user + "notifi").SendAsync("areYouThere", userRequestId);
+            }
+        }
+
+        public async Task IAmHere(string receiver, string sender)
+        {
+            await Clients.Group(receiver + "notifi").SendAsync("UpdateOnlineStatus", sender);
+        }
         /// <summary>
         /// Add connection
         /// </summary>

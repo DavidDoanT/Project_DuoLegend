@@ -8,7 +8,7 @@
 <div class="container-fluid p-0" style="height: 88%; ">
     <div class="row no-gutters" style="height: 100%;">
         <div class="col-md-3 col-2" style="height: 100%;">
-            <div id="updateOnlineList" class="btn btn-danger">update online list</div>
+            <div id="updateOnlineList" class="btn btn-danger" onclick="updateOnlineSate()" >update online list</div>
             <!-- Thanh search danh sách những người đã chat -->
             <div class="search m-4" style="height: 36px;">
                 <form>
@@ -46,7 +46,7 @@
                                     <div class="row justify-content-start align-items-center no-gutters">
                                         @*Avatar*@
                                         <div class="user col-auto mr-3">
-                                            <img src="@Model.UserOtherAvatarPath" alt="Retail Admin" class="avatar">
+                                            <img id='@("state" + user.Key)' src="@Model.UserOtherAvatarPath" alt="Retail Admin" class="avatar avatarState">
                                             <span class="status busy"></span>
                                         </div>
                                         @*Tên và thời gian chat lần cuối*@
@@ -109,88 +109,8 @@
 <button class="btn btn-primary" data-toggle="modal" data-target="#example" id="openChatButton" hidden>Chat</button>
 <input id="UserSelfAvatarPath" value="@Model.UserSelfAvatarPath" disabled hidden>
 <input id="UserOtherAvatarPath" value="@Model.UserOtherAvatarPath" disabled hidden>
-<script>
-    //doan nay dai vl, se chuyen thanh file js rieng
-    // Add active class to the current button (highlight it)
-    var list = document.getElementById("myList");
-    var options = list.getElementsByClassName("myChoose");
-    for (var i = 0; i < options.length; i++) {
-        options[i].addEventListener("click", function () {
-            var current = document.getElementsByClassName("chosen");
-            current[0].className = current[0].className.replace(" chosen", "");
-            this.className += " chosen";
-        });
-    }
-    function Right(div) {
-        var textContent = div.textContent;
-        var avatarPath = document.getElementById("UserSelfAvatarPath").value;
-        div.innerHTML = "";
-        div.className = "message message--self";
-        var avatarContainer = document.createElement("div");
-        var image = document.createElement("img");
-        image.className = "msg-avatar";
-        image.src = avatarPath;
-
-        avatarContainer.className = "message__avatar";
-        avatarContainer.appendChild(image);
-        div.appendChild(avatarContainer);
-        var chatContentContainer = document.createElement("div");
-        chatContentContainer.className = "message__body message--self__body";
-        chatContentContainer.textContent = textContent;
-        div.appendChild(chatContentContainer);
-    }
-
-    function Left(div) {
-        var textContent = div.textContent;
-        var avatarPath = document.getElementById("UserOtherAvatarPath").value;
-        div.innerHTML = "";
-        div.className = "message message--other";
-        var avatarContainer = document.createElement("div");
-        var image = document.createElement("img");
-        image.className = "msg-avatar";
-        image.src = avatarPath;
-
-        avatarContainer.className = "message__avatar";
-        avatarContainer.appendChild(image);
-        div.appendChild(avatarContainer);
-        var chatContentContainer = document.createElement("div");
-        chatContentContainer.className = "message__body";
-        chatContentContainer.textContent = textContent;
-        div.appendChild(chatContentContainer);
-    }
-
-    function openChat() {
-        document.getElementById("openChatButton").click();
-    }
-
-    function receiveMessageFromOtherBox(senderId, messageContent) {
-        var messageList = document.getElementById("myList");
-        var floatBox = document.getElementById("id" + senderId);
-        messageList.removeChild(floatBox);
-        messageList.insertBefore(floatBox, messageList.childNodes[1]);
-        var boxContent = document.getElementsByClassName("content" + senderId);
-        boxContent[0].innerHTML = messageContent;
-        boxContent[1].innerHTML = "just now";
-        boxContent[2].innerHTML = "";
-    }
-
-    document.getElementById("sendButton").addEventListener("click", function (event) {
-        content = document.getElementById("messageInput").value;
-        if (content != "") {
-            receiveMessageFromOtherBox(document.getElementById("receiver").value, content);
-        }
-    });
-    document.getElementById("loadOldMessage").addEventListener("click", function (event) {
-        var sender = document.getElementById("sender").value;
-        var receiver = document.getElementById("receiver").value;
-        var messageList = document.getElementById("messagesList");
-        var loadOldMessageButton = document.getElementById("loadOldMessage");
-        var numberOfMessage = messageList.children.length;
-        messageList.innerHTML = "";
-        messageList.appendChild(loadOldMessageButton);
-        connection.invoke("LoadOldMessage", sender, receiver, numberOfMessage).catch(function (err) {
-            return console.error(err.toString());
-        });
-    });
-
-</script>
+@foreach (var user in Model.ListMessageAndUserHaveChatWith)
+{
+    <input class="UserIdArray" value="@user.Key" disabled hidden/>
+}
+<script src="~/js/ChatDashBoard.js"></script>
