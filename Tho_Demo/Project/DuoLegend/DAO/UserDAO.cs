@@ -527,17 +527,50 @@ namespace DuoLegend.DAO
             if (reader.Read())
             {
 
-                isVerified = Int32.Parse(reader["isVerified"].ToString());
+                isVerified = (byte)reader["isVerified"];
+                reader.Close();
                 conn.Close();
                 return isVerified;
             }
             else
             {
+                reader.Close();
                 conn.Close();
                 return -1;
             }
-
         }
+
+        public static int isDeleted(string email)
+        {
+            int isDeleted;
+            com.Parameters.Clear();
+
+            conn.ConnectionString = MyConfig.ConnectionString;
+
+            conn.Open();
+            com.Connection = conn;
+
+            com.CommandText = "SELECT isDeleted FROM [User] WHERE email=@email";
+            com.Parameters.AddWithValue("@email", email);
+
+            SqlDataReader reader = com.ExecuteReader();
+
+            if (reader.Read())
+            {
+
+                isDeleted = (int)reader["isDeleted"];
+                reader.Close();
+                conn.Close();
+                return isDeleted;
+            }
+            else
+            {
+                reader.Close();
+                conn.Close();
+                return -1;
+            }
+        }
+
         public static void addResetPasswordCode(string code, string email)
         {
             com.Parameters.Clear();
@@ -655,6 +688,7 @@ namespace DuoLegend.DAO
             conn.Close();
             return userList;
         }
+
         public static void addChamp(string id, string name, string path)
         {
             com.Parameters.Clear();
