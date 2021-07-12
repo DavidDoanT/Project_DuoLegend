@@ -45,33 +45,6 @@ namespace DuoLegend.Controllers
             return View();
         }
 
-        public IActionResult Main()
-        {
-            IList<WebsiteStatistics> webStatList = WebsiteStatisticsDAO.GetRecords(30);
-            IList<DataPoint>[] arrayOfDataPointList = CreateDataPointLists(webStatList);
-
-            JsonSerializerSettings jsonSetting = new JsonSerializerSettings();
-            jsonSetting.NullValueHandling = NullValueHandling.Ignore;
-
-            ViewBag.UniqueVisitorData = JsonConvert.SerializeObject(arrayOfDataPointList[0], jsonSetting);
-            ViewBag.SiteVisitData = JsonConvert.SerializeObject(arrayOfDataPointList[1], jsonSetting);
-            ViewBag.NewAccountData = JsonConvert.SerializeObject(arrayOfDataPointList[2], jsonSetting);
-
-            return View();
-        }
-
-        public IActionResult UserList()
-        {
-            IEnumerable<User> userList = DAO.UserDAO.getAllUser();
-            return View(userList);
-        }
-
-        public IActionResult BanUser(int id)
-        {
-            ViewBag.userId = id;
-            return View();
-        }
-
         /// <summary>
         /// Log the admin out
         /// Clears all session
