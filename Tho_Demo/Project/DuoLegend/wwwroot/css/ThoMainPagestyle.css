@@ -201,8 +201,8 @@ label.btn.btn-secondary.btn-lg.btnPlayStyle.btn-grad2.active {
     }
 
 .btnPlayStyle {
-    width: 13rem;
-    padding: .5rem 3rem;
+    width: 20vw;
+    padding: 5% 10%;
 }
 
 i {
@@ -215,7 +215,6 @@ i {
 
 .btn-grad {
     margin: 10px;
-    padding: 15px 45px;
     text-align: center;
     text-transform: uppercase;
     transition: 0.5s;
@@ -237,7 +236,6 @@ i {
 
 .btn-grad2 {
     margin: 10px;
-    padding: 15px 45px;
     text-align: center;
     text-transform: uppercase;
     transition: 0.5s;
@@ -252,3 +250,14 @@ i {
         color: #fff;
         text-decoration: none;
     }
+.ingame-name{
+    color: aqua;
+    font-size:1.5rem;
+}
+    .ingame-name:hover {
+        color: #fff;
+        text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #0fa, 0 0 82px #0fa, 0 0 92px #0fa, 0 0 102px #0fa, 0 0 151px #0fa;
+    }
+td {
+    color: aqua;}
+
