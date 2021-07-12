@@ -1,4 +1,5 @@
 using System;
+using System.Data.SqlClient;
 using static DuoLegend.DatabaseConnection.DbConnection;
 
 namespace DuoLegend.DAO.AdminDAO
@@ -30,6 +31,28 @@ namespace DuoLegend.DAO.AdminDAO
             Disconnect();
 
             return rowsAffected;
+        }
+
+        public static bool DeleteUser(int userId)
+        {
+            Connect();
+
+            Cmd.CommandText = "UPDATE [User] SET isDeleted=1 WHERE userId=@userId";
+            Cmd.Parameters.AddWithValue("@userId", userId);
+
+            SqlDataReader reader = Cmd.ExecuteReader();
+            if (reader.Read())
+            {
+                reader.Close();
+                Disconnect();
+                return true;
+            }
+            else
+            {
+                reader.Close();
+                Disconnect();
+                return false;
+            }
         }
     }
 }

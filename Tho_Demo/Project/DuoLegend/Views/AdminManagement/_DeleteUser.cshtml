@@ -1,0 +1,48 @@
+﻿@model User
+
+<div class="modal-dialog">
+    <!--Mọi thứ của modal(popup) sẽ nằm ở trong element có class "modal-content"-->
+    <div class="modal-content">
+        <!--Đây là cái cục header của modal(popup)-->
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalTitle">Delete User Confirmation</h5>
+            <button type="button" class="close" data-dismiss="modal">
+                <!--%times; là character entity cho dấu "x" (hay còn gọi là cái cục đóng bên góc phải phía trên cùng ấy)-->
+                <span>&times;</span>
+            </button>
+        </div>
+        <!--Đây là phần body của modal-->
+        <div class="modal-body" id="Rate">
+            <form asp-controller="AdminManagement" asp-action="DeleteUser" method="post">
+                <div class="form-group">
+                    <label asp-for="UserID">User ID</label>
+                    <input asp-for="UserID" class="form-control" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email" class="form-control" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="InGameName">Ingame Name</label>
+                    <input asp-for="InGameName" class="form-control" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Server"></label>
+                    <input asp-for="Server" class="form-control" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="IsVerified">Is Verified</label>
+                    <input asp-for="IsVerified" class="form-control" readonly />
+                </div>
+
+                <input type="submit" value="Delete" class="btn btn-danger">
+
+                <button id="closeButton" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </form>
+        </div>
+    </div>
+</div>

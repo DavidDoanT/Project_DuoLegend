@@ -3,7 +3,7 @@
     ViewData["Title"] = "User Management";
 }
 @model IEnumerable<User>
-@* <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" rel="stylesheet" />
 <link href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
 <link href="~/css/UserList.css" rel="stylesheet" />
 <script src="~/lib/jquery/dist/jquery.js"></script>
@@ -12,9 +12,32 @@
 <script>
     $(document).ready(function () {
         $.noConflict();
-        $('#example').DataTable({ responsive: true });
+        $('#example').DataTable({
+            responsive: true,
+            "createdRow": function (row, data, dataIndex) {
+                if (data[6] == 1) {
+                    $(row).addClass('deleted');
+                }
+            }
+        });
     });
-</script> *@
+</script>
+
+<script type="text/javascript">
+    var deleteFail = @ViewBag.deleteFail!= null;
+    if (deleteFail) {
+        window.onload = function () {
+            alert("@ViewBag.deleteFail");
+        };
+    }
+</script>
+
+@foreach (var user in Model)
+{
+    <div class="modal fade" id='@("delete"+user.UserID)'>
+        <partial name="_DeleteUser" model="user" />
+    </div>
+}
 
 <!--Main content body-->
 <div class="col-11 my-table">
@@ -56,11 +79,16 @@
                         { <i class="bi bi-x-square-fill fail-status"></i>}
                     </td>
                     <td style="text-align:center" width="12%">
-                        <a asp-action="BanUser" class="btn btn-warning my-button" asp-route-id="@user.UserID">Ban User</a>
+                        <a asp-controller="AdminManagement" asp-action="BanUser" class="btn btn-warning my-button"
+                           asp-route-id="@user.UserID">Ban User</a>
                     </td>
                     <td style="text-align:center" width="12%">
-                        <a href="#" class="btn btn-danger my-button">Delete User</a>
+                        <button class="btn btn-danger delete-button" data-toggle="modal"
+                                data-target='@("#delete"+user.UserID)' @if (user.IsDeleted == 1) { <text> disabled</text> }>
+                            Delete User
+                        </button>
                     </td>
+
                 </tr>
             }
         </tbody>
