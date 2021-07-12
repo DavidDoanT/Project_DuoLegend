@@ -8,6 +8,7 @@
 <div class="container-fluid p-0" style="height: 88%; ">
     <div class="row no-gutters" style="height: 100%;">
         <div class="col-md-3 col-2" style="height: 100%;">
+            <div id="updateOnlineList" class="btn btn-danger">update online list</div>
             <!-- Thanh search danh sách những người đã chat -->
             <div class="search m-4" style="height: 36px;">
                 <form>
@@ -20,44 +21,46 @@
                 <ul class="list-contact" id="myList">
 
                     <!--<a href="#" style="text-decoration: none;">
-                    <li class="person myChoose chosen" data-chat="person1">
-                        <div class="row justify-content-start align-items-center no-gutters">-->
+            <li class="person myChoose chosen" data-chat="person1">
+                <div class="row justify-content-start align-items-center no-gutters">-->
                     <!-- Avatar -->
                     <!--<div class="user col-auto mr-3">
-                        <img src="https://www.bootdey.com/img/Content/avatar/avatar3.png" alt="Retail Admin" class="avatar">
-                        <span class="status busy"></span>
-                    </div>-->
+                <img src="https://www.bootdey.com/img/Content/avatar/avatar3.png" alt="Retail Admin" class="avatar">
+                <span class="status busy"></span>
+            </div>-->
                     <!-- Tên và thời gian chat lần cuối -->
                     <!--<p class="name-time col-md-auto col-xs-0">
-                                    <span class="name">Steve Bangalter</span>
-                                    <br>
-                                    <span class="time">15/02/2019</span>
-                                </p>
-                            </div>
-                        </li>
-                    </a>-->
-
-                    @foreach (var user in Model.ListMessageAndUserHaveChatWith)
+                            <span class="name">Steve Bangalter</span>
+                            <br>
+                            <span class="time">15/02/2019</span>
+                        </p>
+                    </div>
+                </li>
+            </a>-->
+                    @if (Model.ListMessageAndUserHaveChatWith != null)
                     {
-                        <a id='@("id"+user.Key)' asp-controller="Chat" asp-action="ChatDashBoard" asp-route-otherId="@user.Key" style="text-decoration: none;">
-                            <li class="@(user.Key == Model.UserOtherId ? "person myChoose chosen" : "person myChoose" )" data-chat="person1">
-                                <div class="row justify-content-start align-items-center no-gutters">
-                                    @*Avatar*@
-                                    <div class="user col-auto mr-3">
-                                        <img src="@Model.UserOtherAvatarPath" alt="Retail Admin" class="avatar">
-                                        <span class="status busy"></span>
+                        @foreach (var user in Model.ListMessageAndUserHaveChatWith)
+                        {
+                            <a id='@("id" + user.Key)' asp-controller="Chat" asp-action="ChatDashBoard" asp-route-otherId="@user.Key" style="text-decoration: none;">
+                                <li class="@(user.Key == Model.UserOtherId ? "person myChoose chosen" : "person myChoose" )" data-chat="person1">
+                                    <div class="row justify-content-start align-items-center no-gutters">
+                                        @*Avatar*@
+                                        <div class="user col-auto mr-3">
+                                            <img src="@Model.UserOtherAvatarPath" alt="Retail Admin" class="avatar">
+                                            <span class="status busy"></span>
+                                        </div>
+                                        @*Tên và thời gian chat lần cuối*@
+                                        <p class="name-time col-md-auto col-xs-0">
+                                            <span class="name">@UserDAO.getInGameNameServerById(user.Key)[0]</span>
+                                            <br>
+                                            <span class="time @("content" + user.Key)">@(user.Value.SendFrom == Model.UserSelfId ? "You:" : string.Empty ) @user.Value.Content</span><br>
+                                            <span class="time @("content" + user.Key) ">@DuoLegend.Service.TimeProcess.HowLongSince(@user.Value.TimeSend)[0]</span>
+                                            <span class="time @("content" + user.Key) ">@DuoLegend.Service.TimeProcess.HowLongSince(@user.Value.TimeSend)[1]</span>
+                                        </p>
                                     </div>
-                                    @*Tên và thời gian chat lần cuối*@
-                                    <p class="name-time col-md-auto col-xs-0">
-                                        <span class="name">@UserDAO.getInGameNameServerById(user.Key)[0]</span>
-                                        <br>
-                                        <span class="time @("content"+user.Key)">@(user.Value.SendFrom == Model.UserSelfId ? "You:" : string.Empty ) @user.Value.Content</span><br>
-                                        <span class="time @("content"+user.Key) ">@DuoLegend.Service.TimeProcess.HowLongSince(@user.Value.TimeSend)[0]</span>
-                                        <span class="time @("content"+user.Key) ">@DuoLegend.Service.TimeProcess.HowLongSince(@user.Value.TimeSend)[1]</span>
-                                    </p>
-                                </div>
-                            </li>
-                        </a>
+                                </li>
+                            </a>
+                        }
                     }
 
                 </ul>
@@ -72,18 +75,18 @@
                         <img src="@Model.UserOtherAvatarPath" alt="contact avatar" class="avatar">
                     </div>
                     <div class="col-auto">
-                        @{
+                        @if (Model.ListMessageAndUserHaveChatWith != null)
+                        {
                             string[] routeInfor = UserDAO.getInGameNameServerById(Model.UserOtherId);
                             <a asp-controller="Profile" asp-action="Index" asp-route-inGameName="@routeInfor[0]" asp-route-server="@routeInfor[1]" class="contact-name">@UserDAO.getInGameNameServerById(Model.UserOtherId)[0]</a>
                         }
-
                     </div>
                 </div>
             </div>
 
             <!-- Nội dung chat -->
             <div class="content p-2" id="messagesList">
-
+                <div id="loadOldMessage" class="btn btn-primary" style="margin: 0 auto">testttt</div>
             </div>
 
             <!-- Ô nhập tin nhắn và nút gửi tin nhắn -->
@@ -102,10 +105,15 @@
         </div>
     </div>
 </div>
+@for (int i = 0; i < 3; i++)
+{
+    <script>test();</script>
+}
 <button class="btn btn-primary" data-toggle="modal" data-target="#example" id="openChatButton" hidden>Chat</button>
 <input id="UserSelfAvatarPath" value="@Model.UserSelfAvatarPath" disabled hidden>
 <input id="UserOtherAvatarPath" value="@Model.UserOtherAvatarPath" disabled hidden>
 <script>
+    //doan nay dai vl, se chuyen thanh file js rieng
     // Add active class to the current button (highlight it)
     var list = document.getElementById("myList");
     var options = list.getElementsByClassName("myChoose");
@@ -168,10 +176,27 @@
         boxContent[1].innerHTML = "just now";
         boxContent[2].innerHTML = "";
     }
+
     document.getElementById("sendButton").addEventListener("click", function (event) {
         content = document.getElementById("messageInput").value;
         if (content != "") {
             receiveMessageFromOtherBox(document.getElementById("receiver").value, content);
-        }       
+        }
     });
+    document.getElementById("loadOldMessage").addEventListener("click", function (event) {
+        var sender = document.getElementById("sender").value;
+        var receiver = document.getElementById("receiver").value;
+        var messageList = document.getElementById("messagesList");
+        var loadOldMessageButton = document.getElementById("loadOldMessage");
+        var numberOfMessage = messageList.children.length;
+        messageList.innerHTML = "";
+        messageList.appendChild(loadOldMessageButton);
+        connection.invoke("LoadOldMessage", sender, receiver, numberOfMessage).catch(function (err) {
+            return console.error(err.toString());
+        });
+    });
+
+    function test() {
+        alert("testt");
+    }
 </script>

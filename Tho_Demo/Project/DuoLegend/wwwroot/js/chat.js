@@ -24,9 +24,9 @@ connection.on("ReceiveMessage", function (message, sender) {
         div = Left(div);
     }
     var list = document.getElementById("messagesList");
-    if (list.childNodes.length > 12) {
-        list.removeChild(list.childNodes[4]);
-    }
+    //if (list.childNodes.length > 12) { //them chuc nang xoa tin nhan neu vuot qua so luong ben trang profile
+    //    list.removeChild(list.childNodes[4]);
+    //}
     var objDiv = document.getElementById("messagesList");
     objDiv.scrollTop = objDiv.scrollHeight;
 });
@@ -102,3 +102,7 @@ function DeleteChat(numberOfElement, ParentId) { //delete chat trong khung chat,
         a.removeChild(a.childNodes[0]);
     }
 }
+
+connection.on("EndOfMessageList", function () {
+    document.getElementById("loadOldMessage").remove();
+});
