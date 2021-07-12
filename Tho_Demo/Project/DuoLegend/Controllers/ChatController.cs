@@ -20,6 +20,10 @@ namespace DuoLegend.Controllers
                 return RedirectToAction("RedirectLoginPage", "Account");
             }
             List<int> listUserHaveChat = ChatDAO.getListUserHaveChat(id);
+            if(listUserHaveChat.Count() == 0)
+            {
+                return View(new ChatDashBoardViewModel());
+            }
             Dictionary<int, BoxChatDetail> listLastMessageForSort = new Dictionary<int, BoxChatDetail>();
             foreach (var item in listUserHaveChat)
             {

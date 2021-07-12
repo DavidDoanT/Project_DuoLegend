@@ -109,7 +109,37 @@ namespace DuoLegend.DAO
             list.Reverse();
             return list;           
         }
-        
+
+        public static List<BoxChatDetail> GetOldMessageById(int id, int numberOfMessage)
+        {
+            List<BoxChatDetail> list = new List<BoxChatDetail>();
+            com.Parameters.Clear();
+            conn.ConnectionString = MyConfig.ConnectionString;
+
+            conn.Open();
+            com.Connection = conn;
+
+            com.CommandText = "select top (@numberOfMessage) [content],sendFrom,timeSend,isSeen  from boxChatDetail where boxChatId=@id ORDER BY timeSend DESC";
+
+            com.Parameters.AddWithValue("@id", id);
+            com.Parameters.AddWithValue("@numberOfMessage", numberOfMessage);
+
+            SqlDataReader reader = com.ExecuteReader();
+
+            while (reader.Read())
+            {
+                BoxChatDetail detail = new BoxChatDetail();
+                detail.Content = reader["content"].ToString();
+                detail.SendFrom = Int32.Parse(reader["sendFrom"].ToString());
+                detail.TimeSend = (DateTime)reader["timeSend"];
+                detail.IsSeen = (bool)reader["isSeen"];
+                list.Add(detail);
+            }
+            conn.Close();
+            list.Reverse();
+            return list;
+        }
+
         public static List<string[]> getUnseenList(int id)
         {
             com.Parameters.Clear();
