@@ -57,7 +57,7 @@ function receiveMessageFromOtherBox(senderId, messageContent) {
     messageList.removeChild(floatBox);
     messageList.insertBefore(floatBox, messageList.childNodes[1]);
     var boxContent = document.getElementsByClassName("content" + senderId);
-    boxContent[0].innerHTML = messageContent;
+    boxContent[0].innerHTML = messageContent;             
     boxContent[1].innerHTML = "just now";
     boxContent[2].innerHTML = "";
 }
@@ -65,7 +65,7 @@ function receiveMessageFromOtherBox(senderId, messageContent) {
 document.getElementById("sendButton").addEventListener("click", function (event) {
     content = document.getElementById("messageInput").value;
     if (content != "") {
-        receiveMessageFromOtherBox(document.getElementById("receiver").value, content);
+        receiveMessageFromOtherBox(document.getElementById("receiver").value,"You: " +  content);
     }
 });
 document.getElementById("loadOldMessage").addEventListener("click", function (event) {
