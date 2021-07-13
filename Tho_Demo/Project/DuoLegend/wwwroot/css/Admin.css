@@ -3,6 +3,7 @@ body
     background-image: url("../img/Admin/tmp-background.jpg");
     background-repeat: no-repeat;
     background-size: cover;
+    max-width: 99vw;
 }
 
 
