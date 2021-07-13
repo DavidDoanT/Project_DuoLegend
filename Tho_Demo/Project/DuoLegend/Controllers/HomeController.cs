@@ -91,5 +91,9 @@ namespace DuoLegend.Controllers
 
             return View();
         }
+        public IActionResult error()
+        {
+            return View("NotFound");
+        }
     }
 }
