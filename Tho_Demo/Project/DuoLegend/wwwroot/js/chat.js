@@ -49,6 +49,12 @@ connection.on("ReceiveNotification", function (inGameName, server, senderId, mes
     //document.getElementById("listMessageContainer").click()
 });
 
+connection.on("areYouThere", function (sender) {
+    connection.invoke("IAmHere", sender, document.getElementById("userId").value).catch(function (err) {
+        return console.error(err.toString());
+    });
+});
+
 // start realtime (hub) connection between client and server
 connection.start().then(function () {
     var sender = document.getElementById("userId").value;
@@ -105,4 +111,8 @@ function DeleteChat(numberOfElement, ParentId) { //delete chat trong khung chat,
 
 connection.on("EndOfMessageList", function () {
     document.getElementById("loadOldMessage").remove();
+});
+
+connection.on("UpdateOnlineStatus", function (sender) {
+    document.getElementById("state" + sender).src = "/img/on.png";
 });
