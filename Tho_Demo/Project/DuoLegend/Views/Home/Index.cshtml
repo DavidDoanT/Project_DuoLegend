@@ -86,23 +86,23 @@
                     <div class="btn-group btn-group-toggle" data-toggle="buttons">
                         <label class="btn btn-secondary btn-sm" title="Top lane">
                             <img src="~/img/Top_icon.png">
-                            <input type="radio" name="laneOption" id="option1">
+                            <input type="radio"  id="option1" value="Top" asp-for="search.Lane" checked>
                         </label>
                         <label class="btn btn-secondary btn-sm" title="Jungle lane">
                             <img src="~/img/Jung_icon.png">
-                            <input type="radio" name="laneOption" id="option2">
+                            <input type="radio" id="option2" value="Jung" asp-for="search.Lane" >
                         </label>
                         <label class="btn btn-secondary btn-sm" title="Mid lane">
                             <img src="~/img/Mid_icon.png">
-                            <input type="radio" name="laneOption" id="option3">
+                            <input type="radio"  id="option3" value="Mid" asp-for="search.Lane" >
                         </label>
                         <label class="btn btn-secondary btn-sm" title="Bottom lane">
                             <img src="~/img/Bot_icon.png">
-                            <input type="radio" name="laneOption" id="option1">
+                            <input type="radio"  id="option1" value="ADC" asp-for="search.Lane" >
                         </label>
                         <label class="btn btn-secondary btn-sm" title="Support lane">
                             <img src="~/img/Sup_icon.png">
-                            <input type="radio" name="laneOption" id="option2">
+                            <input type="radio"  id="option2" value="Support" asp-for="search.Lane" >
                         </label>
                     </div>
                 </fieldset>
@@ -119,39 +119,39 @@
                     <div class="btn-group btn-group-toggle" data-toggle="buttons">
                         <label class="btn btn-secondary btn-sm" title="Iron">
                             <img src="~/img/ironIcon.png">
-                            <input type="radio" name="rankOption" id="option1">
+                            <input type="radio"  id="option1" value="IRON" asp-for="search.Rank" checked>
                         </label>
                         <label class="btn btn-secondary btn-sm" title="Bronze">
                             <img src="~/img/bronzeIcon.png">
-                            <input type="radio" name="rankOption" id="option2">
+                            <input type="radio"  id="option2" value="BRONZE" asp-for="search.Rank">
                         </label>
                         <label class="btn btn-secondary btn-sm" title="Silver">
                             <img src="~/img/silverIcon.png">
-                            <input type="radio" name="rankOption" id="option3">
+                            <input type="radio"  id="option3" value="SILVER" asp-for="search.Rank">
                         </label>
                         <label class="btn btn-secondary btn-sm" title="Gold">
                             <img src="~/img/goldIcon.png">
-                            <input type="radio" name="rankOption" id="option1">
+                            <input type="radio"  id="option1" value="GOLD" asp-for="search.Rank">
                         </label>
                         <label class="btn btn-secondary btn-sm" title="Platinum">
                             <img src="~/img/platinumIcon.png">
-                            <input type="radio" name="rankOption" id="option2">
+                            <input type="radio"  id="option2" value="PLATINUM" asp-for="search.Rank">
                         </label>
                         <label class="btn btn-secondary btn-sm" title="Diamond">
                             <img src="~/img/diamondIcon.png">
-                            <input type="radio" name="rankOption" id="option3">
+                            <input type="radio"  id="option3" value="DIAMOND" asp-for="search.Rank">
                         </label>
                         <label class="btn btn-secondary btn-sm" title="Master">
                             <img src="~/img/masterIcon.png">
-                            <input type="radio" name="rankOption" id="option3">
+                            <input type="radio"  id="option3" value="MASTER" asp-for="search.Rank">
                         </label>
                         <label class="btn btn-secondary btn-sm" title="Grand Master">
                             <img src="~/img/grandMasterIcon.png">
-                            <input type="radio" name="rankOption" id="option3">
+                            <input type="radio"  id="option3" value="GRANDMASTER"  asp-for="search.Rank">
                         </label>
                         <label class="btn btn-secondary btn-sm" title="Challenger">
                             <img src="~/img/challengerIcon.png">
-                            <input type="radio" name="rankOption" id="option3">
+                            <input type="radio"  id="option3" value="CHALLENGER" asp-for="search.Rank">
                         </label>
                     </div>
                 </fieldset>
@@ -164,10 +164,10 @@
             <div class="searchBar">
                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
                     <label class="btn btn-secondary btn-lg btnPlayStyle btn-grad2">
-                        <input type="radio" name="playPurposeOption" id="option1"> Win is matter
+                        <input type="radio"  id="option1" value="win" asp-for="search.Purpose" checked> Win is matter
                     </label>
                     <label class="btn btn-secondary btn-lg btnPlayStyle btn-grad2" style="border-style: none none none solid;border-color: #3835dc;">
-                        <input type="radio" name="playPurposeOption" id="option2"> Fun is matter
+                        <input type="radio"  id="option2" value="fun" asp-for="search.Purpose"> Fun is matter
                     </label>
                 </div>
             </div>

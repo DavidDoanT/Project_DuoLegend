@@ -69,12 +69,13 @@ namespace DuoLegend.Controllers
             if (HttpContext.Session.GetString("email") is null)
             {
                 ViewBag.isLogin = false;
+                return View("Index", Service.ProcessMainPage.getRandomList());
             }
             else
             {
                 ViewBag.isLogin = true;
             }
-            return View("Index", Service.ProcessMainPage.Search(searchInfor.search.Server));
+            return View("Index", Service.ProcessMainPage.ProcessResultList(searchInfor.search.Server, searchInfor.search));
         }
 
         /// <summary>
