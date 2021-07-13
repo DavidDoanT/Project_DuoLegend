@@ -34,7 +34,7 @@ namespace DuoLegendTesting
 
             DbConnection.Disconnect();
         }
-
+        [Test, Order(1)]
         [TestCase(_userId, _adminId, "2022-05-14", "none")]
 
         public void TestBanUserSuccess(int userId, int adminId, DateTime expirationDate, string reason)
@@ -43,14 +43,11 @@ namespace DuoLegendTesting
 
         }
 
-        [TestCase(5, 6, "2001-05-14", "none")]
+        [Test, Order(2)]
+        [TestCase(5, 6, "2001-05-14", "no")]
         public void TestBanUserFail(int userId, int adminId, DateTime expirationDate, string reason)
         {
-            //bool a=false;
-            //int expect = 0;
-            //int result = AdminManagementDAO.BanUser(userId, adminId, expirationDate, reason);
-            //if (result == 0) a = true;
-            //Assert.IsTrue(a);
+
             Assert.Throws<System.Data.SqlClient.SqlException>(() => AdminManagementDAO.BanUser(userId, adminId, expirationDate, reason));
         }
     }
