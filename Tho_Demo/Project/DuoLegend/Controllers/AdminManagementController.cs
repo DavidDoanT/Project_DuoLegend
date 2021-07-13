@@ -34,7 +34,7 @@ namespace DuoLegend.Controllers
         /// <param name="reason">The reason for banning</param>
         /// <returns></returns>
         [HttpPost]
-        public IActionResult Ban(int userId, int daysToBan, string reason = "Not specified")
+        public IActionResult Ban(int userId, int daysToBan, string reason)
         {
             DateTime expirationDate = DateTime.Now.Date.AddDays(daysToBan);
             int? adminId = HttpContext.Session.GetInt32(SessionKeys.Keys.AdminId);  //Get the admin's Id
