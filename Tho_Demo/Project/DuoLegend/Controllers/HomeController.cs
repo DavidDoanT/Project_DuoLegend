@@ -55,7 +55,6 @@ namespace DuoLegend.Controllers
                 HttpContext.Session.SetInt32("id", UserDAO.getIdByInGameNameServer(user.InGameName, user.Server));
                 ViewBag.isLogin = true;
             }
-
             return View(Service.ProcessMainPage.getRandomList());
         }
 
