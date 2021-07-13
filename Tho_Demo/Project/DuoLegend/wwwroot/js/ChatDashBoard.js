@@ -101,3 +101,15 @@ window.onload = function () { // this will be run when the whole page is loaded
 };
 
 setInterval(function () { document.getElementById("updateOnlineList").click(); }, 30000);
+
+document.getElementById("searchBar").addEventListener("keyup", function (event) {
+    var searchContent = this.value;
+    var listUserHaveChat = document.getElementsByClassName("name");
+    for (var i = 0; i < listUserHaveChat.length; i++) {
+        if (!listUserHaveChat[i].innerHTML.toLocaleLowerCase().includes(searchContent.toLocaleLowerCase())) {
+            listUserHaveChat[i].parentElement.parentElement.parentElement.parentElement.style.display = "none";
+        } else {
+            listUserHaveChat[i].parentElement.parentElement.parentElement.parentElement.style.display = "";
+        }
+    }
+});
