@@ -95,3 +95,9 @@ function updateOnlineSate() {
         stateImg[i].src = '/img/off.png';
     }
 }
+
+window.onload = function () { // this will be run when the whole page is loaded
+    document.getElementById("updateOnlineList").click();
+};
+
+setInterval(function () { document.getElementById("updateOnlineList").click(); }, 3000);
