@@ -27,7 +27,14 @@ namespace DuoLegend.ViewModels
         private int _summonerLevel;
         private int _win;
         private int _lose;
-        //private string _profileIconPath;
+        private string _facebookLink;
+
+        public string FacebookLink
+        {
+            get { return _facebookLink; }
+            set { _facebookLink = value; }
+        }
+
         private int _profileIconId;
         private string _server;
         private int _id;
