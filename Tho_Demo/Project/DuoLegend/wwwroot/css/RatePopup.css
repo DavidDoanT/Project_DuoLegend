@@ -86,3 +86,72 @@
     .BehaviorScore > label:hover ~ input:checked ~ label {
         color: #c59b08
     }
+
+.modal-content {
+    border-radius: 20px;
+}
+
+.modal-header {
+    background: rgb(76,112,156);
+    background: linear-gradient(180deg, rgba(76,112,156,1) 0%, rgba(22,24,81,1) 100%);
+    border-radius: 20px 20px 0 0;
+}
+
+    .modal-header:hover {
+        transition-duration: .5s;
+        background: rgb(66,66,66);
+    }
+
+span {
+    color: white;
+}
+
+.modal-footer {
+    padding-top: 10%;
+    background: rgb(22,24,81);
+    background: linear-gradient(180deg, rgba(22,24,81,1) 0%, rgba(76,112,156,1) 100%);
+    border-radius: 0 0 20px 20px;
+}
+
+    .modal-footer:hover {
+        transition-duration: .5s;
+        background: rgb(66,66,66);
+    }
+
+h1 {
+    text-align: center;
+    color: white;
+}
+
+.modal-body {
+    background: rgb(76,112,156);
+    background: linear-gradient(180deg, rgba(76,112,156,1) 0%, rgba(22,24,81,1) 59%);
+}
+
+
+.btn-grad {
+    background-image: linear-gradient(to right, #517fa4 0%, #243949 51%, #517fa4 100%)
+}
+
+.btn-grad {
+    padding: 15px 45px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    display: block;
+    width: 100%;
+}
+
+    .btn-grad:hover {
+        background-position: right center; /* change the direction of the change here */
+        color: #fff;
+        text-decoration: none;
+    }
+
+label {
+    color: white;
+}
