@@ -55,7 +55,6 @@ namespace DuoLegend.Controllers
                 HttpContext.Session.SetInt32("id", UserDAO.getIdByInGameNameServer(user.InGameName, user.Server));
                 ViewBag.isLogin = true;
             }
-
             return View(Service.ProcessMainPage.getRandomList());
         }
 
@@ -91,6 +90,10 @@ namespace DuoLegend.Controllers
             ViewBag.expirationDate = expirationDateString;
 
             return View();
+        }
+        public IActionResult error()
+        {
+            return View("NotFound");
         }
     }
 }

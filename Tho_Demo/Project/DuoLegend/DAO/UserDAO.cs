@@ -800,5 +800,26 @@ namespace DuoLegend.DAO
             com.EndExecuteNonQuery(com.BeginExecuteNonQuery());
             conn.Close();
         }
+
+        public static int UpdateRank(int id)
+        {
+            string[] infor = UserDAO.getInGameNameServerById(id);
+            string rank = RiotAPI.RiotAPI.getRankByEncryptedSummonerId(UserDAO.getEncryptedSummonerId(infor[0], infor[1]), infor[1]).Rank;
+            com.Parameters.Clear();
+
+            conn.ConnectionString = MyConfig.ConnectionString;
+
+            conn.Open();
+            com.Connection = conn;
+            //com.CommandText = "SET IDENTITY_INSERT Spell ON";
+            com.CommandText = "UPDATE [User] SET Rank=@Rank WHERE userId = @id";
+            
+            com.Parameters.AddWithValue("@Rank", rank);
+            com.Parameters.AddWithValue("@id", id);
+            //com.CommandText = "SET IDENTITY_INSERT Spell OFF";
+            int result = com.EndExecuteNonQuery(com.BeginExecuteNonQuery());
+            conn.Close();
+            return result;
+        }
     }
 }

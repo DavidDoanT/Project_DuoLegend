@@ -57,7 +57,7 @@ function receiveMessageFromOtherBox(senderId, messageContent) {
     messageList.removeChild(floatBox);
     messageList.insertBefore(floatBox, messageList.childNodes[1]);
     var boxContent = document.getElementsByClassName("content" + senderId);
-    boxContent[0].innerHTML = messageContent;
+    boxContent[0].innerHTML = messageContent;             
     boxContent[1].innerHTML = "just now";
     boxContent[2].innerHTML = "";
 }
@@ -65,7 +65,7 @@ function receiveMessageFromOtherBox(senderId, messageContent) {
 document.getElementById("sendButton").addEventListener("click", function (event) {
     content = document.getElementById("messageInput").value;
     if (content != "") {
-        receiveMessageFromOtherBox(document.getElementById("receiver").value, content);
+        receiveMessageFromOtherBox(document.getElementById("receiver").value,"You: " +  content);
     }
 });
 document.getElementById("loadOldMessage").addEventListener("click", function (event) {
@@ -95,3 +95,21 @@ function updateOnlineSate() {
         stateImg[i].src = '/img/off.png';
     }
 }
+
+window.onload = function () { // this will be run when the whole page is loaded
+    document.getElementById("updateOnlineList").click();
+};
+
+setInterval(function () { document.getElementById("updateOnlineList").click(); }, 30000);
+
+document.getElementById("searchBar").addEventListener("keyup", function (event) {
+    var searchContent = this.value;
+    var listUserHaveChat = document.getElementsByClassName("name");
+    for (var i = 0; i < listUserHaveChat.length; i++) {
+        if (!listUserHaveChat[i].innerHTML.toLocaleLowerCase().includes(searchContent.toLocaleLowerCase())) {
+            listUserHaveChat[i].parentElement.parentElement.parentElement.parentElement.style.display = "none";
+        } else {
+            listUserHaveChat[i].parentElement.parentElement.parentElement.parentElement.style.display = "";
+        }
+    }
+});
