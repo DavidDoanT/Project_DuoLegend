@@ -61,53 +61,52 @@
         <!--Đây sẽ là phần mình để những ngôi sao để cho người ta click vào-->
         <div class="modal-body" id="Rate">
 
-            <h1 style="color:black; text-align:center" >Rate player</h1>
+            <h1>How would you rate this PLAYER?</h1>
             <form asp-action="RateUser" asp-controller="Profile" method="POST" id="Form">
 
-                <div class="modal-body">
-                    <input type="number" name="RaterId" @*asp-for="@Model.rating.RaterId"*@ value="@ViewData["sender"]" hidden>
-                    <input type="number" name="UserId" @*asp-for="@Model.rating.UserId"*@ value="@ViewData["receiver"]" hidden>
-                    <div class="form-group">
-                        <label>Skill Score: </label>
-                        <div class="SkillScore">
-                            <input type="radio" id="star5" name="SkillScore" @*asp-for="@Model.rating.SkillScore"*@ value="5" />
-                            <label for="star5" title="text">5 stars</label>
-                            <input type="radio" id="star4" name="SkillScore" @*asp-for="@Model.rating.SkillScore"*@ value="4" />
-                            <label for="star4" title="text">4 stars</label>
-                            <input type="radio" id="star3" name="SkillScore" @*asp-for="@Model.rating.SkillScore"*@ value="3" />
-                            <label for="star3" title="text">3 stars</label>
-                            <input type="radio" id="star2" name="SkillScore" @*asp-for="@Model.rating.SkillScore"*@ value="2" />
-                            <label for="star2" title="text">2 stars</label>
-                            <input type="radio" id="star1" name="SkillScore" @*asp-for="@Model.rating.SkillScore"*@ value="1" />
-                            <label for="star1" title="text">1 star</label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Behavior Score: </label>
-                        <div class="BehaviorScore">
-                            <input type="radio" id="star5s" name="BehaviorScore" @*asp-for="@Model.rating.BehaviorScore"*@ value="5" />
-                            <label for="star5s" title="text">5 stars</label>
-                            <input type="radio" id="star4s" name="BehaviorScore" @*asp-for="@Model.rating.BehaviorScore"*@ value="4" />
-                            <label for="star4s" title="text">4 stars</label>
-                            <input type="radio" id="star3s" name="BehaviorScore" @*asp-for="@Model.rating.BehaviorScore"*@ value="3" />
-                            <label for="star3s" title="text">3 stars</label>
-                            <input type="radio" id="star2s" name="BehaviorScore" @*asp-for="@Model.rating.BehaviorScore"*@ value="2" />
-                            <label for="star2s" title="text">2 stars</label>
-                            <input type="radio" id="star1s" name="BehaviorScore" @*asp-for="@Model.rating.BehaviorScore"*@ value="1" />
-                            <label for="star1s" title="text">1 star</label>
-                        </div>
-
-                    </div>
-                    <div class="form-group">
-                        <label>Comment</label>
-                        <input type="text" name="Comment" @*asp-for="@Model.rating.Comment"*@ class="form-control">
+                <input type="number" name="RaterId" @*asp-for="@Model.rating.RaterId"*@ value="@ViewData["sender"]" hidden>
+                <input type="number" name="UserId" @*asp-for="@Model.rating.UserId"*@ value="@ViewData["receiver"]" hidden>
+                <div class="form-group">
+                    <label>Skill Score: </label>
+                    <div class="SkillScore">
+                        <input type="radio" id="star5" name="SkillScore" @*asp-for="@Model.rating.SkillScore"*@ value="5" />
+                        <label for="star5" title="text">5 stars</label>
+                        <input type="radio" id="star4" name="SkillScore" @*asp-for="@Model.rating.SkillScore"*@ value="4" />
+                        <label for="star4" title="text">4 stars</label>
+                        <input type="radio" id="star3" name="SkillScore" @*asp-for="@Model.rating.SkillScore"*@ value="3" />
+                        <label for="star3" title="text">3 stars</label>
+                        <input type="radio" id="star2" name="SkillScore" @*asp-for="@Model.rating.SkillScore"*@ value="2" />
+                        <label for="star2" title="text">2 stars</label>
+                        <input type="radio" id="star1" name="SkillScore" @*asp-for="@Model.rating.SkillScore"*@ value="1" />
+                        <label for="star1" title="text">1 star</label>
                     </div>
                 </div>
-                @*<div class="modal-footer">
+                <div class="form-group">
+                    <label>Behavior Score: </label>
+                    <div class="BehaviorScore">
+                        <input type="radio" id="star5s" name="BehaviorScore" @*asp-for="@Model.rating.BehaviorScore"*@ value="5" />
+                        <label for="star5s" title="text">5 stars</label>
+                        <input type="radio" id="star4s" name="BehaviorScore" @*asp-for="@Model.rating.BehaviorScore"*@ value="4" />
+                        <label for="star4s" title="text">4 stars</label>
+                        <input type="radio" id="star3s" name="BehaviorScore" @*asp-for="@Model.rating.BehaviorScore"*@ value="3" />
+                        <label for="star3s" title="text">3 stars</label>
+                        <input type="radio" id="star2s" name="BehaviorScore" @*asp-for="@Model.rating.BehaviorScore"*@ value="2" />
+                        <label for="star2s" title="text">2 stars</label>
+                        <input type="radio" id="star1s" name="BehaviorScore" @*asp-for="@Model.rating.BehaviorScore"*@ value="1" />
+                        <label for="star1s" title="text">1 star</label>
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label>Comment</label>
+                    <input type="text" name="Comment" @*asp-for="@Model.rating.Comment"*@ class="form-control">
+                </div>
+
+                <!-- @*<div class="modal-footer">
 
                         <button type="button" class="btn btn-warning" data dismiss="modal">Đóng</button>
-                    </div>*@
-                <input type="submit" value="Submit" class="btn btn-primary" style="width: 5vw; font-size: 1.25vw;text-align: center; padding-left: 0; padding-right: 0; float: right">
+                    </div>*@ -->
+                <input type="submit" value="Submit" class="btn-grad">
             </form>
 
 
@@ -115,8 +114,9 @@
 
         <!--Đây là phần footer của modal-->
         <div class="modal-footer">
-            <button id="closeButton" style="width: 5vw; font-size: 1.25vw;text-align: center; padding-left: 0; padding-right: 0" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            @*<input type="button" id="sendButton" value="Send Message" class="btn btn-primary">*@
+
+            <!-- <button id="closeButton" style="width: 5vw; font-size: 1.25vw;text-align: center; padding-left: 0; padding-right: 0" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+             @*<input type="button" id="sendButton" value="Send Message" class="btn btn-primary">*@
         </div>
     </div>
 </div>

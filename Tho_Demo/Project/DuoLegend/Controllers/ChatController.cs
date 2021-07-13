@@ -48,7 +48,7 @@ namespace DuoLegend.Controllers
             string[] UserOtherInfor = UserDAO.getInGameNameServerById(otherId);
             if (UserSelfInfor is null || UserOtherInfor is null)
             {
-                return NotFound();
+                return RedirectToAction("NotFound","Home");
             }
             model.UserSelfAvatarId = RiotAPI.RiotAPI.GetAccountIdInfor(UserSelfInfor[0], UserSelfInfor[1]).ProfileIconId;
             model.UserOtherAvatarId = RiotAPI.RiotAPI.GetAccountIdInfor(UserOtherInfor[0], UserOtherInfor[1]).ProfileIconId;

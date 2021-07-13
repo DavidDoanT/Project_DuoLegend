@@ -231,7 +231,7 @@ namespace DuoLegend.DAO
             conn.Open();
             com.Connection = conn;
 
-            com.CommandText = "select inGameName,server,hasMic,lane,note from [User] where email = @email";
+            com.CommandText = "select inGameName,server,facebookLink,hasMic,lane,note from [User] where email = @email";
 
             com.Parameters.AddWithValue("@email", email);
             SqlDataReader reader = com.ExecuteReader();
@@ -240,6 +240,11 @@ namespace DuoLegend.DAO
             {
 
                 user.Note = (string)reader["note"];
+                if (reader["facebookLink"].GetType() == typeof(DBNull))
+                {
+                    user.FacebookLink=null;
+                }
+                else { user.FacebookLink = (string)reader["facebookLink"]; }
                 user.Lane = (string)reader["lane"];
                 user.HasMic = (bool)reader["hasMic"];
                 user.InGameName = (string)reader["inGameName"];
@@ -297,12 +302,14 @@ namespace DuoLegend.DAO
             conn.ConnectionString = MyConfig.ConnectionString;
             conn.Open();
             com.Connection = conn;
-
             if (userIn.Note == null)
             {
                 userIn.Note = "";
             }
-
+            if (userIn.FacebookLink == null)
+            {
+                userIn.FacebookLink = "";
+            }
             int temp;
             //convert bool datatype to int because hasMic in DB is bit type
             if (userIn.HasMic)
@@ -315,6 +322,7 @@ namespace DuoLegend.DAO
             }
             com.CommandText = "UPDATE [User] SET inGameName = @NewInGameName, " +
                                                 "id = @NewId, " +
+                                                "facebookLink = @newFacebookLink, " +
                                                 "accountId = @NewAccountId, " +
                                                 "puuid = @NewPUUID, " +
                                                 "server = @NewServer, " +
@@ -324,6 +332,7 @@ namespace DuoLegend.DAO
 
             com.Parameters.AddWithValue("@NewInGameName", userIn.InGameName);
             com.Parameters.AddWithValue("@NewId", UpdatedUser.Id);
+            com.Parameters.AddWithValue("@newFacebookLink", userIn.FacebookLink);
             com.Parameters.AddWithValue("@NewAccountId", UpdatedUser.AccountId);
             com.Parameters.AddWithValue("@NewPUUID", UpdatedUser.Puuid);
             com.Parameters.AddWithValue("@NewServer", userIn.Server);
@@ -410,6 +419,42 @@ namespace DuoLegend.DAO
 
         }
 
+        public static string getFacebookLink(string inGameName, string server)
+        {
+            com.Parameters.Clear();
+            conn.ConnectionString = MyConfig.ConnectionString;
+
+            conn.Open();
+            com.Connection = conn;
+
+            com.CommandText = "select facebookLink  from [User] where inGameName = @inGameName and server=@server";
+
+            com.Parameters.AddWithValue("@inGameName", inGameName);
+            com.Parameters.AddWithValue("@server", server);
+            SqlDataReader reader = com.ExecuteReader();
+
+            if (reader.Read())
+            {
+
+                try
+                {
+                    string temp = (string)reader["facebookLink"];
+                    conn.Close();
+                    return temp;
+                }
+                catch (Exception)
+                {
+                    conn.Close();
+                    return "";
+                }
+            }
+            else
+            {
+                conn.Close();
+                return null;
+            }
+
+        }
         public static bool isHaveMic(string inGameName, string server)
         {
             com.Parameters.Clear();
@@ -763,6 +808,27 @@ namespace DuoLegend.DAO
             //com.CommandText = "SET IDENTITY_INSERT Spell OFF";
             com.EndExecuteNonQuery(com.BeginExecuteNonQuery());
             conn.Close();
+        }
+
+        public static int UpdateRank(int id)
+        {
+            string[] infor = UserDAO.getInGameNameServerById(id);
+            string rank = RiotAPI.RiotAPI.getRankByEncryptedSummonerId(UserDAO.getEncryptedSummonerId(infor[0], infor[1]), infor[1]).Rank;
+            com.Parameters.Clear();
+
+            conn.ConnectionString = MyConfig.ConnectionString;
+
+            conn.Open();
+            com.Connection = conn;
+            //com.CommandText = "SET IDENTITY_INSERT Spell ON";
+            com.CommandText = "UPDATE [User] SET Rank=@Rank WHERE userId = @id";
+            
+            com.Parameters.AddWithValue("@Rank", rank);
+            com.Parameters.AddWithValue("@id", id);
+            //com.CommandText = "SET IDENTITY_INSERT Spell OFF";
+            int result = com.EndExecuteNonQuery(com.BeginExecuteNonQuery());
+            conn.Close();
+            return result;
         }
     }
 }
