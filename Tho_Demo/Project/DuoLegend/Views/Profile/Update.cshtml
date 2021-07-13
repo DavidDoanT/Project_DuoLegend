@@ -11,13 +11,14 @@
         $("#Form").validate({
             rules: {
                 "ingameName": {
-                    required: true,                   
+                    required: true              
                 },
 
                 "description": {
                     required: true,
-                    maxlength: 100,
+                    maxlength: 100
                 },
+                
             },
             messages: {
                 "ingameName": {
@@ -25,8 +26,9 @@
                 },
                 "description": {
                     required: "Please say something to let people know about yourself",
-                    maxlength: "Description is too long",
-                },
+                    maxlength: "Description is too long"
+                }
+              
             }
         });
     });
@@ -54,7 +56,7 @@
 
 
     header {
-        margin-bottom: 2 rem;
+        margin-bottom: 2rem;
     }
 
     label {
@@ -128,6 +130,12 @@
                     <option>ADC</option>
                     <option>Support</option>
                 </select>
+            </div>
+
+            @*input facebook link*@
+            <div class="form-group">
+                <label>Facebook Link: </label>
+                <input type="text" name="facebookLink" pattern="(?:(?:http|https):\/\/)?(?:www.)?facebook.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[?\w\-]*\/)?(?:profile.php\?id=(?=\d.*))?([\w\-]*)?" title="This must be Facebook link" class="form-control" id="facebookLink" placeholder="Your Facebook link" asp-for="FacebookLink" >
             </div>
 
             @*Input description*@

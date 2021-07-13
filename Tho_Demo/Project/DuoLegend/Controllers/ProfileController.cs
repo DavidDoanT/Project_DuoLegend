@@ -26,6 +26,7 @@ namespace DuoLegend.Controllers
             //get info from Riot API 
             RankInfor rankInfor = RiotAPI.RiotAPI.getRankByEncryptedSummonerId(DAO.UserDAO.getEncryptedSummonerId(inGameName, server), server);
             infor.Rank = rankInfor.Rank;
+            infor.FacebookLink = UserDAO.getFacebookLink(inGameName, server);
             infor.Tier = rankInfor.Tier;
             infor.RankScore = rankInfor.Lp;
             infor.SummonerName = inGameName;
