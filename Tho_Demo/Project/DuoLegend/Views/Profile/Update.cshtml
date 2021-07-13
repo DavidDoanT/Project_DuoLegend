@@ -14,7 +14,7 @@
                     required: true,                   
                 },
 
-                "description": {
+                "note": {
                     required: true,
                     maxlength: 100,
                 },
@@ -23,7 +23,7 @@
                 "ingameName": {
                     required: "In-game name is required",
                 },
-                "description": {
+                "note": {
                     required: "Please say something to let people know about yourself",
                     maxlength: "Description is too long",
                 },
@@ -133,7 +133,7 @@
             @*Input description*@
             <div class="form-group">
                 <label>Description: </label>
-                <input type="text" name="description" class="form-control input-des" id="description" placeholder="Say something about yourself" asp-for="Note">
+                <input type="text" name="note" class="form-control input-des" id="note" placeholder="Say something about yourself" asp-for="Note">
             </div>
 
             @*Button Save change*@
