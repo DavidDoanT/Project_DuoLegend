@@ -4,35 +4,6 @@
     Layout = "~/Views/Shared/_LayoutAfterLogin.cshtml";
 }
 <link href="~/css/Update.css" rel="stylesheet">
-<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
-<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js" type="text/javascript"></script>
-<script>
-    $().ready(function () {
-        $("#Form").validate({
-            rules: {
-                "ingameName": {
-                    required: true              
-                },
-
-                "description": {
-                    required: true,
-                    maxlength: 100
-                },
-                
-            },
-            messages: {
-                "ingameName": {
-                    required: "In-game name is required",
-                },
-                "description": {
-                    required: "Please say something to let people know about yourself",
-                    maxlength: "Description is too long"
-                }
-              
-            }
-        });
-    });
-</script>
 <style type="text/css">
     label.error {
         color: red;
@@ -72,6 +43,7 @@
     .backContainer {
         width: 60%;
     }
+
 </style>
 
 <center>
@@ -83,7 +55,7 @@
             <div class="form-group">
                 <label>Ingame name: </label>
                 <input type="text" class="form-control" id="ingameName"
-                       name="ingameName" placeholder="Please enter your new ingame name" asp-for="InGameName">
+                       name="ingameName" placeholder="Please enter your new ingame name" asp-for="InGameName" required>
             </div>
 
             @* check if the new ingameName is valid*@
@@ -135,13 +107,13 @@
             @*input facebook link*@
             <div class="form-group">
                 <label>Facebook Link: </label>
-                <input type="text" name="facebookLink" pattern="(?:(?:http|https):\/\/)?(?:www.)?facebook.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[?\w\-]*\/)?(?:profile.php\?id=(?=\d.*))?([\w\-]*)?" title="This must be Facebook link" class="form-control" id="facebookLink" placeholder="Your Facebook link" asp-for="FacebookLink" >
+                <input type="text" name="facebookLink" class="form-control" id="facebookLink" placeholder="Your Facebook link" asp-for="FacebookLink" pattern="(?:(?:http|https):\/\/)?(?:www.)?facebook.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[?\w\-]*\/)?(?:profile.php\?id=(?=\d.*))?([\w\-]*)?" title="This is not a facebook link" required maxlength="100">
             </div>
 
             @*Input description*@
             <div class="form-group">
                 <label>Description: </label>
-                <input type="text" name="description" class="form-control input-des" id="description" placeholder="Say something about yourself" asp-for="Note">
+                <input type="text" name="note" class="form-control input-des"  id="note" placeholder="Say something about yourself" asp-for="Note" required maxlength="100">
             </div>
 
             @*Button Save change*@

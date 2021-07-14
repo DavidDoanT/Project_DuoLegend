@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using DuoLegend.DAO.AdminDAO;
 using DuoLegend.Models;
+using DuoLegend.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,7 +13,7 @@ namespace DuoLegend.Controllers
 
         public IActionResult UserList()
         {
-            IEnumerable<User> userList = DAO.UserDAO.getAllUser();
+            IEnumerable<UserListViewModel> userList = DAO.UserDAO.getAllUser();
             if (TempData["deleteFailMsg"] != null)
             {
                 ViewBag.deleteFail = TempData["deleteFailMsg"];

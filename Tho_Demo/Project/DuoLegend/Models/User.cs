@@ -26,6 +26,7 @@ namespace DuoLegend.Models
         private int _isDeleted;
         private int _userId;
 
+        public string Rank { get; set; }
         public int UserID
         {
             get { return _userId; }

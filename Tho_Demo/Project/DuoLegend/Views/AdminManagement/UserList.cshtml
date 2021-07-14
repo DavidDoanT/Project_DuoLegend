@@ -2,26 +2,7 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
     ViewData["Title"] = "User Management";
 }
-@model IEnumerable<User>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" rel="stylesheet" />
-<link href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
-<link href="~/css/UserList.css" rel="stylesheet" />
-<script src="~/lib/jquery/dist/jquery.js"></script>
-<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $.noConflict();
-        $('#example').DataTable({
-            responsive: true,
-            "createdRow": function (row, data, dataIndex) {
-                if (data[6] == 1) {
-                    $(row).addClass('deleted');
-                }
-            }
-        });
-    });
-</script>
+@model IEnumerable<UserListViewModel>
 
 <script type="text/javascript">
     var deleteFail = @ViewBag.deleteFail!= null;
@@ -39,6 +20,7 @@
     </div>
 }
 
+
 <!--Main content body-->
 <div class="col-11 my-table">
     <table id="example" class="table table-hover table-dark table-bordered">
@@ -51,6 +33,7 @@
                 <th>Facebook</th>
                 <th>Verified</th>
                 <th>Deleted</th>
+                <th>Ban For</th>
                 <th></th>
                 <th></th>
             </tr>
@@ -58,6 +41,7 @@
         <tbody>
             @foreach (var user in Model)
             {
+                var now = DateTime.Now.Date;
                 <tr>
                     <th>@user.UserID</th>
                     <td>@user.Email</td>
@@ -78,13 +62,24 @@
                         else
                         { <i class="bi bi-x-square-fill fail-status"></i>}
                     </td>
+                    <td style="text-align:center">
+                        @if (user.ExpirationDate == null)
+                        {
+                            <span>0 day</span>
+                        }
+                        else
+                        {
+                            var dayBan = (((DateTime)user.ExpirationDate).Date - now).TotalDays;
+                            @dayBan if (dayBan > 1){<span> days</span>} else{ <span> day</span>}
+                        }
+                    </td>
                     <td style="text-align:center" width="12%">
                         <a asp-controller="AdminManagement" asp-action="BanUser" class="btn btn-warning my-button"
-                           asp-route-id="@user.UserID">Ban User</a>
+                           asp-route-id="@user.UserID" disabled="@(user.IsDeleted == 1)">Ban User</a>
                     </td>
                     <td style="text-align:center" width="12%">
                         <button class="btn btn-danger delete-button" data-toggle="modal"
-                                data-target='@("#delete"+user.UserID)' @if (user.IsDeleted == 1) { <text> disabled</text> }>
+                                data-target='@("#delete"+user.UserID)' disabled="@(user.IsDeleted == 1)">
                             Delete User
                         </button>
                     </td>

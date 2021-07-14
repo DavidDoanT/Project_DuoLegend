@@ -70,9 +70,9 @@ namespace DuoLegend.Service
             return null;
         }
 
-        public static MainPageViewModel Search(string server)
+        public static MainPageViewModel ProcessResultList(string server, Search searchInfor)
         {
-            var infor = UserDAO.get3InGameNameByServer(server);
+            var infor = Find(searchInfor);
             for (int i = 0; i < infor.InGameName.Length; i++)
             {
                 var userInfor = new userInforMainPage();
@@ -110,6 +110,33 @@ namespace DuoLegend.Service
                 infor.ListUserInfor[i] = userInfor;
             }
             return infor;
+        }
+
+        public static MainPageViewModel Find(Search searchInfor)
+        {
+            MainPageViewModel result = new MainPageViewModel();
+            List<User> ListUser;
+            if (searchInfor.Purpose.Equals("win"))
+            {
+                ListUser = ProfileDAO.getListUserSortByAvgSkillScore();
+            }
+            else
+            {
+                ListUser = ProfileDAO.getListUserSortByAvgBehaviorScore();
+            }
+            int count = 0;
+            foreach (var user in ListUser)
+            {
+                if (user.Rank.Equals(searchInfor.Rank) && user.Lane.Equals(searchInfor.Lane))
+                {
+                    result.InGameName[count] = user.InGameName;
+                }
+                if (count >= 2)
+                {
+                    break;
+                }
+            }
+            return result;
         }
     }
 }
