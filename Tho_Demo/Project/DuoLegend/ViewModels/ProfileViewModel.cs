@@ -27,6 +27,14 @@ namespace DuoLegend.ViewModels
         private int _summonerLevel;
         private int _win;
         private int _lose;
+        private string _lane;
+
+        public string Lane
+        {
+            get { return _lane; }
+            set { _lane = value; }
+        }
+
         private string _facebookLink;
 
         public string FacebookLink
