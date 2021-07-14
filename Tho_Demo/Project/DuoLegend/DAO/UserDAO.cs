@@ -8,7 +8,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Collections;
-
+using System.Globalization;
 
 namespace DuoLegend.DAO
 {
@@ -603,7 +603,7 @@ namespace DuoLegend.DAO
             if (reader.Read())
             {
 
-                isDeleted = (int)reader["isDeleted"];
+                isDeleted = (byte)reader["isDeleted"];
                 reader.Close();
                 conn.Close();
                 return isDeleted;
@@ -706,21 +706,25 @@ namespace DuoLegend.DAO
             }
         }
 
-        public static List<User> getAllUser()
+        public static List<UserListViewModel> getAllUser()
         {
-            List<User> userList = new List<User>();
+            List<UserListViewModel> userList = new List<UserListViewModel>();
             com.Parameters.Clear();
             conn.ConnectionString = MyConfig.ConnectionString;
 
             conn.Open();
             com.Connection = conn;
 
-            com.CommandText = "SELECT userId,email,inGameName,server,facebookLink,isVerified,isDeleted FROM [User]";
+            com.CommandText = "SELECT [User].userId,[User].email,[User].inGameName,[User].server,[User].facebookLink,[User].isVerified,[User].isDeleted,[BannedUser].expirationDate" +
+                               " FROM [User] LEFT JOIN [BannedUser]" +
+                               " ON [User].userId = [BannedUser].userId" +
+                               " ORDER BY [BannedUser].banId DESC";
             SqlDataReader reader = com.ExecuteReader();
-            User user;
+            UserListViewModel user;
             while (reader.Read())
             {
-                user = new User();
+                user = new UserListViewModel();
+                DateTime result;
                 user.UserID = (int)reader["userId"];
                 user.Email = reader["email"].ToString();
                 user.InGameName = reader["inGameName"].ToString();
@@ -728,6 +732,11 @@ namespace DuoLegend.DAO
                 user.FacebookLink = reader["facebookLink"].ToString();
                 user.IsVerified = (byte)reader["isVerified"];
                 user.IsDeleted = (byte)reader["isDeleted"];
+                if (DateTime.TryParseExact(s: reader["expirationDate"].ToString(), format: "M/dd/yyyy hh:mm:ss tt", 
+                    provider: CultureInfo.InvariantCulture, style: 0, out result)) 
+                {
+                    user.ExpirationDate = result;
+                }
                 userList.Add(user);
             }
             conn.Close();

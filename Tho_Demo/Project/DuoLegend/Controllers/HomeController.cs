@@ -92,6 +92,13 @@ namespace DuoLegend.Controllers
 
             return View();
         }
+
+        public IActionResult Deleted()
+        {
+            ViewBag.expirationDate = "THE WHOLE LIFE";
+            return View("Banned");
+        }
+        
         public IActionResult error()
         {
             return View("NotFound");

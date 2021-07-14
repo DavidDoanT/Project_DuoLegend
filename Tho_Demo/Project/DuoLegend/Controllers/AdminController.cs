@@ -56,6 +56,21 @@ namespace DuoLegend.Controllers
             return RedirectToAction("Login");
         }
 
+        public IActionResult Main()
+        {
+            IList<WebsiteStatistics> webStatList = WebsiteStatisticsDAO.GetRecords(30);
+            IList<DataPoint>[] arrayOfDataPointList = CreateDataPointLists(webStatList);
+
+            JsonSerializerSettings jsonSetting = new JsonSerializerSettings();
+            jsonSetting.NullValueHandling = NullValueHandling.Ignore;
+
+            ViewBag.UniqueVisitorData = JsonConvert.SerializeObject(arrayOfDataPointList[0], jsonSetting);
+            ViewBag.SiteVisitData = JsonConvert.SerializeObject(arrayOfDataPointList[1], jsonSetting);
+            ViewBag.NewAccountData = JsonConvert.SerializeObject(arrayOfDataPointList[2], jsonSetting);
+
+            return View();
+        }
+
         //Go to website statistic page
         public IActionResult WebsiteStatistic()
         {
