@@ -45,6 +45,17 @@ namespace DuoLegend.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Log the admin out
+        /// Clears all session
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Login");
+        }
+
         public IActionResult Main()
         {
             IList<WebsiteStatistics> webStatList = WebsiteStatisticsDAO.GetRecords(30);
@@ -58,29 +69,6 @@ namespace DuoLegend.Controllers
             ViewBag.NewAccountData = JsonConvert.SerializeObject(arrayOfDataPointList[2], jsonSetting);
 
             return View();
-        }
-
-        public IActionResult UserList()
-        {
-            IEnumerable<User> userList = DAO.UserDAO.getAllUser();
-            return View(userList);
-        }
-
-        public IActionResult BanUser(int id)
-        {
-            ViewBag.userId = id;
-            return View();
-        }
-
-        /// <summary>
-        /// Log the admin out
-        /// Clears all session
-        /// </summary>
-        /// <returns></returns>
-        public IActionResult Logout()
-        {
-            HttpContext.Session.Clear();
-            return RedirectToAction("Login");
         }
 
         //Go to website statistic page

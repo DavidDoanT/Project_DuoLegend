@@ -35,6 +35,14 @@
         <div class="ProfileAction">
             @if (@Context.Session.GetString("inGameName") != null && @Context.Session.GetString("server") != null)
             {
+                @if (Model.FacebookLink is null || Model.FacebookLink == "")
+                {
+                    <a class="bi bi-facebook " onclick="swal('Error!','This user does not have Facebook link','error');" style="color: dodgerblue; font-size: 1.5rem;"> </a>
+                }
+                else
+                {
+                    <a class="bi bi-facebook " href="@Model.FacebookLink" target="_blank" style="color: dodgerblue; font-size: 1.5rem"> </a>
+                }
                 //nut edit
                 @if (@Context.Session.GetString("inGameName").Equals(Model.SummonerName) && @Context.Session.GetString("server").Equals(Model.Server))
                 {
@@ -63,6 +71,10 @@
                 {
                     <button id="likeButton">Like</button>
                 }
+                @if (Model.Id != Context.Session.GetInt32("id"))
+                {
+                    <button data-toggle="modal" data-target="#example" id="openChatButton">Chat</button>
+                }
 
             }
 
@@ -70,10 +82,7 @@
             <input id="liker" value="@Context.Session.GetInt32("id")" disabled style="display: none">
             <input id="user" value="@Model.Id" disabled style="display: none">
 
-            @if (Model.Id != Context.Session.GetInt32("id"))
-            {
-                <button data-toggle="modal" data-target="#example" id="openChatButton">Chat</button>
-            }
+
 
         </div>
     </div>
@@ -115,7 +124,7 @@
                         </div>
                         <div class="ProfileExpertImage">
 
-                            <img src="@Url.Content(String.Format("https://lienminhpro.com/images/thongthao/{0}.png", Model.Top3MasteryLevel[0]))"
+                            <img src="@Url.Content(String.Format("~/img/Masteries/{0}.png", Model.Top3MasteryLevel[0]))"
                                  alt="Thông thạo 7" />
                         </div>
                         <h3>@Model.Top3MasteryName[0]</h3><span class="score">
@@ -131,7 +140,7 @@
                             <img src="@Url.Content(String.Format("~/img/MasteryFrame/{0}.png", Model.Top3MasteryLevel[1]))" alt="Thông thạo" />
                         </div>
                         <div class="ProfileExpertImage">
-                            <img src="@Url.Content(String.Format("https://lienminhpro.com/images/thongthao/{0}.png", Model.Top3MasteryLevel[1]))"
+                            <img src="@Url.Content(String.Format("~/img/Masteries/{0}.png", Model.Top3MasteryLevel[1]))"
                                  alt="Thông thạo 7" />
                         </div>
                         <h3>@Model.Top3MasteryName[1]</h3>
@@ -149,7 +158,7 @@
                             <img src="@Url.Content(String.Format("~/img/MasteryFrame/{0}.png", Model.Top3MasteryLevel[2]))" alt="Thông thạo" />
                         </div>
                         <div class="ProfileExpertImage">
-                            <img src="@Url.Content(String.Format("https://lienminhpro.com/images/thongthao/{0}.png", Model.Top3MasteryLevel[2]))"
+                            <img src="@Url.Content(String.Format("~/img/Masteries/{0}.png", Model.Top3MasteryLevel[2]))"
                                  alt="Thông thạo 7" />
                         </div>
                         <h3>@Model.Top3MasteryName[2]</h3><span class="score">
@@ -169,14 +178,14 @@
                 <div class="ProfileListRoles">
                     <div class="ProfileRoleItem">
                         <div class="ProfileImage">
-                            <img src="https://lienminhpro.com/images/roles/jungle.png"
-                                 alt="JUNGLE" />
+                            <img src="@Url.Content(String.Format("~/img/Lane/{0}.png", Model.Lane))"
+                                 alt="Lane" />
                         </div>
                         <div class="ProfileDesc">
-                            <h3>JUNGLE</h3><span class="score">
+                            <h3>@Model.Lane</h3><span class="score">
                                 Win Rate<br>
-                                win @Model.Win<br>
-                                lose @Model.Lose
+                                Win: @Model.Win<br>
+                                Lose: @Model.Lose
                             </span>
                         </div>
                     </div>

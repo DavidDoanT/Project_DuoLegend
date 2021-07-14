@@ -20,6 +20,10 @@ namespace DuoLegend.Controllers
                 return RedirectToAction("RedirectLoginPage", "Account");
             }
             List<int> listUserHaveChat = ChatDAO.getListUserHaveChat(id);
+            if(listUserHaveChat.Count() == 0)
+            {
+                return View(new ChatDashBoardViewModel());
+            }
             Dictionary<int, BoxChatDetail> listLastMessageForSort = new Dictionary<int, BoxChatDetail>();
             foreach (var item in listUserHaveChat)
             {
@@ -44,7 +48,7 @@ namespace DuoLegend.Controllers
             string[] UserOtherInfor = UserDAO.getInGameNameServerById(otherId);
             if (UserSelfInfor is null || UserOtherInfor is null)
             {
-                return NotFound();
+                return RedirectToAction("NotFound","Home");
             }
             model.UserSelfAvatarId = RiotAPI.RiotAPI.GetAccountIdInfor(UserSelfInfor[0], UserSelfInfor[1]).ProfileIconId;
             model.UserOtherAvatarId = RiotAPI.RiotAPI.GetAccountIdInfor(UserOtherInfor[0], UserOtherInfor[1]).ProfileIconId;

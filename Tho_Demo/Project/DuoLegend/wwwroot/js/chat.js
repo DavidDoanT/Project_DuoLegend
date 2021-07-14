@@ -24,9 +24,9 @@ connection.on("ReceiveMessage", function (message, sender) {
         div = Left(div);
     }
     var list = document.getElementById("messagesList");
-    if (list.childNodes.length > 12) {
-        list.removeChild(list.childNodes[4]);
-    }
+    //if (list.childNodes.length > 12) { //them chuc nang xoa tin nhan neu vuot qua so luong ben trang profile
+    //    list.removeChild(list.childNodes[4]);
+    //}
     var objDiv = document.getElementById("messagesList");
     objDiv.scrollTop = objDiv.scrollHeight;
 });
@@ -47,6 +47,12 @@ connection.on("ReceiveNotification", function (inGameName, server, senderId, mes
     }
     receiveMessageFromOtherBox(senderId, messageContent);
     //document.getElementById("listMessageContainer").click()
+});
+
+connection.on("areYouThere", function (sender) {
+    connection.invoke("IAmHere", sender, document.getElementById("userId").value).catch(function (err) {
+        return console.error(err.toString());
+    });
 });
 
 // start realtime (hub) connection between client and server
@@ -102,3 +108,11 @@ function DeleteChat(numberOfElement, ParentId) { //delete chat trong khung chat,
         a.removeChild(a.childNodes[0]);
     }
 }
+
+connection.on("EndOfMessageList", function () {
+    document.getElementById("loadOldMessage").remove();
+});
+
+connection.on("UpdateOnlineStatus", function (sender) {
+    document.getElementById("state" + sender).src = "/img/on.png";
+});

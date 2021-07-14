@@ -133,5 +133,52 @@ namespace DuoLegend.DAO
             DbConnection.Disconnect();
             return LikedList;
         }
+
+        public static List<User> getListUserSortByAvgSkillScore()
+        {
+            List<User> list = new();
+            DbConnection.Connect();
+            DbConnection.Cmd.CommandText = "SELECT [User].userId,[User].inGameName,[User].server," +
+                                            "[User].lane,[User].[Rank],AVG(Cast(skillScore as Float))" +
+                                             " as skillAvg FROM Rating right join [User] on Rating.userId= [User]." +
+                                                "userId GROUP BY [User].userId, [User].inGameName,[User].server,[User].lane," +
+                                                "[User].[Rank] order by skillAvg desc";
+            DbConnection.Dr = DbConnection.Cmd.ExecuteReader();
+            while (DbConnection.Dr.Read())
+            {
+                User user = new();
+                user.UserID = (int)DbConnection.Dr["userId"];
+                user.InGameName = DbConnection.Dr["inGameName"].ToString();
+                user.Server = DbConnection.Dr["server"].ToString();
+                user.Lane = DbConnection.Dr["lane"].ToString();
+                user.Rank = DbConnection.Dr["Rank"].ToString();
+                list.Add(user);
+            }
+            DbConnection.Disconnect();
+            return list;
+        }
+        public static List<User> getListUserSortByAvgBehaviorScore()
+        {
+            List<User> list = new();
+            DbConnection.Connect();
+            DbConnection.Cmd.CommandText = "SELECT [User].userId,[User].inGameName,[User].server,[User].[Rank],[User].lane,AVG(Cast(behaviorScore as Float)) as behaviorAvg" +
+                                            " FROM Rating right join[User] on Rating.userId = [User].userId " +
+                                           " GROUP BY [User].userId, [User].inGameName, [User].server,[User].[Rank],[User].lane " +
+                                           "order by behaviorAvg desc";
+            DbConnection.Dr = DbConnection.Cmd.ExecuteReader();
+            while (DbConnection.Dr.Read())
+            {
+                User user = new();
+                user.UserID = (int)DbConnection.Dr["userId"];
+                user.InGameName = DbConnection.Dr["inGameName"].ToString();
+                user.Server = DbConnection.Dr["server"].ToString();
+                user.Lane = DbConnection.Dr["lane"].ToString();
+                user.Rank = DbConnection.Dr["Rank"].ToString();
+                list.Add(user);
+            }
+            DbConnection.Disconnect();
+            return list;
+        }
     }
+    
 }

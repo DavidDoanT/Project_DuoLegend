@@ -9,19 +9,21 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
     <link href="~/css/UserList.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/Admin.css" />
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>
     <script>
         $(document).ready(function () {
             $.noConflict();
-            $('#example').DataTable({ responsive: true });
+            $('#example').DataTable({
+                responsive: true
+            });
         });
     </script>
-    <link rel="stylesheet" href="~/css/Admin.css" />
 </head>
 
-<body>
+<body style="max-width:99vw">
 
     <!--This is the header bar-->
     <div class="header">
@@ -63,18 +65,18 @@
 
 
     
-    <div class="row" style="height:92vh; width:100vw">
+    <div class="row" style="height:92vh; width:100%">
         <!--Side navigation bar-->
         <div class="col-1 side-nav-bar" style="height:100%; background-color:#0c0b0b">
             <div class="icon-container">
                 <div class="icon-wrapper mb-2">
-                    <a class="bi-house-door text-white icon-content" asp-action="Main"></a>
+                    <a class="bi-house-door text-white icon-content" asp-action="Main" asp-controller="Admin"></a>
                 </div>
                 <div class="icon-wrapper mb-2">
-                    <a class="bi-bar-chart-line text-white icon-content" asp-action="WebsiteStatistic"></a>
+                    <a class="bi-bar-chart-line text-white icon-content" asp-action="WebsiteStatistic" asp-controller="Admin"></a>
                 </div>
                 <div class="icon-wrapper mb-2">
-                    <a class="bi-clipboard text-white icon-content" asp-action="UserList"></a>
+                    <a class="bi-clipboard text-white icon-content" asp-action="UserList" asp-controller="AdminManagement"></a>
                 </div>
             </div>
         </div>

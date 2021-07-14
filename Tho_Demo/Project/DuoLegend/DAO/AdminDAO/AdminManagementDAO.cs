@@ -1,4 +1,5 @@
 using System;
+using System.Data.SqlClient;
 using static DuoLegend.DatabaseConnection.DbConnection;
 
 namespace DuoLegend.DAO.AdminDAO
@@ -15,21 +16,53 @@ namespace DuoLegend.DAO.AdminDAO
         /// <returns>An integer indicating if the insert was successful. (1 = success, 0 = fail)</returns>
         public static int BanUser(int userId, int adminId, DateTime expirationDate, string reason)
         {
-            Connect();
+            int rowsAffected;
+            try
+            {
+                Connect();
 
-            Cmd.CommandText = "INSERT INTO [BannedUser] (userId, adminId, expirationDate, reason) "
-                                + "Values (@userId, @adminId, @expirationDate, @reason) ";
+                Cmd.CommandText = "INSERT INTO [BannedUser] (userId, adminId, expirationDate, reason) "
+                                    + "Values (@userId, @adminId, @expirationDate, @reason) ";
 
-            Cmd.Parameters.AddWithValue("userId", userId);
-            Cmd.Parameters.AddWithValue("adminId", adminId);
-            Cmd.Parameters.AddWithValue("expirationDate", expirationDate);
-            Cmd.Parameters.AddWithValue("reason", reason);
+                Cmd.Parameters.AddWithValue("userId", userId);
+                Cmd.Parameters.AddWithValue("adminId", adminId);
+                Cmd.Parameters.AddWithValue("expirationDate", expirationDate);
+                Cmd.Parameters.AddWithValue("reason", reason);
 
-            int rowsAffected = Cmd.ExecuteNonQuery();
+                rowsAffected = Cmd.ExecuteNonQuery();
 
-            Disconnect();
+            }catch (Exception)
+            {
+                rowsAffected = 0;
+            }
+            finally 
+            { 
+                Disconnect();
+            }
 
             return rowsAffected;
+        }
+
+        public static bool DeleteUser(int userId)
+        {
+            Connect();
+
+            Cmd.CommandText = "UPDATE [User] SET isDeleted=1 WHERE userId=@userId";
+            Cmd.Parameters.AddWithValue("@userId", userId);
+
+            SqlDataReader reader = Cmd.ExecuteReader();
+            if (reader.Read())
+            {
+                reader.Close();
+                Disconnect();
+                return true;
+            }
+            else
+            {
+                reader.Close();
+                Disconnect();
+                return false;
+            }
         }
     }
 }

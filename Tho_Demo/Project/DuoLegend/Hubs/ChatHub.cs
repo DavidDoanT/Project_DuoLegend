@@ -11,6 +11,7 @@ namespace DuoLegend.Hubs
 {
     public class ChatHub : Hub
     {
+        private readonly int MaxNumberOfMessagePerLoad = 7;
         /// <summary>
         /// receive message from client, add to database, and send message to receiver
         /// </summary>
@@ -60,6 +61,39 @@ namespace DuoLegend.Hubs
                     await Clients.Caller.SendAsync("ReceiveMessage", chat.Content, chat.SendFrom.ToString());
                 }              
             }     
+        }
+
+        public async Task LoadOldMessage(string sender, string reciever, int numberOfMessage)
+        {
+            int boxChatId = DAO.ChatDAO.getBoxChatId(Int32.Parse(sender), Int32.Parse(reciever));
+            if (boxChatId != 0)
+            {
+                int numberOfMessageExpected = numberOfMessage + MaxNumberOfMessagePerLoad;
+                await Groups.AddToGroupAsync(Context.ConnectionId, boxChatId.ToString());
+                DAO.ChatDAO.changeSeenState(Int32.Parse(sender), boxChatId); // can nhac bo dong nay
+                List<BoxChatDetail> chatList = DAO.ChatDAO.GetOldMessageById(boxChatId, numberOfMessageExpected);
+                if(numberOfMessageExpected > chatList.Count)
+                {
+                    await Clients.Caller.SendAsync("EndOfMessageList");
+                }
+                foreach (var chat in chatList)
+                {
+                    await Clients.Caller.SendAsync("ReceiveMessage", chat.Content, chat.SendFrom.ToString());
+                }
+            }
+        }
+
+        public async Task SendCheckOnline(string[] userIdArray, string userRequestId)
+        {
+            foreach (var user in userIdArray)
+            {
+                await Clients.Group(user + "notifi").SendAsync("areYouThere", userRequestId);
+            }
+        }
+
+        public async Task IAmHere(string receiver, string sender)
+        {
+            await Clients.Group(receiver + "notifi").SendAsync("UpdateOnlineStatus", sender);
         }
         /// <summary>
         /// Add connection
