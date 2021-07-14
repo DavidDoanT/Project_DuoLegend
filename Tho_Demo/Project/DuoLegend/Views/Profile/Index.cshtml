@@ -124,7 +124,7 @@
                         </div>
                         <div class="ProfileExpertImage">
 
-                            <img src="@Url.Content(String.Format("https://lienminhpro.com/images/thongthao/{0}.png", Model.Top3MasteryLevel[0]))"
+                            <img src="@Url.Content(String.Format("~/img/Masteries/{0}.png", Model.Top3MasteryLevel[0]))"
                                  alt="Thông thạo 7" />
                         </div>
                         <h3>@Model.Top3MasteryName[0]</h3><span class="score">
@@ -140,7 +140,7 @@
                             <img src="@Url.Content(String.Format("~/img/MasteryFrame/{0}.png", Model.Top3MasteryLevel[1]))" alt="Thông thạo" />
                         </div>
                         <div class="ProfileExpertImage">
-                            <img src="@Url.Content(String.Format("https://lienminhpro.com/images/thongthao/{0}.png", Model.Top3MasteryLevel[1]))"
+                            <img src="@Url.Content(String.Format("~/img/Masteries/{0}.png", Model.Top3MasteryLevel[1]))"
                                  alt="Thông thạo 7" />
                         </div>
                         <h3>@Model.Top3MasteryName[1]</h3>
@@ -158,7 +158,7 @@
                             <img src="@Url.Content(String.Format("~/img/MasteryFrame/{0}.png", Model.Top3MasteryLevel[2]))" alt="Thông thạo" />
                         </div>
                         <div class="ProfileExpertImage">
-                            <img src="@Url.Content(String.Format("https://lienminhpro.com/images/thongthao/{0}.png", Model.Top3MasteryLevel[2]))"
+                            <img src="@Url.Content(String.Format("~/img/Masteries/{0}.png", Model.Top3MasteryLevel[2]))"
                                  alt="Thông thạo 7" />
                         </div>
                         <h3>@Model.Top3MasteryName[2]</h3><span class="score">
@@ -178,14 +178,14 @@
                 <div class="ProfileListRoles">
                     <div class="ProfileRoleItem">
                         <div class="ProfileImage">
-                            <img src="https://lienminhpro.com/images/roles/jungle.png"
-                                 alt="JUNGLE" />
+                            <img src="@Url.Content(String.Format("~/img/Lane/{0}.png", Model.Lane))"
+                                 alt="Lane" />
                         </div>
                         <div class="ProfileDesc">
-                            <h3>JUNGLE</h3><span class="score">
+                            <h3>@Model.Lane</h3><span class="score">
                                 Win Rate<br>
-                                win @Model.Win<br>
-                                lose @Model.Lose
+                                Win: @Model.Win<br>
+                                Lose: @Model.Lose
                             </span>
                         </div>
                     </div>
