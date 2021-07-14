@@ -17,17 +17,20 @@ namespace DuoLegend.Middlewares
         public async Task InvokeAsync(HttpContext context)
         {
             string userEmail = context.Session.GetString("email");
-            //Check if a user has established a session
-            if (userEmail != null)
+            if (!context.Request.Path.ToString().Contains("/Home/Deleted"))
             {
-                DateTime? expirationDate = BanInfoDAO.GetBanExpirationDate(userEmail);
-
-                //If expirationDate exist and is in the future redirects the user to Banned Page
-                if (expirationDate != null && DateTime.Compare((DateTime)expirationDate, DateTime.Now) > 0)
+                //Check if a user has established a session
+                if (userEmail != null)
                 {
-                    if (context.Request.Path.Value != "/Home/Banned")
+                    DateTime? expirationDate = BanInfoDAO.GetBanExpirationDate(userEmail);
+
+                    //If expirationDate exist and is in the future redirects the user to Banned Page
+                    if (expirationDate != null && DateTime.Compare((DateTime)expirationDate, DateTime.Now) > 0)
                     {
-                        context.Response.Redirect("/Home/Banned");
+                        if (context.Request.Path.Value != "/Home/Banned")
+                        {
+                            context.Response.Redirect("/Home/Banned");
+                        }
                     }
                 }
             }

@@ -219,7 +219,7 @@ namespace DuoLegend.Controllers
                 {
                     Text = "<h1>Almost done," + emailID + "!</h1><br/>" +
                     "We are excited to tell you that your Duo Legend account is" +
-                    " successfully created. Please click on the link below to verify your account" +
+                    " successfully created. Please click on the link below to verify your account.<br/>" +
                     "<a href='" + link + "' class='btn btn-primary'>VERIFY EMAIL ADDRESS</a>"
                 };
             }
