@@ -21,3 +21,9 @@
 .dataTables_filter {
     color: white;
 }
+
+.disabled {
+    pointer-events: none;
+    cursor: default;
+    opacity:0.65;
+}

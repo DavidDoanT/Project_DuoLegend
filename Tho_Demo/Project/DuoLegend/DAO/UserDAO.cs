@@ -154,7 +154,9 @@ namespace DuoLegend.DAO
 
             conn.Open();
             com.Connection = conn;
-            com.CommandText = "select * from [User] where email = '" + email + "' and password = '" + password + "' ";
+            com.CommandText = "select email, password from [User] where email = @email and password = @password ";
+            com.Parameters.AddWithValue("@email", email);
+            com.Parameters.AddWithValue("@password", password);
             SqlDataReader reader = com.ExecuteReader();
             if (reader.Read())
             {

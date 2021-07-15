@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DuoLegend", "DuoLegend.csproj", "{B5AA91AA-713D-4D0F-8197-31869E65D161}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DuoLegendTesting", "..\DuoLegendTesting\DuoLegendTesting.csproj", "{82BED751-459A-40DB-8083-CF0FC84FB1F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DuoLegendTesting", "..\DuoLegendTesting\DuoLegendTesting.csproj", "{82BED751-459A-40DB-8083-CF0FC84FB1F8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
