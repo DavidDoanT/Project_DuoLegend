@@ -38,6 +38,7 @@ namespace DuoLegend.Controllers
             infor.Lose = rankInfor.Lose;
             infor.Server = server;
             infor.Id = UserDAO.getIdByInGameNameServer(inGameName, server);
+            infor.ListRate = ProfileDAO.getAllRating(infor.Id);
             //get match history
             string[] listMatchId = RiotAPI.RiotAPI.getListMatchIDbyPuuId(UserDAO.getPuuId(infor.SummonerName,infor.Server), Service.ProcessMainPage.getContinent(server));
             if (listMatchId.Length == 0) { ViewBag.hasHistory = false; }
@@ -128,28 +129,7 @@ namespace DuoLegend.Controllers
                 return RedirectToAction("Index", new { inGameName = nameAndServer[0], server = nameAndServer[1] });
             }  
         }
-        public IActionResult LikeUser(int likerId, int userId)
-        {
-            if (ProfileDAO.addLike(likerId, userId)) {
-                ViewBag.delLike = false;
-                string[] nameAndServer = UserDAO.getInGameNameServerById(userId);
-                TempData["delLike"] = false;
-                return RedirectToAction("Index", new { inGameName = nameAndServer[0], server = nameAndServer[1] });
-                //return View("Index");
-            }
-            else
-            {
-                ViewBag.delLike = true;
-                ProfileDAO.deleteLike(likerId,userId);
-                string[] nameAndServer = UserDAO.getInGameNameServerById(userId);
-                TempData["delLike"] = true;
-                return RedirectToAction("Index", new { inGameName = nameAndServer[0], server = nameAndServer[1] });
-                //return View("Index");
-            }
-            
-            //string[] nameAndServer = UserDAO.getInGameNameServerById(userId);
-            //return RedirectToAction("Index", new { inGameName = nameAndServer[0], server = nameAndServer[1] });
-        }
+
         public IActionResult LikedList(int likerId)
         {
             List<User> LikedUsers = ProfileDAO.getLikedList(likerId);

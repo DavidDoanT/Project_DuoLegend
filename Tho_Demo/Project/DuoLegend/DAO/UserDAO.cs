@@ -89,7 +89,7 @@ namespace DuoLegend.DAO
             {
                 return null;
             }
-            conn.ConnectionString = MyConfig.ConnectionString;
+            //conn.ConnectionString = MyConfig.ConnectionString;
 
             conn.Open();
             com.Connection = conn;
