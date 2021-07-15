@@ -4,6 +4,7 @@
 }
 @model IEnumerable<UserListViewModel>
 
+<link href="~/css/UserList.css" rel="stylesheet" />
 <script type="text/javascript">
     var deleteFail = @ViewBag.deleteFail!= null;
     if (deleteFail) {
@@ -33,7 +34,7 @@
                 <th>Facebook</th>
                 <th>Verified</th>
                 <th>Deleted</th>
-                <th>Ban For</th>
+                <th>Banned Until</th>
                 <th></th>
                 <th></th>
             </tr>
@@ -41,7 +42,7 @@
         <tbody>
             @foreach (var user in Model)
             {
-                var now = DateTime.Now.Date;
+                //var now = DateTime.Now.Date;
                 <tr>
                     <th>@user.UserID</th>
                     <td>@user.Email</td>
@@ -65,17 +66,27 @@
                     <td style="text-align:center">
                         @if (user.ExpirationDate == null)
                         {
-                            <span>0 day</span>
+                            <span>Not Banned</span>
                         }
                         else
                         {
-                            var dayBan = (((DateTime)user.ExpirationDate).Date - now).TotalDays;
-                            @dayBan if (dayBan > 1){<span> days</span>} else{ <span> day</span>}
+                            @user.ExpirationDate
+                            @*var dayBan = (((DateTime)user.ExpirationDate).Date - now).TotalDays;
+                            @dayBan if (dayBan > 1){<span> days</span>} else{ <span> day</span>}*@
                         }
                     </td>
                     <td style="text-align:center" width="12%">
-                        <a asp-controller="AdminManagement" asp-action="BanUser" class="btn btn-warning my-button"
-                           asp-route-id="@user.UserID" disabled="@(user.IsDeleted == 1)">Ban User</a>
+                        @if (user.IsDeleted == 1)
+                        {
+                            <a asp-controller="AdminManagement" asp-action="BanUser" class="btn btn-warning disabled"
+                               asp-route-id="@user.UserID">Ban User</a>
+                        }
+                        else
+                        {
+                            <a asp-controller="AdminManagement" asp-action="BanUser" class="btn btn-warning"
+                               asp-route-id="@user.UserID">Ban User</a>
+                        }
+
                     </td>
                     <td style="text-align:center" width="12%">
                         <button class="btn btn-danger delete-button" data-toggle="modal"

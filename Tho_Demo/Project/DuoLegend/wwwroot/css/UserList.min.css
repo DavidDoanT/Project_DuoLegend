@@ -1,1 +1,1 @@
-.my-table{display:inline-block}.success-status{color:#008000;font-size:2rem}.fail-status{color:#f00;font-size:2rem}.delete-button{font-size:1rem}.dataTables_info,.dataTables_length,.dataTables_filter{color:#fff}
+.my-table{display:inline-block}.success-status{color:#008000;font-size:2rem}.fail-status{color:#f00;font-size:2rem}.delete-button{font-size:1rem}.dataTables_info,.dataTables_length,.dataTables_filter{color:#fff}.disabled{pointer-events:none;cursor:default;opacity:.65}

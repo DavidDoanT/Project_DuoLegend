@@ -66,7 +66,7 @@ namespace DuoLegend.Controllers
                     return RedirectToAction("UserList");
                 }
             }
-            return NotFound();
+            return RedirectToAction("error", "Home");
         }
     }
 }

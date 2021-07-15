@@ -6,6 +6,14 @@
     object-fit: cover;
 }
 
+.user-status {
+    vertical-align: middle;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
 .msg-avatar {
     vertical-align: middle;
     width: 40px;
@@ -24,8 +32,11 @@
 
 .list-chat {
     overflow-x: hidden;
-    overflow-y: scroll;
-    height: 90%;
+    height: 85%;
+}
+
+.list-chat:hover{
+    overflow-y:auto;
 }
 
 .selected-user {
@@ -41,7 +52,7 @@
     background-color: #242526;
     overflow-y: auto;
     overflow-x: hidden;
-    height: 76%;
+    height: 83%;
     margin-bottom: 0px;
 }
 
@@ -82,12 +93,12 @@ body {
 
 .person:hover {
     background-color: rgb(255 255 255 / 10%);
-    border-radius: 10%;
+    border-radius: 10px;
 }
 
 .chosen, .chosen:hover {
     background-color: rgba(56, 88, 152, 0.4);
-    border-radius: 10%;
+    border-radius: 10px;
 }
 
 .contact-name {
@@ -99,11 +110,13 @@ body {
 }
 
 .name {
-    font-size: 18px;
+    color: #E4E6EB;
+    font-size: 25px;
     font-family: 'Segoe UI Historic', 'Segoe UI', Helvetica, Arial, sans-serif;
 }
 
 .time {
+    color: #B0B3B8;
     font-size: 15px;
     font-family: 'Segoe UI Historic', 'Segoe UI', Helvetica, Arial, sans-serif;
 }
@@ -113,10 +126,12 @@ body {
     display: inline-block;
     background-color: #3a3b3c;
     border: none;
+    border-radius:50px;
 }
 
 .search-field {
     background-color: #3a3b3c;
+    border-radius: 50px;
 }
 
 p {
@@ -127,6 +142,13 @@ p {
     background: none;
     border: none;
     padding: 0;
+}
+
+.left-area {
+    border-right-style: solid;
+    border-right-color: #393a3b;
+    border-right-width: thin;
+    height: 100%;
 }
 
 /* .send-button:hover {
