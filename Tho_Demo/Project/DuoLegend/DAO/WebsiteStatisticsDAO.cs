@@ -23,13 +23,13 @@ namespace DuoLegend.DAO
 
             DbConnection.Connect();
             DbConnection.Cmd.CommandText = "SELECT [date], siteVisit, uniqueVisitor, newAccount "
-                                            +"FROM WebsiteStatistics "
-                                            +"WHERE [date] = @today";
+                                            + "FROM WebsiteStatistics "
+                                            + "WHERE [date] = @today";
             DbConnection.Cmd.Parameters.AddWithValue("today", _today);
 
             DbConnection.Dr = DbConnection.Cmd.ExecuteReader();
 
-            if(DbConnection.Dr.Read())
+            if (DbConnection.Dr.Read())
             {
                 WebsiteStatistics todayStatistic = new WebsiteStatistics();
                 todayStatistic.Date = DateTime.Parse(DbConnection.Dr["date"].ToString());
@@ -70,8 +70,8 @@ namespace DuoLegend.DAO
         private static void Increment(string field)
         {
             string sqlQuery = "UPDATE WebsiteStatistics "
-                                +"SET " + field + " = " + field + " + 1 "
-                                +"WHERE [date] = @today";
+                                + "SET " + field + " = " + field + " + 1 "
+                                + "WHERE [date] = @today";
             _today = DateTime.Now.Date;
 
             DbConnection.Connect();
@@ -103,7 +103,7 @@ namespace DuoLegend.DAO
         /// </summary>
         public static void IncrementSiteVisit()
         {
-            Increment("siteVisit");                                
+            Increment("siteVisit");
         }
 
         /// <summary>
@@ -116,11 +116,11 @@ namespace DuoLegend.DAO
 
             DbConnection.Connect();
             DbConnection.Cmd.CommandText = "SELECT [date], siteVisit, uniqueVisitor, newAccount "
-                                            +"FROM WebsiteStatistics";
-            
+                                            + "FROM WebsiteStatistics";
+
             DbConnection.Dr = DbConnection.Cmd.ExecuteReader();
 
-            while(DbConnection.Dr.Read())
+            while (DbConnection.Dr.Read())
             {
                 WebsiteStatistics stats = new WebsiteStatistics();
 
@@ -143,8 +143,8 @@ namespace DuoLegend.DAO
         public static IList<WebsiteStatistics> GetRecords(int numberOfRecord)
         {
             string sqlQuery = "SELECT TOP(@numberOfRecord) [date], siteVisit, uniqueVisitor, newAccount "
-                            +"FROM WebsiteStatistics "
-                            +"ORDER BY [date] DESC";
+                            + "FROM WebsiteStatistics "
+                            + "ORDER BY [date] DESC";
             IList<WebsiteStatistics> webStats = new List<WebsiteStatistics>();
 
             DbConnection.Connect();
@@ -154,7 +154,7 @@ namespace DuoLegend.DAO
             DbConnection.Dr = DbConnection.Cmd.ExecuteReader();
 
             //Create list of records
-            while(DbConnection.Dr.Read())
+            while (DbConnection.Dr.Read())
             {
                 WebsiteStatistics stats = new WebsiteStatistics();
 
@@ -167,7 +167,7 @@ namespace DuoLegend.DAO
             }
             DbConnection.Disconnect();
             webStats = webStats.Reverse().ToList();
-            
+
             return webStats;
         }
 
@@ -178,30 +178,39 @@ namespace DuoLegend.DAO
         /// <returns></returns>
         private static IList<WebsiteStatistics> GetRecords(string interval)
         {
-            string sqlQuery = "SELECT MIN([date]), " 
-                                    +"SUM(uniqueVisitor), "
-                                    +"SUM(siteVisit), "
-                                    +"SUM(newAccount) "
-                                +"FROM WebsiteStatistics "
-                                +"GROUP BY DATEPART(" + interval +",[date])";
             IList<WebsiteStatistics> webStats = new List<WebsiteStatistics>();
-
-            DbConnection.Connect();
-            DbConnection.Cmd.CommandText = sqlQuery;
-            DbConnection.Dr = DbConnection.Cmd.ExecuteReader();
-
-            while(DbConnection.Dr.Read())
+            try
             {
-                WebsiteStatistics stat = new WebsiteStatistics();
-                stat.Date = DbConnection.Dr.GetDateTime(0);
-                stat.UniqueVisitor = DbConnection.Dr.GetInt32(1);
-                stat.SiteVisit = DbConnection.Dr.GetInt32(2);
-                stat.NewAccount = DbConnection.Dr.GetInt32(3);
+                string sqlQuery = "SELECT MIN([date]), "
+                                        + "SUM(uniqueVisitor), "
+                                        + "SUM(siteVisit), "
+                                        + "SUM(newAccount) "
+                                    + "FROM WebsiteStatistics "
+                                    + "GROUP BY DATEPART(" + interval + ",[date])";
 
-                webStats.Add(stat);
+                DbConnection.Connect();
+                DbConnection.Cmd.CommandText = sqlQuery;
+                DbConnection.Dr = DbConnection.Cmd.ExecuteReader();
+
+                while (DbConnection.Dr.Read())
+                {
+                    WebsiteStatistics stat = new WebsiteStatistics();
+                    stat.Date = DbConnection.Dr.GetDateTime(0);
+                    stat.UniqueVisitor = DbConnection.Dr.GetInt32(1);
+                    stat.SiteVisit = DbConnection.Dr.GetInt32(2);
+                    stat.NewAccount = DbConnection.Dr.GetInt32(3);
+
+                    webStats.Add(stat);
+                }
             }
-
-            DbConnection.Disconnect();
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            finally
+            {
+                DbConnection.Disconnect();
+            }
 
             return webStats;
         }
@@ -226,12 +235,12 @@ namespace DuoLegend.DAO
 
             DbConnection.Connect();
             DbConnection.Cmd.CommandText = "SELECT [date] FROM WebsiteStatistics "
-                                            +"WHERE [date] = @today";
+                                            + "WHERE [date] = @today";
             DbConnection.Cmd.Parameters.AddWithValue("today", _today);
 
             DbConnection.Dr = DbConnection.Cmd.ExecuteReader();
 
-            if(DbConnection.Dr.Read())
+            if (DbConnection.Dr.Read())
             {
                 DbConnection.Disconnect();
                 return true;

@@ -60,6 +60,7 @@ namespace DuoLegend
             app.UseCheckBannedUserMiddleware();     //Middleware to restrict banned users access
             app.UseCheckDeletedUserMiddleware();    //Middleware to restrict deleted users access
             app.UseUpdateRankMiddlware();
+            app.UseAuthenticationMiddleware();      //Middleware to restrict access for non-admin members
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
