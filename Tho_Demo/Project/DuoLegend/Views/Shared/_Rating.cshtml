@@ -51,7 +51,7 @@
     <div class="modal-content">
         <!--Đây là cái cục header của modal(popup)-->
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalTitle"></h5>
+            <h5 class="modal-title" id="exampleModalTitle">How would you rate this PLAYER?</h5>
             <button type="button" class="close" data-dismiss="modal">
                 <!--%times; là character entity cho dấu "x" (hay còn gọi là cái cục đóng bên góc phải phía trên cùng ấy)-->
                 <span>&times;</span>
@@ -59,9 +59,9 @@
         </div>
         <!--Đây là phần body của modal-->
         <!--Đây sẽ là phần mình để những ngôi sao để cho người ta click vào-->
-        <div class="modal-body" id="Rate">
+        <div class="modal-body" id="Rate" style="flex: 0 1 auto;">
 
-            <h1>How would you rate this PLAYER?</h1>
+
             <form asp-action="RateUser" asp-controller="Profile" method="POST" id="Form">
 
                 <input type="number" name="RaterId" @*asp-for="@Model.rating.RaterId"*@ value="@ViewData["sender"]" hidden>
