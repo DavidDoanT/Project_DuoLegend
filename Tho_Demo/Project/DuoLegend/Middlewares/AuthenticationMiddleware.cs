@@ -22,7 +22,7 @@ namespace DuoLegend.Middlewares
                     //Check if a user has authentication required to access admin site
                     if(httpContext.Session.GetInt32(SessionKeys.Keys.AdminId) == null)
                     {
-                        httpContext.Response.Redirect("Not Found"); //Redirect to not found page
+                        httpContext.Response.Redirect("/Home/error"); //Redirect to not found page
                     }
                 }
             }
