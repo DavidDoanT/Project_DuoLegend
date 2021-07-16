@@ -10,7 +10,7 @@ namespace DuoLegend.DatabaseConnection
         private static SqlCommand _cmd = new SqlCommand();
         private static SqlDataReader _dr;
 
-        public static SqlCommand Cmd { get => _cmd;}
+        public static SqlCommand Cmd { get => _cmd; }
         public static SqlDataReader Dr { get => _dr; set => _dr = value; }
 
         /// <summary>
@@ -18,10 +18,15 @@ namespace DuoLegend.DatabaseConnection
         /// </summary>
         public static void Connect()
         {
-            _conn.ConnectionString = MyConfig.ConnectionString;
-            _conn.Open();
-
-            Cmd.Connection = _conn;
+            if (_conn.State == System.Data.ConnectionState.Closed)
+            {
+                _conn.ConnectionString = MyConfig.ConnectionString;
+                _conn.Open();
+            }
+            if (Cmd.Connection == null)
+            {
+                Cmd.Connection = _conn;
+            }
         }
 
         /// <summary>
@@ -32,12 +37,15 @@ namespace DuoLegend.DatabaseConnection
         {
             Cmd.Parameters.Clear();
 
-            if(Dr != null)
+            if (Dr != null)
             {
                 Dr.Close();
             }
 
-            _conn.Close();
+            if (_conn.State != System.Data.ConnectionState.Closed)
+            {
+                _conn.Close(); 
+            }
         }
     }
 }

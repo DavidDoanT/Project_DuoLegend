@@ -1,4 +1,4 @@
-USE [no_data_DuoDatabase_version-1.3.5]
+USE [no_data_DuoDatabase_version-1.3.7]
 GO
 
 DECLARE @Dt datetime
@@ -12,7 +12,7 @@ DECLARE @f int
 DECLARE @x int
 
 SELECT @Dt = '2021-01-14'
-SELECT @Dt2 = '2021-07-06'
+SELECT @Dt2 = '2021-07-15'
 SELECT @a = 0.06	
 SELECT @b = 1	
 SELECT @c = 0.04
