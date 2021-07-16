@@ -63,7 +63,12 @@ namespace DuoLegend.Controllers
             else { TempData["delLike"] = true; }
             return View("Index",infor);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="inGameName"></param>
+        /// <param name="server"></param>
+        /// <returns></returns>
         public IActionResult ViewChat(string inGameName, string server)
         {
             ViewBag.viewChat = true;
@@ -78,6 +83,7 @@ namespace DuoLegend.Controllers
         /// <returns></returns>
         public IActionResult UpdateUser(User userIn)
         {
+           
             //check if the new in game name is valid
             if (!RiotAPI.RiotAPI.isRealInGameName(userIn.InGameName, userIn.Server))
             {
@@ -88,7 +94,7 @@ namespace DuoLegend.Controllers
             {
                 if (UserDAO.Update(userIn, HttpContext.Session.GetString("email")))
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Profile", new {inGameName = userIn.InGameName, server = userIn.Server});
                 } 
                 else
                 {
@@ -113,6 +119,11 @@ namespace DuoLegend.Controllers
             var userInfo = UserDAO.getUserByEmail(emailuser);
             return View("Update",userInfo);
         }
+        /// <summary>
+        /// Rate user
+        /// </summary>
+        /// <param name="r"></param>
+        /// <returns>Redirect to profile</returns>
         [HttpPost]
         public IActionResult RateUser([Bind("RaterId,UserId,SkillScore,BehaviorScore,Comment")] Rating r)
         {
@@ -128,28 +139,12 @@ namespace DuoLegend.Controllers
                 return RedirectToAction("Index", new { inGameName = nameAndServer[0], server = nameAndServer[1] });
             }  
         }
-        public IActionResult LikeUser(int likerId, int userId)
-        {
-            if (ProfileDAO.addLike(likerId, userId)) {
-                ViewBag.delLike = false;
-                string[] nameAndServer = UserDAO.getInGameNameServerById(userId);
-                TempData["delLike"] = false;
-                return RedirectToAction("Index", new { inGameName = nameAndServer[0], server = nameAndServer[1] });
-                //return View("Index");
-            }
-            else
-            {
-                ViewBag.delLike = true;
-                ProfileDAO.deleteLike(likerId,userId);
-                string[] nameAndServer = UserDAO.getInGameNameServerById(userId);
-                TempData["delLike"] = true;
-                return RedirectToAction("Index", new { inGameName = nameAndServer[0], server = nameAndServer[1] });
-                //return View("Index");
-            }
-            
-            //string[] nameAndServer = UserDAO.getInGameNameServerById(userId);
-            //return RedirectToAction("Index", new { inGameName = nameAndServer[0], server = nameAndServer[1] });
-        }
+
+        /// <summary>
+        /// View Liked List
+        /// </summary>
+        /// <param name="likerId"></param>
+        /// <returns>Return view Liked List</returns>
         public IActionResult LikedList(int likerId)
         {
             List<User> LikedUsers = ProfileDAO.getLikedList(likerId);
