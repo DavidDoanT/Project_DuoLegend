@@ -38,6 +38,7 @@ namespace DuoLegend.Controllers
             infor.Lose = rankInfor.Lose;
             infor.Server = server;
             infor.Id = UserDAO.getIdByInGameNameServer(inGameName, server);
+            infor.ListRate = ProfileDAO.getAllRating(infor.Id);
             //get match history
             string[] listMatchId = RiotAPI.RiotAPI.getListMatchIDbyPuuId(UserDAO.getPuuId(infor.SummonerName,infor.Server), Service.ProcessMainPage.getContinent(server));
             if (listMatchId.Length == 0) { ViewBag.hasHistory = false; }
@@ -140,11 +141,6 @@ namespace DuoLegend.Controllers
             }  
         }
 
-        /// <summary>
-        /// View Liked List
-        /// </summary>
-        /// <param name="likerId"></param>
-        /// <returns>Return view Liked List</returns>
         public IActionResult LikedList(int likerId)
         {
             List<User> LikedUsers = ProfileDAO.getLikedList(likerId);

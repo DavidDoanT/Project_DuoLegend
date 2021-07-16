@@ -50,13 +50,13 @@ namespace DuoLegendTesting
         {
             int expect = 0;
             int result = AdminManagementDAO.BanUser(userId, adminId, expirationDate, reason);
-            Assert.AreEqual(result,expect);
+            Assert.AreEqual(result, expect);
             //Assert.Throws<System.Data.SqlClient.SqlException>(() => AdminManagementDAO.BanUser(userId, adminId, expirationDate, reason));
         }
 
         [Test, Order(3)]
         [TestCase("2021-05-30")]
-        public void TestBanInfoSuccess(DateTime? expect)
+        public void TestBanExpirationDateSuccess(DateTime? expect)
         {
             DateTime? result = BanInfoDAO.GetBanExpirationDate(_email);
             Assert.AreEqual(result, expect);
@@ -65,10 +65,12 @@ namespace DuoLegendTesting
         [TestCase("2021-05-31")]
         [TestCase("20224")]
         [TestCase("2021-01-11")]
-        public void TestBanInfoFail(Object expect)
+        public void TestBanExpirationDateFail(Object expect)
         {
             var result = BanInfoDAO.GetBanExpirationDate(_email);
             Assert.AreNotEqual(result, expect);
         }
+
+       
     }
 }
