@@ -8,8 +8,7 @@ namespace DuoLegend.Service
         public static string gameDuration(long time)
         {
             TimeSpan t = TimeSpan.FromMilliseconds(time);
-            string gameTime = string.Format("{0:D1}h:{1:D2}m:{2:D2}s",
-                         t.Hours,
+            string gameTime = string.Format("{0:D2}m:{1:D2}s",
                          t.Minutes,
                          t.Seconds
                          );
