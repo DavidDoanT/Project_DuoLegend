@@ -12,6 +12,11 @@ namespace DuoLegend.Controllers
 {
     public class ChatController : Controller
     {
+        /// <summary>
+        /// Process chat dash board
+        /// </summary>
+        /// <param name="otherId"></param>
+        /// <returns>View chat dash board</returns>
         public IActionResult ChatDashBoard(int otherId)
         {
             int id = HttpContext.Session.GetInt32("id") ?? default; //get current user's id

@@ -54,7 +54,6 @@
                 //nut rating
                 @if (@Context.Session.GetString("inGameName").Equals(Model.SummonerName) && @Context.Session.GetString("server").Equals(Model.Server))
                 {
-                    <button onclick="swal('Error!','You can not rate yourself','error');">Rate</button>
                 }
                 else if (ViewBag.ratingCondition == false)
                 {
@@ -64,13 +63,17 @@
                 {
                     <button data-toggle="modal" data-target="#Rating">Rate</button>
                 }
-                @if (TempData["delLike"] is false)
+                @if (Model.Id != Context.Session.GetInt32("id"))
                 {
-                    <button id="likeButton">Unlike</button> }
-                else
-                {
-                    <button id="likeButton">Like</button>
+                    @if (TempData["delLike"] is false)
+                    {
+                        <button id="likeButton">Unlike</button> }
+                    else
+                    {
+                        <button id="likeButton">Like</button>
+                    }
                 }
+
                 @if (Model.Id != Context.Session.GetInt32("id"))
                 {
                     <button data-toggle="modal" data-target="#example" id="openChatButton">Chat</button>
@@ -174,7 +177,7 @@
         @* vai trò chính của player *@
         <div class="ProfileMainRoleStats">
             <h2 class="Profile_title__1H79G">Main role</h2>
-            <div>
+            <div style="margin:auto">
                 <div class="ProfileListRoles">
                     <div class="ProfileRoleItem">
                         <div class="ProfileImage">
@@ -201,7 +204,7 @@
         <div class="ProfileReview">
             <h2 class="Profile_title__1H79G">Rating</h2>
             <div class="ProfileListReview">
-                @if (Model.ListRate != null)
+                @if (Model.ListRate.Count!=0)
                 {
                     @foreach (var item in Model.ListRate)
                     {
@@ -249,7 +252,15 @@
                             </div>
                         </div>
                     }
-                }
+
+
+
+            }
+            else
+            {
+                <h3 style="color:white;text-align:center" >No rating for this user </h3>
+            }
+
 
             </div>
         </div>
