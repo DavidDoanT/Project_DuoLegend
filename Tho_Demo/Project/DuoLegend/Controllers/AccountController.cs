@@ -149,7 +149,7 @@ namespace DuoLegend.Controllers
         {
             if (string.IsNullOrWhiteSpace(code))
             {
-                return NotFound();
+                return RedirectToAction("error", "Home");
             }
             else
             {
@@ -161,7 +161,7 @@ namespace DuoLegend.Controllers
                 }
                 else
                 {
-                    return NotFound();
+                    return RedirectToAction("error", "Home");
                 }
             }
         }
@@ -177,7 +177,7 @@ namespace DuoLegend.Controllers
                     DAO.UserDAO.resetPassword(model.ResetCode, model.NewPassword);
                     return View("ResetPasswordConfirmation");
                 }
-                return NotFound();
+                return RedirectToAction("error", "Home");
             }
             return View(model);
         }
@@ -189,7 +189,7 @@ namespace DuoLegend.Controllers
                 DAO.UserDAO.verifyAccount(code);
                 return View("VerifyConfirmation");
             }
-            return NotFound();
+            return RedirectToAction("error", "Home");
         }
 
         public IActionResult ResendVerification(string email)
