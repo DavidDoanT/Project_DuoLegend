@@ -52,10 +52,10 @@ namespace DuoLegend.DAO
         /// </summary>
         /// <param name="userId">The user's id</param>
         /// <returns>BanInfo</returns>
-        public static BanInfo GetBanInfo(string userId)
+        public static BanInfo GetBanInfo(int userId)
         {
             BanInfo banInfo = new BanInfo();
-
+            
             try
             {
                 DbConnection.Connect();
