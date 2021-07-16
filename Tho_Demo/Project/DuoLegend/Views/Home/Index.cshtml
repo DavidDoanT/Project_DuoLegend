@@ -85,23 +85,23 @@
                     <center><h3>Choose duo's lane</h3></center>
                     <div class="btn-group btn-group-toggle" data-toggle="buttons">
                         <label class="btn btn-secondary btn-sm" title="Top lane">
-                            <img src="~/img/Top_icon.png">
+                            <img src="~/img/Lane/Top.png">
                             <input type="radio"  id="option1" value="Top" asp-for="search.Lane" checked>
                         </label>
                         <label class="btn btn-secondary btn-sm" title="Jungle lane">
-                            <img src="~/img/Jung_icon.png">
+                            <img src="~/img/Lane/Jungle.png">
                             <input type="radio" id="option2" value="Jung" asp-for="search.Lane" >
                         </label>
                         <label class="btn btn-secondary btn-sm" title="Mid lane">
-                            <img src="~/img/Mid_icon.png">
+                            <img src="~/img/Lane/Mid.png">
                             <input type="radio"  id="option3" value="Mid" asp-for="search.Lane" >
                         </label>
                         <label class="btn btn-secondary btn-sm" title="Bottom lane">
-                            <img src="~/img/Bot_icon.png">
+                            <img src="~/img/Lane/ADC.png">
                             <input type="radio"  id="option1" value="ADC" asp-for="search.Lane" >
                         </label>
                         <label class="btn btn-secondary btn-sm" title="Support lane">
-                            <img src="~/img/Sup_icon.png">
+                            <img src="~/img/Lane/Support.png">
                             <input type="radio"  id="option2" value="Support" asp-for="search.Lane" >
                         </label>
                     </div>
@@ -118,39 +118,39 @@
                     <center><h3>Choose duo's rank</h3></center>
                     <div class="btn-group btn-group-toggle" data-toggle="buttons">
                         <label class="btn btn-secondary btn-sm" title="Iron">
-                            <img src="~/img/ironIcon.png">
+                            <img src="~/img/Rank/ironIcon.png">
                             <input type="radio"  id="option1" value="IRON" asp-for="search.Rank" checked>
                         </label>
                         <label class="btn btn-secondary btn-sm" title="Bronze">
-                            <img src="~/img/bronzeIcon.png">
+                            <img src="~/img/Rank/bronzeIcon.png">
                             <input type="radio"  id="option2" value="BRONZE" asp-for="search.Rank">
                         </label>
                         <label class="btn btn-secondary btn-sm" title="Silver">
-                            <img src="~/img/silverIcon.png">
+                            <img src="~/img/Rank/silverIcon.png">
                             <input type="radio"  id="option3" value="SILVER" asp-for="search.Rank">
                         </label>
                         <label class="btn btn-secondary btn-sm" title="Gold">
-                            <img src="~/img/goldIcon.png">
+                            <img src="~/img/Rank/goldIcon.png">
                             <input type="radio"  id="option1" value="GOLD" asp-for="search.Rank">
                         </label>
                         <label class="btn btn-secondary btn-sm" title="Platinum">
-                            <img src="~/img/platinumIcon.png">
+                            <img src="~/img/Rank/platinumIcon.png">
                             <input type="radio"  id="option2" value="PLATINUM" asp-for="search.Rank">
                         </label>
                         <label class="btn btn-secondary btn-sm" title="Diamond">
-                            <img src="~/img/diamondIcon.png">
+                            <img src="~/img/Rank/diamondIcon.png">
                             <input type="radio"  id="option3" value="DIAMOND" asp-for="search.Rank">
                         </label>
                         <label class="btn btn-secondary btn-sm" title="Master">
-                            <img src="~/img/masterIcon.png">
+                            <img src="~/img/Rank/masterIcon.png">
                             <input type="radio"  id="option3" value="MASTER" asp-for="search.Rank">
                         </label>
                         <label class="btn btn-secondary btn-sm" title="Grand Master">
-                            <img src="~/img/grandMasterIcon.png">
+                            <img src="~/img/Rank/grandMasterIcon.png">
                             <input type="radio"  id="option3" value="GRANDMASTER"  asp-for="search.Rank">
                         </label>
                         <label class="btn btn-secondary btn-sm" title="Challenger">
-                            <img src="~/img/challengerIcon.png">
+                            <img src="~/img/Rank/challengerIcon.png">
                             <input type="radio"  id="option3" value="CHALLENGER" asp-for="search.Rank">
                         </label>
                     </div>
@@ -237,7 +237,7 @@
                     break;
                 }
                 <tr>
-                    <td><a asp-controller="Profile" asp-action="Index" asp-route-inGameName="@Model.InGameName[i]" asp-route-server="@Model.Server[i]">@Model.InGameName[i]</a></td>
+                    <td class="ingame-name"><a asp-controller="Profile" asp-action="Index" asp-route-inGameName="@Model.InGameName[i]" asp-route-server="@Model.Server[i]">@Model.InGameName[i]</a></td>
                     <td>
                         @{
                             switch (@Model.Lane[i])

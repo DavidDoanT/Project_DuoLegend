@@ -107,7 +107,6 @@ span {
 }
 
 .modal-footer {
-    padding-top: 10%;
     background: rgb(22,24,81);
     background: linear-gradient(180deg, rgba(22,24,81,1) 0%, rgba(76,112,156,1) 100%);
     border-radius: 0 0 20px 20px;
@@ -154,4 +153,7 @@ h1 {
 
 label {
     color: white;
+}
+.modal-body {
+    flex: 1 1 auto;
 }
