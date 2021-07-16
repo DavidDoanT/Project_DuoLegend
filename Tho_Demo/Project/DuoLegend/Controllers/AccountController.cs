@@ -121,13 +121,21 @@ namespace DuoLegend.Controllers
             else return View();
 
         }
-
+        /// <summary>
+        /// Redirect to View
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult ForgotPassword()
         {
             return View();
         }
 
+        /// <summary>
+        /// Send email to user
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns>View ForgotPasswordConfirmation </returns>
         [HttpPost]
         public IActionResult ForgotPassword(ForgotPasswordViewModel model)
         {
@@ -145,6 +153,11 @@ namespace DuoLegend.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Redirect to view for new password
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
         public IActionResult ResetPassword(string code)
         {
             if (string.IsNullOrWhiteSpace(code))

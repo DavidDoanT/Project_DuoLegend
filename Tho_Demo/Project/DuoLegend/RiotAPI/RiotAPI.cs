@@ -431,6 +431,7 @@ namespace DuoLegend.RiotAPI
                     UserDAO.addSpell(spellID, spellName, iconpath);
                 }
             }
+            UserDAO.addSpell(54, "Summoner_UltBook_Placeholder", "img/Spells/Summoner_UltBook_Placeholder.png");
         }
         public static void setRuneInfo()
         {
