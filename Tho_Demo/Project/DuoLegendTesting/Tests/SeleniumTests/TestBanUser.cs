@@ -12,7 +12,7 @@ using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium.Interactions;
 using NUnit.Framework;
 [TestFixture]
-public class TestTest {
+public class TestBanTest {
   private IWebDriver driver;
   public IDictionary<string, object> vars {get; private set;}
   private IJavaScriptExecutor js;
@@ -27,7 +27,7 @@ public class TestTest {
     driver.Quit();
   }
   [Test]
-  public void test() {
+  public void testBan() {
     driver.Navigate().GoToUrl("https://localhost:44316/admin/login");
     driver.Manage().Window.Size = new System.Drawing.Size(1420, 620);
     driver.FindElement(By.Id("Email")).Click();
@@ -35,34 +35,21 @@ public class TestTest {
     driver.FindElement(By.CssSelector(".h-100")).Click();
     driver.FindElement(By.Id("AdminPassword")).Click();
     driver.FindElement(By.Id("AdminPassword")).SendKeys("test");
-    driver.FindElement(By.CssSelector(".btn")).Click();
+    driver.FindElement(By.Id("AdminPassword")).SendKeys(Keys.Enter);
     driver.FindElement(By.CssSelector(".bi-clipboard")).Click();
-    driver.FindElement(By.CssSelector(".even:nth-child(2) .btn-danger")).Click();
-    driver.FindElement(By.CssSelector("#delete2 .btn-danger")).Click();
+    driver.FindElement(By.CssSelector(".even:nth-child(2) .btn-warning")).Click();
+    driver.FindElement(By.Name("daysToBan")).Click();
+    driver.FindElement(By.Name("daysToBan")).SendKeys("14");
+    driver.FindElement(By.Name("reason")).Click();
+    driver.FindElement(By.Name("reason")).SendKeys("test ban");
+    driver.FindElement(By.CssSelector(".btn")).Click();
     driver.Navigate().GoToUrl("https://localhost:44316/Account/RedirectLoginPage");
     driver.FindElement(By.Id("email")).Click();
     driver.FindElement(By.Id("email")).SendKeys("tieuanhtho@gmail.com");
     driver.FindElement(By.Id("id_password")).Click();
-    driver.FindElement(By.Id("id_password")).SendKeys("test123456");
-    driver.FindElement(By.CssSelector(".button")).Click();
-    {
-      var element = driver.FindElement(By.CssSelector("h1"));
-      Actions builder = new Actions(driver);
-      builder.MoveToElement(element).ClickAndHold().Perform();
-    }
-    {
-      var element = driver.FindElement(By.CssSelector("h1"));
-      Actions builder = new Actions(driver);
-      builder.MoveToElement(element).Perform();
-    }
-    {
-      var element = driver.FindElement(By.CssSelector("h1"));
-      Actions builder = new Actions(driver);
-      builder.MoveToElement(element).Release().Perform();
-    }
+    driver.FindElement(By.Id("id_password")).SendKeys("12345678");
+    driver.FindElement(By.Id("id_password")).SendKeys(Keys.Enter);
     driver.FindElement(By.CssSelector("h1")).Click();
-    driver.FindElement(By.CssSelector("h1")).Click();
-    Assert.That(driver.FindElement(By.CssSelector("h1")).Text, Is.EqualTo("You have been banished to the shadow realm until\\\\nTHE WHOLE LIFE"));
-    driver.Close();
+    Assert.That(driver.FindElement(By.CssSelector("h1")).Text, Is.EqualTo("You have been banished to the shadow realm until\\\\n30/07/2021"));
   }
 }
