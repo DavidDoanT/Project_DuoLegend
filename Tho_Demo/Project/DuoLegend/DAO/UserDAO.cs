@@ -716,17 +716,13 @@ namespace DuoLegend.DAO
 
             conn.Open();
             com.Connection = conn;
-
-            com.CommandText = "SELECT [User].userId,[User].email,[User].inGameName,[User].server,[User].facebookLink,[User].isVerified,[User].isDeleted,[BannedUser].expirationDate" +
-                               " FROM [User] LEFT JOIN [BannedUser]" +
-                               " ON [User].userId = [BannedUser].userId" +
-                               " ORDER BY [BannedUser].banId DESC";
+            com.CommandText = "SELECT [User].userId,[User].email,[User].inGameName,[User].server,[User].facebookLink,[User].isVerified,[User].isDeleted" +
+                               " FROM [User]";
             SqlDataReader reader = com.ExecuteReader();
             UserListViewModel user;
             while (reader.Read())
             {
                 user = new UserListViewModel();
-                DateTime result;
                 user.UserID = (int)reader["userId"];
                 user.Email = reader["email"].ToString();
                 user.InGameName = reader["inGameName"].ToString();
@@ -734,11 +730,7 @@ namespace DuoLegend.DAO
                 user.FacebookLink = reader["facebookLink"].ToString();
                 user.IsVerified = (byte)reader["isVerified"];
                 user.IsDeleted = (byte)reader["isDeleted"];
-                if (DateTime.TryParseExact(s: reader["expirationDate"].ToString(), format: "M/dd/yyyy hh:mm:ss tt", 
-                    provider: CultureInfo.InvariantCulture, style: 0, out result)) 
-                {
-                    user.ExpirationDate = result;
-                }
+                user.ExpirationDate = DAO.BanInfoDAO.GetBanExpirationDate(reader["email"].ToString());
                 userList.Add(user);
             }
             conn.Close();
