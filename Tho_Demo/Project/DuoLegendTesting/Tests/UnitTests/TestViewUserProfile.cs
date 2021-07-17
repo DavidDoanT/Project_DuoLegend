@@ -33,8 +33,6 @@ namespace DuoLegendTesting.Tests.UnitTests
         [TestCase("nikefullset", "KR", "https://www.facebook.com/duykhang.dk/")]
         [TestCase("nikefullset", "JP1", null)]
         [TestCase("wrongIngameName", "KR", null)]
-        [TestCase(null, "KR", null)]
-        [TestCase(null, null, null)]
         public void TestGetFacebookLink(string inGameName, string server, string expResult)
         {
             string result = DuoLegend.DAO.UserDAO.getFacebookLink(inGameName, server);
@@ -45,8 +43,6 @@ namespace DuoLegendTesting.Tests.UnitTests
         [TestCase("nikefullset", "KR", "Top")]
         [TestCase("nikefullset", "JP1", null)]
         [TestCase("wrongIngameName", "KR", null)]
-        [TestCase(null, "KR", null)]
-        [TestCase(null, null, null)]
         public void TestGetLane(string inGameName, string server, string expResult)
         {
             string result = DuoLegend.DAO.UserDAO.getLane(inGameName, server);
@@ -57,8 +53,6 @@ namespace DuoLegendTesting.Tests.UnitTests
         [TestCase("nikefullset", "KR", 20)]
         [TestCase("nikefullset", "JP1", 0)]
         [TestCase("wrongIngameName", "KR", 0)]
-        [TestCase(null, "KR", 0)]
-        [TestCase(null, null, 0)]
         public void TestGetIdByInGameNameServer(string inGameName, string server, int expResult)
         {
             int result = DuoLegend.DAO.UserDAO.getIdByInGameNameServer(inGameName, server);
@@ -69,7 +63,6 @@ namespace DuoLegendTesting.Tests.UnitTests
         [TestCase("nikefullset", "KR", "WenDnr8N_l9dqctKGzEIDjeJCIn4avhXDH3su9fJF3ZuwQzAzZlySz_r-yAfsINIf1vh6S9QlxZcYA")]
         [TestCase("nikefullset", "JP1", null)]
         [TestCase("wrongIngameName", "KR", null)]
-        [TestCase(null, "KR", null)]
         public void TestGetPuuId(string inGameName, string server, string expResult)
         {
             string result = DuoLegend.DAO.UserDAO.getPuuId(inGameName, server);
