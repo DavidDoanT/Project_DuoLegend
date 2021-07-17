@@ -37,11 +37,11 @@
             {
                 @if (Model.FacebookLink is null || Model.FacebookLink == "")
                 {
-                    <a class="bi bi-facebook " onclick="swal('Error!','This user does not have Facebook link','error');" style="color: dodgerblue; font-size: 1.5rem;"> </a>
+                    <a class="bi bi-facebook " onclick="swal('Error!','This user does not have Facebook link','error');" > </a>
                 }
                 else
                 {
-                    <a class="bi bi-facebook " href="@Model.FacebookLink" target="_blank" style="color: dodgerblue; font-size: 1.5rem"> </a>
+                    <a class="bi bi-facebook " href="@Model.FacebookLink" target="_blank"> </a>
                 }
                 //nut edit
                 @if (@Context.Session.GetString("inGameName").Equals(Model.SummonerName) && @Context.Session.GetString("server").Equals(Model.Server))
@@ -99,7 +99,7 @@
             <div class="ProfileListRank">
                 <div class="ProfileRankItem">
                     <div class="ProfileRankImage">
-                        <img style="width: 6.5vw" src="~/@Model.RankImgPath">
+                        <img src="~/@Model.RankImgPath">
                     </div>
 
                     <h3>@Model.Rank @Model.Tier</h3>

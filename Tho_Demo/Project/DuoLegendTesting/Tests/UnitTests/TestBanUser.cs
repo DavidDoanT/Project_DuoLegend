@@ -62,12 +62,12 @@ namespace DuoLegendTesting
             Assert.AreEqual(result, expect);
         }
         [Test, Order(4)]
-        [TestCase("2021-05-31")]
-        [TestCase("20224")]
-        [TestCase("2021-01-11")]
-        public void TestBanExpirationDateFail(Object expect)
+        [TestCase("2021-05-31",_email)] //sai ngay , dung email
+        [TestCase("2021-05-30","emailsai")]//dung ngay, sai email
+        [TestCase("2021-01-01", "emailsai")]//sai ngay, sai email
+        public void TestBanExpirationDateFail(DateTime expect,string email)
         {
-            var result = BanInfoDAO.GetBanExpirationDate(_email);
+            var result = BanInfoDAO.GetBanExpirationDate(email);
             Assert.AreNotEqual(result, expect);
         }
 
