@@ -135,7 +135,7 @@ namespace DuoLegend.ViewModels
             get { return _rank; }
             set 
             {
-                _rankImgPath = "img/" + value.ToLower() + "Icon.png";
+                _rankImgPath = "img/Rank/" + value.ToLower() + "Icon.png";
                 _rank = value; 
 
             }
