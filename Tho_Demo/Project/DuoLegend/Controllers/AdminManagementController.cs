@@ -47,7 +47,7 @@ namespace DuoLegend.Controllers
                 return RedirectToAction("UserList");    //Returns the admin to user's List
             }
 
-            return NotFound();
+            return RedirectToAction("error", "Home");
         }
 
         [HttpPost]
