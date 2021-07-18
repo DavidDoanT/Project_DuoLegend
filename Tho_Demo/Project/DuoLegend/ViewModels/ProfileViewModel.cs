@@ -69,7 +69,7 @@ namespace DuoLegend.ViewModels
         public string ProfileIconPath
         {
             get { 
-                return "http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/"+_profileIconId.ToString()+".png"; 
+                return "http://ddragon.leagueoflegends.com/cdn/11.14.1/img/profileicon/"+_profileIconId.ToString()+".png"; 
             }          
         }
 

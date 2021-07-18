@@ -43,14 +43,14 @@ namespace DuoLegend.ViewModels
         {
             get
             {
-                return "http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/" + _userOtherAvatarId.ToString() + ".png";
+                return "http://ddragon.leagueoflegends.com/cdn/11.14.1/img/profileicon/" + _userOtherAvatarId.ToString() + ".png";
             }
         }
         public string UserSelfAvatarPath
         {
             get
             {
-                return "http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/" + _userSelfAvatarId.ToString() + ".png";
+                return "http://ddragon.leagueoflegends.com/cdn/11.14.1/img/profileicon/" + _userSelfAvatarId.ToString() + ".png";
             }
         }
     }
