@@ -41,9 +41,10 @@ namespace DuoLegendTesting
         [Test]
         public void testRememberMe()
         {
+            
             Thread.Sleep(200);
 
-            driver.Navigate().GoToUrl("https://localhost:5001/");
+            driver.Navigate().GoToUrl("https://localhost:44316/");
             driver.Manage().Window.Size = new System.Drawing.Size(1552, 840);
             Thread.Sleep(2000);
             driver.FindElement(By.LinkText("Login")).Click();

@@ -2,6 +2,7 @@
 using DuoLegend.Models;
 using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 
 namespace DuoLegendTesting.Tests.UnitTests
 {
@@ -9,8 +10,8 @@ namespace DuoLegendTesting.Tests.UnitTests
     public class TestChatBox
     {
         private const int _user1 = 20;
-        private const int _user2 = 21;
-        private const int _boxChatId=1;
+        private const int _user2 = 27;
+        private const int _boxChatId=7;
         [SetUp]
         public void Setup()
         {
@@ -19,22 +20,33 @@ namespace DuoLegendTesting.Tests.UnitTests
         [OneTimeTearDown]
         public void TearDown()
         {
-            DbConnection.Connect();
-            DbConnection.Cmd.CommandText = "DELETE FROM [boxChat] WHERE user1=@user1 and user2=@user2";
-            DbConnection.Cmd.Parameters.AddWithValue("@user1", _user1);
-            DbConnection.Cmd.Parameters.AddWithValue("@user2", _user2);
-            DbConnection.Cmd.ExecuteNonQuery();
-
-            DbConnection.Cmd.CommandText = "DELETE FROM [boxChatDetail] WHERE boxChatId=@boxChatId";
-            DbConnection.Cmd.Parameters.AddWithValue("@boxChatId", _boxChatId);
-            DbConnection.Cmd.ExecuteNonQuery();
-
-            DbConnection.Disconnect();
         }
 
-        [Test]
-        [TestCase(20,21,1)]
-        [TestCase(21,20,1)]
+        [Test, Order(1)]
+        [TestCase(_boxChatId, "abc", _user1, "2021-07-18 14:09:51.337", false)]
+        public void TestGetListBoxChatDetailById(int boxChatId, string expContent, int expSendFrom, DateTime expTimeSend, bool expIsSeen)
+        {
+            List<BoxChatDetail> result = DuoLegend.DAO.ChatDAO.GetListBoxChatDetailById(boxChatId);
+            Assert.AreEqual(expContent, result[0].Content);
+            Assert.AreEqual(expSendFrom, result[0].SendFrom);
+            Assert.AreEqual(expTimeSend, result[0].TimeSend);
+            Assert.AreEqual(expIsSeen, result[0].IsSeen);
+        }
+
+        [Test, Order(2)]
+        [TestCase(_boxChatId, 1, "abc", _user1, "2021-07-18 14:09:51.337", false)]
+        public void TestGetOldMessageById(int boxChatId, int numberOfMessage, string expContent, int expSendFrom, DateTime expTimeSend, bool expIsSeen)
+        {
+            List<BoxChatDetail> result = DuoLegend.DAO.ChatDAO.GetOldMessageById(boxChatId, numberOfMessage);
+            Assert.AreEqual(expContent, result[0].Content);
+            Assert.AreEqual(expSendFrom, result[0].SendFrom);
+            Assert.AreEqual(expTimeSend, result[0].TimeSend);
+            Assert.AreEqual(expIsSeen, result[0].IsSeen);
+        }
+
+        [Test, Order(3)]
+        [TestCase(_user1,_user2,_boxChatId)]
+        [TestCase(_user2, _user1, _boxChatId)]
         [TestCase(20,99,0)]
         [TestCase(99,20,0)]
         [TestCase(69,96,0)]
@@ -44,21 +56,21 @@ namespace DuoLegendTesting.Tests.UnitTests
             Assert.AreEqual(expResult, result);
         }
 
-        [Test]
+        [Test, Order(4)]
         public void TestAddBoxChatSuccess()
         {
             Assert.DoesNotThrow(() => DuoLegend.DAO.ChatDAO.addBoxChat(_user1, _user2));
         }
 
-        [Test]
+        [Test, Order(5)]
         public void TestAddChatContentSuccess()
         {
             Assert.DoesNotThrow(() => DuoLegend.DAO.ChatDAO.addChatContent(_boxChatId,"test",_user1));
         }
 
-        [Test]
-        [TestCase(20, "nikefullset","KR")]
-        [TestCase(99, null, null)]
+        [Test, Order(6)]
+        [TestCase(_user1, "nikefullset","KR")]
+        [TestCase(_user2, "Your vaccine", "KR")]
         public void TestGetInGameNameServerById(int id, string expResultIngameName, string expResultServer)
         {
             string[] result = DuoLegend.DAO.UserDAO.getInGameNameServerById(id);
@@ -66,6 +78,10 @@ namespace DuoLegendTesting.Tests.UnitTests
             Assert.AreEqual(expResultServer, result[1]);
         }
 
-
+        [Test, Order(7)]
+        public void TestChangeSeenStateSuccess()
+        {
+            Assert.DoesNotThrow(() => DuoLegend.DAO.ChatDAO.changeSeenState(_user2,_boxChatId));
+        }
     }
 }
