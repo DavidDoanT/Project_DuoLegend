@@ -44,7 +44,7 @@
                     <a class="bi bi-facebook " href="@Model.FacebookLink" target="_blank"> </a>
                 }
                 //nut edit
-                @if (@Context.Session.GetString("inGameName").Equals(Model.SummonerName) && @Context.Session.GetString("server").Equals(Model.Server))
+                @if (Model.Id == Context.Session.GetInt32("id"))
                 {
                     //CHINH CAI EDIT O TRONG DAY NE ANH GIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
                     <a class="button" asp-controller="Profile" asp-action="UpdateUser">Edit</a>
@@ -52,7 +52,7 @@
                 }
 
                 //nut rating
-                @if (@Context.Session.GetString("inGameName").Equals(Model.SummonerName) && @Context.Session.GetString("server").Equals(Model.Server))
+                @if (Model.Id == Context.Session.GetInt32("id"))
                 {
                 }
                 else if (ViewBag.ratingCondition == false)
