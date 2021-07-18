@@ -31,7 +31,7 @@ namespace DuoLegendTesting.Tests.UnitTests
         [TestCase("NnY", "")]
         [TestCase("nikefullset", "")]
         [TestCase("wrongIngameName", null)]
-        public void TestGetNoteSuccess(string inGameName, string expResult)
+        public void TestGetNote(string inGameName, string expResult)
         {
             string result = DuoLegend.DAO.UserDAO.getNote(inGameName, "KR");
             Assert.AreEqual(expResult, result);
