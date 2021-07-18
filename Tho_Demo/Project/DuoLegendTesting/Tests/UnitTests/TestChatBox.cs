@@ -83,7 +83,5 @@ namespace DuoLegendTesting.Tests.UnitTests
         {
             Assert.DoesNotThrow(() => DuoLegend.DAO.ChatDAO.changeSeenState(_user2,_boxChatId));
         }
-
-
     }
 }
