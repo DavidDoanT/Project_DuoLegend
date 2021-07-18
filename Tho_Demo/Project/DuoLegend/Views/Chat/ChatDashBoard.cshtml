@@ -44,26 +44,26 @@
                         @foreach (var user in Model.ListMessageAndUserHaveChatWith)
                         {
                             <a id='@("id" + user.Key)' asp-controller="Chat" asp-action="ChatDashBoard" asp-route-otherId="@user.Key" style="text-decoration: none;">
-                            <li class="@(user.Key == Model.UserOtherId ? "person myChoose chosen" : "person myChoose" ) mx-2" data-chat="person1">
-                                <div class="row justify-content-start align-items-center no-gutters">
+                                <li class="@(user.Key == Model.UserOtherId ? "person myChoose chosen" : "person myChoose" ) mx-2" data-chat="person1">
+                                    <div class="row justify-content-start align-items-center no-gutters">
 
-                                    @*Tên và thời gian chat lần cuối*@
-                                    <div class="name-time col-md-auto col-xs-0 ml-5">
-                                        <div class="row">
-                                            <span class="name col-auto pr-0">@UserDAO.getInGameNameServerById(user.Key)[0]</span>
-                                            <img id='@("state" + user.Key)' src="@Model.UserOtherAvatarPath" alt="Retail Admin" class="user-status avatarState col-auto align-self-center p-0 mx-3">
+                                        @*Tên và thời gian chat lần cuối*@
+                                        <div class="name-time col-md-auto col-xs-0 ml-5">
+                                            <div class="row">
+                                                <span class="name col-auto pr-0">@UserDAO.getInGameNameServerById(user.Key)[0]</span>
+                                                <img id='@("state" + user.Key)' src="@Model.UserOtherAvatarPath" alt="Retail Admin" class="user-status avatarState col-auto align-self-center p-0 mx-3">
+                                            </div>
+                                            <span class="time @("content" + user.Key)">
+                                                @(user.Value.SendFrom == Model.UserSelfId ? "You:" : string.Empty ) @if (user.Value.Content.Length > 45)
+                                                {@user.Value.Content.Substring(0, 45)<text>...</text>}
+                                            else
+                                            { @user.Value.Content}
+                                            </span><br>
+                                            <span class="time @("content" + user.Key) ">@DuoLegend.Service.TimeProcess.HowLongSince(@user.Value.TimeSend)[0]</span>
+                                            <span class="time @("content" + user.Key) ">@DuoLegend.Service.TimeProcess.HowLongSince(@user.Value.TimeSend)[1]</span>
                                         </div>
-                                        <span class="time @("content" + user.Key)">
-                                            @(user.Value.SendFrom == Model.UserSelfId ? "You:" : string.Empty ) @if (user.Value.Content.Length > 45)
-                                            {@user.Value.Content.Substring(0, 45)<text>...</text>}
-                                        else
-                                        { @user.Value.Content}
-                                        </span><br>
-                                        <span class="time @("content" + user.Key) ">@DuoLegend.Service.TimeProcess.HowLongSince(@user.Value.TimeSend)[0]</span>
-                                        <span class="time @("content" + user.Key) ">@DuoLegend.Service.TimeProcess.HowLongSince(@user.Value.TimeSend)[1]</span>
                                     </div>
-                                </div>
-                            </li>
+                                </li>
                             </a>
                         }
                     }
@@ -114,8 +114,11 @@
 <button class="btn btn-primary" data-toggle="modal" data-target="#example" id="openChatButton" hidden>Chat</button>
 <input id="UserSelfAvatarPath" value="@Model.UserSelfAvatarPath" disabled hidden>
 <input id="UserOtherAvatarPath" value="@Model.UserOtherAvatarPath" disabled hidden>
-@foreach (var user in Model.ListMessageAndUserHaveChatWith)
+@if (Model.ListMessageAndUserHaveChatWith != null)
 {
-    <input class="UserIdArray" value="@user.Key" disabled hidden />
+    @foreach (var user in Model.ListMessageAndUserHaveChatWith)
+    {
+        <input class="UserIdArray" value="@user.Key" disabled hidden />
+    }
 }
 <script src="~/js/ChatDashBoard.js"></script>

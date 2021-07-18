@@ -100,7 +100,7 @@ window.onload = function () { // this will be run when the whole page is loaded
     document.getElementById("updateOnlineList").click();
 };
 
-setInterval(function () { document.getElementById("updateOnlineList").click(); }, 10000);
+setInterval(function () { document.getElementById("updateOnlineList").click(); }, 30000);
 
 document.getElementById("searchBar").addEventListener("keyup", function (event) {
     var searchContent = this.value;
