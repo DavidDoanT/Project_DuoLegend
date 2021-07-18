@@ -19,9 +19,8 @@ namespace DuoLegendTesting.Tests.UnitTests
         }
 
         [Test]
-        [TestCase("NnY","TOP")]
+        [TestCase("NnY","Top")]
         [TestCase("wrongIngameName", null)]
-        [TestCase(null,null)]
         public void TestGetLane(string inGameName, string expResult)
         {
             string result = DuoLegend.DAO.UserDAO.getLane(inGameName, "KR");
@@ -32,7 +31,6 @@ namespace DuoLegendTesting.Tests.UnitTests
         [TestCase("NnY", "")]
         [TestCase("nikefullset", "")]
         [TestCase("wrongIngameName", null)]
-        [TestCase(null, null)]
         public void TestGetNoteSuccess(string inGameName, string expResult)
         {
             string result = DuoLegend.DAO.UserDAO.getNote(inGameName, "KR");
@@ -43,7 +41,6 @@ namespace DuoLegendTesting.Tests.UnitTests
         [TestCase("NnY", true)]
         [TestCase("nikefullset", false)]
         [TestCase("wrongIngameName", false)]
-        [TestCase(null, false)]
         public void TestIsHaveMic(string inGameName, bool expResult)
         {
             bool result = DuoLegend.DAO.UserDAO.isHaveMic(inGameName, "KR");
@@ -64,7 +61,6 @@ namespace DuoLegendTesting.Tests.UnitTests
         [Test]
         [TestCase("NnY", "LdxKYf7Wc8aju7zkRRcHBJkpBk8HSWbfMMleVEAVNjFj4eoylZjubN9Wlml48K20o3O96pxQd83rfQ")]
         [TestCase("wrongIngameName", null)]
-        [TestCase(null, null)]
         public void TestGetPuuId(string inGameName, string expResult)
         {
             string result = DuoLegend.DAO.UserDAO.getPuuId(inGameName, "KR");
