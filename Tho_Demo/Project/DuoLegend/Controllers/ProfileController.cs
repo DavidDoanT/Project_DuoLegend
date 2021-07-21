@@ -143,6 +143,10 @@ namespace DuoLegend.Controllers
 
         public IActionResult LikedList(int likerId)
         {
+            if(likerId != HttpContext.Session.GetInt32("id"))
+            {
+                return RedirectToAction("Login", "Account");
+            }
             List<User> LikedUsers = ProfileDAO.getLikedList(likerId);
             return View(LikedUsers);
         }

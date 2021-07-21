@@ -9,6 +9,7 @@
 .table td, .table th{
     max-width: 18vw;
     text-align: center;
+    
 }
 .title {
     text-align:center;
@@ -17,4 +18,11 @@
 body{
     background-image: url("../img/test.jpg");
 }
-
+@media only screen and (max-width: 768px) {
+    .table td, .table th {
+        font-size:3vw;
+    }
+    .btn-primary{
+        font-size:2vw;
+    }
+}
