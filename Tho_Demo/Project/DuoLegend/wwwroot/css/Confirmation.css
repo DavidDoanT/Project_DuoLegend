@@ -6,15 +6,31 @@
     font-family: 'Friz Quadrata';
     margin-top: 19%;
     background-color: rgba(19,28,46,.9333333333333333);
-    width: 37vw;
+    width: 45vw;
     border-radius: 5%;
-    height: 38vh;
+    height: 45vh;
 }
 
 h3{
     color: white;
+    font-size:2em;
 }
 
 a{
     color: deepskyblue;
+}
+
+.my-icon {
+    font-size: 5em;
+}
+
+@media only screen and (max-width: 768px) {
+    h3 {
+        color: white;
+        font-size: 1em;
+    }
+
+    .my-icon {
+        font-size: 3em;
+    }
 }

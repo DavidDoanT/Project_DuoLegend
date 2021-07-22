@@ -4,15 +4,15 @@
 
 <!-- bắt đầu làm tại đây -->
 
-<div class="container-fluid p-0" style="height: 90%; margin-top:-1rem;">
-    <div class="row no-gutters" style="height: 100%;">
-        <div class="col-md-3 col-2 left-area">
-            <div class="row justify-content-between" style="height:5%">
-                <h1 class="col-auto ml-4">Chat</h1>
-                <div id="updateOnlineList" class="btn btn-danger mx-4 col-auto align-self-center" style="height:100%;" onclick="updateOnlineSate()">Update Online List</div>
+<div class="container-fluid p-0 main-container">
+    <div class="row no-gutters main-row">
+        <div class="col-md-3 col-3 left-area">
+            <div class="row justify-content-between chat-online-row">
+                <h1 class="col-auto ml-4 my-chat">Chat</h1>
+                <div id="updateOnlineList" class="btn btn-danger mx-4 col-auto align-self-center" onclick="updateOnlineSate()">Update Online List</div>
             </div>
             <!-- Thanh search danh sách những người đã chat -->
-            <div class="search m-4" style="height: 36px;">
+            <div class="search m-4">
                 <form>
                     <input class="form-control search-field" id="searchBar" placeholder="Search">
                 </form>
@@ -54,8 +54,8 @@
                                                 <img id='@("state" + user.Key)' src="@Model.UserOtherAvatarPath" alt="Retail Admin" class="user-status avatarState col-auto align-self-center p-0 mx-3">
                                             </div>
                                             <span class="time @("content" + user.Key)">
-                                                @(user.Value.SendFrom == Model.UserSelfId ? "You:" : string.Empty ) @if (user.Value.Content.Length > 45)
-                                                {@user.Value.Content.Substring(0, 45)<text>...</text>}
+                                                @(user.Value.SendFrom == Model.UserSelfId ? "You:" : string.Empty ) @if (user.Value.Content.Length > 30)
+                                                {@user.Value.Content.Substring(0, 30)<text>...</text>}
                                             else
                                             { @user.Value.Content}
                                             </span><br>
@@ -72,7 +72,7 @@
             </div>
         </div>
 
-        <div class="col-md-9 col-10" style="height: 100%;">
+        <div class="col-md-9 col-9 right-col">
             <!-- Tên và avatar của người hiện tại đang chat -->
             <div class="selected-user">
                 <div class="contact-profile row justify-content-start no-gutters align-items-center">
@@ -91,7 +91,7 @@
 
             <!-- Nội dung chat -->
             <div class="content p-2" id="messagesList">
-                <div id="loadOldMessage" class="btn btn-info" style=" margin: 0 auto; display: block; width: 9vw;">View more message</div>
+                <div id="loadOldMessage" class="btn btn-info">View more message</div>
             </div>
 
             <!-- Ô nhập tin nhắn và nút gửi tin nhắn -->
@@ -102,8 +102,7 @@
                     <input id="messageInput" class="form-control input-field col-md-11 col-10"
                            placeholder="Type your message...">
                     <button class="send-button col-md-1 col-1" type="button" id="sendButton">
-                        <i class="bi bi-cursor-fill"
-                           style="color: #0084ff; font-size: 2rem;"></i>
+                        <i class="bi bi-cursor-fill send-icon"></i>
                     </button>
                 </div>
             </form>

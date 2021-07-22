@@ -35,8 +35,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="IsVerified">Is Verified</label>
-                    <input asp-for="IsVerified" class="form-control" readonly />
+                    <label asp-for="IsVerified">Verified</label>
+                    <input value="@{ if (Model.IsVerified == 1) { <text>Yes</text> } else {<text>No</text> } }" class="form-control" readonly />
                 </div>
 
                 <input type="submit" value="Delete" class="btn btn-danger">

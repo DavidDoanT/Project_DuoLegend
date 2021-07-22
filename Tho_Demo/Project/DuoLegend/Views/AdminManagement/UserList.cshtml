@@ -42,7 +42,6 @@
         <tbody>
             @foreach (var user in Model)
             {
-                //var now = DateTime.Now.Date;
                 <tr>
                     <th>@user.UserID</th>
                     <td>@user.Email</td>
@@ -71,8 +70,6 @@
                         else
                         {
                             @user.ExpirationDate
-                            @*var dayBan = (((DateTime)user.ExpirationDate).Date - now).TotalDays;
-                            @dayBan if (dayBan > 1){<span> days</span>} else{ <span> day</span>}*@
                         }
                     </td>
                     <td style="text-align:center" width="12%">

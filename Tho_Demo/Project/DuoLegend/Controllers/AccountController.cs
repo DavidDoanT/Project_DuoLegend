@@ -113,9 +113,6 @@ namespace DuoLegend.Controllers
                 string activationCode = Guid.NewGuid().ToString();
                 SendEmail(user.Email, activationCode, "VerifyAccount");
                 DAO.UserDAO.addActivationCode(activationCode, user.Email);
-                string msg = "Registration successfully done. Account verification link " +
-                " has been sent to your email: " + user.Email;
-                ViewBag.Message = msg;
                 return RedirectToAction("Login", "Account");
             }
             else return View();
@@ -132,7 +129,7 @@ namespace DuoLegend.Controllers
         }
 
         /// <summary>
-        /// Send email to user
+        /// Generate reset password code, send email to user and add reset password code to database
         /// </summary>
         /// <param name="model"></param>
         /// <returns>View ForgotPasswordConfirmation </returns>
@@ -154,10 +151,10 @@ namespace DuoLegend.Controllers
         }
 
         /// <summary>
-        /// Redirect to view for new password
+        /// Redirect to changing password form
         /// </summary>
-        /// <param name="code"></param>
-        /// <returns></returns>
+        /// <param name="code">Reset password code</param>
+        /// <returns>Return to reset password form</returns>
         public IActionResult ResetPassword(string code)
         {
             if (string.IsNullOrWhiteSpace(code))
@@ -197,6 +194,10 @@ namespace DuoLegend.Controllers
 
         public IActionResult VerifyAccount(string code)
         {
+            if (string.IsNullOrWhiteSpace(code))
+            {
+                return RedirectToAction("error", "Home");
+            }
             if (DAO.UserDAO.isActivationCodeExist(code))
             {
                 DAO.UserDAO.verifyAccount(code);
@@ -233,7 +234,7 @@ namespace DuoLegend.Controllers
                     Text = "<h1>Almost done," + emailID + "!</h1><br/>" +
                     "We are excited to tell you that your Duo Legend account is" +
                     " successfully created. Please click on the link below to verify your account.<br/>" +
-                    "<a href='" + link + "' class='btn btn-primary'>VERIFY EMAIL ADDRESS</a>"
+                    "<a href='" + link + "' style='background-color: #ED2939; padding: 8px 12px; border: 1px solid #ED2939;border-radius: 2px;font-family: Helvetica, Arial, sans-serif;font-size: 14px; color: #ffffff;text-decoration: none;font-weight:bold;display: inline-block;'>Verify Email Address</a>"
                 };
             }
             else if (emailFor == "ResetPassword")
@@ -243,7 +244,7 @@ namespace DuoLegend.Controllers
                 {
                     Text = "<h1>Password Reset Instructions</h1><br/>" +
                     "Hello,<br/>Click the link below to reset your password for your Duo Legend account.<br/>" +
-                    "<a href='" + link + "' class='btn btn-primary'>RESET PASSWORD</a>"
+                    "<a href='" + link + "' style='background-color: #ED2939; padding: 8px 12px; border: 1px solid #ED2939;border-radius: 2px;font-family: Helvetica, Arial, sans-serif;font-size: 14px; color: #ffffff;text-decoration: none;font-weight:bold;display: inline-block;'>Reset Password</a>"
                 };
             }
             // send email

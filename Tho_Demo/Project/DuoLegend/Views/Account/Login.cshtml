@@ -7,10 +7,12 @@
     label.error {
         color: red;
     }
+
     .form-control {
         width: 95%;
     }
 </style>
+
 <script>
     $().ready(function () {
         $("#Form").validate({
@@ -56,26 +58,26 @@
 
             <div class="form-group">
                 <input type="password" class="form-control" placeholder="Please enter your password" name="password"
-                       asp-for="Password" id="id_password" >
+                       asp-for="Password" id="id_password">
                 @*Button show/hide password*@
                 <i class="bi bi-eye-slash" id="togglePassword" style="margin-left: -30px; cursor: pointer;"></i>
             </div>
-             @if (ViewBag.isCorrect == false)
-                    {
-                        <p style="color: red">Wrong email or password</p>
-                      } 
+            @if (ViewBag.isCorrect == false)
+            {
+                <p style="color: red">Wrong email or password</p>
+            }
 
 
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="RememberMe" value="true" id="RememberMe" asp-for="RememberMe">
-            <label class="" for="RememberMe" style="color: white;">
-                Remember me
-            </label>
-            <br />
-            <a asp-action="ForgotPassword" asp-controller="Account" style="color: white;">Forgot Password?</a>
-            @*<label for="RememberMe" style="color: white">Remember Me</label>
-            <input type="checkbox" value="true" class="form-control" id="RememberMe" name="RememberMe" asp-for="RememberMe">*@
-        </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="RememberMe" value="true" id="RememberMe" asp-for="RememberMe">
+                <label class="" for="RememberMe" style="color: white;">
+                    Remember me
+                </label>
+                <br />
+                <a asp-action="ForgotPassword" asp-controller="Account" style="color: white;">Forgot Password?</a>
+                @*<label for="RememberMe" style="color: white">Remember Me</label>
+                    <input type="checkbox" value="true" class="form-control" id="RememberMe" name="RememberMe" asp-for="RememberMe">*@
+            </div>
             <button type="submit" class="btn btn-danger button "><i class="bi bi-box-arrow-in-right"></i>         Log in</button>
 
         </form>
