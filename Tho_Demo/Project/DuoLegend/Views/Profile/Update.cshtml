@@ -107,7 +107,7 @@
             @*input facebook link*@
             <div class="form-group">
                 <label>Facebook Link: </label>
-                <input type="text" name="facebookLink" class="form-control" id="facebookLink" placeholder="Your Facebook link" asp-for="FacebookLink" pattern="https:\/\/www.facebook.com.*?)&" title="This is not a facebook link" required maxlength="100">
+                <input type="text" name="facebookLink" class="form-control" id="facebookLink" placeholder="Your Facebook link" asp-for="FacebookLink" pattern="^(?:.*)\/(?:pages\/[A-Za-z0-9-]+\/)?(?:profile\.php\?id=)?([A-Za-z0-9.]+/)" title="This is not a facebook link" required maxlength="100">
             </div>
 
             @*Input description*@
