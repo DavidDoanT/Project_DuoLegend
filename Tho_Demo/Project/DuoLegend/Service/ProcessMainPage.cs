@@ -130,8 +130,9 @@ namespace DuoLegend.Service
                 if (user.Rank.Equals(searchInfor.Rank) && user.Lane.Equals(searchInfor.Lane))
                 {
                     result.InGameName[count] = user.InGameName;
+                    count++;
                 }
-                if (count >= 2)
+                if (count >= 3)
                 {
                     break;
                 }
